@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #action }
-PDFDocument >> addPage [
+PDFDocument >> addPage: aPage [
 	"add a new page in the PDF document"
 
 ]
@@ -68,6 +68,7 @@ PDFDocument >> format: aValue [
 { #category : #action }
 PDFDocument >> generate [
 	" answer the PDF file"
+	^self document
 	
 	
 
