@@ -6,11 +6,9 @@ Class {
 		'pages',
 		'fonts',
 		'orientation',
-		'width',
-		'height',
+		'size',
+		'margins',
 		'scaleFactor',
-		'lMargin',
-		'tMargin',
 		'autoPageBreak',
 		'pageBreakTrigger'
 	],
@@ -66,37 +64,37 @@ PDFDocument >> generate [
 
 { #category : #accessing }
 PDFDocument >> height [
-	height ifNil: [ self setPortrait ].
-	^height
-]
-
-{ #category : #accessing }
-PDFDocument >> height: aValue [
-	height := aValue
+	^(self size y)
 ]
 
 { #category : #'initialize-release' }
 PDFDocument >> initialize [
 	super initialize.
+	self setPortrait.
+	self setDefaultMargins.
 	self setAutoPageBreak: true margin: self margin.
 
 	
 ]
 
 { #category : #accessing }
-PDFDocument >> lMargin [
-	lMargin ifNil: [  self setDefaultMargins ].
-	^lMargin
-]
-
-{ #category : #accessing }
-PDFDocument >> lMargin: aValue [
-	lMargin := aValue
+PDFDocument >> leftMargin [
+	^(self margins x)
 ]
 
 { #category : #private }
 PDFDocument >> margin [
-	^(28.35 / self scaleFactor asFloat)
+	^(28.35 / self scaleFactor)
+]
+
+{ #category : #accessing }
+PDFDocument >> margins [
+	^margins
+]
+
+{ #category : #accessing }
+PDFDocument >> margins: aValue [
+	margins := aValue
 ]
 
 { #category : #accessing }
@@ -143,7 +141,7 @@ PDFDocument >> scaleFactor: aValue [
 { #category : #'page setup' }
 PDFDocument >> setAutoPageBreak: mode [
 	self autoPageBreak: mode.
-	self pageBreakTrigger: self height / self scaleFactor.
+	self pageBreakTrigger: (self height) / self scaleFactor.
 ]
 
 { #category : #'page setup' }
@@ -154,43 +152,52 @@ PDFDocument >> setAutoPageBreak: mode margin: aMargin [
 
 { #category : #private }
 PDFDocument >> setDefaultMargins [
-	self tMargin: self margin.
-	self lMargin: self margin.
+	self setMargins: (self margin) top: (self margin)
+
 ]
 
 { #category : #'page setup' }
 PDFDocument >> setLandscape [
 	"Set the page in landscape orientation"
-	self width: 841.9.
-	self height: 595.3.	
+	self setSize: 841.9 height: 595.3..	
 ]
 
 { #category : #'page setup' }
 PDFDocument >> setMargins: leftMargin top: topMargin [
 	"set the left and top margins"
 	
-	self lMargin: leftMargin.
-	self tMargin: topMargin.
+	self margins: leftMargin@topMargin.
 
 ]
 
 { #category : #'page setup' }
 PDFDocument >> setPortrait [
 	"Set the page in portrait orientation"
-	self width: 595.3.
-	self height: 841.9.
+	self setSize: 595.3 height: 841.9. 
+
 	
 ]
 
-{ #category : #accessing }
-PDFDocument >> tMargin [
-	tMargin ifNil: [  self SetDefaultMargins ].
-	^tMargin
+{ #category : #'page setup' }
+PDFDocument >> setSize: width height: height [
+	"set the size of the document"
+
+	self size: width@height
 ]
 
 { #category : #accessing }
-PDFDocument >> tMargin: aValue [
-	tMargin := aValue
+PDFDocument >> size [
+	^size
+]
+
+{ #category : #accessing }
+PDFDocument >> size: aValue [
+	size := aValue
+]
+
+{ #category : #accessing }
+PDFDocument >> topMargin [
+	^(self margins y)
 ]
 
 { #category : #'page setup' }
@@ -215,11 +222,5 @@ PDFDocument >> usePointsAsUnit [
 
 { #category : #accessing }
 PDFDocument >> width [
-	width ifNil: [ self setPortrait ].
-	^width
-]
-
-{ #category : #accessing }
-PDFDocument >> width: aValue [
-	width := aValue
+	^(self size x)
 ]
