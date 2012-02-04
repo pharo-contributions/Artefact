@@ -6,6 +6,7 @@ Class {
 		'pages',
 		'fonts',
 		'orientation',
+		'page',
 		'format',
 		'size',
 		'margins',
@@ -19,6 +20,13 @@ Class {
 { #category : #action }
 PDFDocument >> addPage: aPage [
 	"add a new page in the PDF document"
+	(self page > 0) ifTrue: [
+		self endPage. 
+	].
+	self beginPage.
+	
+	"Process the styles in the page"
+	
 
 ]
 
@@ -32,6 +40,13 @@ PDFDocument >> autoPageBreak: aLogicValue [
 	autoPageBreak := aLogicValue
 ]
 
+{ #category : #private }
+PDFDocument >> beginPage [
+	"Start a new page"
+	self page: self page + 1.
+	
+]
+
 { #category : #accessing }
 PDFDocument >> document [
 	^ document ifNil: [ document := '%PDF-1.3' , (String cr) ]
@@ -40,6 +55,11 @@ PDFDocument >> document [
 { #category : #accessing }
 PDFDocument >> document: bodyOfPDFDocument [
 	document := bodyOfPDFDocument
+]
+
+{ #category : #private }
+PDFDocument >> endPage [
+	"Close a page"
 ]
 
 { #category : #accessing }
@@ -117,6 +137,24 @@ PDFDocument >> orientation [
 { #category : #accessing }
 PDFDocument >> orientation: aValue [
 	orientation := aValue
+]
+
+{ #category : #private }
+PDFDocument >> out: aString [
+	"append the string to the document"
+	self document: self document , aString.
+]
+
+{ #category : #accessing }
+PDFDocument >> page [
+	"answer the current page number"
+	^page ifNil: [ page := 0 ]
+]
+
+{ #category : #accessing }
+PDFDocument >> page: aValue [
+	"set the current page number"
+	page := aValue
 ]
 
 { #category : #accessing }

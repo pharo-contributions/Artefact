@@ -1,5 +1,5 @@
 Class {
-	#name : #PDFComponent,
+	#name : #PDFStyle,
 	#superclass : #Object,
 	#category : #Artefact
 }

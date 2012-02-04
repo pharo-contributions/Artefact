@@ -2,7 +2,7 @@ Class {
 	#name : #PDFPage,
 	#superclass : #Object,
 	#instVars : [
-		'components'
+		'styles'
 	],
 	#category : #Artefact
 }
