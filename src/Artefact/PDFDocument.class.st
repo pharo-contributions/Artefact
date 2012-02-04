@@ -6,6 +6,7 @@ Class {
 		'pages',
 		'fonts',
 		'orientation',
+		'format',
 		'size',
 		'margins',
 		'scaleFactor',
@@ -54,6 +55,16 @@ PDFDocument >> fonts [
 	]
 ]
 
+{ #category : #accessing }
+PDFDocument >> format [
+	^format
+]
+
+{ #category : #accessing }
+PDFDocument >> format: aValue [
+	format := aValue
+]
+
 { #category : #action }
 PDFDocument >> generate [
 	" answer the PDF file"
@@ -70,8 +81,8 @@ PDFDocument >> height [
 { #category : #'initialize-release' }
 PDFDocument >> initialize [
 	super initialize.
+	self setFormat: PDFFormatA4 new.
 	self setPortrait.
-	self setDefaultMargins.
 	self setAutoPageBreak: true margin: self margin.
 
 	
@@ -84,7 +95,7 @@ PDFDocument >> leftMargin [
 
 { #category : #private }
 PDFDocument >> margin [
-	^(28.35 / self scaleFactor)
+	^(self format margin / self scaleFactor)
 ]
 
 { #category : #accessing }
@@ -157,9 +168,15 @@ PDFDocument >> setDefaultMargins [
 ]
 
 { #category : #'page setup' }
+PDFDocument >> setFormat: aFormat [
+	self format: aFormat.
+	self setDefaultMargins.
+]
+
+{ #category : #'page setup' }
 PDFDocument >> setLandscape [
 	"Set the page in landscape orientation"
-	self setSize: 841.9 height: 595.3..	
+	self setSize: (self format size y) height: (self format size x)..	
 ]
 
 { #category : #'page setup' }
@@ -173,7 +190,7 @@ PDFDocument >> setMargins: leftMargin top: topMargin [
 { #category : #'page setup' }
 PDFDocument >> setPortrait [
 	"Set the page in portrait orientation"
-	self setSize: 595.3 height: 841.9. 
+	self setSize: (self format size x) height: (self format size y). 
 
 	
 ]
