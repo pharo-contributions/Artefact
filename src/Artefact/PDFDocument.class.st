@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #action }
-PDFDocument >> addPage: aPage [
+PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
 	(self page > 0) ifTrue: [
 		self endPage. 

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFFormat >> margin [
-	^self subclassResponsibility
+	self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }

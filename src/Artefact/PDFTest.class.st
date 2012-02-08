@@ -12,7 +12,8 @@ PDFTest class >> ex1 [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-	pdfdoc addPage: aPage.
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 100@100).
+	pdfdoc add: aPage.
 	Transcript clear; show: pdfdoc generate.
 	
 	
