@@ -164,7 +164,7 @@ PDFDocument >> newObj [
 
 { #category : #accessing }
 PDFDocument >> numberOfObjects [
-	^ numberOfObjects ifNil: [ numberOfObjects := 0 ]
+	^ numberOfObjects ifNil: [ numberOfObjects := 1 ]
 ]
 
 { #category : #accessing }
