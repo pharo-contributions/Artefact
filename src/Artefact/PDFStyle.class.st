@@ -21,16 +21,6 @@ PDFStyle >> destination: anObject [
 	destination := anObject
 ]
 
-{ #category : #accessing }
-PDFStyle >> from [
-	^ from
-]
-
-{ #category : #accessing }
-PDFStyle >> from: anObject [
-	from := anObject
-]
-
 { #category : #render }
 PDFStyle >> render [
 	self subclassResponsibility

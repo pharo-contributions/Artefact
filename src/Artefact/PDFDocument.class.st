@@ -2,11 +2,14 @@ Class {
 	#name : #PDFDocument,
 	#superclass : #Object,
 	#instVars : [
-		'document',
+		'buffer',
+		'numberOfObjects',
 		'pages',
+		'offsets',
+		'offset',
 		'fonts',
 		'orientation',
-		'page',
+		'pageNumber',
 		'format',
 		'size',
 		'margins',
@@ -20,12 +23,11 @@ Class {
 { #category : #action }
 PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
-	(self page > 0) ifTrue: [
-		self endPage. 
-	].
-	self beginPage.
+	self pageNumber: self pageNumber + 1.
+	"aPage number: self page."
+	self pages add: (aPage number: self pageNumber).
+
 	
-	"Process the styles in the page"
 	
 
 ]
@@ -43,18 +45,30 @@ PDFDocument >> autoPageBreak: aLogicValue [
 { #category : #private }
 PDFDocument >> beginPage [
 	"Start a new page"
-	self page: self page + 1.
+	self out: '<< /Type /Page'.
+	self out: '/Parent 1 0 R'.
+	self numberOfObjects: self numberOfObjects + 1.
+	self out:  '/Contents ' , self numberOfObjects asString , ' 0 R >>'.
+	self out: 'endobj'.
+	self newObj.
+	self numberOfObjects: self numberOfObjects + 1.
+	self out: '<< /Length ' , self numberOfObjects asString  , ' 0 R >>'.
+	self out: 'stream'.
+	self offset: self buffer size.
+	self out: (self scaleFactor asString) , ' 0 0 ' , (self scaleFactor asString) , ' 0 ' , (self height asString) , ' cm'.
+
+
 	
 ]
 
 { #category : #accessing }
-PDFDocument >> document [
-	^ document ifNil: [ document := '%PDF-1.3' , (String cr) ]
+PDFDocument >> buffer [
+	^ buffer ifNil: [ buffer := '%PDF-1.3' , (String cr) ]
 ]
 
 { #category : #accessing }
-PDFDocument >> document: bodyOfPDFDocument [
-	document := bodyOfPDFDocument
+PDFDocument >> buffer: bodyOfPDFDocument [
+	buffer := bodyOfPDFDocument
 ]
 
 { #category : #private }
@@ -88,7 +102,17 @@ PDFDocument >> format: aValue [
 { #category : #action }
 PDFDocument >> generate [
 	" answer the PDF file"
-	^self document
+
+	self pages do: [ :page |
+		| xy lasth |
+		xy := self margins.
+		lasth := 0.
+		self newObj.
+		self beginPage.
+		
+	].
+
+	^self buffer
 	
 	
 
@@ -129,6 +153,41 @@ PDFDocument >> margins: aValue [
 	margins := aValue
 ]
 
+{ #category : #private }
+PDFDocument >> newObj [
+	"add the begin of a new object"
+	self numberOfObjects: self numberOfObjects + 1.
+	self offsets at: self numberOfObjects put: (self buffer size).
+	self out: (self numberOfObjects asString , ' 0 obj').
+
+]
+
+{ #category : #accessing }
+PDFDocument >> numberOfObjects [
+	^ numberOfObjects ifNil: [ numberOfObjects := 0 ]
+]
+
+{ #category : #accessing }
+PDFDocument >> numberOfObjects: aValue [
+	numberOfObjects := aValue
+]
+
+{ #category : #accessing }
+PDFDocument >> offset [
+	^ offset ifNil: [ offset := 0 ]
+]
+
+{ #category : #accessing }
+PDFDocument >> offset: aValue [
+	offset := aValue
+]
+
+{ #category : #accessing }
+PDFDocument >> offsets [
+	"array of object offsets"
+	^ offsets ifNil: [ offsets := Dictionary new ]
+]
+
 { #category : #accessing }
 PDFDocument >> orientation [
 	^ orientation
@@ -142,19 +201,7 @@ PDFDocument >> orientation: aValue [
 { #category : #private }
 PDFDocument >> out: aString [
 	"append the string to the document"
-	self document: self document , aString.
-]
-
-{ #category : #accessing }
-PDFDocument >> page [
-	"answer the current page number"
-	^page ifNil: [ page := 0 ]
-]
-
-{ #category : #accessing }
-PDFDocument >> page: aValue [
-	"set the current page number"
-	page := aValue
+	self buffer: self buffer , aString , String cr.
 ]
 
 { #category : #accessing }
@@ -168,13 +215,25 @@ PDFDocument >> pageBreakTrigger: aValue [
 ]
 
 { #category : #accessing }
+PDFDocument >> pageNumber [
+	"answer the current page number"
+	^pageNumber ifNil: [ pageNumber := 0 ]
+]
+
+{ #category : #accessing }
+PDFDocument >> pageNumber: aValue [
+	"set the current page number"
+	pageNumber := aValue
+]
+
+{ #category : #accessing }
 PDFDocument >> pages [
 	^ pages ifNil: [ pages := OrderedCollection new ]
 ]
 
 { #category : #accessing }
-PDFDocument >> pages: aPDFPage [
-	pages := aPDFPage
+PDFDocument >> pages: aListOfPDFPage [
+	pages := aListOfPDFPage
 ]
 
 { #category : #accessing }
