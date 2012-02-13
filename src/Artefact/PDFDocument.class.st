@@ -56,6 +56,8 @@ PDFDocument >> beginPage [
 	self out: 'stream'.
 	self offset: self buffer size.
 	self out: (self scaleFactor asString) , ' 0 0 ' , (self scaleFactor asString) , ' 0 ' , (self height asString) , ' cm'.
+	self out: (1 / self scaleFactor) asString , ' w'.
+	self out: '2 J'.
 
 
 	
@@ -84,7 +86,7 @@ PDFDocument >> fonts [
 			'helvetica'->'Helvetica', 'helveticaB'->'Helvetica-Bold' , 'helveticaI'->'Helvetica-Oblique' , 'helveticaBI'->'Helvetica-BoldOblique' ,
 			'times'->'Times-Roman' , 'timesB'->'Times-Bold' , 'timesI'->'Times-Oblique' , 'timesBI'->'Times-BoldItalic' ,
 			'symbol'->'Symbol' , 'symbolB'->'Symbol' , 'symbolI'->'Symbol' , 'symbolBI'->'Symbol' ,
-			'zapfdingbats'->'ZapfDingbats' , 'zapfdingbatsB'->'ZapfDingbats' , 'zapfdingbatsI'->'ZapfDingbats' , 'zapfdingbatsBI'->'ZapfDingbats'			 
+			'zapfdingbats'->'ZapfDingbats' , 'zapfdingbatsB'->'ZapfDingbats' , 'zapfdingbatsI'->'ZapfDingbats' , 'zapfdingbatsBI'->'ZapfDingbats'			
 		)
 	]
 ]
@@ -238,7 +240,7 @@ PDFDocument >> pages: aListOfPDFPage [
 
 { #category : #accessing }
 PDFDocument >> scaleFactor [
-	scaleFactor ifNil: [ self usePointsAsUnit ].
+	scaleFactor ifNil: [ self useMillimetersAsUnit ].
 	^scaleFactor
 ]
 
