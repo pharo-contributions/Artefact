@@ -12,7 +12,7 @@ Class {
 
 { #category : #accessing }
 PDFFontStyle >> bold [
-	^ bold
+	^ bold ifNil: [ bold := false ]
 ]
 
 { #category : #accessing }
@@ -22,7 +22,7 @@ PDFFontStyle >> bold: anObject [
 
 { #category : #accessing }
 PDFFontStyle >> family [
-	^ family
+	^ family ifNil: [ family := 'helvetica' ]
 ]
 
 { #category : #accessing }
@@ -32,7 +32,7 @@ PDFFontStyle >> family: anObject [
 
 { #category : #accessing }
 PDFFontStyle >> fontSize [
-	^ fontSize
+	^ fontSize ifNil: [ fontSize := 12]
 ]
 
 { #category : #accessing }
@@ -42,7 +42,7 @@ PDFFontStyle >> fontSize: anObject [
 
 { #category : #accessing }
 PDFFontStyle >> italic [
-	^ italic
+	^ italic ifNil: [ italic := false ]
 ]
 
 { #category : #accessing }
