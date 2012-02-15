@@ -5,7 +5,8 @@ Class {
 		'family',
 		'bold',
 		'italic',
-		'fontSize'
+		'fontSize',
+		'fontName'
 	],
 	#category : #Artefact
 }
@@ -31,6 +32,16 @@ PDFFontStyle >> family: anObject [
 ]
 
 { #category : #accessing }
+PDFFontStyle >> fontName [
+	^fontName ifNil: [ fontName := self getFontName ]
+]
+
+{ #category : #accessing }
+PDFFontStyle >> fontName: anObject [
+	fontName := anObject
+]
+
+{ #category : #accessing }
 PDFFontStyle >> fontSize [
 	^ fontSize ifNil: [ fontSize := 12]
 ]
@@ -38,6 +49,20 @@ PDFFontStyle >> fontSize [
 { #category : #accessing }
 PDFFontStyle >> fontSize: anObject [
 	fontSize := anObject
+]
+
+{ #category : #action }
+PDFFontStyle >> getFontName [
+	"answer the PDF name of the font"
+	
+	| style |
+	
+	style := ''.
+	(self bold) ifTrue: [ style := style , 'B' ].
+	(self italic) ifTrue: [ style := style , 'I' ].
+	
+	^(self fontName , style)
+
 ]
 
 { #category : #accessing }
@@ -51,6 +76,11 @@ PDFFontStyle >> italic: anObject [
 ]
 
 { #category : #render }
-PDFFontStyle >> render [
-	^''
+PDFFontStyle >> render: aDocument [
+	| size  |
+	
+	size := (self fontSize / aDocument scaleFactor) roundDownTo: 0.01.
+	
+	^'BT /F'
+	
 ]

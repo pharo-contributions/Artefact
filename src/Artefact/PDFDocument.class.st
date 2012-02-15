@@ -7,6 +7,7 @@ Class {
 		'pages',
 		'offsets',
 		'offset',
+		'fontNames',
 		'fonts',
 		'orientation',
 		'pageNumber',
@@ -79,9 +80,9 @@ PDFDocument >> endPage [
 ]
 
 { #category : #accessing }
-PDFDocument >> fonts [
-	^ fonts ifNil: [ 
-		fonts := #(
+PDFDocument >> fontNames [
+	^ fontNames ifNil: [ 
+		fontNames := #(
 			'courier'->'Courier' , 'courierB'->'Courier-Bold' , 'courierI' -> 'Courier-Oblique' , 'courierBI'->'Courier-BoldOblique' ,
 			'helvetica'->'Helvetica', 'helveticaB'->'Helvetica-Bold' , 'helveticaI'->'Helvetica-Oblique' , 'helveticaBI'->'Helvetica-BoldOblique' ,
 			'times'->'Times-Roman' , 'timesB'->'Times-Bold' , 'timesI'->'Times-Oblique' , 'timesBI'->'Times-BoldItalic' ,

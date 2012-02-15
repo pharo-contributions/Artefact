@@ -8,3 +8,8 @@ Class {
 PDFLineFeed >> render [
 	^''
 ]
+
+{ #category : #render }
+PDFLineFeed >> render: aDocument [
+	^''
+]

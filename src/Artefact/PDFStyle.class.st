@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #render }
-PDFStyle >> render [
+PDFStyle >> render: aDocument [
 	self subclassResponsibility
 ]
