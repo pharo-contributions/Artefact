@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFLineStyle,
-	#superclass : #PDFStyle,
+	#superclass : #PDFDraw,
 	#category : #Artefact
 }
 

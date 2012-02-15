@@ -55,8 +55,8 @@ PDFDocument >> beginPage [
 	self out: '<< /Length ' , self numberOfObjects asString  , ' 0 R >>'.
 	self out: 'stream'.
 	self offset: self buffer size.
-	self out: (self scaleFactor asString) , ' 0 0 ' , (self scaleFactor asString) , ' 0 ' , (self height asString) , ' cm'.
-	self out: (1 / self scaleFactor) asString , ' w'.
+	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
+	self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'.
 	self out: '2 J'.
 
 
@@ -319,7 +319,7 @@ PDFDocument >> topMargin [
 
 { #category : #'page setup' }
 PDFDocument >> useCentimetersAsUnit [
-	self scaleFactor: 72 / 2.54.
+	self scaleFactor:  (72 / 2.54).
 ]
 
 { #category : #'page setup' }
@@ -329,7 +329,7 @@ PDFDocument >> useInchsAsUnit [
 
 { #category : #'page setup' }
 PDFDocument >> useMillimetersAsUnit [
-	self scaleFactor: 72 / 25.4.
+	self scaleFactor: (72 / 25.4).
 ]
 
 { #category : #'page setup' }

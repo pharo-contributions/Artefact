@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFTextStyle,
-	#superclass : #PDFStyle,
+	#superclass : #PDFText,
 	#category : #Artefact
 }
 
