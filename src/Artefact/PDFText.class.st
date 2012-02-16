@@ -11,7 +11,8 @@ Class {
 
 { #category : #accessing }
 PDFText >> text [
-	^ (text isNil) ifTrue: [ text := '' ]
+	(text isNil) ifTrue: [ text := '' ].
+	^text
 ]
 
 { #category : #accessing }

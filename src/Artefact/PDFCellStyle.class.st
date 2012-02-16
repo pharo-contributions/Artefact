@@ -38,7 +38,7 @@ PDFCellStyle >> render: aDocument [
 	
 	(self border) ifTrue: [ buffer :=  (xy x asString) , ' -' , (self xy y asString) , ' ' , (self wh x asString), ' -' , (self wh y asString) , 're S' , String cr ].
 	
-	Transcript show: self text.
+	Transcript show: self text asString.
 	
 	((self text) isEmpty) ifFalse: [ 
 		text := text copyWithRegex: '\(' matchesReplacedWith: '\\('.
