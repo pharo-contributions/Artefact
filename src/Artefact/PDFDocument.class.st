@@ -16,7 +16,8 @@ Class {
 		'margins',
 		'scaleFactor',
 		'autoPageBreak',
-		'pageBreakTrigger'
+		'pageBreakTrigger',
+		'currentFont'
 	],
 	#category : #Artefact
 }
@@ -45,7 +46,7 @@ PDFDocument >> autoPageBreak: aLogicValue [
 
 { #category : #private }
 PDFDocument >> beginPage [
-	"Start a new page"
+	"Start a new page with a default font"
 	self out: '<< /Type /Page'.
 	self out: '/Parent 1 0 R'.
 	self numberOfObjects: self numberOfObjects + 1.
@@ -59,7 +60,7 @@ PDFDocument >> beginPage [
 	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
 	self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'.
 	self out: '2 J'.
-
+	self out: (PDFFontStyle new family: ''; fontSize: 14; render: self )
 
 	
 ]
@@ -72,6 +73,16 @@ PDFDocument >> buffer [
 { #category : #accessing }
 PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
+]
+
+{ #category : #accessing }
+PDFDocument >> currentFont [
+	^currentFont
+]
+
+{ #category : #accessing }
+PDFDocument >> currentFont: aCurrentFont [
+	currentFont := aCurrentFont
 ]
 
 { #category : #private }
@@ -140,6 +151,7 @@ PDFDocument >> height [
 { #category : #'initialize-release' }
 PDFDocument >> initialize [
 	super initialize.
+	self currentFont: PDFCurrentFont new.
 	self setFormat: PDFFormatA4 new.
 	self setPortrait.
 	self setAutoPageBreak: true margin: self margin.
@@ -271,6 +283,19 @@ PDFDocument >> setAutoPageBreak: mode [
 PDFDocument >> setAutoPageBreak: mode margin: aMargin [
 	self autoPageBreak: mode.
 	self pageBreakTrigger: (self height / self scaleFactor) -  aMargin
+]
+
+{ #category : #private }
+PDFDocument >> setCurrentFont: aFamily size: aSizePt bold: aBoldValue italic: aItalicValue [
+	"Set the current font used in the document"
+	
+	self currentFont fontFamily: aFamily.
+	self currentFont fontSizePt: aSizePt.
+	self currentFont fontSize: ((aSizePt / self scaleFactor) roundDownTo: 0.01).
+	self currentFont bold: aBoldValue.
+	self currentFont italic: aItalicValue.
+
+
 ]
 
 { #category : #private }

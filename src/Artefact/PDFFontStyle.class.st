@@ -82,9 +82,10 @@ PDFFontStyle >> render: aDocument [
 	| size |
 
 	size := (self fontSize / aDocument scaleFactor) roundDownTo: 0.01.	
-	
 	aDocument fonts at: (self fontName) ifAbsent: [ aDocument fonts at: self fontName put: ((aDocument fonts size) + 1) ].
  
+	"set the font as the current font"
+	
 	^ ('BT /F', (aDocument fonts at: (self fontName)) asString , ' ' , (size asString) , ' Tf ET')
 	
 

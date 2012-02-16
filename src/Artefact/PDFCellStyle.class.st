@@ -27,3 +27,9 @@ PDFCellStyle >> linefeed [
 PDFCellStyle >> linefeed: anObject [
 	linefeed := anObject
 ]
+
+{ #category : #render }
+PDFCellStyle >> render: aDocument [
+
+	^''
+]
