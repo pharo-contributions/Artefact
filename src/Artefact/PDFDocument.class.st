@@ -82,14 +82,21 @@ PDFDocument >> endPage [
 { #category : #accessing }
 PDFDocument >> fontNames [
 	^ fontNames ifNil: [ 
-		fontNames := #(
-			'courier'->'Courier' , 'courierB'->'Courier-Bold' , 'courierI' -> 'Courier-Oblique' , 'courierBI'->'Courier-BoldOblique' ,
-			'helvetica'->'Helvetica', 'helveticaB'->'Helvetica-Bold' , 'helveticaI'->'Helvetica-Oblique' , 'helveticaBI'->'Helvetica-BoldOblique' ,
-			'times'->'Times-Roman' , 'timesB'->'Times-Bold' , 'timesI'->'Times-Oblique' , 'timesBI'->'Times-BoldItalic' ,
-			'symbol'->'Symbol' , 'symbolB'->'Symbol' , 'symbolI'->'Symbol' , 'symbolBI'->'Symbol' ,
-			'zapfdingbats'->'ZapfDingbats' , 'zapfdingbatsB'->'ZapfDingbats' , 'zapfdingbatsI'->'ZapfDingbats' , 'zapfdingbatsBI'->'ZapfDingbats'			
-		)
+		fontNames := {
+			'courier'->'Courier' . 'courierB'->'Courier-Bold' . 'courierI' -> 'Courier-Oblique' . 'courierBI'->'Courier-BoldOblique' .
+			'helvetica'->'Helvetica' . 'helveticaB'->'Helvetica-Bold' . 'helveticaI'->'Helvetica-Oblique' . 'helveticaBI'->'Helvetica-BoldOblique' .
+			'times'->'Times-Roman' . 'timesB'->'Times-Bold' . 'timesI'->'Times-Oblique' . 'timesBI'->'Times-BoldItalic' .
+			'symbol'->'Symbol' . 'symbolB'->'Symbol' . 'symbolI'->'Symbol' . 'symbolBI'->'Symbol' .
+			'zapfdingbats'->'ZapfDingbats' . 'zapfdingbatsB'->'ZapfDingbats' . 'zapfdingbatsI'->'ZapfDingbats' . 'zapfdingbatsBI'->'ZapfDingbats'			
+		} asDictionary.
 	]
+]
+
+{ #category : #accessing }
+PDFDocument >> fonts [
+	"answer a collection of used fonts"
+	
+	^fonts ifNil: [ fonts := Dictionary  new ]
 ]
 
 { #category : #accessing }

@@ -77,10 +77,20 @@ PDFFontStyle >> italic: anObject [
 
 { #category : #render }
 PDFFontStyle >> render: aDocument [
-	| size  |
+	| size |
 	
 	size := (self fontSize / aDocument scaleFactor) roundDownTo: 0.01.
 	
-	^'BT /F'
+	aDocument fonts at: self fontName ifAbsent: [ aDocument fonts at: self fontName put: ((aDocument fonts size) + 1) ].
+ 
+	^ ('BT /F', (aDocument fonts at: self fontName) , ' ' , (size asString) , ' Tf ET')
 	
+
+"
+if(!isset($this->fonts[$fontname]))
+	{
+		$n=count($this->fonts);
+		$this->fonts[$fontname]=$n+1;
+	}
+"
 ]
