@@ -46,7 +46,7 @@ PDFCellStyle >> render: aDocument [
 		text := text copyWithRegex: '\\' matchesReplacedWith: '\\'.
 		
 		"La priorité des opérateurs est à vérifier !!!"
-		buffer := buffer , 'BT ' , (xy x + (0.15 * aDocument currentFont fontSize)) asString , ' -' , (xy y + (0.5 * xy h) + (0.3 * aDocument currentFont fontSize)) asString , ' Td (' , self text , ') Tj Et'.
+		buffer := buffer , 'BT ' , (xy x + (0.15 * aDocument currentFont fontSize)) asString , ' -' , (xy y + (0.5 * wh y) + (0.3 * aDocument currentFont fontSize)) asString , ' Td (' , self text , ') Tj Et'.
 	].
 	
 	 ^buffer

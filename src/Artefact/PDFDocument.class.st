@@ -133,6 +133,7 @@ PDFDocument >> generate [
 		
 		"construct each styles in the document context"
 		page styles do: [ :style |
+			(style className = 'PDFCellStyle') ifTrue: [ style xy: page xy ].
 			self out: (style render: self).
 		]
 	].
