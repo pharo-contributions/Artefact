@@ -3,7 +3,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'number',
-		'styles'
+		'styles',
+		'xy',
+		'lasth'
 	],
 	#category : #Artefact
 }
@@ -17,6 +19,17 @@ PDFPage >> add: aStyle [
 { #category : #'initialize-release' }
 PDFPage >> initialize [
 	super initialize
+]
+
+{ #category : #accessing }
+PDFPage >> lasth [
+	"height of last cell printed"
+	^ lasth
+]
+
+{ #category : #accessing }
+PDFPage >> lasth: lastCellHeight [
+	lasth :=  lastCellHeight
 ]
 
 { #category : #accessing }
@@ -37,4 +50,14 @@ PDFPage >> styles [
 { #category : #accessing }
 PDFPage >> styles: aCollectionOfStyle [
 	styles := aCollectionOfStyle
+]
+
+{ #category : #accessing }
+PDFPage >> xy [
+	^ xy
+]
+
+{ #category : #accessing }
+PDFPage >> xy: aCurrentPosition [
+	xy := aCurrentPosition
 ]

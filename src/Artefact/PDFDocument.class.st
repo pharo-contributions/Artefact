@@ -47,6 +47,7 @@ PDFDocument >> autoPageBreak: aLogicValue [
 { #category : #private }
 PDFDocument >> beginPage [
 	"Start a new page with a default font"
+		
 	self out: '<< /Type /Page'.
 	self out: '/Parent 1 0 R'.
 	self numberOfObjects: self numberOfObjects + 1.
@@ -125,9 +126,8 @@ PDFDocument >> generate [
 	" answer the PDF file"
 
 	self pages do: [ :page |
-		| xy lasth |
-		xy := self margins.
-		lasth := 0.
+		page xy: self margins.
+		page lasth: 0.
 		self newObj.
 		self beginPage.
 		
