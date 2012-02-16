@@ -120,6 +120,10 @@ PDFDocument >> generate [
 		self newObj.
 		self beginPage.
 		
+		"construct each styles in the document context"
+		page styles do: [ :style |
+			self out: (style render: self).
+		]
 	].
 
 	^self buffer

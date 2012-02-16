@@ -28,7 +28,9 @@ PDFFontStyle >> family [
 
 { #category : #accessing }
 PDFFontStyle >> family: anObject [
-	family := anObject
+	family := anObject asLowercase.
+	(family = 'arial') ifTrue: [ family := 'helvetica' ] 
+
 ]
 
 { #category : #accessing }
@@ -56,12 +58,12 @@ PDFFontStyle >> getFontName [
 	"answer the PDF name of the font"
 	
 	| style |
-	
-	style := ''.
+
+	style := String new.
 	(self bold) ifTrue: [ style := style , 'B' ].
 	(self italic) ifTrue: [ style := style , 'I' ].
 	
-	^(self fontName , style)
+	^(self family , style)
 
 ]
 
@@ -78,19 +80,12 @@ PDFFontStyle >> italic: anObject [
 { #category : #render }
 PDFFontStyle >> render: aDocument [
 	| size |
+
+	size := (self fontSize / aDocument scaleFactor) roundDownTo: 0.01.	
 	
-	size := (self fontSize / aDocument scaleFactor) roundDownTo: 0.01.
-	
-	aDocument fonts at: self fontName ifAbsent: [ aDocument fonts at: self fontName put: ((aDocument fonts size) + 1) ].
+	aDocument fonts at: (self fontName) ifAbsent: [ aDocument fonts at: self fontName put: ((aDocument fonts size) + 1) ].
  
-	^ ('BT /F', (aDocument fonts at: self fontName) , ' ' , (size asString) , ' Tf ET')
+	^ ('BT /F', (aDocument fonts at: (self fontName)) asString , ' ' , (size asString) , ' Tf ET')
 	
 
-"
-if(!isset($this->fonts[$fontname]))
-	{
-		$n=count($this->fonts);
-		$this->fonts[$fontname]=$n+1;
-	}
-"
 ]

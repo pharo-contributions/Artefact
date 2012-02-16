@@ -14,7 +14,7 @@ PDFTest class >> ex1 [
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
-	aPage add: (PDFCellStyle new wh: 40@10; text: 'Hello World!').
+	"aPage add: (PDFCellStyle new wh: 40@10; text: 'Hello World!')."
 	pdfdoc add: aPage.
 	Transcript clear; show: pdfdoc generate.
 	

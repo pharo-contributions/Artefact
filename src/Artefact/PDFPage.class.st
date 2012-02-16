@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'number',
-		'page'
+		'styles'
 	],
 	#category : #Artefact
 }
@@ -11,7 +11,7 @@ Class {
 { #category : #action }
 PDFPage >> add: aStyle [
 	"add a style to a page"
-	self page add: aStyle.
+	self styles add: aStyle.
 ]
 
 { #category : #'initialize-release' }
@@ -30,11 +30,11 @@ PDFPage >> number: aObject [
 ]
 
 { #category : #accessing }
-PDFPage >> page [
-	^ page ifNil: [ page := OrderedCollection new ]
+PDFPage >> styles [
+	^ styles ifNil: [ styles := OrderedCollection new ]
 ]
 
 { #category : #accessing }
-PDFPage >> page: anObject [
-	page := anObject
+PDFPage >> styles: aCollectionOfStyle [
+	styles := aCollectionOfStyle
 ]
