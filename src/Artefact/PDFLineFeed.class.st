@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #render }
-PDFLineFeed >> render [
-	^''
-]
-
-{ #category : #render }
 PDFLineFeed >> render: aDocument [
 	^''
 ]

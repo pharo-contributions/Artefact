@@ -153,6 +153,11 @@ PDFDocument >> generate [
 				page lasth: style wh y.
 				(style linefeed) ifTrue: [ page xy: (self margins x) @ (page xy y + style wh y) ] ifFalse: [ page xy: (page xy x + style wh x) @ (page xy y) ]				
 			].
+			(style className = 'PDFLineFeed') ifTrue: [
+				"Line feed; default value is last cell height"
+				page xy: self margins x @ page xy y.
+				(style height isNil) ifTrue: [ page xy: page xy x @ (page xy y + self lasth)] ifFalse: [ page xy: page xy x @ page xy y + style height ].
+			]
 		].
 		"End of the page contents"
 		pagesize := (self buffer size) - (self offset).
@@ -162,10 +167,9 @@ PDFDocument >> generate [
 		self newObj.
 		self out: (pagesize asString).
 		self out: 'endobj'.
-		
-		"Close the document"
-		self close.
 	].
+	"Close the document"
+	self close.
 
 	^self buffer
 	
