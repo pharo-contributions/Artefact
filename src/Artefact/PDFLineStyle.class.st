@@ -7,6 +7,6 @@ Class {
 { #category : #render }
 PDFLineStyle >> render: aDocument [
 	"Draw a line from xy to destination"
-	^ (self xy x asString , ' - ' , self xy y asString , ' m ' , self destination x asString , ' -' , self destination y asString , ' l S')
+	^ (self xy x asString , ' -' , self xy y asString , ' m ' , self destination x asString , ' -' , self destination y asString , ' l S')
 	
 ]

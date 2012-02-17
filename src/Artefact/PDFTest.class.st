@@ -14,11 +14,13 @@ PDFTest class >> ex1 [
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
-	aPage add: (PDFCellStyle new wh: 40@10; linefeed: true; text: 'Hello World!').
+	aPage add: (PDFCellStyle new wh: 40@10; linefeed: true; text: 'Artefact PDF Framework').
+	aPage add: (PDFLineStyle new xy: 80@80; destination: 100@100).
+	aPage add: (PDFRectStyle new xy: 30@30; wh: 40@40).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/home/olivier/Desktop/essai.pdf'.
-	Transcript clear; show: pdfdoc generate.
+
 	
 	
 ]
