@@ -247,6 +247,18 @@ PDFDocument >> format: aValue [
 	format := aValue
 ]
 
+{ #category : #private }
+PDFDocument >> formatRef: aRef [
+	"Format a reference in the correct format"
+	
+	| ref str |
+	str := ''.
+	ref := aRef asString.
+	(10 - ref size) timesRepeat: [ str := str , '0' ].
+
+	^(str , ref)
+]
+
 { #category : #action }
 PDFDocument >> generate [
 	" answer the PDF file"
@@ -324,10 +336,10 @@ PDFDocument >> insertCrossRef [
 	"Insert the cross references in the PDF document"
 	
 	self out: 'xref'.
-	self out: ('0' , (self numberOfObjects + 1) asString).
+	self out: ('0 ' , (self numberOfObjects + 1) asString).
 	self out: '0000000000 65535 f '.
 	1 to: (self numberOfObjects) do: [ :i |
-		self out: ''.
+		self out: ((self formatRef: (self offsets at: i)) , ' 00000 n').
 	]
 	
 	"
