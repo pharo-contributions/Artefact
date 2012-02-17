@@ -47,15 +47,16 @@ PDFDocument >> autoPageBreak: aLogicValue [
 { #category : #private }
 PDFDocument >> beginPage [
 	"Start a new page with a default font"
-		
+
+	self offset: self buffer size.
+	self newObj.
 	self out: '<< /Type /Page'.
 	self out: '/Parent 1 0 R'.
-	self numberOfObjects: self numberOfObjects + 1.
-	self out:  '/Contents ' , self numberOfObjects asString , ' 0 R >>'.
+	self out:  '/Contents ' , (self numberOfObjects + 1) asString , ' 0 R >>'.
 	self out: 'endobj'.
+	"Begin of page contents"
 	self newObj.
-	self numberOfObjects: self numberOfObjects + 1.
-	self out: '<< /Length ' , self numberOfObjects asString  , ' 0 R >>'.
+	self out: '<< /Length ' , (self numberOfObjects + 1) asString  , ' 0 R >>'.
 	self out: 'stream'.
 	self offset: self buffer size.
 	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
@@ -74,6 +75,13 @@ PDFDocument >> buffer [
 { #category : #accessing }
 PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
+]
+
+{ #category : #action }
+PDFDocument >> close [
+	"Close the document"
+	
+	^''
 ]
 
 { #category : #accessing }
@@ -126,20 +134,31 @@ PDFDocument >> generate [
 	" answer the PDF file"
 
 	self pages do: [ :page |
+		|  pagesize |
 		page xy: self margins.
 		page lasth: 0.
-		self newObj.
 		self beginPage.
 		
 		"construct each styles in the document context"
-		page styles do: [ :style |
+		page styles do: [ :style | 
 			(style className = 'PDFCellStyle') ifTrue: [ style xy: page xy ].
 			self out: (style render: self).
 			(style className = 'PDFCellStyle') ifTrue: [
 				page lasth: style wh y.
 				(style linefeed) ifTrue: [ page xy: (self margins x) @ (page xy y + style wh y) ] ifFalse: [ page xy: (page xy x + style wh x) @ (page xy y) ]				
-			]
+			].
 		].
+		"End of the page contents"
+		pagesize := (self buffer size) - (self offset).
+		self out: 'endstream'.
+		self out: 'endobj'.
+		"Size of page contents stream"
+		self newObj.
+		self out: (pagesize asString).
+		self out: 'endobj'.
+		
+		"Close the document"
+		self close.
 	].
 
 	^self buffer
