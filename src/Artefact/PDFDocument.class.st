@@ -67,15 +67,15 @@ PDFDocument >> addThepagesRoot [
 	self out: ('/MediaBox [0 0 ' , self format width asString , ' ' , self format height asString , ']').	
 	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
 	self out: '/Font <<'.
+	1 to: (self fonts size) do: [ :i |
+		self out: ('/F' , i asString , ' ' , (self numberOfObjects + i) asString , ' 0 R' ).
+	]
+
 "
-$kids='/Kids [';
-	for($i=0;$i<$this->page;$i++)
-		$kids.=(2+3*$i).' 0 R ';
-	$this->_out($kids.']');
-	$this->_out('/Count '.$this->page);
-	$this->_out('/MediaBox [0 0 '.$this->w.' '.$this->h.']');
-	$this->_out('/Resources << /ProcSet [/PDF /Text /ImageC]');
-	$this->_out('/Font <<');
+	for($i=1;$i<=count($this->fonts);$i++)
+		$this->_out('/F'.$i.' '.($nf+$i).' 0 R');
+	$this->_out('>>');
+	$this->_out('/XObject <<');
 "
 ]
 
@@ -281,7 +281,7 @@ PDFDocument >> newObj [
 
 { #category : #accessing }
 PDFDocument >> numberOfObjects [
-	^ numberOfObjects ifNil: [ numberOfObjects := 1 ]
+	^ numberOfObjects ifNil: [ numberOfObjects := 0 ]
 ]
 
 { #category : #accessing }
