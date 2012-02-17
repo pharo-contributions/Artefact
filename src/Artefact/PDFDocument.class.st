@@ -17,7 +17,8 @@ Class {
 		'scaleFactor',
 		'autoPageBreak',
 		'pageBreakTrigger',
-		'currentFont'
+		'currentFont',
+		'images'
 	],
 	#category : #Artefact
 }
@@ -67,16 +68,32 @@ PDFDocument >> addThepagesRoot [
 	self out: ('/MediaBox [0 0 ' , self format width asString , ' ' , self format height asString , ']').	
 	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
 	self out: '/Font <<'.
-	1 to: (self fonts size) do: [ :i |
-		self out: ('/F' , i asString , ' ' , (self numberOfObjects + i) asString , ' 0 R' ).
-	]
+	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (self numberOfObjects + i) asString , ' 0 R' ) ].
+	self out: '>>'.
+	self out: '/XObject <<'.
 
+	"Inserer la partie sur les images"
 "
-	for($i=1;$i<=count($this->fonts);$i++)
-		$this->_out('/F'.$i.' '.($nf+$i).' 0 R');
-	$this->_out('>>');
-	$this->_out('/XObject <<');
+	$nbpal=0;
+	reset($this->images);
+	while(list(,$info)=each($this->images))
+	{
+		$this->_out('/I'.$info['n'].' '.($ni+$info['n']+$nbpal).' 0 R');
+		if($info['cs']=='Indexed')
+			$nbpal++;
+	}
 "
+	self out: '>> >> >>'.
+	self out: 'endobj'.
+
+	"Insert the informations"
+	self insertInformations.
+	
+	"Insert the catalog"
+	self insertCatalog.
+	
+
+
 ]
 
 { #category : #accessing }
@@ -138,6 +155,31 @@ PDFDocument >> currentFont [
 { #category : #accessing }
 PDFDocument >> currentFont: aCurrentFont [
 	currentFont := aCurrentFont
+]
+
+{ #category : #private }
+PDFDocument >> dateAndTimeInPDFFormat [
+	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
+	
+	| str time hour minutes seconds |
+	
+	
+	hour := Time now hours.
+	str := hour asString.
+	(hour < 12) ifTrue: [ str := '0' , str ].
+	time := str.
+	
+ 	minutes := Time now minutes.
+	str := minutes asString.
+	(minutes < 10) ifTrue: [ str := '0' , str ].
+	time := time , str.
+	
+	seconds := Time now seconds.
+	str := seconds asString.
+	(seconds < 10) ifTrue: [ str := '0' , str ].
+	time := time , str.
+	
+	^((Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time)
 ]
 
 { #category : #private }
@@ -239,6 +281,16 @@ PDFDocument >> height [
 	^(self size y)
 ]
 
+{ #category : #accessing }
+PDFDocument >> images [
+	^images
+]
+
+{ #category : #accessing }
+PDFDocument >> images: aValue [
+	images := aValue
+]
+
 { #category : #'initialize-release' }
 PDFDocument >> initialize [
 	super initialize.
@@ -248,6 +300,28 @@ PDFDocument >> initialize [
 	self setAutoPageBreak: true margin: self margin.
 
 	
+]
+
+{ #category : #private }
+PDFDocument >> insertCatalog [
+	"insert the catalog"
+
+	self newObj.
+	self out: '<< /Type /Catalog'.
+	self out: '/Pages 1 0 R >>'.	
+	self out: 'endobj'.
+
+]
+
+{ #category : #private }
+PDFDocument >> insertInformations [
+	"Insert informations in the PDF document"
+	
+	self newObj.
+	self out: ('<< /Producer (' , self producer , ' ' , self version , ')' ).
+	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ') >>').
+	self out: 'endobj'.
+
 ]
 
 { #category : #accessing }
@@ -351,6 +425,11 @@ PDFDocument >> pages [
 { #category : #accessing }
 PDFDocument >> pages: aListOfPDFPage [
 	pages := aListOfPDFPage
+]
+
+{ #category : #Configuration }
+PDFDocument >> producer [
+	^'Artefact'
 ]
 
 { #category : #accessing }
@@ -463,6 +542,11 @@ PDFDocument >> useMillimetersAsUnit [
 { #category : #'page setup' }
 PDFDocument >> usePointsAsUnit [
 	self scaleFactor: 1.
+]
+
+{ #category : #Configuration }
+PDFDocument >> version [
+	^'0.1'
 ]
 
 { #category : #accessing }
