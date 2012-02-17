@@ -139,7 +139,7 @@ PDFDocument >> beginPage [
 	self out: '2 J'.
 	
 	"Set a default font"
-	"self out: (PDFFontStyle new family: 'helvetica'; fontSize: 14; render: self )"
+	self out: (PDFFontStyle new family: 'helvetica'; fontSize: 14; render: self )
 	
 
 
@@ -148,7 +148,10 @@ PDFDocument >> beginPage [
 
 { #category : #accessing }
 PDFDocument >> buffer [
-	^ buffer ifNil: [ buffer := '%PDF-1.3' , (String cr) ]
+	^ buffer ifNil: [ 
+		buffer := WriteStream on: String new.
+		buffer nextPutAll:  '%PDF-1.3'; cr 
+	]
 ]
 
 { #category : #accessing }
@@ -214,6 +217,16 @@ PDFDocument >> endPage: aPageSize [
 	self newObj.
 	self out: (aPageSize asString).
 	self out: 'endobj'.
+]
+
+{ #category : #action }
+PDFDocument >> exportToFile: aFileName [
+	"Export the PDF document in a file"
+	
+	| stream |
+	stream := StandardFileStream fileNamed: aFileName.
+	stream nextPutAll: self buffer.
+	stream close.
 ]
 
 { #category : #private }
@@ -379,7 +392,7 @@ PDFDocument >> insertTrailer: aBufferSize [
 	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
 	self out: 'startxref'.
 	self out: (aBufferSize asString).
-	self out: '%%EOF'.
+	self buffer nextPutAll: '%%EOF'.
 
 
 ]
@@ -452,7 +465,7 @@ PDFDocument >> orientation: aValue [
 { #category : #private }
 PDFDocument >> out: aString [
 	"append the string to the document"
-	self buffer: self buffer , aString , String cr.
+	self buffer nextPutAll: aString; cr.
 ]
 
 { #category : #accessing }

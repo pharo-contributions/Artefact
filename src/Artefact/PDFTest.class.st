@@ -16,6 +16,7 @@ PDFTest class >> ex1 [
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
 	aPage add: (PDFCellStyle new wh: 40@10; linefeed: true; text: 'Hello World!').
 	pdfdoc add: aPage.
+	"pdfdoc exportToFile: '/home/olivier/Desktop/essai.pdf'."
 	Transcript clear; show: pdfdoc generate.
 	
 	
