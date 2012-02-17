@@ -149,8 +149,8 @@ PDFDocument >> beginPage [
 { #category : #accessing }
 PDFDocument >> buffer [
 	^ buffer ifNil: [ 
-		buffer := WriteStream on: String new.
-		buffer nextPutAll:  '%PDF-1.3'; cr 
+		buffer := OrderedCollection new.
+		buffer add: ('%PDF-1.3' , String cr). 
 	]
 ]
 
@@ -223,9 +223,11 @@ PDFDocument >> endPage: aPageSize [
 PDFDocument >> exportToFile: aFileName [
 	"Export the PDF document in a file"
 	
-	| stream |
-	stream := StandardFileStream fileNamed: aFileName.
-	stream nextPutAll: self buffer.
+	| stream data |
+	stream := StandardFileStream fileNamed: aFileName..
+	"data := String cr split: self generate contents."
+	data := self generate.
+	data do: [ :aString | stream nextPutAll: aString ].
 	stream close.
 ]
 
@@ -392,7 +394,7 @@ PDFDocument >> insertTrailer: aBufferSize [
 	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
 	self out: 'startxref'.
 	self out: (aBufferSize asString).
-	self buffer nextPutAll: '%%EOF'.
+	self buffer add: '%%EOF'.
 
 
 ]
@@ -465,7 +467,7 @@ PDFDocument >> orientation: aValue [
 { #category : #private }
 PDFDocument >> out: aString [
 	"append the string to the document"
-	self buffer nextPutAll: aString; cr.
+	self buffer add: (aString, String cr).
 ]
 
 { #category : #accessing }
