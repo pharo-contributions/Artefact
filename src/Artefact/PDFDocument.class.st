@@ -465,9 +465,13 @@ PDFDocument >> orientation: aValue [
 ]
 
 { #category : #private }
-PDFDocument >> out: aString [
-	"append the string to the document"
-	self buffer add: (aString, String cr).
+PDFDocument >> out: aItem [
+	"append the item (or a list of items) to the document"
+	
+	(aItem className = 'OrderedCollection') 
+		ifTrue: [ aItem do: [ :aValue | self buffer add: (aValue, String cr) ] ]
+		ifFalse: [ self buffer add: (aItem, String cr) ]
+
 ]
 
 { #category : #accessing }
