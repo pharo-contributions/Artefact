@@ -53,6 +53,30 @@ PDFDocument >> addTheListOfFonts [
 { #category : #private }
 PDFDocument >> addThepagesRoot [
 	"Add the pages root"
+	
+	| kids |
+	
+	self offsets at: 1 put: (self buffer size).
+	self out: '1 0 obj'.
+	self out: '<< /Type /Pages'.
+	
+	kids := '/Kids ['.
+	0 to: (self pages size - 1) do: [ :i | | v | kids := kids , (2 + (3 * i)) asString , ' 0 R ' ].
+	self out: (kids , ']').
+	self out: ('/Count ' , self pages size asString).
+	self out: ('/MediaBox [0 0 ' , self format width asString , ' ' , self format height asString , ']').	
+	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
+	self out: '/Font <<'.
+"
+$kids='/Kids [';
+	for($i=0;$i<$this->page;$i++)
+		$kids.=(2+3*$i).' 0 R ';
+	$this->_out($kids.']');
+	$this->_out('/Count '.$this->page);
+	$this->_out('/MediaBox [0 0 '.$this->w.' '.$this->h.']');
+	$this->_out('/Resources << /ProcSet [/PDF /Text /ImageC]');
+	$this->_out('/Font <<');
+"
 ]
 
 { #category : #accessing }

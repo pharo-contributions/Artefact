@@ -10,6 +10,6 @@ PDFFormatA4 >> margin [
 ]
 
 { #category : #'as yet unclassified' }
-PDFFormatA4 >> size. [
+PDFFormatA4 >> size [
 	^595.3@841.9
 ]
