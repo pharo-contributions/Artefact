@@ -60,8 +60,14 @@ PDFDocument >> beginPage [
 	self out: 'stream'.
 	self offset: self buffer size.
 	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
+	
+	"Set line width to 1 point"
 	self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'.
+	
+	"Set line cap style to square"
 	self out: '2 J'.
+	
+	"Set a default font"
 	self out: (PDFFontStyle new family: ''; fontSize: 14; render: self )
 
 	
