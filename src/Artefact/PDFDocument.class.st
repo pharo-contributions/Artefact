@@ -92,6 +92,12 @@ PDFDocument >> addThepagesRoot [
 	"Insert the catalog"
 	self insertCatalog.
 	
+	"insert the cross references"
+	self insertCrossRef.
+	
+	"insert the trailer"
+	self insertTrailer.
+	
 
 
 ]
@@ -314,6 +320,27 @@ PDFDocument >> insertCatalog [
 ]
 
 { #category : #private }
+PDFDocument >> insertCrossRef [
+	"Insert the cross references in the PDF document"
+	
+	self out: 'xref'.
+	self out: ('0' , (self numberOfObjects + 1) asString).
+	self out: '0000000000 65535 f '.
+	1 to: (self numberOfObjects) do: [ :i |
+		self out: ''.
+	]
+	
+	"
+	$this->_out('xref');
+	$this->_out('0 '.($this->n+1));
+	$this->_out('0000000000 65535 f ');
+	for($i=1;$i<=$this->n;$i++)
+		$this->_out(sprintf('%010d 00000 n ',$this->offsets[$i]));
+	"
+
+]
+
+{ #category : #private }
 PDFDocument >> insertInformations [
 	"Insert informations in the PDF document"
 	
@@ -321,6 +348,21 @@ PDFDocument >> insertInformations [
 	self out: ('<< /Producer (' , self producer , ' ' , self version , ')' ).
 	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ') >>').
 	self out: 'endobj'.
+
+]
+
+{ #category : #private }
+PDFDocument >> insertTrailer [
+	"Insert the trailer in the PDF document"
+	
+	self out: 'trailer'.
+	self out: ('<< /Size ' , (self numberOfObjects + 1) asString).
+	self out: ('/Root ' , (self numberOfObjects asString) , ' 0 R').
+	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
+	self out: 'startxref'.
+	self out: ((self buffer size) asString).
+	self out: '%%EOF'.
+
 
 ]
 
