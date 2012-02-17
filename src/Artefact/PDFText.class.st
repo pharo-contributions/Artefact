@@ -9,6 +9,19 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #action }
+PDFText >> prepareText: aString [
+	"answer a clean string at PDF format"
+	
+	| str |
+	
+	str := aString copyWithRegex: '\(' matchesReplacedWith: '\\('.
+	str := str copyWithRegex: '\)' matchesReplacedWith: '\\)'.
+	str := str copyWithRegex: '\\' matchesReplacedWith: '\\'.	
+
+	^str
+]
+
 { #category : #accessing }
 PDFText >> text [
 	(text isNil) ifTrue: [ text := '' ].

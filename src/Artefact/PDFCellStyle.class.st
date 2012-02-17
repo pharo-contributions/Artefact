@@ -37,16 +37,9 @@ PDFCellStyle >> render: aDocument [
 	buffer := String new.
 	
 	(self border) ifTrue: [ buffer :=  (xy x asString) , ' -' , (self xy y asString) , ' ' , (self wh x asString), ' -' , (self wh y asString) , 're S' , String cr ].
-	
-	Transcript show: self text asString.
-	
-	((self text) isEmpty) ifFalse: [ 
-		text := text copyWithRegex: '\(' matchesReplacedWith: '\\('.
-		text := text copyWithRegex: '\)' matchesReplacedWith: '\\)'.
-		text := text copyWithRegex: '\\' matchesReplacedWith: '\\'.
-		
-		"La priorité des opérateurs est à vérifier !!!"
-		buffer := buffer , 'BT ' , (xy x + (0.15 * aDocument currentFont fontSize)) asString , ' -' , (xy y + (0.5 * wh y) + (0.3 * aDocument currentFont fontSize)) asString , ' Td (' , self text , ') Tj Et'.
+
+	((self text) isEmpty) ifFalse: [ 	
+		buffer := buffer , 'BT ' , ((self xy x + (0.15 * aDocument currentFont fontSize)) roundDownTo: 0.001) asString , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * aDocument currentFont fontSize)) roundDownTo: 0.001) asString , ' Td (' , (self prepareText: self text) , ') Tj Et'.
 	].
 	
 	 ^buffer
