@@ -34,6 +34,27 @@ PDFDocument >> add: aPage [
 
 ]
 
+{ #category : #private }
+PDFDocument >> addTheListOfFonts [
+	"Add the list of fonts in the PDF document"
+	
+	(self fonts) keysAndValuesDo: [ :key :counter | 
+		self newObj.
+		self out: '<< /Type /Font'.
+		self out: '/Subtype /Type1'.
+		self out: ('/BaseFont /' , (self fontFullName: key)).
+		self out: '/Encoding /WinAnsiEncoding >>'.
+		self out: 'endobj'.
+	].
+
+
+]
+
+{ #category : #private }
+PDFDocument >> addThepagesRoot [
+	"Add the pages root"
+]
+
 { #category : #accessing }
 PDFDocument >> autoPageBreak [
 	^autoPageBreak
@@ -68,7 +89,7 @@ PDFDocument >> beginPage [
 	self out: '2 J'.
 	
 	"Set a default font"
-	self out: (PDFFontStyle new family: ''; fontSize: 14; render: self )
+	self out: (PDFFontStyle new family: 'helvetica'; fontSize: 14; render: self )
 	
 
 
@@ -85,13 +106,6 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
 ]
 
-{ #category : #action }
-PDFDocument >> close [
-	"Close the document"
-	
-	^''
-]
-
 { #category : #accessing }
 PDFDocument >> currentFont [
 	^currentFont
@@ -103,8 +117,13 @@ PDFDocument >> currentFont: aCurrentFont [
 ]
 
 { #category : #private }
-PDFDocument >> endPage [
-	"Close a page"
+PDFDocument >> endDoc [
+	"End of the PDF document"
+	
+	self addTheListOfFonts.
+	self addThepagesRoot.
+
+
 ]
 
 { #category : #private }
@@ -117,6 +136,13 @@ PDFDocument >> endPage: aPageSize [
 	self newObj.
 	self out: (aPageSize asString).
 	self out: 'endobj'.
+]
+
+{ #category : #private }
+PDFDocument >> fontFullName: aFontName [
+	"Answer the full name of a font"
+
+	^ ((self fontNames) at: aFontName)
 ]
 
 { #category : #accessing }
@@ -177,8 +203,8 @@ PDFDocument >> generate [
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).
 	].
-	"Close the document"
-	self close.
+	"End of the document"
+	self endDoc.
 
 	^self buffer
 	
