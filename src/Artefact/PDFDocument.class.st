@@ -52,10 +52,10 @@ PDFDocument >> addTheListOfFonts [
 ]
 
 { #category : #private }
-PDFDocument >> addThepagesRoot [
+PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	"Add the pages root"
 	
-	| kids |
+	| kids bufferSize |
 	
 	self offsets at: 1 put: (self buffer size).
 	self out: '1 0 obj'.
@@ -68,7 +68,7 @@ PDFDocument >> addThepagesRoot [
 	self out: ('/MediaBox [0 0 ' , self format width asString , ' ' , self format height asString , ']').	
 	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
 	self out: '/Font <<'.
-	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (self numberOfObjects + i) asString , ' 0 R' ) ].
+	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (aNumberOfObjects + i) asString , ' 0 R' ) ].
 	self out: '>>'.
 	self out: '/XObject <<'.
 
@@ -92,11 +92,14 @@ PDFDocument >> addThepagesRoot [
 	"Insert the catalog"
 	self insertCatalog.
 	
+	"save the buffer size"
+	bufferSize := self buffer size.
+	
 	"insert the cross references"
 	self insertCrossRef.
 	
 	"insert the trailer"
-	self insertTrailer.
+	self insertTrailer: bufferSize.
 	
 
 
@@ -136,7 +139,7 @@ PDFDocument >> beginPage [
 	self out: '2 J'.
 	
 	"Set a default font"
-	self out: (PDFFontStyle new family: 'helvetica'; fontSize: 14; render: self )
+	"self out: (PDFFontStyle new family: 'helvetica'; fontSize: 14; render: self )"
 	
 
 
@@ -192,8 +195,11 @@ PDFDocument >> dateAndTimeInPDFFormat [
 PDFDocument >> endDoc [
 	"End of the PDF document"
 	
+	|  nObjects |
+	
+	nObjects := self numberOfObjects.
 	self addTheListOfFonts.
-	self addThepagesRoot.
+	self addThepagesRoot: nObjects.
 
 
 ]
@@ -364,7 +370,7 @@ PDFDocument >> insertInformations [
 ]
 
 { #category : #private }
-PDFDocument >> insertTrailer [
+PDFDocument >> insertTrailer: aBufferSize [
 	"Insert the trailer in the PDF document"
 	
 	self out: 'trailer'.
@@ -372,7 +378,7 @@ PDFDocument >> insertTrailer [
 	self out: ('/Root ' , (self numberOfObjects asString) , ' 0 R').
 	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
 	self out: 'startxref'.
-	self out: ((self buffer size) asString).
+	self out: (aBufferSize asString).
 	self out: '%%EOF'.
 
 
