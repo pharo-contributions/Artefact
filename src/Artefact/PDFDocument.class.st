@@ -69,6 +69,8 @@ PDFDocument >> beginPage [
 	
 	"Set a default font"
 	self out: (PDFFontStyle new family: ''; fontSize: 14; render: self )
+	
+
 
 	
 ]
@@ -103,6 +105,18 @@ PDFDocument >> currentFont: aCurrentFont [
 { #category : #private }
 PDFDocument >> endPage [
 	"Close a page"
+]
+
+{ #category : #private }
+PDFDocument >> endPage: aPageSize [
+
+	"End of the page contents"
+	self out: 'endstream'.
+	self out: 'endobj'.
+	"Size of page contents stream"
+	self newObj.
+	self out: (aPageSize asString).
+	self out: 'endobj'.
 ]
 
 { #category : #accessing }
@@ -140,9 +154,10 @@ PDFDocument >> generate [
 	" answer the PDF file"
 
 	self pages do: [ :page |
-		|  pagesize |
 		page xy: self margins.
 		page lasth: 0.
+		
+		"Start of the page"
 		self beginPage.
 		
 		"construct each styles in the document context"
@@ -160,13 +175,7 @@ PDFDocument >> generate [
 			]
 		].
 		"End of the page contents"
-		pagesize := (self buffer size) - (self offset).
-		self out: 'endstream'.
-		self out: 'endobj'.
-		"Size of page contents stream"
-		self newObj.
-		self out: (pagesize asString).
-		self out: 'endobj'.
+		self endPage:  (self buffer size) - (self offset).
 	].
 	"Close the document"
 	self close.
