@@ -65,7 +65,7 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	0 to: (self pages size - 1) do: [ :i | | v | kids := kids , (2 + (3 * i)) asString , ' 0 R ' ].
 	self out: (kids , ']').
 	self out: ('/Count ' , self pages size asString).
-	self out: ('/MediaBox [0 0 ' , self format width asString , ' ' , self format height asString , ']').	
+	self out: ('/MediaBox [0 0 ' , self width asString , ' ' , self height asString , ']').	
 	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
 	self out: '/Font <<'.
 	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (aNumberOfObjects + i) asString , ' 0 R' ) ].

@@ -12,6 +12,7 @@ PDFTest class >> ex1 [
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
+pdfdoc setLandscape.
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Artefact PDF Framework').
