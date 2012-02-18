@@ -10,7 +10,7 @@ PDFTest class >> ex1 [
 
 	"PDFTest ex1"
 	
-	| pdfdoc aPage |
+	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
 pdfdoc setLandscape.
 	aPage := PDFPage new.
@@ -21,6 +21,10 @@ pdfdoc setLandscape.
 
 	aPage add: (PDFCellStyle new wh: 100@30; border: true; text: 'Une autre case').
 	pdfdoc add: aPage.
+	
+	aSecondPage := PDFPage new.
+	aSecondPage add: (PDFRectStyle new xy: 30@30; wh: 40@40).
+	pdfdoc add: aSecondPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
 
