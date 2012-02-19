@@ -149,8 +149,7 @@ PDFDocument >> beginPage [
 { #category : #accessing }
 PDFDocument >> buffer [
 	^ buffer ifNil: [ 
-		buffer := OrderedCollection new.
-		buffer add: ('%PDF-1.3' , String crlf). 
+		buffer := ('%PDF-1.3' , String crlf). 
 	]
 ]
 
@@ -393,7 +392,7 @@ PDFDocument >> insertTrailer: aBufferSize [
 	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
 	self out: 'startxref'.
 	self out: (aBufferSize asString).
-	self buffer add: '%%EOF'.
+	self buffer: self buffer , '%%EOF'.
 
 
 ]
@@ -468,8 +467,8 @@ PDFDocument >> out: aItem [
 	"append the item (or a list of items) to the document"
 	
 	(aItem className = 'OrderedCollection') 
-		ifTrue: [ aItem do: [ :aValue | self buffer add: (aValue, String crlf) ] ]
-		ifFalse: [ self buffer add: (aItem, String crlf) ]
+		ifTrue: [ aItem do: [ :aValue | self buffer: self buffer , (aValue, String crlf) ] ]
+		ifFalse: [ self buffer: self buffer , (aItem, String crlf) ]
 
 ]
 
