@@ -417,7 +417,7 @@ PDFDocument >> insertInformations [
 	
 	self newObj.
 	self out: ('<<').
-	self out: ('/Producer (' , self producer , ' ' , self version , ')' ).
+	self out: ('/Producer ' , (self textString: (self producer , ' ' , self version))).
 	self out: ('/Title ' , (self textString: self title)) .
 	"self out: ('/Subject ' , (self textString: self subject)).	
 	self out: ('/Author ' , (self textString: self author)).
