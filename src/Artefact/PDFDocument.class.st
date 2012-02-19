@@ -416,30 +416,18 @@ PDFDocument >> insertInformations [
 	"Insert informations in the PDF document"
 	
 	self newObj.
-	self out: ('<< /Producer (' , self producer , ' ' , self version , ')' ).
-	self out: ('/Title ' , (self escape: self title)) .
-	self out: ('/Subject ' , (self escape: self subject)).	
-	self out: ('/Author ' , (self escape: self author)).
-	self out: ('/Keywords ' , (self escape: self keywords)).
-	self out: ('/Creator ' , (self escape: self creator)).
-	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ') >>').
+	self out: ('<<').
+	self out: ('/Producer (' , self producer , ' ' , self version , ')' ).
+	self out: ('/Title ' , (self textString: self title)) .
+	"self out: ('/Subject ' , (self textString: self subject)).	
+	self out: ('/Author ' , (self textString: self author)).
+	self out: ('/Keywords ' , (self textString: self keywords)).
+	self out: ('/Creator ' , (self textString: self creator))."
+	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ')').
+	self out: ('>>').
 	self out: 'endobj'.
 	
 	
-"
-	$this->_out('/Producer '.$this->_textstring('FPDF '.FPDF_VERSION));
-	if(!empty($this->title))
-		$this->_out('/Title '.$this->_textstring($this->title));
-	if(!empty($this->subject))
-		$this->_out('/Subject '.$this->_textstring($this->subject));
-	if(!empty($this->author))
-		$this->_out('/Author '.$this->_textstring($this->author));
-	if(!empty($this->keywords))
-		$this->_out('/Keywords '.$this->_textstring($this->keywords));
-	if(!empty($this->creator))
-		$this->_out('/Creator '.$this->_textstring($this->creator));
-	$this->_out('/CreationDate '.$this->_textstring('D:'.@date('YmdHis')));
-"
 
 ]
 
@@ -677,6 +665,13 @@ PDFDocument >> subject [
 { #category : #accessing }
 PDFDocument >> subject: aString [
 	subject := aString
+]
+
+{ #category : #Tools }
+PDFDocument >> textString: aString [
+	"Format a text string"
+	
+	^('(' , (self escape: aString) , ')')
 ]
 
 { #category : #accessing }
