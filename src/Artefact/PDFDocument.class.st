@@ -164,14 +164,22 @@ PDFDocument >> beginPage [
 
 { #category : #accessing }
 PDFDocument >> buffer [
-	^ buffer ifNil: [ 
-		buffer := ('%PDF-1.3' , String crlf). 
-	]
+	^ buffer
 ]
 
 { #category : #accessing }
 PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
+]
+
+{ #category : #private }
+PDFDocument >> clearBuffer [
+	"Clear the buffer to produce a new document"
+	self buffer: ('%PDF-1.3' , String crlf).
+	self fonts removeAll.
+	self numberOfObjects: 1.
+	self offset: 0.
+	self offsets removeAll.
 ]
 
 { #category : #accessing }
@@ -264,7 +272,10 @@ PDFDocument >> exportToFile: aFileName [
 	
 	| stream |
 	stream := StandardFileStream fileNamed: aFileName.
-	(String crlf split: (self generate)) do: [ :aString | stream nextPutAll: (aString , String crlf) ].
+	
+	(String crlf split: (self generate)) do: [ :aString | 
+		stream nextPutAll: (aString , String crlf).
+	].
 	stream close.
 ]
 
@@ -321,6 +332,8 @@ PDFDocument >> formatRef: aRef [
 PDFDocument >> generate [
 	" answer the PDF file"
 
+	self clearBuffer.
+		
 	self pages do: [ :page |
 		page xy: self margins.
 		page lasth: 0.
@@ -397,17 +410,8 @@ PDFDocument >> insertCrossRef [
 	self out: 'xref'.
 	self out: ('0 ' , (self numberOfObjects + 1) asString).
 	self out: '0000000000 65535 f '.
-	1 to: (self numberOfObjects) do: [ :i |
-		self out: ((self formatRef: (self offsets at: i)) , ' 00000 n').
-	]
-	
-	"
-	$this->_out('xref');
-	$this->_out('0 '.($this->n+1));
-	$this->_out('0000000000 65535 f ');
-	for($i=1;$i<=$this->n;$i++)
-		$this->_out(sprintf('%010d 00000 n ',$this->offsets[$i]));
-	"
+	1 to: (self numberOfObjects) do: [ :i | self out: ((self formatRef: (self offsets at: i)) , ' 00000 n') ]
+
 
 ]
 
@@ -488,7 +492,7 @@ PDFDocument >> newObj [
 
 { #category : #accessing }
 PDFDocument >> numberOfObjects [
-	^ numberOfObjects ifNil: [ numberOfObjects := 1 ]
+	^ numberOfObjects 
 ]
 
 { #category : #accessing }
@@ -498,7 +502,7 @@ PDFDocument >> numberOfObjects: aValue [
 
 { #category : #accessing }
 PDFDocument >> offset [
-	^ offset ifNil: [ offset := 0 ]
+	^ offset
 ]
 
 { #category : #accessing }
@@ -564,7 +568,7 @@ PDFDocument >> pages: aListOfPDFPage [
 	pages := aListOfPDFPage
 ]
 
-{ #category : #Configuration }
+{ #category : #configuration }
 PDFDocument >> producer [
 	^'Artefact'
 ]
@@ -667,7 +671,7 @@ PDFDocument >> subject: aString [
 	subject := aString
 ]
 
-{ #category : #Tools }
+{ #category : #tools }
 PDFDocument >> textString: aString [
 	"Format a text string"
 	
@@ -710,7 +714,7 @@ PDFDocument >> usePointsAsUnit [
 	self scaleFactor: 1.
 ]
 
-{ #category : #Configuration }
+{ #category : #configuration }
 PDFDocument >> version [
 	^'0.1'
 ]
