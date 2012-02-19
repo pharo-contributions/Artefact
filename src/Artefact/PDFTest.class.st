@@ -12,12 +12,11 @@ PDFTest class >> ex1 [
 	
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
-pdfdoc setLandscape.
+"pdfdoc setLandscape."
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
-	aPage add: (PDFCellStyle new wh: 150@30; border: true; linefeed: true; text: 'Artefact PDF Framework').
-	aPage add: (PDFCellStyle new wh: 100@30; border: true; linefeed: true; text: 'Une seconde case').
-	aPage add: (PDFCellStyle new wh: 100@30; border: true; linefeed: true; text: 'Une troisième case').
+	aPage add: (PDFCellStyle new wh: 40@10; border: false; linefeed: false; text: 'Hello world!').
+	aPage add: (PDFCellStyle new wh: 40@10; border: false; linefeed: false; text: 'Cool Raoul').
 	pdfdoc add: aPage.
 	
 	aSecondPage := PDFPage new.

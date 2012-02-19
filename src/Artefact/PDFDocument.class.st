@@ -150,7 +150,7 @@ PDFDocument >> beginPage [
 PDFDocument >> buffer [
 	^ buffer ifNil: [ 
 		buffer := OrderedCollection new.
-		buffer add: ('%PDF-1.3' , String cr). 
+		buffer add: ('%PDF-1.3' , String crlf). 
 	]
 ]
 
@@ -309,6 +309,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
+	Transcript clear; show: self buffer.
 	^self buffer
 	
 ]
@@ -467,8 +468,8 @@ PDFDocument >> out: aItem [
 	"append the item (or a list of items) to the document"
 	
 	(aItem className = 'OrderedCollection') 
-		ifTrue: [ aItem do: [ :aValue | self buffer add: (aValue, String cr) ] ]
-		ifFalse: [ self buffer add: (aItem, String cr) ]
+		ifTrue: [ aItem do: [ :aValue | self buffer add: (aValue, String crlf) ] ]
+		ifFalse: [ self buffer add: (aItem, String crlf) ]
 
 ]
 
