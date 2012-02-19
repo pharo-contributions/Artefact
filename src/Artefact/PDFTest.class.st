@@ -15,8 +15,10 @@ PDFTest class >> ex1 [
 	pdfdoc setLandscape.
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
-	aPage add: (PDFCellStyle new wh: 40@10; border: false; linefeed: false; text: 'Hello world!').
-	aPage add: (PDFCellStyle new wh: 40@10; border: false; linefeed: false; text: 'Cool Raoul').
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'at right').
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Second line').
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'third line').
 	pdfdoc add: aPage.
 	
 	"aSecondPage := PDFPage new.
