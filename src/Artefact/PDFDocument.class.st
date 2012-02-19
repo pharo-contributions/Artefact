@@ -2,6 +2,11 @@ Class {
 	#name : #PDFDocument,
 	#superclass : #Object,
 	#instVars : [
+		'title',
+		'subject',
+		'author',
+		'keywords',
+		'creator',
 		'buffer',
 		'numberOfObjects',
 		'pages',
@@ -106,6 +111,17 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 ]
 
 { #category : #accessing }
+PDFDocument >> author [
+	^ author ifNil: [ author := '' ]
+	
+]
+
+{ #category : #accessing }
+PDFDocument >> author: aString [
+	author := aString
+]
+
+{ #category : #accessing }
 PDFDocument >> autoPageBreak [
 	^autoPageBreak
 ]
@@ -156,6 +172,17 @@ PDFDocument >> buffer [
 { #category : #accessing }
 PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
+]
+
+{ #category : #accessing }
+PDFDocument >> creator [
+	^ creator ifNil: [ creator := '' ]
+	
+]
+
+{ #category : #accessing }
+PDFDocument >> creator: aString [
+	creator := aString
 ]
 
 { #category : #accessing }
@@ -216,6 +243,19 @@ PDFDocument >> endPage: aPageSize [
 	self newObj.
 	self out: (aPageSize asString).
 	self out: 'endobj'.
+]
+
+{ #category : #private }
+PDFDocument >> escape: aString [
+	"answer a clean string at PDF format"
+	
+	| str |
+	
+	str := aString copyWithRegex: '\(' matchesReplacedWith: '\\('.
+	str := str copyWithRegex: '\)' matchesReplacedWith: '\\)'.
+	str := str copyWithRegex: '\\' matchesReplacedWith: '\\'.	
+
+	^str
 ]
 
 { #category : #action }
@@ -377,8 +417,29 @@ PDFDocument >> insertInformations [
 	
 	self newObj.
 	self out: ('<< /Producer (' , self producer , ' ' , self version , ')' ).
+	self out: ('/Title ' , (self escape: self title)) .
+	self out: ('/Subject ' , (self escape: self subject)).	
+	self out: ('/Author ' , (self escape: self author)).
+	self out: ('/Keywords ' , (self escape: self keywords)).
+	self out: ('/Creator ' , (self escape: self creator)).
 	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ') >>').
 	self out: 'endobj'.
+	
+	
+"
+	$this->_out('/Producer '.$this->_textstring('FPDF '.FPDF_VERSION));
+	if(!empty($this->title))
+		$this->_out('/Title '.$this->_textstring($this->title));
+	if(!empty($this->subject))
+		$this->_out('/Subject '.$this->_textstring($this->subject));
+	if(!empty($this->author))
+		$this->_out('/Author '.$this->_textstring($this->author));
+	if(!empty($this->keywords))
+		$this->_out('/Keywords '.$this->_textstring($this->keywords));
+	if(!empty($this->creator))
+		$this->_out('/Creator '.$this->_textstring($this->creator));
+	$this->_out('/CreationDate '.$this->_textstring('D:'.@date('YmdHis')));
+"
 
 ]
 
@@ -395,6 +456,17 @@ PDFDocument >> insertTrailer: aBufferSize [
 	self buffer: self buffer , '%%EOF'.
 
 
+]
+
+{ #category : #accessing }
+PDFDocument >> keywords [
+	^ keywords ifNil: [ keywords := '' ]
+	
+]
+
+{ #category : #accessing }
+PDFDocument >> keywords: aString [
+	keywords := aString
 ]
 
 { #category : #accessing }
@@ -594,6 +666,28 @@ PDFDocument >> size [
 { #category : #accessing }
 PDFDocument >> size: aValue [
 	size := aValue
+]
+
+{ #category : #accessing }
+PDFDocument >> subject [
+	^ subject ifNil: [ subject := '' ]
+	
+]
+
+{ #category : #accessing }
+PDFDocument >> subject: aString [
+	subject := aString
+]
+
+{ #category : #accessing }
+PDFDocument >> title [
+	^ title ifNil: [ title := '' ]
+	
+]
+
+{ #category : #accessing }
+PDFDocument >> title: aString [
+	title := aString
 ]
 
 { #category : #accessing }

@@ -13,6 +13,9 @@ PDFTest class >> ex1 [
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
 	pdfdoc setLandscape.
+	
+	pdfdoc title: 'Le titre du document'.
+	
 	aPage := PDFPage new.
 	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').

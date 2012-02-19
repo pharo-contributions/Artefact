@@ -8,5 +8,5 @@ Class {
 PDFTextStyle >> render: aDocument [
 	"Draw a text at xy position"
 	
-	^ ('BT ' , self xy x asString , ' -' , self xy y , ' Td (' , (self prepareText: self text) , ') Tj ET')
+	^ ('BT ' , self xy x asString , ' -' , self xy y , ' Td (' , (aDocument escape: self text) , ') Tj ET')
 ]
