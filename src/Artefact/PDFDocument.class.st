@@ -224,7 +224,7 @@ PDFDocument >> exportToFile: aFileName [
 	
 	| stream |
 	stream := StandardFileStream fileNamed: aFileName.
-	(self generate) do: [ :aString | stream nextPutAll: aString ].
+	(String crlf split: (self generate)) do: [ :aString | stream nextPutAll: (aString , String crlf) ].
 	stream close.
 ]
 

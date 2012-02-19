@@ -24,9 +24,8 @@ PDFTest class >> ex1 [
 	aSecondPage add: (PDFRectStyle new xy: 30@30; wh: 40@40).
 	pdfdoc add: aSecondPage."
 	
-	pdfdoc generate.
 	
-	"pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'."
+	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
 
 	
 	
