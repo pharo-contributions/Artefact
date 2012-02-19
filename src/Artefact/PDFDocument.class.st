@@ -223,11 +223,9 @@ PDFDocument >> endPage: aPageSize [
 PDFDocument >> exportToFile: aFileName [
 	"Export the PDF document in a file"
 	
-	| stream data |
-	stream := StandardFileStream fileNamed: aFileName..
-	"data := String cr split: self generate contents."
-	data := self generate.
-	data do: [ :aString | stream nextPutAll: aString ].
+	| stream |
+	stream := StandardFileStream fileNamed: aFileName.
+	(self generate) do: [ :aString | stream nextPutAll: aString ].
 	stream close.
 ]
 
