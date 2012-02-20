@@ -431,10 +431,10 @@ PDFDocument >> insertInformations [
 	self out: ('<<').
 	self out: ('/Producer ' , (self textString: (self producer , ' ' , self version))).
 	self out: ('/Title ' , (self textString: self title)) .
-	"self out: ('/Subject ' , (self textString: self subject)).	
+	self out: ('/Subject ' , (self textString: self subject)).	
 	self out: ('/Author ' , (self textString: self author)).
 	self out: ('/Keywords ' , (self textString: self keywords)).
-	self out: ('/Creator ' , (self textString: self creator))."
+	self out: ('/Creator ' , (self textString: self creator)).
 	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ')').
 	self out: '>>'.
 	self out: 'endobj'.
@@ -448,11 +448,9 @@ PDFDocument >> insertTrailer: aBufferSize [
 	"Insert the trailer in the PDF document"
 	
 	self out: 'trailer'.
-	self out: '<<'.
-	self out: ('/Size ' , (self numberOfObjects + 1) asString).
+	self out: ('<< /Size ' , (self numberOfObjects + 1) asString).
 	self out: ('/Root ' , (self numberOfObjects asString) , ' 0 R').
-	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R').
-	self out: '>>'.
+	self out: ('/Info ' , (self numberOfObjects - 1) asString , ' 0 R >>').
 	self out: 'startxref'.
 	self out: (aBufferSize asString).
 	self buffer: self buffer , '%%EOF'.
