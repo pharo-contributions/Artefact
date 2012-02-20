@@ -23,7 +23,8 @@ Class {
 		'autoPageBreak',
 		'pageBreakTrigger',
 		'currentFont',
-		'images'
+		'images',
+		'charWidths'
 	],
 	#category : #Artefact
 }
@@ -178,6 +179,22 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 	buffer := bodyOfPDFDocument
 ]
 
+{ #category : #fonts }
+PDFDocument >> charWidths [
+	"Answer the char widths for each fonts"
+	
+	charWidths ifNil: [
+		charWidths := {
+			'helvetica'->(self helveticaWidths).
+			'courier'->(self courierWidths) . 'courierB'->(self courierWidths) . 'courierI'->(self courierWidths) . 'courierBI'->(self courierWidths)
+			
+		} asDictionary.
+		
+	].
+
+	^charWidths
+]
+
 { #category : #private }
 PDFDocument >> clearBuffer [
 	"Clear the buffer to produce a new document"
@@ -186,6 +203,17 @@ PDFDocument >> clearBuffer [
 	self numberOfObjects: 1.
 	self offset: 0.
 	self offsets removeAll.
+]
+
+{ #category : #fonts }
+PDFDocument >> courierWidths [
+	"answer the widths for each characters of the courier font"
+	
+	| widths |
+	widths := Dictionary new.
+	
+	1 to: 255 do: [ :i | widths at: (Character value: i) put: 600 ].
+	^widths
 ]
 
 { #category : #accessing }
@@ -292,7 +320,7 @@ PDFDocument >> fontFullName: aFontName [
 	^ ((self fontNames) at: aFontName)
 ]
 
-{ #category : #accessing }
+{ #category : #fonts }
 PDFDocument >> fontNames [
 	^ fontNames ifNil: [ 
 		fontNames := {
@@ -375,6 +403,19 @@ PDFDocument >> generate [
 { #category : #accessing }
 PDFDocument >> height [
 	^(self size y)
+]
+
+{ #category : #fonts }
+PDFDocument >> helveticaWidths [
+	"Answer the char widths for each fonts"
+	
+	"answer the widths for each characters of the helvetica font"
+	
+	| widths |
+	widths := Dictionary new.
+	
+	1 to: 255 do: [ :i | widths at: (Character value: i) put: 600 ].
+	^widths
 ]
 
 { #category : #accessing }
