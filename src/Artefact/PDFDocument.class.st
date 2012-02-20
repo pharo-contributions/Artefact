@@ -46,10 +46,12 @@ PDFDocument >> addTheListOfFonts [
 	
 	(self fonts) keysAndValuesDo: [ :key :counter | 
 		self newObj.
-		self out: '<< /Type /Font'.
+		self out: '<<'.
+		self out: '/Type /Font'.
 		self out: '/Subtype /Type1'.
 		self out: ('/BaseFont /' , (self fontFullName: key)).
-		self out: '/Encoding /WinAnsiEncoding >>'.
+		self out: '/Encoding /WinAnsiEncoding'.
+		self out: '>>'.
 		self out: 'endobj'.
 	].
 
@@ -64,7 +66,8 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	
 	self offsets at: 1 put: (self buffer size).
 	self out: '1 0 obj'.
-	self out: '<< /Type /Pages'.
+	self out: '<<'.
+	self out: '/Type /Pages'.
 	
 	kids := '/Kids ['.
 	0 to: (self pages size - 1) do: [ :i | | v | kids := kids , (2 + (3 * i)) asString , ' 0 R ' ].
@@ -75,7 +78,8 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	self out: '/Font <<'.
 	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (aNumberOfObjects + i) asString , ' 0 R' ) ].
 	self out: '>>'.
-	self out: '/XObject <<'.
+	self out: '/XObject'.
+	self out: '<<'.
 
 	"Inserer la partie sur les images"
 "
@@ -85,10 +89,12 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	{
 		$this->_out('/I'.$info['n'].' '.($ni+$info['n']+$nbpal).' 0 R');
 		if($info['cs']=='Indexed')
-			$nbpal++;
+			$nbpal++
 	}
 "
-	self out: '>> >> >>'.
+	self out: '>>'.  
+	self out: '>>'.
+	self out: '>>'.
 	self out: 'endobj'.
 
 	"Insert the informations"
@@ -105,8 +111,6 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	
 	"insert the trailer"
 	self insertTrailer: bufferSize.
-	
-
 
 ]
 
@@ -137,9 +141,11 @@ PDFDocument >> beginPage [
 
 	self offset: self buffer size.
 	self newObj.
-	self out: '<< /Type /Page'.
+	self out: '<<'.
+	self out: '/Type /Page'.
 	self out: '/Parent 1 0 R'.
-	self out:  '/Contents ' , (self numberOfObjects + 1) asString , ' 0 R >>'.
+	self out:  '/Contents ' , (self numberOfObjects + 1) asString , ' 0 R'.
+	self out: '>>'.
 	self out: 'endobj'.
 	"Begin of page contents"
 	self newObj.
@@ -397,8 +403,10 @@ PDFDocument >> insertCatalog [
 	"insert the catalog"
 
 	self newObj.
-	self out: '<< /Type /Catalog'.
-	self out: '/Pages 1 0 R >>'.	
+	self out: '<<'.
+	self out: '/Type /Catalog'.
+	self out: '/Pages 1 0 R'.
+	self out: '>>'.	
 	self out: 'endobj'.
 
 ]
@@ -440,9 +448,11 @@ PDFDocument >> insertTrailer: aBufferSize [
 	"Insert the trailer in the PDF document"
 	
 	self out: 'trailer'.
-	self out: ('<< /Size ' , (self numberOfObjects + 1) asString).
+	self out: '<<'.
+	self out: ('/Size ' , (self numberOfObjects + 1) asString).
 	self out: ('/Root ' , (self numberOfObjects asString) , ' 0 R').
-	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R >>').
+	self out: ('/Info ' , (self numberOfObjects + 1) asString , ' 0 R').
+	self out: '>>'.
 	self out: 'startxref'.
 	self out: (aBufferSize asString).
 	self buffer: self buffer , '%%EOF'.
