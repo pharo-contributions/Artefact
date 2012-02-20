@@ -12,6 +12,7 @@ PDFTest class >> ex1 [
 	
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFFormatA3 new.
 	pdfdoc setLandscape.
 	
 	pdfdoc title: 'Le titre du document'.

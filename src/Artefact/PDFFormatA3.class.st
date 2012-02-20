@@ -1,10 +1,10 @@
 Class {
-	#name : #PDFFormatA4,
+	#name : #PDFFormatA3,
 	#superclass : #PDFFormat,
 	#category : #Artefact
 }
 
 { #category : #'as yet unclassified' }
-PDFFormatA4 >> size [
-	^595.3@841.9
+PDFFormatA3 >> size [
+	^841.89@1190.55
 ]

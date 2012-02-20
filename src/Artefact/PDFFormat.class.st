@@ -12,7 +12,7 @@ PDFFormat >> height [
 
 { #category : #'as yet unclassified' }
 PDFFormat >> margin [
-	self subclassResponsibility
+	^28.35
 ]
 
 { #category : #'as yet unclassified' }
