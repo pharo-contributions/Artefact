@@ -411,7 +411,10 @@ PDFDocument >> helveticaWidths [
 	
 	"answer the widths for each characters of the helvetica font"
 	
-	| widths |
+	| values widths |
+	
+	values := { } asOrderedCollection.
+	
 	widths := Dictionary new.
 	
 	1 to: 255 do: [ :i | widths at: (Character value: i) put: 600 ].
