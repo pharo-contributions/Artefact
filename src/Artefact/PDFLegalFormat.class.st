@@ -1,5 +1,5 @@
 Class {
-	#name : #PDFFormatLegal,
+	#name : #PDFLegalFormat,
 	#superclass : #PDFFormat,
 	#category : #Artefact
 }

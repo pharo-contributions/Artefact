@@ -1,10 +1,10 @@
 Class {
-	#name : #PDFFormatLetter,
+	#name : #PDFA3Format,
 	#superclass : #PDFFormat,
 	#category : #Artefact
 }
 
 { #category : #'as yet unclassified' }
-PDFFormatLetter >> size [
-	^612@1008
+PDFA3Format >> size [
+	^841.89@1190.55
 ]

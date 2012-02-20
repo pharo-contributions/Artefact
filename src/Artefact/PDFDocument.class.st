@@ -385,7 +385,7 @@ PDFDocument >> images: aValue [
 PDFDocument >> initialize [
 	super initialize.
 	self currentFont: PDFCurrentFont new.
-	self setFormat: PDFFormatA4 new.
+	self setFormat: PDFA4Format new.
 	self setPortrait.
 	self setAutoPageBreak: true margin: self margin.
 
