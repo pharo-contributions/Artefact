@@ -436,7 +436,7 @@ PDFDocument >> insertInformations [
 	self out: ('/Keywords ' , (self textString: self keywords)).
 	self out: ('/Creator ' , (self textString: self creator))."
 	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ')').
-	self out: ('>>').
+	self out: '>>'.
 	self out: 'endobj'.
 	
 	

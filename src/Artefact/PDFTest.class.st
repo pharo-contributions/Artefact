@@ -36,3 +36,24 @@ PDFTest class >> ex1 [
 	
 	
 ]
+
+{ #category : #'as yet unclassified' }
+PDFTest class >> ex2 [
+	"generate a sample document"
+
+	"PDFTest ex1"
+	
+	| pdfdoc aPage aSecondPage |
+	pdfdoc := PDFDocument new.
+	
+	pdfdoc title: 'Le titre du document'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').
+	
+	pdfdoc add: aPage.
+	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
+
+	
+	
+]
