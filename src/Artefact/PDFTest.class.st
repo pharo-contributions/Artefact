@@ -46,11 +46,11 @@ PDFTest class >> infos [
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
 	
-	pdfdoc title: 'Le titre du document'.
-	pdfdoc subject: 'test de la zone d''information'.
-	pdfdoc author: 'Olivier Auverlot'.
-	pdfdoc keywords: 'test zone infos'.
-	pdfdoc creator: 'Artefact - Pharo'.
+	pdfdoc title: 'Le titre du document'; 
+		subject: 'test de la zone d''information'; 
+		author: 'Olivier Auverlot'; 
+		keywords: 'test zone infos';
+		creator: 'Artefact - Pharo'.
 	
 	aPage := PDFPage new.
 	
