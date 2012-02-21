@@ -223,16 +223,29 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 PDFDocument >> charWidths [
 	"Answer the char widths for each fonts"
 	
-	charWidths ifNil: [
+	^charWidths ifNil: [
 		charWidths := {
-			'helvetica'->(self helveticaWidths) . 'helveticaB'->(self helveticaBWidths) .
-			'courier'->(self courierWidths) . 'courierB'->(self courierWidths) . 'courierI'->(self courierWidths) . 'courierBI'->(self courierWidths)
+			'courier'->(self setCharWidths: (self courierWidths)) . 
+			'courierB'->(self setCharWidths: (self courierBWidths)) . 
+			'courierI'->(self setCharWidths: (self courierIWidths)) . 
+			'courierBI'->(self setCharWidths: (self courierBIWidths)) .
 			
-		} asDictionary.
-		
+			'helvetica'->(self setCharWidths: (self helveticaWidths)) . 
+			'helveticaB'->(self setCharWidths: (self helveticaBWidths)) . 
+			'helveticaI'->(self setCharWidths: (self helveticaIWidths)) . 
+			'helveticaBI'->(self setCharWidths: (self helveticaBIWidths)) .
+
+			'symbol'->(self setCharWidths: (self symbolWidths)) . 
+			
+			'timesWidths'->(self setCharWidths: (self timesWidths)) . 
+			'timesBWidths'->(self setCharWidths: (self timesBWidths)) . 
+			'timesIWidths'->(self setCharWidths: (self timesIWidths)) . 
+			'timesBIWidths'->(self setCharWidths: (self timesBIWidths)) . 
+			
+			'zapfdingbats'->(self setCharWidths: (self zapfdingbatsWidths)) 
+		} asDictionary.	
 	].
 
-	^charWidths
 ]
 
 { #category : #private }
@@ -521,7 +534,6 @@ PDFDocument >> initialize [
 	self setFormat: PDFA4Format new.
 	self setPortrait.
 	self setAutoPageBreak: true margin: self margin.
-
 	
 ]
 
@@ -731,6 +743,17 @@ PDFDocument >> setAutoPageBreak: mode margin: aMargin [
 	self pageBreakTrigger: (self height / self scaleFactor) -  aMargin
 ]
 
+{ #category : #fonts }
+PDFDocument >> setCharWidths: aWidthsCollection [
+	"answer a dictionnay that contains the size of each char"
+	
+	| widths |
+	widths := Dictionary new.
+	
+	1 to: 255 do: [ :i | widths at: (Character value: (i - 1))  put: (aWidthsCollection at: i) ].
+	^widths
+]
+
 { #category : #private }
 PDFDocument >> setCurrentFont: aFamily size: aSizePt bold: aBoldValue italic: aItalicValue [
 	"Set the current font used in the document"
@@ -807,7 +830,7 @@ PDFDocument >> subject: aString [
 ]
 
 { #category : #fonts }
-PDFDocument >> symbol [
+PDFDocument >> symbolWidths [
 	
 	"answer the widths for each characters of the symbol font"
 	
@@ -905,7 +928,7 @@ PDFDocument >> width [
 ]
 
 { #category : #fonts }
-PDFDocument >> zapfdingbats [
+PDFDocument >> zapfdingbatsWidths [
 	
 	"answer the widths for each characters of the zapfdingbats font"
 	
