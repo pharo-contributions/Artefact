@@ -237,10 +237,10 @@ PDFDocument >> charWidths [
 
 			'symbol'->(self setCharWidths: (self symbolWidths)) . 
 			
-			'timesWidths'->(self setCharWidths: (self timesWidths)) . 
-			'timesBWidths'->(self setCharWidths: (self timesBWidths)) . 
-			'timesIWidths'->(self setCharWidths: (self timesIWidths)) . 
-			'timesBIWidths'->(self setCharWidths: (self timesBIWidths)) . 
+			'times'->(self setCharWidths: (self timesWidths)) . 
+			'timesB'->(self setCharWidths: (self timesBWidths)) . 
+			'timesI'->(self setCharWidths: (self timesIWidths)) . 
+			'timesBI'->(self setCharWidths: (self timesBIWidths)) . 
 			
 			'zapfdingbats'->(self setCharWidths: (self zapfdingbatsWidths)) 
 		} asDictionary.	
@@ -481,10 +481,10 @@ PDFDocument >> getStringWidth: aString [
 	| width |
 	
 	width := 0.
-	
+
 	aString do: [ :char | width := width + ((self charWidths at: (self currentFont fontFamily)) at: char) ].
-	
-	^(width * (self currentFont fontSize / 1000))
+
+	^((width * self currentFont fontSize) / 1000) roundDownTo: 0.001
 
 ]
 
@@ -550,7 +550,7 @@ PDFDocument >> initialize [
 	self setAutoPageBreak: true margin: self margin.
 	
 	self currentFont: PDFCurrentFont new.
-	self setCurrentFont: 'times' size: 14 bold: false italic: false.
+	self setCurrentFont: 'helvetica' size: 12 bold: false italic: false.
 ]
 
 { #category : #private }

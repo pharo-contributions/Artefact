@@ -18,13 +18,11 @@ PDFTest class >> ex1 [
 	pdfdoc title: 'Le titre du document'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFFontStyle new family: 'Arial'; fontSize: 16; bold: true).
+	aPage add: (PDFFontStyle new family: 'times'; fontSize:32; bold: true).
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'at right').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Second line').
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'third line').
-	
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: ((pdfdoc getStringWidth: 'Hello') aString)).
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Third line').
 	pdfdoc add: aPage.
 	
 	"aSecondPage := PDFPage new.
@@ -58,6 +56,35 @@ PDFTest class >> infos [
 	
 	pdfdoc add: aPage.
 	pdfdoc exportToFile: '/Users/olivier/Desktop/infos.pdf'.
+
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
+PDFTest class >> widthTest [
+	"generate a sample document"
+
+	"PDFTest ex1"
+	
+	| pdfdoc aPage width text |
+	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFA3Format new.
+	pdfdoc setLandscape.
+	
+	pdfdoc title: 'Le titre du document'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFFontStyle new family: 'times'; fontSize: 32; bold: true).
+	text := 'Hello world!'.
+	width := pdfdoc getStringWidth: text.
+
+	
+	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: false; text: text).
+
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
 
 	
 	
