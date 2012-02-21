@@ -474,6 +474,20 @@ PDFDocument >> generate [
 	
 ]
 
+{ #category : #action }
+PDFDocument >> getStringWidth: aString [
+	"answer the width of the string with the current font"
+	
+	| width |
+	
+	width := 0.
+	
+	aString do: [ :char | width := width + ((self charWidths at: (self currentFont fontFamily)) at: char) ].
+	
+	^(width * (self currentFont fontSize / 1000))
+
+]
+
 { #category : #accessing }
 PDFDocument >> height [
 	^(self size y)
@@ -530,11 +544,13 @@ PDFDocument >> images: aValue [
 { #category : #'initialize-release' }
 PDFDocument >> initialize [
 	super initialize.
-	self currentFont: PDFCurrentFont new.
+
 	self setFormat: PDFA4Format new.
 	self setPortrait.
 	self setAutoPageBreak: true margin: self margin.
 	
+	self currentFont: PDFCurrentFont new.
+	self setCurrentFont: 'times' size: 14 bold: false italic: false.
 ]
 
 { #category : #private }
@@ -763,6 +779,7 @@ PDFDocument >> setCurrentFont: aFamily size: aSizePt bold: aBoldValue italic: aI
 	self currentFont fontSize: ((aSizePt / self scaleFactor) roundDownTo: 0.01).
 	self currentFont bold: aBoldValue.
 	self currentFont italic: aItalicValue.
+
 
 
 ]

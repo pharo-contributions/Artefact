@@ -23,6 +23,8 @@ PDFTest class >> ex1 [
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'at right').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Second line').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'third line').
+	
+	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: ((pdfdoc getStringWidth: 'Hello') aString)).
 	pdfdoc add: aPage.
 	
 	"aSecondPage := PDFPage new.
