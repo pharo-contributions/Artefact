@@ -87,7 +87,6 @@ PDFFontStyle >> render: aDocument [
 	aDocument fonts at: (self fontName) ifAbsent: [ aDocument fonts at: self fontName put: ((aDocument fonts size) + 1) ].
 
 	"set the font as the current font for the document"
-	Transcript show: ('PDFFontStyle utilise une fonte de ' , (self fontSize asString)); cr.
 	aDocument setCurrentFont: (self family) size: (self fontSize) bold: (self bold) italic: (self italic).
 
 	^ ('BT /F', (aDocument fonts at: (self fontName)) asString , ' ' , (size asString) , ' Tf ET')

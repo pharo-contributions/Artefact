@@ -481,11 +481,9 @@ PDFDocument >> getStringWidth: aString with: aFont [
 	| width |
 	
 	width := 0.
-
-	Transcript show: ('Calcul de width avec:' , aFont fontSize asString); cr.
 	aString do: [ :char | width := width + ((self charWidths at: (aFont family)) at: char) ].
 
-	^(width * (aFont fontSize / 1000)) roundDownTo: 0.001	
+	^(width * ((aFont fontSize  / self scaleFactor) / 1000)) roundDownTo: 0.001	
 	
 	
 ]

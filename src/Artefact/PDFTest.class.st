@@ -65,22 +65,19 @@ PDFTest class >> infos [
 PDFTest class >> widthTest [
 	"generate a sample document"
 
-	"PDFTest ex1"
+	"PDFTest widthTest"
 	
 	| pdfdoc aPage myFont width text |
 	
-	myFont := PDFFontStyle new family: 'times'; fontSize: 32; bold: true.
-	text := 'Hello world!'.
+	myFont := PDFFontStyle new family: 'times'; fontSize: 16.
+	text := 'Hello world !'.
 	
 	pdfdoc := PDFDocument new.	
 	aPage := PDFPage new.
 	aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne').
 	
 	aPage add: myFont.
-
-	
 	width := pdfdoc getStringWidth: text with: myFont.
-	Transcript show: ('width=' , width asString);cr.
 	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: false; text: text).
 
 	pdfdoc add: aPage.
