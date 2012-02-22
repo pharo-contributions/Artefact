@@ -11,14 +11,12 @@ PDFTest class >> demo [
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
 
-	myFont := PDFFontStyle new family: 'helvetica'; fontSize: 16.
-	myBigFont := PDFFontStyle new family: 'helvetica'; fontSize: 64.
+	myFont := PDFHelveticaFont new fontSize: 16.
+	myBigFont := PDFHelveticaFont new fontSize: 64.
 	
 	aPage := PDFPage new.
-	aPage add: myBigFont.
-	aPage add: (PDFCellStyle new wh: 100@24; border: true; linefeed: true; text: 'Artefact').
-	aPage add: myFont.
-	aPage add: (PDFCellStyle new wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').	
+	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@24; border: true; linefeed: true; text: 'Artefact').
+	aPage add: (PDFCellStyle new font: myFont; wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').	
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
@@ -76,6 +74,31 @@ PDFTest class >> infos [
 	
 	pdfdoc add: aPage.
 	pdfdoc exportToFile: '/Users/olivier/Desktop/infos.pdf'.
+
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
+PDFTest class >> test [
+	"generate a sample document"
+
+	"PDFTest ex1"
+	
+	| pdfdoc aPage myFont |
+	pdfdoc := PDFDocument new.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFCellStyle new font: (PDFTimesFont new fontSize: 32);wh: 100@20; border: true; text: 'Hello World!').
+	aPage add: (PDFTextStyle new xy: 50@100; text: 'Another text'; font: (PDFCourierFont new)).
+	pdfdoc add: aPage.
+	
+	myFont := PDFCourierFont new fontSize: 32.
+	
+	Transcript show: (myFont getStringWidth: 'Hello' into: pdfdoc) asString; cr.
+	Transcript show: (myFont getIdealFontSizeForTheString: 'Hello' width: 100 into: pdfdoc) asString.
+
+	pdfdoc exportToFile: '/Users/olivier/Desktop/test.pdf'.
 
 	
 	

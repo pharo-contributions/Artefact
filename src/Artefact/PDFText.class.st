@@ -4,10 +4,21 @@ Class {
 	#instVars : [
 		'xy',
 		'wh',
-		'text'
+		'text',
+		'font'
 	],
 	#category : #Artefact
 }
+
+{ #category : #accessing }
+PDFText >> font [
+	^ font ifNil: [ font := PDFHelveticaFont new ]
+]
+
+{ #category : #accessing }
+PDFText >> font: anObject [
+	font := anObject
+]
 
 { #category : #accessing }
 PDFText >> text [
