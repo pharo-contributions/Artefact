@@ -63,7 +63,7 @@ PDFTest class >> infos [
 
 { #category : #'as yet unclassified' }
 PDFTest class >> widthTest [
-	"generate a sample document"
+	"generate a sample document for testing the width of fonts"
 
 	"PDFTest widthTest"
 	
@@ -86,6 +86,9 @@ PDFTest class >> widthTest [
 
 	aPage add: myBigFont.
 	aPage add: (PDFCellStyle new wh: 100@10; border: true; linefeed: true; text: text).
+	
+	Transcript show: pdfdoc margins asString.
+	aPage add: (PDFLineStyle new xy: 10@60; destination: 110@60).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.

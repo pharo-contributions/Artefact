@@ -484,12 +484,14 @@ PDFDocument >> getIdealFontSizeOfString: aString width: aWidth with: aFont [
 	
 	originalFontSize := aFont fontSize.
 	[ width >=  aWidth ] whileFalse: [
+		fsize := fsize + 1. 
 		aFont fontSize: fsize.
 		width := self getStringWidth: aString with: aFont.
-		fsize := fsize + 1. 
+		Transcript show: (fsize asString , '->' , width asString);cr.
+
 	].
 	aFont fontSize: originalFontSize.
-	^fsize
+	^(fsize - 1)
 	
 	
 ]
