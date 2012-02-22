@@ -475,6 +475,26 @@ PDFDocument >> generate [
 ]
 
 { #category : #action }
+PDFDocument >> getIdealFontSizeOfString: aString width: aWidth with: aFont [
+	"answer the ideal font size for the specified width. The size of the font is not modified"
+
+	| fsize width originalFontSize |
+	fsize := 0.
+	width := 0.
+	
+	originalFontSize := aFont fontSize.
+	[ width >=  aWidth ] whileFalse: [
+		aFont fontSize: fsize.
+		width := self getStringWidth: aString with: aFont.
+		fsize := fsize + 1. 
+	].
+	aFont fontSize: originalFontSize.
+	^fsize
+	
+	
+]
+
+{ #category : #action }
 PDFDocument >> getStringWidth: aString with: aFont [
 	"answer the width of the string with the specified font"
 	

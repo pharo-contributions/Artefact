@@ -67,19 +67,25 @@ PDFTest class >> widthTest [
 
 	"PDFTest widthTest"
 	
-	| pdfdoc aPage myFont width text |
-	
-	myFont := PDFFontStyle new family: 'times'; fontSize: 16.
-	text := 'Hello world !'.
-	
+	| pdfdoc aPage myFont myBigFont width text size |
+
 	pdfdoc := PDFDocument new.	
+			
+	myFont := PDFFontStyle new family: 'times'; fontSize: 16.
+	myBigFont := PDFFontStyle new family: 'times'; fontSize: 1.
+	text := 'Hello world !'.
+
+	myBigFont fontSize: (pdfdoc getIdealFontSizeOfString: 'Hello world!' width: 100 with: myBigFont)..	
+
 	aPage := PDFPage new.
 	aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne').
 	
 	aPage add: myFont.
 	width := pdfdoc getStringWidth: text with: myFont.
-	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: false; text: text).
+	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: true; text: text).
 
+	aPage add: myBigFont.
+	aPage add: (PDFCellStyle new wh: 100@10; border: true; linefeed: true; text: text).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
