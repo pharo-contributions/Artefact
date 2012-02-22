@@ -5,6 +5,26 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFTest class >> demo [
+	"a simple demonstration of Artefact"
+	
+	| pdfdoc myFont myBigFont aPage |
+	pdfdoc := PDFDocument new.	
+
+	myFont := PDFFontStyle new family: 'helvetica'; fontSize: 16.
+	myBigFont := PDFFontStyle new family: 'helvetica'; fontSize: 64.
+	
+	aPage := PDFPage new.
+	aPage add: myBigFont.
+	aPage add: (PDFCellStyle new wh: 100@24; border: true; linefeed: true; text: 'Artefact').
+	aPage add: myFont.
+	aPage add: (PDFCellStyle new wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFTest class >> ex1 [
 	"generate a sample document"
 
