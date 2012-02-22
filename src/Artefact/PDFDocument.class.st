@@ -469,23 +469,25 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	Transcript clear; show: self buffer.
+	"Transcript clear; show: self buffer."
 	^self buffer
 	
 ]
 
 { #category : #action }
-PDFDocument >> getStringWidth: aString [
-	"answer the width of the string with the current font"
+PDFDocument >> getStringWidth: aString with: aFont [
+	"answer the width of the string with the specified font"
 	
 	| width |
 	
 	width := 0.
 
-	aString do: [ :char | width := width + ((self charWidths at: (self currentFont fontFamily)) at: char) ].
+	Transcript show: ('Calcul de width avec:' , aFont fontSize asString); cr.
+	aString do: [ :char | width := width + ((self charWidths at: (aFont family)) at: char) ].
 
-	^((width * self currentFont fontSize) / 1000) roundDownTo: 0.001
-
+	^(width * (aFont fontSize / 1000)) roundDownTo: 0.001	
+	
+	
 ]
 
 { #category : #accessing }

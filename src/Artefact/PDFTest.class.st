@@ -67,19 +67,20 @@ PDFTest class >> widthTest [
 
 	"PDFTest ex1"
 	
-	| pdfdoc aPage width text |
-	pdfdoc := PDFDocument new.
-	pdfdoc setFormat: PDFA3Format new.
-	pdfdoc setLandscape.
+	| pdfdoc aPage myFont width text |
 	
-	pdfdoc title: 'Le titre du document'.
-	
-	aPage := PDFPage new.
-	aPage add: (PDFFontStyle new family: 'times'; fontSize: 32; bold: true).
+	myFont := PDFFontStyle new family: 'times'; fontSize: 32; bold: true.
 	text := 'Hello world!'.
-	width := pdfdoc getStringWidth: text.
+	
+	pdfdoc := PDFDocument new.	
+	aPage := PDFPage new.
+	aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne').
+	
+	aPage add: myFont.
 
 	
+	width := pdfdoc getStringWidth: text with: myFont.
+	Transcript show: ('width=' , width asString);cr.
 	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: false; text: text).
 
 	pdfdoc add: aPage.
