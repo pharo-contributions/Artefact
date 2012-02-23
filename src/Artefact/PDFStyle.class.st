@@ -17,6 +17,11 @@ PDFStyle >> buffer: anObject [
 	buffer := anObject
 ]
 
+{ #category : #render }
+PDFStyle >> initStyle: aDocument [
+	self subclassResponsibility
+]
+
 { #category : #'initialize-release' }
 PDFStyle >> initialize [ 
 	super initialize.
