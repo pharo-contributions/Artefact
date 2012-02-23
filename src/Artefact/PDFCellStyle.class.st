@@ -56,10 +56,8 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #render }
 PDFCellStyle >> render: aDocument [
-	| buffer size decx width cellmargin |
+	| size decx width cellmargin |
 	
-	buffer := OrderedCollection new.
-
 	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	
 
 	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].

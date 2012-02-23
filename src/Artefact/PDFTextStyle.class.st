@@ -8,9 +8,7 @@ Class {
 PDFTextStyle >> render: aDocument [
 	"Draw a text at xy position"
 	
-	| size buffer myFont |
-	
-	buffer := OrderedCollection new.
+	| size myFont |
 	
 	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	 
 	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].

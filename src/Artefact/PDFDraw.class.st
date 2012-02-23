@@ -20,6 +20,15 @@ PDFDraw >> destination: anObject [
 	destination := anObject
 ]
 
+{ #category : #config }
+PDFDraw >> initDrawStyle: aDocument [
+	"Set line width to n point"
+	buffer add: ((self width / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'.
+	
+	"Set line cap style to square"
+	buffer add: '2 J'.
+]
+
 { #category : #accessing }
 PDFDraw >> wh [
 	^ wh

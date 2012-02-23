@@ -46,6 +46,36 @@ PDFTest class >> demo [
 ]
 
 { #category : #'as yet unclassified' }
+PDFTest class >> drawTest [
+	"generate a sample document for testing the draw objects"
+
+	"PDFTest drawTest"
+	
+	| pdfdoc aPage width xy1 xy2 |
+
+	pdfdoc := PDFDocument new.	
+	aPage := PDFPage new.
+	width := 1.
+	xy1 := 10@20.
+	xy2 := 100@20.
+	
+	1 to: 5 do: [ :i |
+		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; width: i).
+		xy1 := (xy1 x) @ (xy1 y + 10).
+		xy2 := (xy2 x) @ (xy2 y + 10).
+	].	
+	
+	aPage add: (PDFRectStyle new xy: 50@80;wh: 50@50; width: 5).
+	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/drawTest.pdf'.
+
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
 PDFTest class >> ex1 [
 	"generate a sample document"
 
