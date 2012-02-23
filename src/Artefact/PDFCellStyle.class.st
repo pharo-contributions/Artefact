@@ -56,7 +56,7 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #render }
 PDFCellStyle >> render: aDocument [
-	| buffer size decx width |
+	| buffer size decx width cellmargin |
 	
 	buffer := OrderedCollection new.
 
@@ -70,11 +70,12 @@ PDFCellStyle >> render: aDocument [
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
 		width := self font getStringWidth: self text into: aDocument.
+		cellmargin := aDocument margin / 10.
 		(self alignment = #RIGHT) ifTrue: [ 
-			decx := self wh x - width ] ifFalse: [
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ]
+			decx := self wh x - cellmargin - width ] ifFalse: [
+				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
 			].
-		buffer add: 'BT ' , ((decx + self xy x) asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * size)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
+		buffer add: 'BT ' , (( decx + self xy x) asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * size)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	].
 
 	 ^buffer
