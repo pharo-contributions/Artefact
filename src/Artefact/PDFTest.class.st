@@ -36,20 +36,13 @@ PDFTest class >> ex1 [
 	pdfdoc title: 'Le titre du document'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFFontStyle new family: 'times'; fontSize:32; bold: true).
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'at right').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Second line').
 	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Third line').
 	pdfdoc add: aPage.
-	
-	"aSecondPage := PDFPage new.
-	aSecondPage add: (PDFLineStyle new xy: 80@80; destination: 100@100).
-	aSecondPage add: (PDFRectStyle new xy: 30@30; wh: 40@40).
-	pdfdoc add: aSecondPage."
-	
-	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
+		
+	pdfdoc exportToFile: '/Users/olivier/Desktop/ex1.pdf'.
 
 	
 	
@@ -114,27 +107,25 @@ PDFTest class >> widthTest [
 
 	pdfdoc := PDFDocument new.	
 			
-	myFont := PDFFontStyle new family: 'times'; fontSize: 16.
-	myBigFont := PDFFontStyle new family: 'times'; fontSize: 1.
+	myFont := PDFTimesFont new fontSize: 16.
+	myBigFont := PDFTimesFont new fontSize: 1.
 	text := 'Hello world !'.
 
-	myBigFont fontSize: (pdfdoc getIdealFontSizeOfString: 'Hello world!' width: 100 with: myBigFont)..	
+	myBigFont fontSize: (myBigFont getIdealFontSizeForTheString: 'Hello world!' width: 100 into: pdfdoc).	
 
 	aPage := PDFPage new.
 	aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne').
 	
-	aPage add: myFont.
-	width := pdfdoc getStringWidth: text with: myFont.
-	aPage add: (PDFCellStyle new wh: width@10; border: true; linefeed: true; text: text).
+	width := myFont getStringWidth: text into: pdfdoc.
+	aPage add: (PDFCellStyle new font: myFont; wh: width@10; border: true; linefeed: true; text: text).
 
-	aPage add: myBigFont.
-	aPage add: (PDFCellStyle new wh: 100@10; border: true; linefeed: true; text: text).
+	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text).
 	
 	Transcript show: pdfdoc margins asString.
 	aPage add: (PDFLineStyle new xy: 10@60; destination: 110@60).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/essai.pdf'.
+	pdfdoc exportToFile: '/Users/olivier/Desktop/widthTest.pdf'.
 
 	
 	
