@@ -3,10 +3,36 @@ Class {
 	#superclass : #PDFText,
 	#instVars : [
 		'border',
-		'linefeed'
+		'linefeed',
+		'alignment'
 	],
 	#category : #Artefact
 }
+
+{ #category : #action }
+PDFCellStyle >> alignToCenter [
+	self alignment: #CENTER
+]
+
+{ #category : #action }
+PDFCellStyle >> alignToTheLeft [
+	self alignment: #LEFT
+]
+
+{ #category : #action }
+PDFCellStyle >> alignToTheRight [
+	self alignment: #RIGHT
+]
+
+{ #category : #accessing }
+PDFCellStyle >> alignment [
+	^ alignment ifNil: [ alignment := #LEFT ]
+]
+
+{ #category : #accessing }
+PDFCellStyle >> alignment: anObject [
+	alignment := anObject
+]
 
 { #category : #accessing }
 PDFCellStyle >> border [
@@ -30,7 +56,7 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #render }
 PDFCellStyle >> render: aDocument [
-	| buffer size |
+	| buffer size decx width |
 	
 	buffer := OrderedCollection new.
 
@@ -42,11 +68,17 @@ PDFCellStyle >> render: aDocument [
 	(self border) ifTrue: [ buffer add: (xy x asString) , ' -' , (self xy y asString) , ' ' , (self wh x asString), ' -' , (self wh y asString) , ' re S' ].
 
 	((self text) isEmpty) ifFalse: [ 	
-		buffer add: 'BT ' , (self xy x asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * size)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
+		decx := 0.
+		width := self font getStringWidth: self text into: aDocument.
+		(self alignment = #RIGHT) ifTrue: [ 
+			decx := self wh x - width ] ifFalse: [
+				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ]
+			].
+		buffer add: 'BT ' , ((decx + self xy x) asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * size)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	].
 
 	 ^buffer
-	
+
 
 	
 

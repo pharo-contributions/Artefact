@@ -5,6 +5,27 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFTest class >> alignments [
+	"a simple demonstration of Artefact"
+	
+	"PDFTest alignment"
+	
+	| pdfdoc myFont myBigFont aPage |
+	pdfdoc := PDFDocument new.	
+
+	myFont := PDFHelveticaFont new fontSize: 16.
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'At left').
+	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'Center'; alignToCenter).
+	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'At right'; alignToTheRight).
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/alignments.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFTest class >> demo [
 	"a simple demonstration of Artefact"
 	
