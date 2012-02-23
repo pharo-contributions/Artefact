@@ -8,15 +8,17 @@ Class {
 PDFTest class >> demo [
 	"a simple demonstration of Artefact"
 	
+	"PDFTest demo"
+	
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
 
+	myBigFont := PDFCourierFont new fontSize: 64; bold: true.
 	myFont := PDFHelveticaFont new fontSize: 16.
-	myBigFont := PDFHelveticaFont new fontSize: 64.
 	
 	aPage := PDFPage new.
 	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@24; border: true; linefeed: true; text: 'Artefact').
-	aPage add: (PDFCellStyle new font: myFont; wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').	
+	aPage add: (PDFCellStyle new font: myFont; wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.

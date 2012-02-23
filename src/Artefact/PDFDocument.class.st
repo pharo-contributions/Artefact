@@ -84,17 +84,17 @@ PDFDocument >> add: aPage [
 { #category : #private }
 PDFDocument >> addTheListOfFonts [
 	"Add the list of fonts in the PDF document"
-	
-	(self fonts) keysAndValuesDo: [ :key :counter | 
+		
+	1 to: (self fonts size) do: [ :pos |
 		self newObj.
 		self out: '<<'.
 		self out: '/Type /Font'.
 		self out: '/Subtype /Type1'.
-		self out: ('/BaseFont /' , (self fontFullName: key)).
+		self out: ('/BaseFont /' , (self fontFullName: (self fonts keyAtValue: pos))).
 		self out: '/Encoding /WinAnsiEncoding'.
 		self out: '>>'.
-		self out: 'endobj'.
-	].
+		self out: 'endobj'.		
+	]
 
 
 ]
