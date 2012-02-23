@@ -109,19 +109,20 @@ PDFTest class >> widthTest [
 			
 	myFont := PDFTimesFont new fontSize: 16.
 	myBigFont := PDFTimesFont new fontSize: 1.
-	text := 'Hello world !'.
+	text := 'Hello World !'.
 
-	myBigFont fontSize: (myBigFont getIdealFontSizeForTheString: 'Hello world!' width: 100 into: pdfdoc).	
+	"myBigFont fontSize: (myBigFont getIdealFontSizeForTheString: text width: 100 into: pdfdoc).	"
 
 	aPage := PDFPage new.
-	aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne').
+	"aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne')."
 	
 	width := myFont getStringWidth: text into: pdfdoc.
+	
 	aPage add: (PDFCellStyle new font: myFont; wh: width@10; border: true; linefeed: true; text: text).
 
-	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text).
+	"aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text)."
 	
-	Transcript show: pdfdoc margins asString.
+	"Transcript show: pdfdoc margins asString."
 	aPage add: (PDFLineStyle new xy: 10@60; destination: 110@60).
 	pdfdoc add: aPage.
 	
