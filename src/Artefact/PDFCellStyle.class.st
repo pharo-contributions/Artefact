@@ -58,6 +58,10 @@ PDFCellStyle >> linefeed: anObject [
 PDFCellStyle >> render: aDocument [
 	| size decx width cellmargin |
 
+	(self fillColor isEmpty) ifFalse: [
+		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor); render: aDocument)
+	].
+
 	self initStyle: aDocument.
 	
 	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	

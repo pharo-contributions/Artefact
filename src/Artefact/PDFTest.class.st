@@ -113,10 +113,12 @@ PDFTest class >> datatableTest [
 	pdfdoc title: 'Users report'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFRectStyle new xy: (pdfdoc margins); wh: 180@10; fillColor: (PDFColor new setGreyLevel: 196)).
+
 	columns do: [ :string | 
 		aPage add: (PDFCellStyle new 
 			wh: 60@10; 
+			ink: (PDFColor new setColor: #(0 0 0));
+			fillColor: (PDFColor new setGreyLevel: 196);
 			border: true;
 			font: (PDFHelveticaFont new bold: true); 
 			text: string; 
