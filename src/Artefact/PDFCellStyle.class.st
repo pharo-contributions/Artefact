@@ -59,17 +59,15 @@ PDFCellStyle >> render: aDocument [
 	| size decx width cellmargin |
 
 	(self fillColor isEmpty) ifFalse: [
-		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor); render: aDocument)
+		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self fillColor); fillColor: (self fillColor); render: aDocument)
 	].
 
 	self initStyle: aDocument.
-	
+	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink); render: aDocument ) ].
 	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	
 
 	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].
 	self out: 'BT /F', (aDocument fonts at: (self font fontName)) asString , ' ' , (size asString) , ' Tf ET'.
-
-	(self border) ifTrue: [ self out: (xy x asString) , ' -' , (self xy y asString) , ' ' , (self wh x asString), ' -' , (self wh y asString) , ' re S' ].
 
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
