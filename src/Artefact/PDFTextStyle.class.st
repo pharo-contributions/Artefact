@@ -10,11 +10,13 @@ PDFTextStyle >> render: aDocument [
 	
 	| size myFont |
 	
+	self initStyle: aDocument.
+	
 	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	 
 	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].
-	buffer add: 'BT /F', (aDocument fonts at: (self font fontName)) asString , ' ' , (size asString) , ' Tf ET'.
+	self out: 'BT /F', (aDocument fonts at: (self font fontName)) asString , ' ' , (size asString) , ' Tf ET'.
 	
-	buffer add: 'BT ' , self xy x asString , ' -' , self xy y asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
+	self out: 'BT ' , self xy x asString , ' -' , self xy y asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	
 	^buffer
 ]

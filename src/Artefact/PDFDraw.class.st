@@ -20,22 +20,17 @@ PDFDraw >> destination: anObject [
 	destination := anObject
 ]
 
-{ #category : #config }
-PDFDraw >> initDrawStyle: aDocument [
-	"Set line width to n point"
-	buffer add: ((self width / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'.
-	
-	"Set line cap style to square"
-	buffer add: '2 J'.
-]
-
-{ #category : #config }
+{ #category : #configuration }
 PDFDraw >> initStyle: aDocument [
 	"Set line width to n point"
-	buffer add: ((self width / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'.
+	self out: ((self width / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'.
 	
 	"Set line cap style to square"
-	buffer add: '2 J'.
+	self out: '2 J'.
+	
+	"Set the colors or grey levels"
+	self out: (self setColorForInk: (self ink) fillWith: (self fillColor))
+	
 ]
 
 { #category : #accessing }

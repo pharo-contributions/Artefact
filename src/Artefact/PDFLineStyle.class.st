@@ -10,7 +10,7 @@ PDFLineStyle >> render: aDocument [
 	
 	self initStyle: aDocument.
 		
-	buffer add: (self xy x asString , ' -' , self xy y asString , ' m ' , self destination x asString , ' -' , self destination y asString , ' l S').
+	self out: (self xy x asString , ' -' , self xy y asString , ' m ' , self destination x asString , ' -' , self destination y asString , ' l S').
 	
 	^buffer
 ]

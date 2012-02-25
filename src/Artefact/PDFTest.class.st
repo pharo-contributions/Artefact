@@ -8,7 +8,7 @@ Class {
 PDFTest class >> alignments [
 	"a simple demonstration of Artefact"
 	
-	"PDFTest alignment"
+	"PDFTest alignments"
 	
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
@@ -17,12 +17,79 @@ PDFTest class >> alignments [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'At left').
-	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'Center'; alignToCenter).
-	aPage add: (PDFCellStyle new font: myFont; wh: 150@10; border: true; linefeed: true; text: 'At right'; alignToTheRight).
+	aPage add: (PDFCellStyle new 
+		font: myFont; 
+		wh: 150@10; 
+		border: true; 
+		linefeed: true; 
+		text: 'At left'
+	).
+	aPage add: (PDFCellStyle new 
+		font: myFont; 
+		wh: 150@10; 
+		border: true; 
+		linefeed: true; 
+		text: 'Center'; 
+		alignToCenter
+	).
+	aPage add: (PDFCellStyle new 
+		font: myFont; 
+		wh: 150@10; 
+		border: true; 
+		linefeed: true; 
+		text: 'At right'; 
+		alignToTheRight
+	).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/alignments.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
+PDFTest class >> colorTest [
+	"generate a sample document with colors"
+
+	"PDFTest colorTest"
+	
+	| pdfdoc aPage myFont |
+	pdfdoc := PDFDocument new.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFCellStyle new 
+		font: (PDFTimesFont new fontSize: 32);
+		wh: 100@20; 
+		border: true; 
+		text: 'Hello World!';
+		ink: (PDFColor new setColor: #(255 0 0) );
+		fillColor: (PDFColor new setColor: #(0 255 0))
+		).
+	aPage add: (PDFTextStyle new 
+		xy: 70@100; 
+		text: 'Another text'; 
+		font: (PDFCourierFont new);
+		ink: (PDFColor new setGreyLevel: 128)
+		).
+
+	aPage add: (PDFRectStyle new 
+		xy: 0@80;
+		wh: 50@50; 
+		width: 5;
+		ink: (PDFColor new setColor: #(0 0 255));
+		fillColor: (PDFColor new setColor: #(0 255 0))
+		).
+		
+	aPage add: (PDFRectStyle new 
+		xy: 0@135;
+		wh: 50@50; 
+		width: 5;
+		ink: (PDFColor new setGreyLevel: 196);
+		fillColor: (PDFColor new setGreyLevel: 164)
+		).
+		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/colorTest.pdf'.
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -65,7 +132,11 @@ PDFTest class >> drawTest [
 		xy2 := (xy2 x) @ (xy2 y + 10).
 	].	
 	
-	aPage add: (PDFRectStyle new xy: 50@80;wh: 50@50; width: 5).
+	aPage add: (PDFRectStyle new 
+		xy: 50@80;
+		wh: 50@50; 
+		width: 5
+		).
 	
 	pdfdoc add: aPage.
 	
