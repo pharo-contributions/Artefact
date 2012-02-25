@@ -383,8 +383,8 @@ PDFDocument >> generate [
 		
 	self pages do: [ :page |
 		page xy: self margins.
-		page lasth: 0.
-		
+		page lasth: 0.		
+
 		"Start of the page"
 		self beginPage.
 		
@@ -399,7 +399,7 @@ PDFDocument >> generate [
 			(style className = 'PDFLineFeed') ifTrue: [
 				"Line feed; default value is last cell height"
 				page xy: self margins x @ page xy y.
-				(style height isNil) ifTrue: [ page xy: page xy x @ (page xy y + self lasth)] ifFalse: [ page xy: page xy x @ page xy y + style height ].
+				(style height isNil) ifTrue: [ page xy: page xy x @ (page xy y + page lasth)] ifFalse: [ page xy: page xy x @ page xy y + style height ].
 			]
 		].
 		"End of the page contents"

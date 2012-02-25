@@ -93,6 +93,53 @@ PDFTest class >> colorTest [
 ]
 
 { #category : #'as yet unclassified' }
+PDFTest class >> datatableTest [
+	"generate a sample document"
+
+	"PDFTest datatableTest"
+	
+	| pdfdoc aPage columns data |
+	
+	columns := #('Name'  'Surname' 'email').
+	data := #(
+		#('Smith' 'Peter' 'peter.smith@mail.org')
+		#('Jones' 'Mickael' 'mickael.jones@epr.com')
+		#('washington' 'robert' 'robert.washington@blif.com')
+	).
+	
+	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFA3Format new.
+	pdfdoc setLandscape.
+	pdfdoc title: 'Users report'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFRectStyle new xy: (pdfdoc margins); wh: 180@10; fillColor: (PDFColor new setGreyLevel: 196)).
+	columns do: [ :string | 
+		aPage add: (PDFCellStyle new 
+			wh: 60@10; 
+			border: true;
+			font: (PDFHelveticaFont new bold: true); 
+			text: string; 
+			alignToCenter) ].
+	aPage add: PDFLineFeed new.
+	data do: [ :aLine |
+		aLine do: [ :string | 
+			aPage add: (PDFCellStyle new 
+				wh: 60@10; 
+				border: true; 
+				text: string; 
+				alignToCenter) ].
+		aPage add: PDFLineFeed new.
+		]. 
+	pdfdoc add: aPage.
+		
+	pdfdoc exportToFile: '/Users/olivier/Desktop/datatableTest.pdf'.
+
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
 PDFTest class >> demo [
 	"a simple demonstration of Artefact"
 	
@@ -147,26 +194,33 @@ PDFTest class >> drawTest [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> ex1 [
-	"generate a sample document"
+PDFTest class >> headerFooterTest [
+	"generate a sample document with a header and a footer"
 
-	"PDFTest ex1"
+	"PDFTest headerFooterTest"
 	
-	| pdfdoc aPage aSecondPage |
+	| pdfdoc aPage secondPage myFont |
+
+	myFont := PDFCourierFont new fontSize: 32.
+
 	pdfdoc := PDFDocument new.
-	pdfdoc setFormat: PDFA3Format new.
-	pdfdoc setLandscape.
-	
-	pdfdoc title: 'Le titre du document'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: false; text: 'Hello world!').
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'at right').
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Second line').
-	aPage add: (PDFCellStyle new wh: 40@10; border: true; linefeed: true; text: 'Third line').
+	aPage add: (PDFCellStyle new 
+		font: myFont;
+		text: 'Header and Footer test').
+
 	pdfdoc add: aPage.
-		
-	pdfdoc exportToFile: '/Users/olivier/Desktop/ex1.pdf'.
+
+	secondPage := PDFPage new.
+	secondPage add: (PDFCellStyle new 
+		font: myFont;
+		text: 'Header and Footer test').	
+			
+	"secondPage header: false; footer: false."
+	pdfdoc add: secondPage.		
+			
+	pdfdoc exportToFile: '/Users/olivier/Desktop/headerFooterTest.pdf'.
 
 	
 	
