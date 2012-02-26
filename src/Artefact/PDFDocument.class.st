@@ -691,7 +691,7 @@ PDFDocument >> subject: aString [
 
 { #category : #tools }
 PDFDocument >> textString: aString [
-	"Format a text string"
+	"Answer a formated text string"
 	
 	^('(' , (self escape: aString) , ')')
 ]
