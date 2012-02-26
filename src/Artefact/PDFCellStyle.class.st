@@ -56,19 +56,17 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #render }
 PDFCellStyle >> render: aDocument [
-	| size decx width cellmargin |
+	| decx width cellmargin |
+
 
 	(self fillColor isEmpty) ifFalse: [
 		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self fillColor); fillColor: (self fillColor); render: aDocument)
 	].
 
 	self initStyle: aDocument.
+	
 	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink); render: aDocument ) ].
-	size := (self font fontSize / aDocument scaleFactor) roundDownTo: 0.01.	
-
-	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].
-	self out: 'BT /F', (aDocument fonts at: (self font fontName)) asString , ' ' , (size asString) , ' Tf ET'.
-
+	
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
 		width := self font getStringWidth: self text into: aDocument.
@@ -77,7 +75,8 @@ PDFCellStyle >> render: aDocument [
 			decx := self wh x - cellmargin - width ] ifFalse: [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
 			].
-		self out: 'BT ' , (( decx + self xy x) asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * size)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
+
+		self out: 'BT ' , (( decx + self xy x) asString) , ' -' , ((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001) asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	].
 
 	 ^buffer

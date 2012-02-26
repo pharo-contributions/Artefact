@@ -5,7 +5,8 @@ Class {
 		'xy',
 		'wh',
 		'text',
-		'font'
+		'font',
+		'pdfFontSize'
 	],
 	#category : #Artefact
 }
@@ -23,13 +24,26 @@ PDFText >> font: anObject [
 { #category : #configuration }
 PDFText >> initStyle: aDocument [
 	"Set line width to n point"
-	"buffer add: ((self width / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'."
-	
-	"Set line cap style to square"
-	"buffer add: '2 J'."
 	
 	"Set the colors or grey levels"
-	self out: (self setColorForInk: (self ink) fillWith: (self fillColor))
+	self out: (self setColorForInk: (self ink) fillWith: (self fillColor)).
+	
+	"Set the font size for the PDF document"
+	self pdfFontSize: ((self font fontSize / aDocument scaleFactor) roundDownTo: 0.01).	
+
+	"Insert the font size in the PDF document"
+	aDocument fonts at: (self font fontName) ifAbsent: [ aDocument fonts at: self font fontName put: ((aDocument fonts size) + 1) ].
+	self out: 'BT /F', (aDocument fonts at: (self font fontName)) asString , ' ' , (self pdfFontSize asString) , ' Tf ET'.
+]
+
+{ #category : #accessing }
+PDFText >> pdfFontSize [
+	^ pdfFontSize
+]
+
+{ #category : #accessing }
+PDFText >> pdfFontSize: anObject [
+	pdfFontSize := anObject
 ]
 
 { #category : #render }
