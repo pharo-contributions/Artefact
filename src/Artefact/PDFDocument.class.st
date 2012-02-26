@@ -199,8 +199,9 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 
 { #category : #private }
 PDFDocument >> clearBuffer [
-	"Clear the buffer to produce a new document"
-	self buffer: ('%PDF-1.3' , String crlf).
+	"Initialize the buffer to produce a new document"
+	self buffer: (WriteStream on: String new).
+	self buffer nextPutAll: ('%PDF-1.3' , String crlf).
 	self fonts removeAll.
 	self numberOfObjects: 1.
 	self offset: 0.
@@ -386,7 +387,7 @@ PDFDocument >> generate [
 	self endDoc.
 
 	Transcript clear; show: self buffer.
-	^self buffer
+	^self buffer contents 
 	
 ]
 
@@ -412,8 +413,7 @@ PDFDocument >> initialize [
 	self setFormat: PDFA4Format new.
 	self setPortrait.
 	self setAutoPageBreak: true margin: self margin.
-	
-	"self setCurrentFont: (PDFHelveticaFont new)"
+
 ]
 
 { #category : #private }
@@ -465,7 +465,7 @@ PDFDocument >> insertTrailer: aBufferSize [
 		('/Info ' , (self numberOfObjects - 1) asString , ' 0 R >>') .
 		'startxref' .
 		(aBufferSize asString) }.
-	self buffer: self buffer , '%%EOF'.
+	self buffer nextPutAll: '%%EOF'.
 
 
 ]
@@ -551,8 +551,8 @@ PDFDocument >> out: aItem [
 	"append the item (or a list of items) to the document"
 	
 	(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
-		ifTrue: [ aItem do: [ :aValue | self buffer: self buffer , (aValue, String crlf) ] ]
-		ifFalse: [ self buffer: self buffer , (aItem, String crlf) ]
+		ifTrue: [ aItem do: [ :aValue | self buffer nextPutAll: (aValue, String crlf) ] ]
+		ifFalse: [ self buffer nextPutAll: (aItem, String crlf) ]
 
 ]
 
