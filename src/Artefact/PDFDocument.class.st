@@ -73,7 +73,6 @@ Class {
 PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
 	self pageNumber: self pageNumber + 1.
-	"aPage number: self page."
 	self pages add: (aPage number: self pageNumber).
 
 	
@@ -87,13 +86,7 @@ PDFDocument >> addTheListOfFonts [
 		
 	1 to: (self fonts size) do: [ :pos |
 		self newObj.
-		self out: '<<'.
-		self out: '/Type /Font'.
-		self out: '/Subtype /Type1'.
-		self out: ('/BaseFont /' , (self fontFullName: (self fonts keyAtValue: pos))).
-		self out: '/Encoding /WinAnsiEncoding'.
-		self out: '>>'.
-		self out: 'endobj'.		
+		self out: {  '<<' . '/Type /Font' .  '/Subtype /Type1' . ('/BaseFont /' , (self fontFullName: (self fonts keyAtValue: pos))) .   '/Encoding /WinAnsiEncoding' . '>>' . 'endobj' }.
 	]
 
 
@@ -106,21 +99,14 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	| kids bufferSize |
 	
 	self offsets at: 1 put: (self buffer size).
-	self out: '1 0 obj'.
-	self out: '<<'.
-	self out: '/Type /Pages'.
-	
+	self out: { '1 0 obj' . '<<' . '/Type /Pages' }.
 	kids := '/Kids ['.
 	0 to: (self pages size - 1) do: [ :i | | v | kids := kids , (2 + (3 * i)) asString , ' 0 R ' ].
-	self out: (kids , ']').
-	self out: ('/Count ' , self pages size asString).
-	self out: ('/MediaBox [0 0 ' , self width asString , ' ' , self height asString , ']').	
-	self out: ('/Resources << /ProcSet [/PDF /Text /ImageC]').
-	self out: '/Font <<'.
+	
+	self out: { (kids , ']') . ('/Count ' , self pages size asString) . ('/MediaBox [0 0 ' , self width asString , ' ' , self height asString , ']') . '/Resources << /ProcSet [/PDF /Text /ImageC]' . '/Font <<' }.
+	
 	1 to: (self fonts size) do: [ :i | self out: ('/F' , i asString , ' ' , (aNumberOfObjects + i) asString , ' 0 R' ) ].
-	self out: '>>'.
-	self out: '/XObject'.
-	self out: '<<'.
+	self out: { '>>' . '/XObject' . '<<' }.
 
 	"Inserer la partie sur les images"
 "
@@ -133,10 +119,7 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 			$nbpal++
 	}
 "
-	self out: '>>'.  
-	self out: '>>'.
-	self out: '>>'.
-	self out: 'endobj'.
+	self out: { '>>' . '>>' . '>>' . 'endobj' }.
 
 	"Insert the informations"
 	self insertInformations.
@@ -182,16 +165,11 @@ PDFDocument >> beginPage [
 
 	self offset: self buffer size.
 	self newObj.
-	self out: '<<'.
-	self out: '/Type /Page'.
-	self out: '/Parent 1 0 R'.
-	self out:  '/Contents ' , (self numberOfObjects + 1) asString , ' 0 R'.
-	self out: '>>'.
-	self out: 'endobj'.
+	self out: { '<<' . '/Type /Page' . '/Parent 1 0 R'. ('/Contents ' , (self numberOfObjects + 1) asString , ' 0 R') . '>>' }.
+	
 	"Begin of page contents"
 	self newObj.
-	self out: '<< /Length ' , (self numberOfObjects + 1) asString  , ' 0 R >>'.
-	self out: 'stream'.
+	self out: { ('<< /Length ' , (self numberOfObjects + 1) asString  , ' 0 R >>') . 'stream' }.
 	self offset: self buffer size.
 	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
 
@@ -292,12 +270,11 @@ PDFDocument >> endDoc [
 PDFDocument >> endPage: aPageSize [
 
 	"End of the page contents"
-	self out: 'endstream'.
-	self out: 'endobj'.
+	self out: { 'endstream' . 'endobj' }.
 	"Size of page contents stream"
 	self newObj.
-	self out: (aPageSize asString).
-	self out: 'endobj'.
+	self out: { (aPageSize asString) . 'endobj' }.
+
 ]
 
 { #category : #private }
@@ -444,11 +421,7 @@ PDFDocument >> insertCatalog [
 	"insert the catalog"
 
 	self newObj.
-	self out: '<<'.
-	self out: '/Type /Catalog'.
-	self out: '/Pages 1 0 R'.
-	self out: '>>'.	
-	self out: 'endobj'.
+	self out: { '<<' . '/Type /Catalog' . '/Pages 1 0 R' . '>>' . 'endobj' }.
 
 ]
 
@@ -456,9 +429,7 @@ PDFDocument >> insertCatalog [
 PDFDocument >> insertCrossRef [
 	"Insert the cross references in the PDF document"
 	
-	self out: 'xref'.
-	self out: ('0 ' , (self numberOfObjects + 1) asString).
-	self out: '0000000000 65535 f '.
+	self out: { 'xref' . ('0 ' , (self numberOfObjects + 1) asString) . '0000000000 65535 f ' }.
 	1 to: (self numberOfObjects) do: [ :i | self out: ((self formatRef: (self offsets at: i)) , ' 00000 n') ]
 
 
@@ -469,15 +440,15 @@ PDFDocument >> insertInformations [
 	"Insert informations in the PDF document"
 	
 	self newObj.
-	self out: ('<<').
-	self out: ('/Producer ' , (self textString: (self producer , ' ' , self version))).
-	self out: ('/Title ' , (self textString: self title)) .
-	self out: ('/Subject ' , (self textString: self subject)).	
-	self out: ('/Author ' , (self textString: self author)).
-	self out: ('/Keywords ' , (self textString: self keywords)).
-	self out: ('/Creator ' , (self textString: self creator)).
-	self out: ('/CreationDate (D:' , self dateAndTimeInPDFFormat , ')').
-	self out: '>>'.
+	self out: {'<<' .
+		('/Producer ' , (self textString: (self producer , ' ' , self version))) .
+		('/Title ' , (self textString: self title)) .
+		('/Subject ' , (self textString: self subject)) .	
+		('/Author ' , (self textString: self author)) .
+		('/Keywords ' , (self textString: self keywords)) .
+		('/Creator ' , (self textString: self creator)) .
+		('/CreationDate (D:' , self dateAndTimeInPDFFormat , ')') .
+		'>>'}.
 	self out: 'endobj'.
 	
 	
@@ -487,13 +458,13 @@ PDFDocument >> insertInformations [
 { #category : #private }
 PDFDocument >> insertTrailer: aBufferSize [
 	"Insert the trailer in the PDF document"
-	
-	self out: 'trailer'.
-	self out: ('<< /Size ' , (self numberOfObjects + 1) asString).
-	self out: ('/Root ' , (self numberOfObjects asString) , ' 0 R').
-	self out: ('/Info ' , (self numberOfObjects - 1) asString , ' 0 R >>').
-	self out: 'startxref'.
-	self out: (aBufferSize asString).
+
+	self out: { 'trailer' .
+		('<< /Size ' , (self numberOfObjects + 1) asString) .
+		('/Root ' , (self numberOfObjects asString) , ' 0 R') .
+		('/Info ' , (self numberOfObjects - 1) asString , ' 0 R >>') .
+		'startxref' .
+		(aBufferSize asString) }.
 	self buffer: self buffer , '%%EOF'.
 
 
@@ -579,7 +550,7 @@ PDFDocument >> orientation: aValue [
 PDFDocument >> out: aItem [
 	"append the item (or a list of items) to the document"
 	
-	(aItem className = 'OrderedCollection') 
+	(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
 		ifTrue: [ aItem do: [ :aValue | self buffer: self buffer , (aValue, String crlf) ] ]
 		ifFalse: [ self buffer: self buffer , (aItem, String crlf) ]
 

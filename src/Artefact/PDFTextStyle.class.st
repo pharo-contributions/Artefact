@@ -7,11 +7,8 @@ Class {
 { #category : #render }
 PDFTextStyle >> render: aDocument [
 	"Draw a text at xy position"
-	
-	| myFont |
-	
+		
 	self initStyle: aDocument.
-	
 	self out: 'BT ' , self xy x asString , ' -' , self xy y asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	
 	^buffer
