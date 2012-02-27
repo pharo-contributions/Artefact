@@ -1,11 +1,11 @@
 Class {
-	#name : #PDFTest,
+	#name : #PDFDemos,
 	#superclass : #Object,
-	#category : #Artefact
+	#category : #'Artefact-Demos'
 }
 
 { #category : #'as yet unclassified' }
-PDFTest class >> alignments [
+PDFDemos class >> alignments [
 	"a simple demonstration of Artefact"
 	
 	"PDFTest alignments"
@@ -46,7 +46,7 @@ PDFTest class >> alignments [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> colorTest [
+PDFDemos class >> colorTest [
 	"generate a sample document with colors"
 
 	"PDFTest colorTest"
@@ -93,7 +93,7 @@ PDFTest class >> colorTest [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> datatableTest [
+PDFDemos class >> datatableTest [
 	"generate a sample document"
 
 	"PDFTest datatableTest"
@@ -142,7 +142,7 @@ PDFTest class >> datatableTest [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> demo [
+PDFDemos class >> demo [
 	"a simple demonstration of Artefact"
 	
 	"PDFTest demo"
@@ -162,7 +162,7 @@ PDFTest class >> demo [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> drawTest [
+PDFDemos class >> drawTest [
 	"generate a sample document for testing the draw objects"
 
 	"PDFTest drawTest"
@@ -196,7 +196,7 @@ PDFTest class >> drawTest [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> headerFooterTest [
+PDFDemos class >> headerFooterTest [
 	"generate a sample document with a header and a footer"
 
 	"PDFTest headerFooterTest"
@@ -229,7 +229,7 @@ PDFTest class >> headerFooterTest [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> infos [
+PDFDemos class >> infos [
 	"generate a sample document with informations"
 
 	"PDFTest infos"
@@ -253,7 +253,7 @@ PDFTest class >> infos [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> test [
+PDFDemos class >> test [
 	"generate a sample document"
 
 	"PDFTest ex1"
@@ -278,7 +278,7 @@ PDFTest class >> test [
 ]
 
 { #category : #'as yet unclassified' }
-PDFTest class >> widthTest [
+PDFDemos class >> widthTest [
 	"generate a sample document for testing the width of fonts"
 
 	"PDFTest widthTest"

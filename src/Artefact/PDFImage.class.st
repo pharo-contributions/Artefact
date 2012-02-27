@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFImage,
-	#superclass : #Object,
+	#superclass : #PDFStyle,
 	#instVars : [
 		'filename'
 	],
