@@ -81,6 +81,11 @@ PDFDocument >> add: aPage [
 ]
 
 { #category : #private }
+PDFDocument >> addTheImages [
+	"Add the images at the end of the document"
+]
+
+{ #category : #private }
 PDFDocument >> addTheListOfFonts [
 	"Add the list of fonts in the PDF document"
 		
@@ -206,6 +211,7 @@ PDFDocument >> clearBuffer [
 	self numberOfObjects: 1.
 	self offset: 0.
 	self offsets removeAll.
+	self images removeAll.
 ]
 
 { #category : #accessing }
@@ -262,6 +268,7 @@ PDFDocument >> endDoc [
 	
 	nObjects := self numberOfObjects.
 	self addTheListOfFonts.
+	self addTheImages.
 	self addThepagesRoot: nObjects.
 
 
@@ -398,12 +405,8 @@ PDFDocument >> height [
 
 { #category : #accessing }
 PDFDocument >> images [
-	^images
-]
-
-{ #category : #accessing }
-PDFDocument >> images: aValue [
-	images := aValue
+	"array of images"
+	^ images ifNil: [ images := Dictionary new ]
 ]
 
 { #category : #'initialize-release' }
