@@ -229,6 +229,25 @@ PDFDemos class >> headerFooterTest [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDemos class >> imagePNG [
+	"Artefact use an PNG file"
+	
+	"PDFTest imagePNG"
+	
+	| pdfdoc myImage aPage |
+	pdfdoc := PDFDocument new.	
+	myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/pharo.png'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFImageStyle new image: myImage; 
+		xy: 5@5; 
+		wh: 100@30).
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFDemos class >> infos [
 	"generate a sample document with informations"
 
