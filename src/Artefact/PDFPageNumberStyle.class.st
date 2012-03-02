@@ -18,7 +18,7 @@ PDFPageNumberStyle >> label: anObject [
 ]
 
 { #category : #render }
-PDFPageNumberStyle >> render: aDocument [
+PDFPageNumberStyle >> renderContentOn: aDocument [
 	"Draw the page number on the page at the specified position"
 		
 	^(PDFCellStyle new

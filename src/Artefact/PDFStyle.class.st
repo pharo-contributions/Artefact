@@ -36,7 +36,7 @@ PDFStyle >> formatColor: aColor [
 
 { #category : #render }
 PDFStyle >> initStyle: aDocument [
-	self subclassResponsibility
+	self subclassResponsibility 
 ]
 
 { #category : #'initialize-release' }
@@ -70,6 +70,13 @@ PDFStyle >> out: aItem [
 
 { #category : #render }
 PDFStyle >> render: aDocument [
+	"initialize the style and answer the style content"
+	self initStyle: aDocument.
+	^(self renderContentOn: aDocument)
+]
+
+{ #category : #render }
+PDFStyle >> renderContentOn: aDocument [
 	self subclassResponsibility
 ]
 

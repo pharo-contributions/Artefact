@@ -16,3 +16,9 @@ PDFLayout >> height [
 PDFLayout >> height: anObject [
 	height := anObject
 ]
+
+{ #category : #'as yet unclassified' }
+PDFLayout >> initStyle: aDocument [
+	"No default style here"
+	^self
+]

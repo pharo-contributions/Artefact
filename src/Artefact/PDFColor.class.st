@@ -64,7 +64,6 @@ PDFColor >> setColor: aRGBList [
 	
 	self greyLevel: nil.
 
-
 ]
 
 { #category : #action }

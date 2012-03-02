@@ -96,7 +96,7 @@ PDFDemos class >> colorTest [
 PDFDemos class >> datatableTest [
 	"generate a sample document"
 
-	"PDFTest datatableTest"
+	"PDFDemos datatableTest"
 	
 	| pdfdoc aPage columns data |
 	
@@ -124,6 +124,7 @@ PDFDemos class >> datatableTest [
 			text: string; 
 			alignToCenter) ].
 	aPage add: PDFLineFeed new.
+
 	data do: [ :aLine |
 		aLine do: [ :string | 
 			aPage add: (PDFCellStyle new 

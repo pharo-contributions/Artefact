@@ -10,10 +10,11 @@ Class {
 
 { #category : #configuration }
 PDFImageStyle >> initStyle: aDocument [
+	^self
 
 ]
 
 { #category : #render }
-PDFImageStyle >> render: aDocument [
+PDFImageStyle >> renderContentOn: aDocument [
 	self subclassResponsibility
 ]

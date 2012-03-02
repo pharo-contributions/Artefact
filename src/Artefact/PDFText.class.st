@@ -27,7 +27,7 @@ PDFText >> initStyle: aDocument [
 	
 	"Set the colors or grey levels"
 	self out: (self setColorForInk: (self ink) fillWith: (self fillColor)).
-	
+
 	"Set the font size for the PDF document"
 	self pdfFontSize: ((self font fontSize / aDocument scaleFactor) roundDownTo: 0.01).	
 

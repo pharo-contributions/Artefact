@@ -5,11 +5,9 @@ Class {
 }
 
 { #category : #render }
-PDFRectStyle >> render: aDocument [
+PDFRectStyle >> renderContentOn: aDocument [
 
 	|  fill |
-	
-	self initStyle: aDocument.
 	
 	"Draw a rectangle from xy with a specified size wh"
 	(self fillColor isEmpty) ifTrue: [ fill := 'S' ] ifFalse: [ fill := 'B'].
