@@ -61,6 +61,7 @@ PDFCellStyle >> renderContentOn: aDocument [
 	(self fillColor isEmpty) ifFalse: [
 		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor); render: aDocument).
 	].
+
 	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink); render: aDocument ) ].
 	
 	((self text) isEmpty) ifFalse: [ 	
@@ -72,14 +73,14 @@ PDFCellStyle >> renderContentOn: aDocument [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
 			].
 
-		self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001); 
-			ink: self ink;
-			fillColor: self fillColor;
-			font: self font;
-			text: self text; render: aDocument).
+	self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001); 
+		ink: self ink;
+		fillColor: self fillColor;
+		font: self font;
+		text: self text; render: aDocument).
 	].
 
-	 ^buffer
+	 ^self buffer
 
 
 	

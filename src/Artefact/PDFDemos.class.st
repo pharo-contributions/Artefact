@@ -143,6 +143,46 @@ PDFDemos class >> datatableTest [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDemos class >> datatableTest2 [
+	"generate a datatable"
+
+	"PDFDemos datatableTest2"
+	
+	| pdfdoc aPage columns data |
+	
+	columns := #('Name'  'Surname' 'email').
+	data := #(
+		#('Smith' 'Peter' 'peter.smith@mail.org')
+		#('Jones' 'Mickael' 'mickael.jones@epr.com')
+		#('washington' 'robert' 'robert.washington@blif.com')
+	).
+	
+	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFA4Format new.
+	pdfdoc title: 'Users report'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFDataTableStyle new columns: #('Name'  'Surname' 'email');
+		data: #(
+		#('Smith' 'Peter' 'peter.smith@mail.org')
+		#('Jones' 'Mickael' 'mickael.jones@epr.com')
+		#('washington' 'robert' 'robert.washington@blif.com')
+		);
+		inkForColumns: (PDFColor new setColor: #(0 0 0));
+		fillColorForColumns: (PDFColor new setGreyLevel: 196);
+		ink: (PDFColor new setColor: #(0 0 0));
+		fillColor: (PDFColor new setGreyLevel: 196);
+		font: (PDFHelveticaFont new) 		
+	  ).
+	pdfdoc add: aPage.
+		
+	pdfdoc exportToFile: '/Users/olivier/Desktop/datatableTest2.pdf'.
+
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
 PDFDemos class >> demo [
 	"a simple demonstration of Artefact"
 	

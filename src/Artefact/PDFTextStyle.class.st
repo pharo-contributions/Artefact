@@ -10,7 +10,7 @@ PDFTextStyle >> renderContentOn: aDocument [
 		
 	self out: 'BT ' , self xy x asString , ' -' , self xy y asString , ' Td ' , (aDocument textString: self text) , ' Tj ET'.
 	
-	^buffer
+	^self buffer
 	
 
 ]
