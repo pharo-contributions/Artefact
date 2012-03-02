@@ -236,12 +236,13 @@ PDFDemos class >> imagePNG [
 	
 	| pdfdoc myImage aPage |
 	pdfdoc := PDFDocument new.	
-	myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/pharo.png'.
+	myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/artefact/phare.png'.
+	myImage inspect.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFImageStyle new image: myImage; 
+	"aPage add: (PDFImageStyle new image: myImage; 
 		xy: 5@5; 
-		wh: 100@30).
+		wh: 100@30)."
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.

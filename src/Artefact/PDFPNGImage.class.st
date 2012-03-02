@@ -16,9 +16,18 @@ Class {
 	#category : #Artefact
 }
 
-{ #category : #test }
-PDFPNGImage >> readTest [
-| t |
-t := PNGReadWriter formFromFileNamed: '/Users/olivier/Desktop/images/pharo.png'.
-t explore.
+{ #category : #action }
+PDFPNGImage >> fileName: aFileName [
+	"Load a picture and answer an object that describe the picture"
+	
+	| stream reader |
+	
+	stream := FileStream readOnlyFileNamed:  aFileName.
+	stream binary.
+	"reader := PNGReadWriter new on: stream reset."
+	reader := PNGReadWriter new on: stream reset.
+	reader nextImage.
+	stream close.
+	Transcript show: (reader colorType asString).
+	^reader
 ]
