@@ -376,7 +376,9 @@ PDFDocument >> generate [
 		"construct each styles in the document context"
 		page styles do: [ :style | 
 			(style className = 'PDFCellStyle') ifTrue: [ style xy: page xy ].
+			
 			self out: (style render: self).
+			
 			(style className = 'PDFCellStyle') ifTrue: [
 				page lasth: style wh y.
 				(style linefeed) ifTrue: [ page xy: (self margins x) @ (page xy y + style wh y) ] ifFalse: [ page xy: (page xy x + style wh x) @ (page xy y) ]				
@@ -393,7 +395,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	Transcript clear; show: self buffer.
+	"Transcript clear; show: self buffer."
 	^self buffer contents 
 	
 ]
@@ -550,7 +552,27 @@ PDFDocument >> orientation: aValue [
 ]
 
 { #category : #private }
-PDFDocument >> out: aItem [
+PDFDocument >> out: aListOfItems [
+	"render each items of a style"
+	
+	(aListOfItems className = 'ByteString')
+		ifTrue: [ self buffer nextPutAll: (aListOfItems, String crlf) ]
+		ifFalse: [ 		
+			aListOfItems do: [ :aItem |
+				(aItem className = 'ByteString')
+					ifTrue: [ self buffer nextPutAll: (aItem, String crlf) ]
+					ifFalse: [
+						(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
+							ifTrue: [ aItem do: [ :aValue | self buffer nextPutAll: (aValue, String crlf) ] ]
+							ifFalse: [ (aItem class withAllSuperclasses includes: PDFStyle) ifTrue: [ self out: (aItem render: self) ]					
+					]
+				]
+			]
+		]
+]
+
+{ #category : #private }
+PDFDocument >> out_old: aItem [
 	"append the item (or a list of items) to the document"
 	
 	(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 

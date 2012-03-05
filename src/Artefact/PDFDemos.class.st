@@ -171,8 +171,10 @@ PDFDemos class >> datatableTest2 [
 		inkForColumns: (PDFColor new setColor: #(0 0 0));
 		fillColorForColumns: (PDFColor new setGreyLevel: 196);
 		ink: (PDFColor new setColor: #(0 0 0));
-		fillColor: (PDFColor new setGreyLevel: 196);
-		font: (PDFHelveticaFont new) 		
+		fillColor: (PDFColor new setGreyLevel: 230);
+		font: (PDFHelveticaFont new);
+		xy: 10@10;
+		wh: 40@5	
 	  ).
 	pdfdoc add: aPage.
 		

@@ -44,9 +44,6 @@ PDFStyle >> initialize [
 	super initialize.
 	self buffer: OrderedCollection new.
 	
-	"set the default colors"
-	self ink: (PDFColor new setColor: #(0 0 0)).
-	self fillColor: (PDFColor new).
 ]
 
 { #category : #accessing }

@@ -54,17 +54,44 @@ PDFDataTableStyle >> inkForColumns: anObject [
 PDFDataTableStyle >> renderContentOn: aDocument [ 
 	"answer the content of a datatable"
 	
+	| pos |
+	
+	pos := self xy.
+	
 	(self columns isNil) ifFalse: [
-	self columns do: [ :string | 
-		self out: (PDFCellStyle new 
-			wh: self wh; 
-			ink: (self inkForColumns);
-			fillColor: (self fillColorForColumns);
-			border: true;
-			font: (self font); 
-			text: string; 
-			alignToCenter) ].
-	].
+		self columns do: [ :string | 
+			self out: (PDFCellStyle new 
+				xy: pos;
+				wh: self wh; 
+				ink: (self inkForColumns);
+				fillColor: (self fillColorForColumns);
+				border: true;
+				font: (self font); 
+				text: string; 
+				alignToCenter). 
+				pos := (pos x + self wh x)@pos y.
+			]
+		].
+	
+	pos := (self xy x)@(pos y + wh y).
+
+	(self data isNil) ifFalse: [
+		self data do: [ :line |
+			line do: [ :value |
+				self out: (PDFCellStyle new
+				xy: pos;
+				wh: self wh;
+				ink: self ink;
+				fillColor: self fillColor;
+				border: true;
+				font: self font;
+				text: value;
+				alignToCenter).
+				pos := (pos x + self wh x)@pos y.
+				].
+				pos := (self xy x)@(pos y + wh y).
+			].
+		].
 	^self buffer
 	
 ]
