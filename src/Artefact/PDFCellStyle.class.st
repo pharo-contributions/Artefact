@@ -82,6 +82,8 @@ PDFCellStyle >> renderContentOn: aDocument [
 		text: self text).
 	].
 
+	(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ].
+	
 	 ^self buffer
 
 

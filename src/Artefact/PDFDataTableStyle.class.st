@@ -50,7 +50,7 @@ PDFDataTableStyle >> inkForColumns: anObject [
 	inkForColumns := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableStyle >> renderContentOn: aDocument [ 
 	"answer the content of a datatable"
 		

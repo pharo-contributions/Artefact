@@ -193,7 +193,7 @@ PDFDemos class >> demo [
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
 
-	myBigFont := PDFCourierFont new fontSize: 64; bold: true.
+	myBigFont := PDFCourierFont new fontSize: 36; bold: true.
 	myFont := PDFHelveticaFont new fontSize: 16.
 	
 	aPage := PDFPage new.
