@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'buffer',
 		'ink',
-		'fillColor'
+		'fillColor',
+		'currentPosition'
 	],
 	#category : #Artefact
 }
@@ -17,6 +18,16 @@ PDFStyle >> buffer [
 { #category : #accessing }
 PDFStyle >> buffer: anObject [
 	buffer := anObject
+]
+
+{ #category : #accessing }
+PDFStyle >> currentPosition [
+	^currentPosition
+]
+
+{ #category : #accessing }
+PDFStyle >> currentPosition: aPosition [
+	currentPosition := aPosition
 ]
 
 { #category : #accessing }
@@ -66,15 +77,17 @@ PDFStyle >> out: aItem [
 ]
 
 { #category : #render }
-PDFStyle >> render: aDocument [
-	"initialize the style and answer the style content"
-	self initStyle: aDocument.
-	^(self renderContentOn: aDocument)
+PDFStyle >> renderContentOn: aDocument [
+	self subclassResponsibility
 ]
 
 { #category : #render }
-PDFStyle >> renderContentOn: aDocument [
-	self subclassResponsibility
+PDFStyle >> renderIn: aDocument at: aCurrentPosition [
+	"initialize the style and answer the style content. The style receive the current position on the page"
+	self currentPosition: aCurrentPosition.
+	
+	self initStyle: aDocument.
+	^(self renderContentOn: aDocument)
 ]
 
 { #category : #private }

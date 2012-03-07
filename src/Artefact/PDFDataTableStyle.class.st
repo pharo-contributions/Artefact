@@ -53,15 +53,10 @@ PDFDataTableStyle >> inkForColumns: anObject [
 { #category : #'as yet unclassified' }
 PDFDataTableStyle >> renderContentOn: aDocument [ 
 	"answer the content of a datatable"
-	
-	| pos |
-	
-	pos := self xy.
-	
+		
 	(self columns isNil) ifFalse: [
 		self columns do: [ :string | 
 			self out: (PDFCellStyle new 
-				xy: pos;
 				wh: self wh; 
 				ink: (self inkForColumns);
 				fillColor: (self fillColorForColumns);
@@ -69,17 +64,15 @@ PDFDataTableStyle >> renderContentOn: aDocument [
 				font: (self font); 
 				text: string; 
 				alignToCenter). 
-				pos := (pos x + self wh x)@pos y.
 			]
 		].
 	
-	pos := (self xy x)@(pos y + wh y).
-
+	self out: (PDFLineFeed new).
+	
 	(self data isNil) ifFalse: [
 		self data do: [ :line |
 			line do: [ :value |
 				self out: (PDFCellStyle new
-				xy: pos;
 				wh: self wh;
 				ink: self ink;
 				fillColor: self fillColor;
@@ -87,9 +80,8 @@ PDFDataTableStyle >> renderContentOn: aDocument [
 				font: self font;
 				text: value;
 				alignToCenter).
-				pos := (pos x + self wh x)@pos y.
 				].
-				pos := (self xy x)@(pos y + wh y).
+				self out: (PDFLineFeed new).
 			].
 		].
 	^self buffer

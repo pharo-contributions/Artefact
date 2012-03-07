@@ -58,6 +58,8 @@ PDFCellStyle >> linefeed: anObject [
 PDFCellStyle >> renderContentOn: aDocument [
 	| decx width cellmargin |
 
+	self xy: self currentPosition.
+	
 	(self fillColor isEmpty) ifFalse: [
 		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor)).
 	].

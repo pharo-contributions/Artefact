@@ -174,7 +174,7 @@ PDFDemos class >> datatableTest2 [
 		fillColor: (PDFColor new setGreyLevel: 230);
 		font: (PDFHelveticaFont new);
 		xy: 10@10;
-		wh: 40@5	
+		wh: 60@5	
 	  ).
 	pdfdoc add: aPage.
 		

@@ -203,6 +203,61 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 ]
 
 { #category : #private }
+PDFDocument >> buildStyle: aStyle on: aPage [
+	"render each items of a style at the current position on the page"
+
+	aStyle do: [ :item |
+			(item className = 'ByteString')
+				ifTrue: [ self out: item ]
+				ifFalse: [ 
+					(item className = 'PDFCellStyle') ifTrue: [ item xy: aPage xy ].
+					self buildStyle: (item renderIn: self at: aPage xy) on: aPage.							
+					(item className = 'PDFCellStyle') ifTrue: [
+						aPage lasth: item wh y.
+						(item linefeed) ifTrue: [ aPage xy: (self margins x) @ (aPage xy y + item wh y) ] ifFalse: [ aPage xy: (aPage xy x + item wh x) @ (aPage xy y) ]				
+					].
+					(item className = 'PDFLineFeed') ifTrue: [
+						"Line feed; default value is last cell height"
+						aPage xy: self margins x @ aPage xy y.
+						(item height isNil) ifTrue: [ aPage xy: aPage xy x @ (aPage xy y + aPage lasth)] ifFalse: [ aPage xy: aPage xy x @ aPage xy y + item height ].
+					]
+
+
+					]
+		]
+"	| aListOfItems |
+	
+	(aListOfItems className = 'ByteString')
+		ifTrue: [ self buffer nextPutAll: (aListOfItems, String crlf) ]
+		ifFalse: [ 		
+			aListOfItems do: [ :aItem |
+				(aItem className = 'ByteString')
+					ifTrue: [ self buffer nextPutAll: (aItem, String crlf) ]
+					ifFalse: [
+						(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
+							ifTrue: [ aItem do: [ :aValue | self buffer nextPutAll: (aValue, String crlf) ] ]
+							ifFalse: [ (aItem class withAllSuperclasses includes: PDFStyle) ifTrue: [ 
+									(aItem className = 'PDFCellStyle') ifTrue: [ aItem xy: aPage xy ].
+									self out: (aItem render: self) on: aPage.
+									(aItem className = 'PDFCellStyle') ifTrue: [
+										aPage lasth: aItem wh y.
+										(aItem linefeed) ifTrue: [ aPage xy: (self margins x) @ (aPage xy y + aItem wh y) ] ifFalse: [ aPage xy: (aPage xy x + aItem wh x) @ (aPage xy y) ]				
+										].
+									(aItem className = 'PDFLineFeed') ifTrue: [
+										'Line feed; default value is last cell height'
+										aPage xy: self margins x @ aPage xy y.
+										(aItem height isNil) ifTrue: [ aPage xy: aPage xy x @ (aPage xy y + aPage lasth)] ifFalse: [ aPage xy: aPage xy x @ aPage xy y + aItem height ].
+										]
+									 
+									]					
+					]
+				]
+			]
+		]
+	"
+]
+
+{ #category : #private }
 PDFDocument >> clearBuffer [
 	"Initialize the buffer to produce a new document"
 	self buffer: (WriteStream on: String new).
@@ -373,22 +428,13 @@ PDFDocument >> generate [
 		"Start of the page"
 		self beginPage.
 		
+		page styles do: [ :style | self buildStyle: (style renderIn: self at: (page xy)) on: page ].
+		
 		"construct each styles in the document context"
-		page styles do: [ :style | 
-			(style className = 'PDFCellStyle') ifTrue: [ style xy: page xy ].
-			
-			self out: (style render: self).
-			
-			(style className = 'PDFCellStyle') ifTrue: [
-				page lasth: style wh y.
-				(style linefeed) ifTrue: [ page xy: (self margins x) @ (page xy y + style wh y) ] ifFalse: [ page xy: (page xy x + style wh x) @ (page xy y) ]				
-			].
-			(style className = 'PDFLineFeed') ifTrue: [
-				"Line feed; default value is last cell height"
-				page xy: self margins x @ page xy y.
-				(style height isNil) ifTrue: [ page xy: page xy x @ (page xy y + page lasth)] ifFalse: [ page xy: page xy x @ page xy y + style height ].
-			]
-		].
+		
+		"page styles do: [ :style | 	self out: (style render: self) on: page ]."
+		"self out: (page styles) on: page."
+		"self out: (self renderStylesOn: page)."
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).
 	].
@@ -552,33 +598,12 @@ PDFDocument >> orientation: aValue [
 ]
 
 { #category : #private }
-PDFDocument >> out: aListOfItems [
-	"render each items of a style"
-	
-	(aListOfItems className = 'ByteString')
-		ifTrue: [ self buffer nextPutAll: (aListOfItems, String crlf) ]
-		ifFalse: [ 		
-			aListOfItems do: [ :aItem |
-				(aItem className = 'ByteString')
-					ifTrue: [ self buffer nextPutAll: (aItem, String crlf) ]
-					ifFalse: [
-						(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
-							ifTrue: [ aItem do: [ :aValue | self buffer nextPutAll: (aValue, String crlf) ] ]
-							ifFalse: [ (aItem class withAllSuperclasses includes: PDFStyle) ifTrue: [ self out: (aItem render: self) ]					
-					]
-				]
-			]
-		]
-]
-
-{ #category : #private }
-PDFDocument >> out_old: aItem [
+PDFDocument >> out: aItem [
 	"append the item (or a list of items) to the document"
 	
 	(aItem className = 'OrderedCollection' or: [ aItem className = 'Array' ] ) 
 		ifTrue: [ aItem do: [ :aValue | self buffer nextPutAll: (aValue, String crlf) ] ]
 		ifFalse: [ self buffer nextPutAll: (aItem, String crlf) ]
-
 ]
 
 { #category : #accessing }
