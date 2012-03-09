@@ -32,7 +32,7 @@ PDFStyle >> currentPosition: aPosition [
 
 { #category : #accessing }
 PDFStyle >> fillColor [
-	^ fillColor ifNil: [ fillColor := PDFColor new setColor: #(255 0 0); setGreyLevel: nil ]
+	^ fillColor ifNil: [ fillColor := PDFColor new setColor: #(255 255 255) ]
 ]
 
 { #category : #accessing }
@@ -59,7 +59,7 @@ PDFStyle >> initialize [
 
 { #category : #accessing }
 PDFStyle >> ink [
-	^ ink ifNil: [ ink := PDFColor new setColor: #(0 0 0); setGreyLevel: nil ]
+	^ink ifNil: [ ink := PDFColor new setColor: #(0 0 0) ]
 ]
 
 { #category : #accessing }
@@ -102,7 +102,7 @@ PDFStyle >> setColorForInk: aInkPDFColor fillWith: aFillPDFColor [
 	|  pdfcode |
 	
 	pdfcode := OrderedCollection new.
-	
+
 	"ink to write text or draw"
 	(aInkPDFColor greyLevel isNil) 
 		ifTrue: [ (aInkPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aInkPDFColor) , ' RG') ] ]
@@ -111,6 +111,7 @@ PDFStyle >> setColorForInk: aInkPDFColor fillWith: aFillPDFColor [
 	(aFillPDFColor greyLevel isNil)
 		ifTrue: [ (aFillPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aFillPDFColor) , ' rg') ] ]
 		ifFalse: [ pdfcode add: (self roundColor: (aFillPDFColor greyLevel)) , ' g' ].
+		
 	^pdfcode
 
 ]

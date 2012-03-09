@@ -74,3 +74,17 @@ PDFColor >> setGreyLevel: aGreyLevel [
 	self green: nil.
 	self blue: nil.
 ]
+
+{ #category : #tools }
+PDFColor >> value [
+	"answer the value of the color (a RGB tuple or a grey level)"
+	
+	(self isEmpty)
+		ifTrue: [ ^nil ] 
+		ifFalse: [
+			(self red isNil) 
+				ifTrue: [ ^ self greyLevel ]
+				ifFalse: [ ^ (self red asString) , '.' , (self green asString) , '.' , (self blue asString) ]
+		]
+
+]

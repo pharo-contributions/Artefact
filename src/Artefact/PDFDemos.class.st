@@ -197,8 +197,14 @@ PDFDemos class >> demo [
 	myFont := PDFHelveticaFont new fontSize: 16.
 	
 	aPage := PDFPage new.
+
+	
+	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@60; border: true; linefeed: true; text: 'Première ligne').
 	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@24; border: true; linefeed: true; text: 'Artefact').
 	aPage add: (PDFCellStyle new font: myFont; wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').
+	
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@20; ink:(PDFColor new setColor: #(255 0 0))).
+	
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.

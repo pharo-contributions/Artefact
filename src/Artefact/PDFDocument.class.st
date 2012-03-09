@@ -206,7 +206,7 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 PDFDocument >> buildStyle: aStyle on: aPage [
 	"build all items of a style at the current position on the page"
 
-	aStyle explore.
+	
 	aStyle do: [ :item |
 			(item className = 'ByteString')
 				ifTrue: [ self out: item ]
@@ -407,7 +407,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	"Transcript clear; show: self buffer."
+	Transcript  clear; show: self buffer.
 	^self buffer contents 
 	
 ]
