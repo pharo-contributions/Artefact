@@ -11,6 +11,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFColor class >> formatRGB: aColor [
+	"Answer a formated RBG color. The values are rounded"
+	
+	^(PDFColor round: aColor red) ,  ' ' , (PDFColor round: aColor green) , ' ' , (PDFColor round: aColor blue)
+]
+
+{ #category : #'as yet unclassified' }
 PDFColor class >> round: aValue [
 	"answer a rounded value for an color value"
 	^((aValue / 255) roundDownTo: 0.001) asString 

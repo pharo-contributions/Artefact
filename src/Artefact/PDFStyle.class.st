@@ -85,15 +85,14 @@ PDFStyle >> setColorForInk: aInkPDFColor fillWith: aFillPDFColor [
 	|  pdfcode |
 	
 	pdfcode := OrderedCollection new.
-
-	Transcript show: (aInkPDFColor value asString) , ' ' , (aFillPDFColor value asString);cr.
+	
 	"ink to write text or draw"
 	(aInkPDFColor greyLevel isNil) 
-		ifTrue: [ (aInkPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aInkPDFColor) , ' RG') ] ]
+		ifTrue: [ (aInkPDFColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: aInkPDFColor) , ' RG') ] ]
 		ifFalse: [ pdfcode add: (PDFColor round: (aInkPDFColor greyLevel)) , ' G' ].
 	"fill color"
 	(aFillPDFColor greyLevel isNil)
-		ifTrue: [ (aFillPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aFillPDFColor) , ' rg') ] ]
+		ifTrue: [ (aFillPDFColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: aFillPDFColor) , ' rg') ] ]
 		ifFalse: [ pdfcode add: (PDFColor round: (aFillPDFColor greyLevel)) , ' g' ].
 		
 	^pdfcode

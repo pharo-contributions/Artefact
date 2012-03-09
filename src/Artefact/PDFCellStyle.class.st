@@ -56,14 +56,15 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #render }
 PDFCellStyle >> renderContentOn: aPage of: aDocument [
-	| decx width cellmargin |
+	| decx width cellmargin cellBackground |
 
 	
 	(self xy isNil) ifTrue: [ self xy: aPage xy ] ifFalse: [ aPage xy: self xy ].
 	
-	(self fillColor isEmpty) ifFalse: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor)) ].
-
-	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink)) ].
+	cellBackground := (PDFRectStyle new xy: (self xy); wh: (self wh)).
+	(self border)  ifTrue: [ cellBackground ink: (self ink) ].
+	(self fillColor isEmpty) ifTrue: [ cellBackground fillColor: (self fillColor) ].
+	self out: cellBackground.	
 	
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
@@ -73,12 +74,12 @@ PDFCellStyle >> renderContentOn: aPage of: aDocument [
 			decx := self wh x - cellmargin - width ] ifFalse: [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
 			].
-
+"
 	self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001); 
 		ink: self ink;
 		fillColor: self fillColor;
 		font: self font;
-		text: self text).
+		text: self text)."
 	].
 
 	"set the new current position and linefeed ?"

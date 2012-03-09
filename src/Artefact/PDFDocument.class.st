@@ -392,7 +392,8 @@ PDFDocument >> generate [
 
 		"Start of the page"
 		self beginPage.
-
+		
+		page styles explore.
 		"construct each styles in the document context"		
 		page styles do: [ :style | self buildStyle: (style renderIn: page of: self) on: page ].
 
@@ -402,7 +403,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	Transcript  show: self buffer.
+	Transcript  clear; show: self buffer.
 	^self buffer contents 
 	
 ]
