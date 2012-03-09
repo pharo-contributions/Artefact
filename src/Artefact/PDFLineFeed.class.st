@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #render }
-PDFLineFeed >> renderContentOn: aDocument [
-	^''
-]
-
-{ #category : #render }
 PDFLineFeed >> renderContentOn: aPage of: aDocument [
 	^''
 ]

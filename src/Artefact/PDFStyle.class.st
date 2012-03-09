@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'buffer',
 		'ink',
-		'fillColor',
-		'currentPosition'
+		'fillColor'
 	],
 	#category : #Artefact
 }
@@ -18,16 +17,6 @@ PDFStyle >> buffer [
 { #category : #accessing }
 PDFStyle >> buffer: anObject [
 	buffer := anObject
-]
-
-{ #category : #accessing }
-PDFStyle >> currentPosition [
-	^currentPosition
-]
-
-{ #category : #accessing }
-PDFStyle >> currentPosition: aPosition [
-	currentPosition := aPosition
 ]
 
 { #category : #accessing }
@@ -84,7 +73,6 @@ PDFStyle >> renderContentOn: aPage of: aDocument [
 { #category : #render }
 PDFStyle >> renderIn: aPage of: aDocument [
 	"initialize the style and answer the style content. The style receive the document context and the current page"
-	self currentPosition: aPage xy.
 	
 	self initStyle: aDocument.
 	^(self renderContentOn: aPage of: aDocument)

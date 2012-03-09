@@ -55,51 +55,13 @@ PDFCellStyle >> linefeed: anObject [
 ]
 
 { #category : #render }
-PDFCellStyle >> renderContentOn: aDocument [
-	| decx width cellmargin |
-
-	self xy: self currentPosition.
-	
-	(self fillColor isEmpty) ifFalse: [
-		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor)).
-	].
-
-	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink)) ].
-	
-	((self text) isEmpty) ifFalse: [ 	
-		decx := 0.
-		width := self font getStringWidth: self text into: aDocument.
-		cellmargin := aDocument margin / 10.
-		(self alignment = #RIGHT) ifTrue: [ 
-			decx := self wh x - cellmargin - width ] ifFalse: [
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
-			].
-
-	self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001); 
-		ink: self ink;
-		fillColor: self fillColor;
-		font: self font;
-		text: self text).
-	].
-
-	(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ].
-	
-	 ^self buffer
-
-
-	
-
-]
-
-{ #category : #render }
 PDFCellStyle >> renderContentOn: aPage of: aDocument [
 	| decx width cellmargin |
 
-	(self xy isNil) ifTrue: [ self xy: self currentPosition ] ifFalse: [ aPage xy: self xy ].
 	
-	(self fillColor isEmpty) ifFalse: [
-		self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor)).
-	].
+	(self xy isNil) ifTrue: [ self xy: aPage xy ] ifFalse: [ aPage xy: self xy ].
+	
+	(self fillColor isEmpty) ifFalse: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); fillColor: (self fillColor)) ].
 
 	(self border) ifTrue: [ self out: (PDFRectStyle new xy: (self xy); wh: (self wh); ink: (self ink)) ].
 	
@@ -119,7 +81,14 @@ PDFCellStyle >> renderContentOn: aPage of: aDocument [
 		text: self text).
 	].
 
-	(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ].
+	"set the new current position and linefeed ?"
+	aPage lasth: self wh y.	
+
+	(self linefeed) 
+		ifTrue: [ 
+			aPage xy: (aDocument margins x) @ (aPage xy y + self wh y).
+		 ] 
+		ifFalse: [ aPage xy: (aPage xy x + self wh x) @ (aPage xy y) ].
 	
 	 ^self buffer
 

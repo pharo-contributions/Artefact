@@ -206,24 +206,19 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 PDFDocument >> buildStyle: aStyle on: aPage [
 	"build all items of a style at the current position on the page"
 
-	
 	aStyle do: [ :item |
 			(item className = 'ByteString')
 				ifTrue: [ self out: item ]
 				ifFalse: [ 
-					(item className = 'PDFCellStyle') ifTrue: [ item xy: aPage xy ].
-					self buildStyle: (item renderIn: aPage of: self) on: aPage.							
-					(item className = 'PDFCellStyle') ifTrue: [
-						aPage lasth: item wh y.
-						(item linefeed) ifTrue: [ aPage xy: (self margins x) @ (aPage xy y + item wh y) ] ifFalse: [ aPage xy: (aPage xy x + item wh x) @ (aPage xy y) ]				
-					].
+					self buildStyle: (item renderIn: aPage of: self) on: aPage.					
+
 					(item className = 'PDFLineFeed') ifTrue: [
-						"Line feed; default value is last cell height"
 						aPage xy: self margins x @ aPage xy y.
 						(item height isNil) ifTrue: [ aPage xy: aPage xy x @ (aPage xy y + aPage lasth)] ifFalse: [ aPage xy: aPage xy x @ aPage xy y + item height ].
 					]
 				]
 		]
+	
 
 ]
 
@@ -407,7 +402,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	Transcript  clear; show: self buffer.
+	"Transcript  clear; show: self buffer."
 	^self buffer contents 
 	
 ]

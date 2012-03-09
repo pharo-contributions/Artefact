@@ -209,7 +209,6 @@ PDFDemos class >> demo [
 		
 	aPage add: (PDFCellStyle new 
 		font: myBigFont;
-		xy: 20@20; 
 		wh: 100@24; 
 		border: true; 
 		linefeed: true;
@@ -218,7 +217,6 @@ PDFDemos class >> demo [
 	
 	aPage add: (PDFCellStyle new 
 		font: myFont; 
-		xy: 30@30;
 		wh: 100@10; 
 		border: true; 
 		linefeed: true; 

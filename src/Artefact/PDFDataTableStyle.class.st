@@ -84,6 +84,7 @@ PDFDataTableStyle >> renderContentOn: aPage of: aDocument [
 				self out: (PDFLineFeed new).
 			].
 		].
+	
 	^self buffer
 	
 ]
