@@ -172,7 +172,7 @@ PDFDemos class >> datatableTest2 [
 		fillColorForColumns: (PDFColor new setGreyLevel: 196);
 		ink: (PDFColor new setColor: #(0 0 0));
 		fillColor: (PDFColor new setGreyLevel: 230);
-		font: (PDFHelveticaFont new);
+		font: (PDFHelveticaFont new fontSize: 10);
 		xy: 10@10;
 		wh: 60@5	
 	  ).

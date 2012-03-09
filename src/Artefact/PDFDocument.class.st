@@ -393,7 +393,6 @@ PDFDocument >> generate [
 		"Start of the page"
 		self beginPage.
 		
-		page styles explore.
 		"construct each styles in the document context"		
 		page styles do: [ :style | self buildStyle: (style renderIn: page of: self) on: page ].
 
