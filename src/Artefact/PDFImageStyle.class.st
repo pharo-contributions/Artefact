@@ -18,3 +18,8 @@ PDFImageStyle >> initStyle: aDocument [
 PDFImageStyle >> renderContentOn: aDocument [
 	self subclassResponsibility
 ]
+
+{ #category : #render }
+PDFImageStyle >> renderContentOn: aPage of: aDocument [
+	self subclassResponsibility
+]

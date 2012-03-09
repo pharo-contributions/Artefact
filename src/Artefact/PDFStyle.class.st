@@ -77,17 +77,17 @@ PDFStyle >> out: aItem [
 ]
 
 { #category : #render }
-PDFStyle >> renderContentOn: aDocument [
+PDFStyle >> renderContentOn: aPage of: aDocument [
 	self subclassResponsibility
 ]
 
 { #category : #render }
-PDFStyle >> renderIn: aDocument at: aCurrentPosition [
-	"initialize the style and answer the style content. The style receive the current position on the page"
-	self currentPosition: aCurrentPosition.
+PDFStyle >> renderIn: aPage of: aDocument [
+	"initialize the style and answer the style content. The style receive the document context and the current page"
+	self currentPosition: aPage xy.
 	
 	self initStyle: aDocument.
-	^(self renderContentOn: aDocument)
+	^(self renderContentOn: aPage of: aDocument)
 ]
 
 { #category : #private }

@@ -199,11 +199,34 @@ PDFDemos class >> demo [
 	aPage := PDFPage new.
 
 	
-	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@60; border: true; linefeed: true; text: 'Première ligne').
-	aPage add: (PDFCellStyle new font: myBigFont; wh: 100@24; border: true; linefeed: true; text: 'Artefact').
-	aPage add: (PDFCellStyle new font: myFont; wh: 100@10; border: true; linefeed: true; text: 'PDF Framework for Pharo').
+	aPage add: (PDFCellStyle new 
+		font: myBigFont; 
+		wh: 100@60; 
+		border: true; 
+		linefeed: true; 
+		ink: (PDFColor new setColor: #(0 255 0));
+		text: 'Première ligne').
+		
+	aPage add: (PDFCellStyle new 
+		font: myBigFont;
+		xy: 20@20; 
+		wh: 100@24; 
+		border: true; 
+		linefeed: true;
+		ink: (PDFColor new setColor: #(128 128 0)); 
+		text: 'Artefact').
 	
-	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@20; ink:(PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFCellStyle new 
+		font: myFont; 
+		xy: 30@30;
+		wh: 100@10; 
+		border: true; 
+		linefeed: true; 
+		text: 'PDF Framework for Pharo').
+	
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@10; ink:(PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 10@20; ink:(PDFColor new setColor: #(255 0 0))).
+
 	
 	pdfdoc add: aPage.
 	

@@ -212,7 +212,7 @@ PDFDocument >> buildStyle: aStyle on: aPage [
 				ifTrue: [ self out: item ]
 				ifFalse: [ 
 					(item className = 'PDFCellStyle') ifTrue: [ item xy: aPage xy ].
-					self buildStyle: (item renderIn: self at: aPage xy) on: aPage.							
+					self buildStyle: (item renderIn: aPage of: self) on: aPage.							
 					(item className = 'PDFCellStyle') ifTrue: [
 						aPage lasth: item wh y.
 						(item linefeed) ifTrue: [ aPage xy: (self margins x) @ (aPage xy y + item wh y) ] ifFalse: [ aPage xy: (aPage xy x + item wh x) @ (aPage xy y) ]				
@@ -399,7 +399,7 @@ PDFDocument >> generate [
 		self beginPage.
 
 		"construct each styles in the document context"		
-		page styles do: [ :style | self buildStyle: (style renderIn: self at: (page xy)) on: page ].
+		page styles do: [ :style | self buildStyle: (style renderIn: page of: self) on: page ].
 
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).
