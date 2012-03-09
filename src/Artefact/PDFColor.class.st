@@ -10,6 +10,12 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #'as yet unclassified' }
+PDFColor class >> round: aValue [
+	"answer a rounded value for an color value"
+	^((aValue / 255) roundDownTo: 0.001) asString 
+]
+
 { #category : #accessing }
 PDFColor >> blue [
 	^ blue

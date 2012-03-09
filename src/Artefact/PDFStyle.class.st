@@ -31,7 +31,7 @@ PDFStyle >> fillColor: aPDFColor [
 
 { #category : #private }
 PDFStyle >> formatColor: aColor [
-	^(self roundColor: aColor red) ,  ' ' , (self roundColor: aColor green) , ' ' , (self roundColor: aColor blue)
+	^(PDFColor round: aColor red) ,  ' ' , (PDFColor round: aColor green) , ' ' , (PDFColor round: aColor blue)
 ]
 
 { #category : #render }
@@ -78,11 +78,6 @@ PDFStyle >> renderIn: aPage of: aDocument [
 	^(self renderContentOn: aPage of: aDocument)
 ]
 
-{ #category : #private }
-PDFStyle >> roundColor: aValue [
-	^((aValue / 255) roundDownTo: 0.001) asString 
-]
-
 { #category : #render }
 PDFStyle >> setColorForInk: aInkPDFColor fillWith: aFillPDFColor [
 	"answer the PDF instruction to set the colors or grey level for ink and fillColor"
@@ -91,14 +86,15 @@ PDFStyle >> setColorForInk: aInkPDFColor fillWith: aFillPDFColor [
 	
 	pdfcode := OrderedCollection new.
 
+	Transcript show: (aInkPDFColor value asString) , ' ' , (aFillPDFColor value asString);cr.
 	"ink to write text or draw"
 	(aInkPDFColor greyLevel isNil) 
 		ifTrue: [ (aInkPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aInkPDFColor) , ' RG') ] ]
-		ifFalse: [ pdfcode add: (self roundColor: (aInkPDFColor greyLevel)) , ' G' ].
+		ifFalse: [ pdfcode add: (PDFColor round: (aInkPDFColor greyLevel)) , ' G' ].
 	"fill color"
 	(aFillPDFColor greyLevel isNil)
 		ifTrue: [ (aFillPDFColor red isNil) ifFalse: [ pdfcode add: ((self formatColor: aFillPDFColor) , ' rg') ] ]
-		ifFalse: [ pdfcode add: (self roundColor: (aFillPDFColor greyLevel)) , ' g' ].
+		ifFalse: [ pdfcode add: (PDFColor round: (aFillPDFColor greyLevel)) , ' g' ].
 		
 	^pdfcode
 

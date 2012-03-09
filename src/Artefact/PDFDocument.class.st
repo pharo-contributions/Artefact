@@ -402,7 +402,7 @@ PDFDocument >> generate [
 	"End of the document"
 	self endDoc.
 
-	"Transcript  clear; show: self buffer."
+	Transcript  show: self buffer.
 	^self buffer contents 
 	
 ]
