@@ -3,6 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'document',
+		'buffer',
 		'number',
 		'styles',
 		'xy',
@@ -15,6 +16,35 @@ Class {
 PDFPage >> add: aStyle [
 	"add a style to a page"
 	self styles add: aStyle.
+]
+
+{ #category : #accessing }
+PDFPage >> buffer [
+	"answer the content of the page"
+	^ buffer 
+]
+
+{ #category : #accessing }
+PDFPage >> buffer: aString [
+	buffer :=  aString
+]
+
+{ #category : #private }
+PDFPage >> buildStyle: aStyle [
+	"build all items of a style at the current position on the page"
+	
+	aStyle do: [ :item |
+			(item className = 'ByteString')
+				ifTrue: [ self out: item ]
+				ifFalse: [ 
+					self buildStyle: (item renderIn: self).					
+
+					(item className = 'PDFLineFeed') ifTrue: [
+						self xy: self document margins x @ self xy y.
+						(item height isNil) ifTrue: [ self xy: self xy x @ (self xy y + self lasth)] ifFalse: [ self xy: self xy x @ self xy y + item height ].
+					]
+				]
+		]
 ]
 
 { #category : #accessing }
@@ -52,6 +82,30 @@ PDFPage >> number [
 { #category : #accessing }
 PDFPage >> number: aObject [
 	number := aObject
+]
+
+{ #category : #private }
+PDFPage >> out: aItem [
+	"append the item to the page"
+
+	self buffer nextPutAll: (aItem, String crlf).
+
+]
+
+{ #category : #action }
+PDFPage >> renderContent [
+	"answer the content of the page"
+	self xy: (self document margins).
+	self lasth: 0.
+	self buffer: (WriteStream on: String new).
+	
+	"construct each styles"
+	self styles do: [ :style | self buildStyle: (style renderIn: self) ].
+	
+	^buffer contents 
+	
+
+
 ]
 
 { #category : #accessing }

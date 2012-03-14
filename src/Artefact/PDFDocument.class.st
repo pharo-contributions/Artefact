@@ -204,26 +204,6 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 ]
 
 { #category : #private }
-PDFDocument >> buildStyle: aStyle on: aPage [
-	"build all items of a style at the current position on the page"
-
-	aStyle do: [ :item |
-			(item className = 'ByteString')
-				ifTrue: [ self out: item ]
-				ifFalse: [ 
-					self buildStyle: (item renderIn: aPage) on: aPage.					
-
-					(item className = 'PDFLineFeed') ifTrue: [
-						aPage xy: self margins x @ aPage xy y.
-						(item height isNil) ifTrue: [ aPage xy: aPage xy x @ (aPage xy y + aPage lasth)] ifFalse: [ aPage xy: aPage xy x @ aPage xy y + item height ].
-					]
-				]
-		]
-	
-
-]
-
-{ #category : #private }
 PDFDocument >> clearBuffer [
 	"Initialize the buffer to produce a new document"
 	self buffer: (WriteStream on: String new).
@@ -388,14 +368,12 @@ PDFDocument >> generate [
 	self clearBuffer.
 		
 	self pages do: [ :page |
-		page xy: self margins.
-		page lasth: 0.		
-
+		
 		"Start of the page"
 		self beginPage.
 		
 		"construct each styles in the document context"		
-		page styles do: [ :style | self buildStyle: (style renderIn: page) on: page ].
+		self out: (page renderContent).
 
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).
