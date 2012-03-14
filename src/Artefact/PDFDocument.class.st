@@ -74,6 +74,7 @@ PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
 	self pageNumber: self pageNumber + 1.
 	self pages add: (aPage number: self pageNumber).
+	aPage document: self
 
 	
 	
@@ -210,7 +211,7 @@ PDFDocument >> buildStyle: aStyle on: aPage [
 			(item className = 'ByteString')
 				ifTrue: [ self out: item ]
 				ifFalse: [ 
-					self buildStyle: (item renderIn: aPage of: self) on: aPage.					
+					self buildStyle: (item renderIn: aPage) on: aPage.					
 
 					(item className = 'PDFLineFeed') ifTrue: [
 						aPage xy: self margins x @ aPage xy y.
@@ -394,7 +395,7 @@ PDFDocument >> generate [
 		self beginPage.
 		
 		"construct each styles in the document context"		
-		page styles do: [ :style | self buildStyle: (style renderIn: page of: self) on: page ].
+		page styles do: [ :style | self buildStyle: (style renderIn: page) on: page ].
 
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).

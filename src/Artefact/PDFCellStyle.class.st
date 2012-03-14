@@ -55,7 +55,7 @@ PDFCellStyle >> linefeed: anObject [
 ]
 
 { #category : #render }
-PDFCellStyle >> renderContentOn: aPage of: aDocument [
+PDFCellStyle >> renderContentOn: aPage [
 	| decx width cellmargin cellBackground |
 
 	
@@ -68,8 +68,8 @@ PDFCellStyle >> renderContentOn: aPage of: aDocument [
 	
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
-		width := self font getStringWidth: self text into: aDocument.
-		cellmargin := aDocument margin / 10.
+		width := self font getStringWidth: self text into: (aPage document).
+		cellmargin := (aPage document) margin / 10.
 		(self alignment = #RIGHT) ifTrue: [ 
 			decx := self wh x - cellmargin - width ] ifFalse: [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
@@ -87,7 +87,7 @@ PDFCellStyle >> renderContentOn: aPage of: aDocument [
 
 	(self linefeed) 
 		ifTrue: [ 
-			aPage xy: (aDocument margins x) @ (aPage xy y + self wh y).
+			aPage xy: (aPage document margins x) @ (aPage xy y + self wh y).
 		 ] 
 		ifFalse: [ aPage xy: (aPage xy x + self wh x) @ (aPage xy y) ].
 	

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFRectStyle >> renderContentOn: aPage of: aDocument [
+PDFRectStyle >> renderContentOn: aPage [
 
 	|  fill |
 	

@@ -2,6 +2,7 @@ Class {
 	#name : #PDFPage,
 	#superclass : #Object,
 	#instVars : [
+		'document',
 		'number',
 		'styles',
 		'xy',
@@ -14,6 +15,17 @@ Class {
 PDFPage >> add: aStyle [
 	"add a style to a page"
 	self styles add: aStyle.
+]
+
+{ #category : #accessing }
+PDFPage >> document [
+	"answer the document which the page is attached"
+	^ document
+]
+
+{ #category : #accessing }
+PDFPage >> document: aPDFDocument [
+	document :=  aPDFDocument
 ]
 
 { #category : #'initialize-release' }

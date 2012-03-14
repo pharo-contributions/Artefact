@@ -51,7 +51,7 @@ PDFDataTableStyle >> inkForColumns: anObject [
 ]
 
 { #category : #render }
-PDFDataTableStyle >> renderContentOn: aPage of: aDocument [ 
+PDFDataTableStyle >> renderContentOn: aPage [
 	"answer the content of a datatable"
 		
 	(self columns isNil) ifFalse: [

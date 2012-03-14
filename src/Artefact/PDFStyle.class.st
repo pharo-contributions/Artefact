@@ -66,16 +66,16 @@ PDFStyle >> out: aItem [
 ]
 
 { #category : #render }
-PDFStyle >> renderContentOn: aPage of: aDocument [
+PDFStyle >> renderContentOn: aPage [
 	self subclassResponsibility
 ]
 
 { #category : #render }
-PDFStyle >> renderIn: aPage of: aDocument [
+PDFStyle >> renderIn: aPage [
 	"initialize the style and answer the style content. The style receive the document context and the current page"
 	
-	self initStyle: aDocument.
-	^(self renderContentOn: aPage of: aDocument)
+	self initStyle: aPage document.
+	^(self renderContentOn: aPage)
 ]
 
 { #category : #render }
