@@ -195,7 +195,7 @@ PDFDocument >> beginPage [
 
 { #category : #accessing }
 PDFDocument >> buffer [
-	^ buffer
+	^ buffer ifNil: [ buffer := WriteStream on: String new ]
 ]
 
 { #category : #accessing }
@@ -206,8 +206,9 @@ PDFDocument >> buffer: bodyOfPDFDocument [
 { #category : #private }
 PDFDocument >> clearBuffer [
 	"Initialize the buffer to produce a new document"
-	self buffer: (WriteStream on: String new).
-	self buffer nextPutAll: ('%PDF-1.3' , String crlf).
+
+	self buffer resetContents; nextPutAll: ('%PDF-1.3' , String crlf).
+
 	self fonts removeAll.
 	self numberOfObjects: 1.
 	self offset: 0.
@@ -365,6 +366,7 @@ PDFDocument >> formatRef: aRef [
 PDFDocument >> generate [
 	" answer the PDF file"
 
+	"new document: reset all"
 	self clearBuffer.
 		
 	self pages do: [ :page |
@@ -378,7 +380,7 @@ PDFDocument >> generate [
 		"End of the page contents"
 		self endPage:  (self buffer size) - (self offset).
 	].
-	"End of the document"
+	"insert the end of the document"
 	self endDoc.
 
 	Transcript  clear; show: self buffer.

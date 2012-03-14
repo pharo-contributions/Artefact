@@ -21,7 +21,7 @@ PDFPage >> add: aStyle [
 { #category : #accessing }
 PDFPage >> buffer [
 	"answer the content of the page"
-	^ buffer 
+	^ buffer ifNil: [ buffer := WriteStream on: String new ]
 ]
 
 { #category : #accessing }
@@ -56,6 +56,15 @@ PDFPage >> document [
 { #category : #accessing }
 PDFPage >> document: aPDFDocument [
 	document :=  aPDFDocument
+]
+
+{ #category : #private }
+PDFPage >> initRender [
+	"prepare the render step"
+	
+	self xy: (self document margins).
+	self lasth: 0.
+	self buffer resetContents.
 ]
 
 { #category : #'initialize-release' }
@@ -95,9 +104,8 @@ PDFPage >> out: aItem [
 { #category : #action }
 PDFPage >> renderContent [
 	"answer the content of the page"
-	self xy: (self document margins).
-	self lasth: 0.
-	self buffer: (WriteStream on: String new).
+	
+	self initRender.
 	
 	"construct each styles"
 	self styles do: [ :style | self buildStyle: (style renderIn: self) ].

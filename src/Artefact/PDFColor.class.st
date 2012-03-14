@@ -20,6 +20,7 @@ PDFColor class >> formatRGB: aColor [
 { #category : #'as yet unclassified' }
 PDFColor class >> round: aValue [
 	"answer a rounded value for an color value"
+	
 	^((aValue / 255) roundDownTo: 0.001) asString 
 ]
 
