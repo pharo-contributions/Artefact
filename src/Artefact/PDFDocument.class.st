@@ -97,9 +97,18 @@ PDFDocument >> addTheListOfFonts [
 ]
 
 { #category : #private }
-PDFDocument >> addTheOrientations [
+PDFDocument >> addTheOrientations: aNumberOfObjects [
 	"each page can have a different orientation (landscape or portrait) and a different size"
 	
+	self pages do: [ :page | 
+			self newObj.
+			self out: '<</Type /Page'.
+			self out: '/Parent 1 0 R'.
+			self out: '/MediaBox [0 0 ' , (page format size y asString) , ' ' , (page format size x asString) , ']'. 
+			self out: '/Resources 2 0 R'.
+			self out: '/Contents ' , (aNumberOfObjects + 1) asString , ' 0 R>>'.
+			self out: 'endobj'.
+		].
 "
 	for($n=1;$n<=$nb;$n++)
 	{
@@ -299,7 +308,7 @@ PDFDocument >> endDoc [
 	|  nObjects |
 	
 	nObjects := self numberOfObjects.
-	self addTheOrientations.
+	self addTheOrientations: nObjects.
 	self addTheListOfFonts.
 	self addTheImages.
 	self addThepagesRoot: nObjects.
