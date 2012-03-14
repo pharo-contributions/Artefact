@@ -97,6 +97,32 @@ PDFDocument >> addTheListOfFonts [
 ]
 
 { #category : #private }
+PDFDocument >> addTheOrientations [
+	"each page can have a different orientation (landscape or portrait) and a different size"
+	
+"
+	for($n=1;$n<=$nb;$n++)
+	{
+		//Page
+		$this->_newobj();
+		$this->_out('<</Type /Page');
+		$this->_out('/Parent 1 0 R');
+		if(isset($this->OrientationChanges[$n]))
+			$this->_out('/MediaBox [0 0 '.$hPt.' '.$wPt.']');
+		$this->_out('/Resources 2 0 R');
+		$this->_out('/Contents '.($this->n+1).' 0 R>>');
+		$this->_out('endobj');
+		//Page content
+		$p=($this->compress) ? gzcompress($this->pages[$n]) : $this->pages[$n];
+		$this->_newobj();
+		$this->_out('<<'.$filter.'/Length '.strlen($p).'>>');
+		$this->_out('stream');
+		$this->_out($p.'endstream');
+		$this->_out('endobj');
+"
+]
+
+{ #category : #private }
 PDFDocument >> addThepagesRoot: aNumberOfObjects [
 	"Add the pages root"
 	
@@ -164,7 +190,7 @@ PDFDocument >> autoPageBreak: aLogicValue [
 ]
 
 { #category : #private }
-PDFDocument >> beginPage [
+PDFDocument >> beginPage: aPage [
 	"Start a new page with a default font"
 
 	self offset: self buffer size.
@@ -175,7 +201,8 @@ PDFDocument >> beginPage [
 	self newObj.
 	self out: { ('<< /Length ' , (self numberOfObjects + 1) asString  , ' 0 R >>') . 'stream' }.
 	self offset: self buffer size.
-	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (self height asString) , ' cm'.
+
+	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (aPage format size y asString) , ' cm'.
 
 	"Set line width to n point"
 	self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'.
@@ -260,6 +287,11 @@ PDFDocument >> dateAndTimeInPDFFormat [
 	^((Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time)
 ]
 
+{ #category : #configuration }
+PDFDocument >> defaultFormat [
+	^PDFA4Format new
+]
+
 { #category : #private }
 PDFDocument >> endDoc [
 	"End of the PDF document"
@@ -267,6 +299,7 @@ PDFDocument >> endDoc [
 	|  nObjects |
 	
 	nObjects := self numberOfObjects.
+	self addTheOrientations.
 	self addTheListOfFonts.
 	self addTheImages.
 	self addThepagesRoot: nObjects.
@@ -370,7 +403,7 @@ PDFDocument >> generate [
 	self pages do: [ :page |
 		
 		"Start of the page"
-		self beginPage.
+		self beginPage: page.
 		
 		"construct each styles in the document context"		
 		self out: (page renderContent).
@@ -381,7 +414,7 @@ PDFDocument >> generate [
 	"insert the end of the document"
 	self endDoc.
 
-	Transcript  clear; show: self buffer.
+	"Transcript  clear; show: self buffer."
 	^self buffer contents 
 	
 ]
@@ -401,7 +434,7 @@ PDFDocument >> images [
 PDFDocument >> initialize [
 	super initialize.
 
-	self setFormat: PDFA4Format new.
+	self setFormat: self defaultFormat.
 
 	"self setAutoPageBreak: true margin: self margin."
 

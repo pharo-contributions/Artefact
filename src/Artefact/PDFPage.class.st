@@ -3,6 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'document',
+		'format',
 		'buffer',
 		'number',
 		'styles',
@@ -59,10 +60,20 @@ PDFPage >> document: aPDFDocument [
 	document :=  aPDFDocument
 ]
 
+{ #category : #accessing }
+PDFPage >> format [
+	^ format ifNil: [ format := self document format ]
+]
+
+{ #category : #accessing }
+PDFPage >> format: aPDFFormat [
+	format :=  aPDFFormat
+]
+
 { #category : #private }
 PDFPage >> initRender [
 	"prepare the render step"
-	self margins: (self document format margins x / self document scaleFactor) @ (self document format margins y / self document scaleFactor).
+	self margins: (self format margins x / self document scaleFactor) @ (self format margins y / self document scaleFactor).
 	self xy: margins.
 	self lasth: 0.
 	self buffer resetContents.

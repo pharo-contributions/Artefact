@@ -69,7 +69,7 @@ PDFCellStyle >> renderContentOn: aPage [
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
 		width := self font getStringWidth: self text into: (aPage document).
-		cellmargin := (aPage document format leftMargin) / 10.
+		cellmargin := (aPage format leftMargin) / 10.
 		(self alignment = #RIGHT) ifTrue: [ 
 			decx := self wh x - cellmargin - width ] ifFalse: [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]

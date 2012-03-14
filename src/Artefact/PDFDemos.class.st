@@ -343,6 +343,44 @@ PDFDemos class >> infos [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDemos class >> multiOrientations [
+	"a simple demonstration of Artefact"
+	
+	"PDFTest multiOrientations"
+	
+	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
+	pdfdoc := PDFDocument new.	
+
+	myLandscapeFormat := PDFA4Format new setLandscape.
+	
+	myBigFont := PDFCourierFont new fontSize: 36; bold: true.
+	
+	firstPage := PDFPage new.	
+	firstPage add: (PDFCellStyle new 
+		font: myBigFont; 
+		wh: 100@60; 
+		border: true; 
+		linefeed: true; 
+		ink: (PDFColor new setColor: #(0 255 0));
+		text: 'PORTRAIT').
+	
+	secondPage := PDFPage new format: myLandscapeFormat.
+	
+	secondPage add: (PDFCellStyle new 
+		font: myBigFont; 
+		wh: 100@60; 
+		border: true; 
+		linefeed: true; 
+		ink: (PDFColor new setColor: #(0 255 0));
+		text: 'LANDSCAPE').	
+			
+	pdfdoc add: firstPage.
+	pdfdoc add: secondPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/multiOrientations.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFDemos class >> test [
 	"generate a sample document"
 
