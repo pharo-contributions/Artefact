@@ -1,26 +1,94 @@
 Class {
 	#name : #PDFFormat,
 	#superclass : #Object,
+	#instVars : [
+		'portrait',
+		'margins',
+		'size'
+	],
 	#category : #Artefact
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #description }
 PDFFormat >> height [
 	"Answer the height of a page"
 	^self size y
 ]
 
-{ #category : #'as yet unclassified' }
-PDFFormat >> margin [
-	^28.35
+{ #category : #'initialize-release' }
+PDFFormat >> initialize [ 
+	super initialize.
+	
+	self margins: 28.35@28.35.
+	self size: self defaultSize.
+	self setPortrait.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #description }
+PDFFormat >> leftMargin [
+	^(self margins x)
+]
+
+{ #category : #accessing }
+PDFFormat >> margins [
+	^ margins
+]
+
+{ #category : #accessing }
+PDFFormat >> margins: anObject [
+	margins := anObject
+]
+
+{ #category : #accessing }
+PDFFormat >> orientation [
+	^ orientation
+]
+
+{ #category : #accessing }
+PDFFormat >> orientation: anObject [
+	orientation := anObject
+]
+
+{ #category : #accessing }
+PDFFormat >> portrait [
+	^ portrait
+]
+
+{ #category : #accessing }
+PDFFormat >> portrait: anObject [
+	portrait := anObject
+]
+
+{ #category : #'page setup' }
+PDFFormat >> setLandscape [
+	"Set the page in landscape orientation"
+	self portrait: false.
+	self size: (self size y) @ (self size x).	
+]
+
+{ #category : #'page setup' }
+PDFFormat >> setPortrait [
+	"Set the page in portrait orientation"
+	self portrait: true.
+	self size: (self size x) @ (self size y). 
+]
+
+{ #category : #accessing }
 PDFFormat >> size [
-	self subclassResponsibility
+	^ size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+PDFFormat >> size: anObject [
+	size := anObject
+]
+
+{ #category : #description }
+PDFFormat >> topMargin [
+	^(self margins y)
+]
+
+{ #category : #description }
 PDFFormat >> width [
 	"Answer the width of the page"
 	^self size x

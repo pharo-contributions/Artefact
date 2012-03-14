@@ -7,7 +7,8 @@ Class {
 		'number',
 		'styles',
 		'xy',
-		'lasth'
+		'lasth',
+		'margins'
 	],
 	#category : #Artefact
 }
@@ -40,7 +41,7 @@ PDFPage >> buildStyle: aStyle [
 					self buildStyle: (item renderIn: self).					
 
 					(item className = 'PDFLineFeed') ifTrue: [
-						self xy: self document margins x @ self xy y.
+						self xy: self margins x @ self xy y.
 						(item height isNil) ifTrue: [ self xy: self xy x @ (self xy y + self lasth)] ifFalse: [ self xy: self xy x @ self xy y + item height ].
 					]
 				]
@@ -61,8 +62,8 @@ PDFPage >> document: aPDFDocument [
 { #category : #private }
 PDFPage >> initRender [
 	"prepare the render step"
-	
-	self xy: (self document margins).
+	self margins: (self document format margins x / self document scaleFactor) @ (self document format margins y / self document scaleFactor).
+	self xy: margins.
 	self lasth: 0.
 	self buffer resetContents.
 ]
@@ -81,6 +82,16 @@ PDFPage >> lasth [
 { #category : #accessing }
 PDFPage >> lasth: lastCellHeight [
 	lasth :=  lastCellHeight
+]
+
+{ #category : #accessing }
+PDFPage >> margins [
+	^ margins
+]
+
+{ #category : #accessing }
+PDFPage >> margins: theMargins [
+	margins := theMargins
 ]
 
 { #category : #accessing }

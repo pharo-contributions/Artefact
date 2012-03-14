@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFLetterFormat >> size [
+PDFLetterFormat >> defaultSize [
 	^612@1008
 ]

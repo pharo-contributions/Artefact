@@ -57,8 +57,6 @@ Class {
 		'orientation',
 		'pageNumber',
 		'format',
-		'size',
-		'margins',
 		'scaleFactor',
 		'autoPageBreak',
 		'pageBreakTrigger',
@@ -390,7 +388,7 @@ PDFDocument >> generate [
 
 { #category : #accessing }
 PDFDocument >> height [
-	^(self size y)
+	^(self format size y)
 ]
 
 { #category : #accessing }
@@ -404,8 +402,8 @@ PDFDocument >> initialize [
 	super initialize.
 
 	self setFormat: PDFA4Format new.
-	self setPortrait.
-	self setAutoPageBreak: true margin: self margin.
+
+	"self setAutoPageBreak: true margin: self margin."
 
 ]
 
@@ -472,26 +470,6 @@ PDFDocument >> keywords [
 { #category : #accessing }
 PDFDocument >> keywords: aString [
 	keywords := aString
-]
-
-{ #category : #accessing }
-PDFDocument >> leftMargin [
-	^(self margins x)
-]
-
-{ #category : #private }
-PDFDocument >> margin [
-	^(self format margin / self scaleFactor)
-]
-
-{ #category : #accessing }
-PDFDocument >> margins [
-	^margins
-]
-
-{ #category : #accessing }
-PDFDocument >> margins: aValue [
-	margins := aValue
 ]
 
 { #category : #private }
@@ -619,55 +597,9 @@ PDFDocument >> setCurrentFont: aFontObject [
 
 ]
 
-{ #category : #private }
-PDFDocument >> setDefaultMargins [
-	self setMargins: (self margin) top: (self margin)
-
-]
-
 { #category : #'page setup' }
 PDFDocument >> setFormat: aFormat [
 	self format: aFormat.
-	self setDefaultMargins.
-]
-
-{ #category : #'page setup' }
-PDFDocument >> setLandscape [
-	"Set the page in landscape orientation"
-	self setSize: (self format size y) height: (self format size x)..	
-]
-
-{ #category : #'page setup' }
-PDFDocument >> setMargins: leftMargin top: topMargin [
-	"set the left and top margins"
-	
-	self margins: leftMargin@topMargin.
-
-]
-
-{ #category : #'page setup' }
-PDFDocument >> setPortrait [
-	"Set the page in portrait orientation"
-	self setSize: (self format size x) height: (self format size y). 
-
-	
-]
-
-{ #category : #'page setup' }
-PDFDocument >> setSize: width height: height [
-	"set the size of the document"
-
-	self size: width@height
-]
-
-{ #category : #accessing }
-PDFDocument >> size [
-	^size
-]
-
-{ #category : #accessing }
-PDFDocument >> size: aValue [
-	size := aValue
 ]
 
 { #category : #accessing }
@@ -699,11 +631,6 @@ PDFDocument >> title: aString [
 	title := aString
 ]
 
-{ #category : #accessing }
-PDFDocument >> topMargin [
-	^(self margins y)
-]
-
 { #category : #'page setup' }
 PDFDocument >> useCentimetersAsUnit [
 	self scaleFactor:  (72 / 2.54).
@@ -731,5 +658,5 @@ PDFDocument >> version [
 
 { #category : #accessing }
 PDFDocument >> width [
-	^(self size x)
+	^(self format size x)
 ]

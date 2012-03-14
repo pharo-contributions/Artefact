@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFA4Format >> size [
-	^595.3@841.9
+PDFA4Format >> defaultSize [
+	^595.3@841.9.
 ]
