@@ -1,12 +1,6 @@
 Class {
 	#name : #PDFFormat,
 	#superclass : #Object,
-	#instVars : [
-		'family',
-		'bold',
-		'italic',
-		'fontSize'
-	],
 	#category : #Artefact
 }
 
