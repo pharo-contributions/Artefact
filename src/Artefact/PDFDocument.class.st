@@ -204,7 +204,9 @@ PDFDocument >> beginPage: aPage [
 
 	self offset: self buffer size.
 	self newObj.
-	self out: { '<<' . '/Type /Page' . '/Parent 1 0 R'. ('/Contents ' , (self numberOfObjects + 1) asString , ' 0 R') . '>>' }.
+	self out: { '<<' . '/Type /Page' . '/Parent 1 0 R'. '/Resources 2 0 R' }.
+	self out: '/MediaBox [0 0 ' , (aPage format size x asString) , ' ' , (aPage format size y asString) , ']'.  
+	self out: { ('/Contents ' , (self numberOfObjects + 1) asString , ' 0 R') . '>>' }.
 	
 	"Begin of page contents"
 	self newObj.
@@ -308,7 +310,7 @@ PDFDocument >> endDoc [
 	|  nObjects |
 	
 	nObjects := self numberOfObjects.
-	self addTheOrientations: nObjects.
+	"self addTheOrientations: nObjects."
 	self addTheListOfFonts.
 	self addTheImages.
 	self addThepagesRoot: nObjects.
