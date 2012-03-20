@@ -351,28 +351,22 @@ PDFDemos class >> multiOrientations [
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
 	pdfdoc := PDFDocument new.	
 
-	myLandscapeFormat := PDFA4Format new setLandscape.
+	myLandscapeFormat := PDFA3Format new setLandscape.
 	
-	myBigFont := PDFCourierFont new fontSize: 36; bold: true.
+	myBigFont := PDFTimesFont new fontSize: 16.
 	
 	firstPage := PDFPage new.	
 	firstPage add: (PDFCellStyle new 
 		font: myBigFont; 
-		wh: 100@60; 
-		border: true; 
-		linefeed: true; 
-		ink: (PDFColor new setColor: #(0 255 0));
-		text: 'PORTRAIT').
+		wh: 40@10; 
+		text: 'Page 1').
 	
 	secondPage := PDFPage new format: myLandscapeFormat.
 	
 	secondPage add: (PDFCellStyle new 
 		font: myBigFont; 
-		wh: 100@60; 
-		border: true; 
-		linefeed: true; 
-		ink: (PDFColor new setColor: #(0 255 0));
-		text: 'LANDSCAPE').	
+		wh: 40@10; 
+		text: 'Page en A3').	
 			
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
