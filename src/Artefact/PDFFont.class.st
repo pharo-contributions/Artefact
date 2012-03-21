@@ -100,8 +100,7 @@ PDFFont >> getStringWidth: aString into: aDocument [
 	| width |
 	
 	width := 0.
-	aString do: [ :char | width := width + ((self charWidths at: (self family)) at: char) ].
-
+	aString do: [ :char | width := width + ((self charWidths at: (self getFontName)) at: char) ].
 	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
 	
 ]

@@ -78,21 +78,6 @@ PDFFontTest >> testHelveticaWidth [
 ]
 
 { #category : #fontsWidth }
-PDFFontTest >> testSymbolBIWidth [
-	self assert: (PDFSymbolFont new fontSize: 16; bold: true; italic: true; getStringWidth: 'hello' into: self doc) = 15.177.
-]
-
-{ #category : #fontsWidth }
-PDFFontTest >> testSymbolBWidth [
-	self assert: (PDFSymbolFont new fontSize: 16; bold: true; getStringWidth: 'hello' into: self doc) = 15.177.
-]
-
-{ #category : #fontsWidth }
-PDFFontTest >> testSymbolIWidth [
-	self assert: (PDFSymbolFont new fontSize: 16;  italic: true; getStringWidth: 'hello' into: self doc) = 15.177.
-]
-
-{ #category : #fontsWidth }
 PDFFontTest >> testSymbolWidth [
 	self assert: (PDFSymbolFont new fontSize: 16; getStringWidth: 'hello' into: self doc) = 15.177.
 ]
@@ -115,21 +100,6 @@ PDFFontTest >> testTimesIWidth [
 { #category : #fontsWidth }
 PDFFontTest >> testTimesWidth [
 	self assert: (PDFTimesFont new fontSize: 16; getStringWidth: 'hello' into: self doc) = 11.288.
-]
-
-{ #category : #fontsWidth }
-PDFFontTest >> testZapfdingbatsBIWidth [
-	self assert: (PDFZapfdingbatsFont new fontSize: 16; bold: true; italic: true; getStringWidth: 'hello' into: self doc) = 21.601.
-]
-
-{ #category : #fontsWidth }
-PDFFontTest >> testZapfdingbatsBWidth [
-	self assert: (PDFZapfdingbatsFont new fontSize: 16; bold: true; getStringWidth: 'hello' into: self doc) = 21.601.
-]
-
-{ #category : #fontsWidth }
-PDFFontTest >> testZapfdingbatsIWidth [
-	self assert: (PDFZapfdingbatsFont new fontSize: 16; italic: true; getStringWidth: 'hello' into: self doc) = 21.601.
 ]
 
 { #category : #fontsWidth }
