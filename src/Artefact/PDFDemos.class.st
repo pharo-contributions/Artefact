@@ -370,7 +370,7 @@ PDFDemos class >> multiOrientations [
 			
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
-	
+
 	pdfdoc exportToFile: '/Users/olivier/Desktop/multiOrientations.pdf'.
 ]
 
