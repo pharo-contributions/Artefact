@@ -375,6 +375,36 @@ PDFDemos class >> multiOrientations [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDemos class >> paragraphTest [
+	"a simple demonstration of Artefact"
+	
+	"PDFDemos paragraphTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	
+	aPage add: (PDFParagraphStyle new 
+		wh: 160@60; 
+		border: true; 
+		linefeed: true; 
+		fillColor: (PDFColor new setGreyLevel: 220);
+		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
+
+	aPage add: (PDFParagraphStyle new 
+		wh: 160@60; 
+		border: false; 
+		linefeed: true; 
+		text: 'Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
+		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: '/Users/olivier/Desktop/paragraph.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFDemos class >> test [
 	"generate a sample document"
 
