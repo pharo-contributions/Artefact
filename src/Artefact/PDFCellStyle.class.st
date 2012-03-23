@@ -15,10 +15,13 @@ PDFCellStyle >> renderContentOn: aPage [
 	((self text) isEmpty) ifFalse: [ 	
 		decx := 0.
 		width := self font getStringWidth: self text into: (aPage document).
-		cellmargin := (aPage format leftMargin) / 10.
-		(self alignment = #RIGHT) ifTrue: [ 
-			decx := self wh x - cellmargin - width ] ifFalse: [
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ]
+		(self border) 
+			ifTrue: [ cellmargin := (aPage format leftMargin) / 10 ] 
+			ifFalse: [ cellmargin := 0 ].
+		(self alignment = #RIGHT) 
+			ifTrue: [ decx := self wh x - cellmargin - width ] 
+			ifFalse: [ 
+				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ] 
 			].
 
 	self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * self pdfFontSize)) roundDownTo: 0.001); 
