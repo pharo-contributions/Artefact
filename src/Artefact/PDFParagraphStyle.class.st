@@ -57,9 +57,11 @@ PDFParagraphStyle >> numberOfLines: aObject [
 PDFParagraphStyle >> renderContentOn: aPage [
 	"answer the definition of a paragraph of text"
 
+	| container |
+	
 	(self xy isNil) ifTrue: [ self xy: aPage xy ] ifFalse: [ aPage xy: self xy ].
 	self drawBox.
-			
+
 	(self splitOn: aPage) do: [ :aLine |
 		self out: (PDFCellStyle new 
 				wh: (self wh x @ self pdfFontSize); 
@@ -68,12 +70,13 @@ PDFParagraphStyle >> renderContentOn: aPage [
 				font: (self font); 
 				text: aLine;
 				border: false;
-				linefeed: true; 
-				alignToTheLeft). 
+				linefeed: true;
+				alignment: self alignment). 
 	].
 
 	(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ].
-		
+
+
 	^self buffer
 	
 ]
@@ -88,15 +91,17 @@ PDFParagraphStyle >> splitOn: aPage [
 	
 	line := WriteStream on: String new.
 	
-	self wordsList do: [ :word |
+	self wordsList do: [ :aWord |
+		| word |
+		 word := aWord , ' '.
 		(widthOfLine + (widthOfWord := self font getStringWidth: word into: (aPage document))) <= (self wh x)
 			ifTrue: [ 
-				line nextPutAll: word; nextPutAll: ' '.
+				line nextPutAll: word.
 				widthOfLine := widthOfLine + widthOfWord.
 				]
 			ifFalse: [
 				self lines add: line contents asString.
-				line resetContents; nextPutAll: word; nextPutAll: ' '.
+				line resetContents; nextPutAll: word.
 				widthOfLine := widthOfWord.
 				]	
 	].

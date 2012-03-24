@@ -385,19 +385,33 @@ PDFDemos class >> paragraphTest [
 	
 	aPage := PDFPage new.
 
-	
 	aPage add: (PDFParagraphStyle new 
-		wh: 160@60; 
+		wh: 160@20; 
 		border: true; 
 		linefeed: true; 
 		fillColor: (PDFColor new setGreyLevel: 220);
 		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
 	aPage add: (PDFParagraphStyle new 
-		wh: 160@60; 
+		wh: 60@40; 
 		border: false; 
-		linefeed: true; 
+		linefeed: false; 
 		text: 'Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
+
+	aPage add: (PDFParagraphStyle new 
+		wh: 60@40; 
+		border: false; 
+		linefeed: false; 
+		text: 'Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
+		alignToCenter).
+		
+	aPage add: (PDFParagraphStyle new 
+		wh: 60@45; 
+		border: false; 
+		linefeed: false; 
+		text: 'Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
+		alignToTheRight
+		).
 		
 	pdfdoc add: aPage.
 	
