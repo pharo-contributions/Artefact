@@ -35,7 +35,7 @@ PDFCellStyle >> renderContentOn: aPage [
 	aPage lasth: self wh y.	
 
 	(self linefeed) 
-		ifTrue: [ 
+		ifTrue: [ 	
 			aPage xy: (aPage margins x) @ (aPage xy y + self wh y).
 		 ] 
 		ifFalse: [ aPage xy: (aPage xy x + self wh x) @ (aPage xy y) ].

@@ -63,21 +63,28 @@ PDFParagraphStyle >> renderContentOn: aPage [
 	self drawBox.
 
 	(self splitOn: aPage) do: [ :aLine |
-		self out: (PDFCellStyle new 
-				wh: (self wh x @ self pdfFontSize); 
-				ink: self ink;
-				fillColor: self fillColor;
-				font: (self font); 
-				text: aLine;
-				border: false;
-				linefeed: true;
-				alignment: self alignment). 
+		self out: (PDFCellStyle new
+			xy: self xy;
+			wh: (self wh x @ self pdfFontSize); 
+			ink: self ink;
+			fillColor: self fillColor;
+			font: (self font); 
+			text: aLine;
+			border: false;
+			linefeed: false;
+			alignment: self alignment). 
+			self xy: self xy x @ (self xy y + self pdfFontSize).	
 	].
 
-	(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ].
-
-
-	^self buffer
+	"set the new current position and linefeed ?"
+	Transcript show: self wh y asString; cr.
+	aPage lasth: self wh y.
+	Transcript show: ('avant:' , aPage xy asString);cr.
+	aPage xy: (aPage margins x) @ (aPage xy y + self wh y).
+	Transcript show: ('apres' , aPage xy asString);cr..	
+	"(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ]."
+	
+	 ^self buffer
 	
 ]
 

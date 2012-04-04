@@ -75,6 +75,7 @@ PDFStyle >> renderIn: aPage [
 	"initialize the style and answer the style content. The style receive the document context and the current page"
 	
 	self initStyle: aPage document.
+	
 	^(self renderContentOn: aPage)
 ]
 

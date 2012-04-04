@@ -8,7 +8,7 @@ Class {
 PDFDemos class >> alignments [
 	"a simple demonstration of Artefact"
 	
-	"PDFTest alignments"
+	"PDFDemos alignments"
 	
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
@@ -49,7 +49,7 @@ PDFDemos class >> alignments [
 PDFDemos class >> colorTest [
 	"generate a sample document with colors"
 
-	"PDFTest colorTest"
+	"PDFDemos colorTest"
 	
 	| pdfdoc aPage myFont |
 	pdfdoc := PDFDocument new.
@@ -188,7 +188,7 @@ PDFDemos class >> datatableTest2 [
 PDFDemos class >> demo [
 	"a simple demonstration of Artefact"
 	
-	"PDFTest demo"
+	"PDFDemos demo"
 	
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
@@ -235,7 +235,7 @@ PDFDemos class >> demo [
 PDFDemos class >> drawTest [
 	"generate a sample document for testing the draw objects"
 
-	"PDFTest drawTest"
+	"PDFDemos drawTest"
 	
 	| pdfdoc aPage width xy1 xy2 |
 
@@ -269,7 +269,7 @@ PDFDemos class >> drawTest [
 PDFDemos class >> headerFooterTest [
 	"generate a sample document with a header and a footer"
 
-	"PDFTest headerFooterTest"
+	"PDFDemos headerFooterTest"
 	
 	| pdfdoc aPage secondPage myFont |
 
@@ -302,7 +302,7 @@ PDFDemos class >> headerFooterTest [
 PDFDemos class >> imagePNG [
 	"Artefact use an PNG file"
 	
-	"PDFTest imagePNG"
+	"PDFDemos imagePNG"
 	
 	| pdfdoc myImage aPage |
 	pdfdoc := PDFDocument new.	
@@ -322,7 +322,7 @@ PDFDemos class >> imagePNG [
 PDFDemos class >> infos [
 	"generate a sample document with informations"
 
-	"PDFTest infos"
+	"PDFDemos infos"
 	
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
@@ -346,7 +346,7 @@ PDFDemos class >> infos [
 PDFDemos class >> multiOrientations [
 	"a simple demonstration of Artefact"
 	
-	"PDFTest multiOrientations"
+	"PDFDemos multiOrientations"
 	
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
 	pdfdoc := PDFDocument new.	
@@ -390,26 +390,28 @@ PDFDemos class >> paragraphTest [
 		border: true; 
 		linefeed: true; 
 		fillColor: (PDFColor new setGreyLevel: 220);
-		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
+		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
 	aPage add: (PDFParagraphStyle new 
-		wh: 60@40; 
-		border: false; 
+		xy: 20@40;
+		wh: 60@60; 
+		border: true; 
 		linefeed: false; 
-		text: 'Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
+		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
 	aPage add: (PDFParagraphStyle new 
-		wh: 60@40; 
-		border: false; 
-		linefeed: false; 
-		text: 'Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
+		xy: 100@40;
+		wh: 60@70; 
+		border: true; 
+		linefeed: true; 
+		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
 		alignToCenter).
 		
 	aPage add: (PDFParagraphStyle new 
 		wh: 60@45; 
-		border: false; 
-		linefeed: false; 
-		text: 'Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
+		border: true; 
+		linefeed: true; 
+		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
 		alignToTheRight
 		).
 		
@@ -422,7 +424,7 @@ PDFDemos class >> paragraphTest [
 PDFDemos class >> test [
 	"generate a sample document"
 
-	"PDFTest ex1"
+	"PDFDemos ex1"
 	
 	| pdfdoc aPage myFont |
 	pdfdoc := PDFDocument new.
@@ -447,7 +449,7 @@ PDFDemos class >> test [
 PDFDemos class >> widthTest [
 	"generate a sample document for testing the width of fonts"
 
-	"PDFTest widthTest"
+	"PDFDemos widthTest"
 	
 	| pdfdoc aPage myFont myBigFont width text size |
 
