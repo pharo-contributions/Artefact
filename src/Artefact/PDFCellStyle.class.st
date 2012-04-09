@@ -1,8 +1,21 @@
 Class {
 	#name : #PDFCellStyle,
 	#superclass : #PDFFormatedText,
+	#instVars : [
+		'linefeed'
+	],
 	#category : #Artefact
 }
+
+{ #category : #accessing }
+PDFCellStyle >> linefeed [
+	^ linefeed ifNil: [ linefeed := false ]
+]
+
+{ #category : #accessing }
+PDFCellStyle >> linefeed: anObject [
+	linefeed := anObject
+]
 
 { #category : #render }
 PDFCellStyle >> renderContentOn: aPage [

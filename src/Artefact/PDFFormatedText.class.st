@@ -3,7 +3,6 @@ Class {
 	#superclass : #PDFText,
 	#instVars : [
 		'border',
-		'linefeed',
 		'alignment'
 	],
 	#category : #Artefact
@@ -54,14 +53,4 @@ PDFFormatedText >> drawBox [
 		(self fillColor isEmpty) ifFalse: [ cellBackground fillColor: (self fillColor) ].
 		self out: cellBackground.	
 	].
-]
-
-{ #category : #accessing }
-PDFFormatedText >> linefeed [
-	^ linefeed ifNil: [ linefeed := false ]
-]
-
-{ #category : #accessing }
-PDFFormatedText >> linefeed: anObject [
-	linefeed := anObject
 ]

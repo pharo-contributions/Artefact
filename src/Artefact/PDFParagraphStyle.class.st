@@ -9,6 +9,13 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #private }
+PDFParagraphStyle >> chomp: aString [
+	"remove the last char of a string"
+	
+	^aString copyFrom: 1 to: (aString size - 1)
+]
+
 { #category : #action }
 PDFParagraphStyle >> getLines [
 	"answer the content of each lines in the paragraph"
@@ -77,12 +84,8 @@ PDFParagraphStyle >> renderContentOn: aPage [
 	].
 
 	"set the new current position and linefeed ?"
-	Transcript show: self wh y asString; cr.
 	aPage lasth: self wh y.
-	Transcript show: ('avant:' , aPage xy asString);cr.
 	aPage xy: (aPage margins x) @ (aPage xy y + self wh y).
-	Transcript show: ('apres' , aPage xy asString);cr..	
-	"(self linefeed) ifTrue: [ self out: (PDFLineFeed new) ]."
 	
 	 ^self buffer
 	
@@ -107,11 +110,12 @@ PDFParagraphStyle >> splitOn: aPage [
 				widthOfLine := widthOfLine + widthOfWord.
 				]
 			ifFalse: [
-				self lines add: line contents asString.
+				self lines add: (self chomp: (line contents asString)).
 				line resetContents; nextPutAll: word.
 				widthOfLine := widthOfWord.
 				]	
 	].
+	self lines add: (self chomp: (line contents asString)).
 
 	self listOfLines: self lines contents.
 	self numberOfLines: self lines size.
