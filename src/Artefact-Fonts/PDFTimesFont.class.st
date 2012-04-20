@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFTimesFont,
 	#superclass : #PDFFont,
-	#category : #Artefact
+	#category : #'Artefact-Fonts'
 }
 
 { #category : #accessing }

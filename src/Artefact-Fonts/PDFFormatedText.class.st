@@ -5,7 +5,7 @@ Class {
 		'border',
 		'alignment'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #action }

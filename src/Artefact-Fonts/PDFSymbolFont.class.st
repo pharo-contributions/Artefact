@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFSymbolFont,
 	#superclass : #PDFFont,
-	#category : #Artefact
+	#category : #'Artefact-Fonts'
 }
 
 { #category : #widths }

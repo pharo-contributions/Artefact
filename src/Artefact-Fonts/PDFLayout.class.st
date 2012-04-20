@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'height'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }

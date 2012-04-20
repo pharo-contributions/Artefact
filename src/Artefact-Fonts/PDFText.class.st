@@ -8,7 +8,7 @@ Class {
 		'font',
 		'pdfFontSize'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }

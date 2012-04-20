@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFZapfdingbatsFont,
 	#superclass : #PDFFont,
-	#category : #Artefact
+	#category : #'Artefact-Fonts'
 }
 
 { #category : #accessing }

@@ -6,7 +6,7 @@ Class {
 		'numberOfLines',
 		'listOfLines'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #private }

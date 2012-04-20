@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFTextStyle,
 	#superclass : #PDFText,
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #render }

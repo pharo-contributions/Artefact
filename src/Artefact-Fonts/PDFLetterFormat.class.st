@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFLetterFormat,
 	#superclass : #PDFFormat,
-	#category : #Artefact
+	#category : #'Artefact-Formats'
 }
 
 { #category : #'as yet unclassified' }

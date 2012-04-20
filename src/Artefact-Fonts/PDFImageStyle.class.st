@@ -5,7 +5,7 @@ Class {
 		'xy',
 		'wh'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #configuration }

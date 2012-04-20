@@ -7,7 +7,7 @@ Class {
 		'inkForColumns',
 		'fillColorForColumns'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }

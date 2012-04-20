@@ -9,7 +9,7 @@ Class {
 		'charWidths',
 		'pdfDocument'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Fonts'
 }
 
 { #category : #accessing }

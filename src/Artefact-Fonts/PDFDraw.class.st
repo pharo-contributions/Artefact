@@ -7,7 +7,7 @@ Class {
 		'destination',
 		'width'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }

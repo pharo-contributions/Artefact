@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFLineStyle,
 	#superclass : #PDFDraw,
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #render }

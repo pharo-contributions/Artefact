@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'linefeed'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }

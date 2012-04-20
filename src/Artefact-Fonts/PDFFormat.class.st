@@ -6,7 +6,7 @@ Class {
 		'margins',
 		'size'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Formats'
 }
 
 { #category : #description }

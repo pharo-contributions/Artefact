@@ -6,7 +6,7 @@ Class {
 		'ink',
 		'fillColor'
 	],
-	#category : #Artefact
+	#category : #'Artefact-Styles'
 }
 
 { #category : #accessing }
