@@ -429,6 +429,8 @@ PDFDemos class >> test [
 	aPage := PDFPage new.
 	aPage add: (PDFCellStyle new font: (PDFTimesFont new fontSize: 32);wh: 100@20; border: true; text: 'Hello World!').
 	aPage add: (PDFTextStyle new xy: 50@100; text: 'Another text'; font: (PDFCourierFont new)).
+	aPage add: (PDFTextStyle new xy: 50@150; text: ('euro:' , ((219 asCharacter) asString)); font: (PDFHelveticaFont new)).
+	aPage add: (PDFTextStyle new xy: 50@170; text: ('(euro (): )' , ((219 asCharacter) asString)); font: (PDFTimesFont new)).
 	pdfdoc add: aPage.
 	
 	myFont := PDFCourierFont new fontSize: 32.

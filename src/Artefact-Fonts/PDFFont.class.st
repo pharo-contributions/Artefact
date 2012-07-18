@@ -60,6 +60,14 @@ PDFFont >> fontSize: anObject [
 	fontSize := anObject
 ]
 
+{ #category : #action }
+PDFFont >> getCharWidthOf: aChar in: aFont [
+	"If the char is not a ascii char, the method return a default width"
+	((aChar asInteger) > 255)
+		ifTrue: [ ^0 ]
+		ifFalse: [ ^ ((self charWidths at: aFont) at: aChar) ]
+]
+
 { #category : #private }
 PDFFont >> getFontName [
 	"answer the PDF name of the font"
@@ -100,7 +108,8 @@ PDFFont >> getStringWidth: aString into: aDocument [
 	| width |
 	
 	width := 0.
-	aString do: [ :char | width := width + ((self charWidths at: (self getFontName)) at: char) ].
+	"aString do: [ :char | width := width + ((self charWidths at: (self getFontName)) at: char) ]."
+	aString do: [ :char | width := width + (self getCharWidthOf: char in: (self getFontName)) ].
 	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
 	
 ]
