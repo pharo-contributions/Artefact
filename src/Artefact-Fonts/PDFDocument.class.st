@@ -329,6 +329,18 @@ PDFDocument >> endPage: aPageSize [
 
 ]
 
+{ #category : #tools }
+PDFDocument >> escape: aString [
+	"answer a clean string at PDF format"
+	
+	| str |
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
+	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
+
+	^str
+]
+
 { #category : #action }
 PDFDocument >> exportToFile: aFileName [
 	"Export the PDF document in a file"
@@ -648,7 +660,7 @@ PDFDocument >> subject: aString [
 PDFDocument >> textString: aString [
 	"Answer a formated text string"
 	
-	^('(' , aString , ')') 
+	^('(' , (self escape: aString) , ')')
 ]
 
 { #category : #accessing }
