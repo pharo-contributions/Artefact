@@ -100,7 +100,7 @@ PDFDocument >> addTheListOfFonts [
 PDFDocument >> addTheOrientations: aNumberOfObjects [
 	"each page can have a different orientation (landscape or portrait) and a different size"
 	
-	self pages do: [ :page | 
+	self pages do: [ :page |  
 			self newObj.
 			self out: '<</Type /Page'.
 			self out: '/Parent 1 0 R'.
@@ -109,26 +109,7 @@ PDFDocument >> addTheOrientations: aNumberOfObjects [
 			self out: '/Contents ' , (aNumberOfObjects + 1) asString , ' 0 R>>'.
 			self out: 'endobj'.
 		].
-"
-	for($n=1;$n<=$nb;$n++)
-	{
-		//Page
-		$this->_newobj();
-		$this->_out('<</Type /Page');
-		$this->_out('/Parent 1 0 R');
-		if(isset($this->OrientationChanges[$n]))
-			$this->_out('/MediaBox [0 0 '.$hPt.' '.$wPt.']');
-		$this->_out('/Resources 2 0 R');
-		$this->_out('/Contents '.($this->n+1).' 0 R>>');
-		$this->_out('endobj');
-		//Page content
-		$p=($this->compress) ? gzcompress($this->pages[$n]) : $this->pages[$n];
-		$this->_newobj();
-		$this->_out('<<'.$filter.'/Length '.strlen($p).'>>');
-		$this->_out('stream');
-		$this->_out($p.'endstream');
-		$this->_out('endobj');
-"
+ 
 ]
 
 { #category : #private }
@@ -204,7 +185,8 @@ PDFDocument >> beginPage: aPage [
 
 	self offset: self buffer size.
 	self newObj.
-	self out: { '<<' . '/Type /Page' . '/Parent 1 0 R'. '/Resources 2 0 R' }.
+	"self out: { '<<' . '/Type /Page' . '/Parent 1 0 R'. '/Resources 2 0 R' }."
+self out: { '<<' . '/Type /Page' . '/Parent 1 0 R' }.
 	self out: '/MediaBox [0 0 ' , (aPage format size x asString) , ' ' , (aPage format size y asString) , ']'.  
 	self out: { ('/Contents ' , (self numberOfObjects + 1) asString , ' 0 R') . '>>' }.
 	
