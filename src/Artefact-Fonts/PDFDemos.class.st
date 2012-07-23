@@ -266,6 +266,26 @@ PDFDemos class >> drawTest [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDemos class >> euro [
+	"a PDF document with the euro sign"
+
+	| pdfdoc aPage theText|
+
+       pdfdoc := PDFDocument new.
+
+       aPage := PDFPage new.
+	theText :=  ('Price: (24{1})A\B' format: { (128 asCharacter) asString} ).
+	
+       aPage add: (PDFTextStyle new xy: 50@10; text: theText; font: (PDFTimesFont new)).
+       aPage add: (PDFTextStyle new xy: 50@20; text: theText; font: (PDFCourierFont new)).
+       aPage add: (PDFTextStyle new xy: 50@30; text: theText; font: (PDFHelveticaFont  new)).
+
+	pdfdoc add: aPage.
+	
+       pdfdoc exportToFile: 'euro.pdf'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFDemos class >> headerFooterTest [
 	"generate a sample document with a header and a footer"
 
