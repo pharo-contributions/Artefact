@@ -1,3 +1,14 @@
+"
+PDFFormat has not been documented yet. The class comment should describe the purpose of the class, its collaborations and its variables.
+
+Instance Variables:
+	portrait	<ProtoObject>
+	margins	<Point | TTPoint>
+	size	<Point | TTPoint>
+		
+	28,347619048
+	
+"
 Class {
 	#name : #PDFFormat,
 	#superclass : #Object,
@@ -37,16 +48,6 @@ PDFFormat >> margins [
 { #category : #accessing }
 PDFFormat >> margins: anObject [
 	margins := anObject
-]
-
-{ #category : #accessing }
-PDFFormat >> orientation [
-	^ orientation
-]
-
-{ #category : #accessing }
-PDFFormat >> orientation: anObject [
-	orientation := anObject
 ]
 
 { #category : #accessing }
