@@ -1,11 +1,14 @@
 Class {
 	#name : #PDFDemos,
 	#superclass : #Object,
+	#classInstVars : [
+		'demoPath'
+	],
 	#category : #'Artefact-Demos'
 }
 
-{ #category : #'as yet unclassified' }
-PDFDemos class >> alignments [
+{ #category : #text }
+PDFDemos class >> alignmentsTest [
 	"a simple demonstration of Artefact"
 	
 	"PDFDemos alignments"
@@ -42,10 +45,10 @@ PDFDemos class >> alignments [
 	).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/alignments.pdf'.
+	pdfdoc exportToFile: self demoPath , 'alignmentsTest.pdf'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #color }
 PDFDemos class >> colorTest [
 	"generate a sample document with colors"
 
@@ -63,100 +66,28 @@ PDFDemos class >> colorTest [
 		ink: (PDFColor new setColor: #(255 0 0) );
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
-	aPage add: (PDFTextStyle new 
-		xy: 70@100; 
-		text: 'Another text'; 
-		font: (PDFCourierFont new);
-		ink: (PDFColor new setGreyLevel: 128)
-		).
-
 	aPage add: (PDFRectStyle new 
-		xy: 0@80;
+		xy: 10@50;
 		wh: 50@50; 
 		width: 5;
 		ink: (PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
 		
-	aPage add: (PDFRectStyle new 
-		xy: 0@135;
-		wh: 50@50; 
-		width: 5;
-		ink: (PDFColor new setGreyLevel: 196);
-		fillColor: (PDFColor new setGreyLevel: 164)
-		).
-		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/colorTest.pdf'.
+	pdfdoc exportToFile: self demoPath , 'colorTest.pdf'.
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highLevel }
 PDFDemos class >> datatableTest [
-	"generate a sample document"
+	"generate a datatable"
 
 	"PDFDemos datatableTest"
 	
-	| pdfdoc aPage columns data |
-	
-	columns := #('Name'  'Surname' 'email').
-	data := #(
-		#('Smith' 'Peter' 'peter.smith@mail.org')
-		#('Jones' 'Mickael' 'mickael.jones@epr.com')
-		#('washington' 'robert' 'robert.washington@blif.com')
-	).
-	
-	pdfdoc := PDFDocument new.
-	pdfdoc setFormat: PDFA3Format new.
-	pdfdoc setLandscape.
-	pdfdoc title: 'Users report'.
-	
-	aPage := PDFPage new.
-
-	columns do: [ :string | 
-		aPage add: (PDFCellStyle new 
-			wh: 60@10; 
-			ink: (PDFColor new setColor: #(0 0 0));
-			fillColor: (PDFColor new setGreyLevel: 196);
-			border: true;
-			font: (PDFHelveticaFont new bold: true); 
-			text: string; 
-			alignToCenter) ].
-	aPage add: PDFLineFeed new.
-
-	data do: [ :aLine |
-		aLine do: [ :string | 
-			aPage add: (PDFCellStyle new 
-				wh: 60@10; 
-				border: true; 
-				text: string; 
-				alignToCenter) ].
-		aPage add: PDFLineFeed new.
-		]. 
-	pdfdoc add: aPage.
+	| pdfdoc aPage |
 		
-	pdfdoc exportToFile: '/Users/olivier/Desktop/datatableTest.pdf'.
-
-	
-	
-]
-
-{ #category : #'as yet unclassified' }
-PDFDemos class >> datatableTest2 [
-	"generate a datatable"
-
-	"PDFDemos datatableTest2"
-	
-	| pdfdoc aPage columns data |
-	
-	columns := #('Name'  'Surname' 'email').
-	data := #(
-		#('Smith' 'Peter' 'peter.smith@mail.org')
-		#('Jones' 'Mickael' 'mickael.jones@epr.com')
-		#('washington' 'robert' 'robert.washington@blif.com')
-	).
-	
 	pdfdoc := PDFDocument new.
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc title: 'Users report'.
@@ -164,9 +95,9 @@ PDFDemos class >> datatableTest2 [
 	aPage := PDFPage new.
 	aPage add: (PDFDataTableStyle new columns: #('Name'  'Surname' 'email');
 		data: #(
-		#('Smith' 'Peter' 'peter.smith@mail.org')
-		#('Jones' 'Mickael' 'mickael.jones@epr.com')
-		#('washington' 'robert' 'robert.washington@blif.com')
+			#('Smith' 'Peter' 'peter.smith@mail.org')
+			#('Jones' 'Mickael' 'mickael.jones@epr.com')
+			#('washington' 'robert' 'robert.washington@blif.com')
 		);
 		inkForColumns: (PDFColor new setColor: #(0 0 0));
 		fillColorForColumns: (PDFColor new setGreyLevel: 196);
@@ -178,7 +109,7 @@ PDFDemos class >> datatableTest2 [
 	  ).
 	pdfdoc add: aPage.
 		
-	pdfdoc exportToFile: '/Users/olivier/Desktop/datatableTest2.pdf'.
+	pdfdoc exportToFile: self demoPath , 'datatableTest.pdf'.
 
 	
 	
@@ -228,47 +159,19 @@ PDFDemos class >> demo [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
+	pdfdoc exportToFile: self demoPath , 'demo.pdf'.
 ]
 
-{ #category : #'as yet unclassified' }
-PDFDemos class >> drawTest [
-	"generate a sample document for testing the draw objects"
-
-	"PDFDemos drawTest"
-	
-	| pdfdoc aPage width xy1 xy2 |
-
-	pdfdoc := PDFDocument new.	
-	aPage := PDFPage new.
-	width := 1.
-	xy1 := 10@20.
-	xy2 := 100@20.
-	
-	1 to: 5 do: [ :i |
-		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; width: i).
-		xy1 := (xy1 x) @ (xy1 y + 10).
-		xy2 := (xy2 x) @ (xy2 y + 10).
-	].	
-	
-	aPage add: (PDFRectStyle new 
-		xy: 50@80;
-		wh: 50@50; 
-		width: 5
-		).
-	
-	pdfdoc add: aPage.
-	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/drawTest.pdf'.
-
-	
-	
+{ #category : #accessing }
+PDFDemos class >> demoPath [
+	^'/home/olivier/Desktop/'
 ]
 
-{ #category : #'as yet unclassified' }
-PDFDemos class >> euro [
+{ #category : #text }
+PDFDemos class >> euroTest [
 	"a PDF document with the euro sign"
 
+	"PDFDemos euroTest"
 	| pdfdoc aPage theText|
 
        pdfdoc := PDFDocument new.
@@ -282,10 +185,42 @@ PDFDemos class >> euro [
 
 	pdfdoc add: aPage.
 	
-       pdfdoc exportToFile: 'euro.pdf'.
+       pdfdoc exportToFile: self demoPath , 'euroTest.pdf'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #color }
+PDFDemos class >> greyLevelTest [
+	"generate a sample document with grey levels"
+
+	"PDFDemos greyLevelTest"
+	
+	| pdfdoc aPage myFont |
+	pdfdoc := PDFDocument new.
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFTextStyle new 
+		xy: 10@10; 
+		text: 'A grey level text'; 
+		font: (PDFCourierFont new);
+		ink: (PDFColor new setGreyLevel: 128)
+		).
+		
+	aPage add: (PDFRectStyle new 
+		xy: 10@20;
+		wh: 50@50; 
+		width: 5;
+		ink: (PDFColor new setGreyLevel: 196);
+		fillColor: (PDFColor new setGreyLevel: 164)
+		).
+		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath , 'greyLevelTest.pdf'.
+
+]
+
+{ #category : #experimental }
 PDFDemos class >> headerFooterTest [
 	"generate a sample document with a header and a footer"
 
@@ -312,13 +247,13 @@ PDFDemos class >> headerFooterTest [
 	"secondPage header: false; footer: false."
 	pdfdoc add: secondPage.		
 			
-	pdfdoc exportToFile: '/Users/olivier/Desktop/headerFooterTest.pdf'.
+	pdfdoc exportToFile: self demoPath , 'headerFooterTest.pdf'.
 
 	
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #experimental }
 PDFDemos class >> imagePNG [
 	"Artefact use an PNG file"
 	
@@ -338,11 +273,11 @@ PDFDemos class >> imagePNG [
 	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
 ]
 
-{ #category : #'as yet unclassified' }
-PDFDemos class >> infos [
+{ #category : #document }
+PDFDemos class >> infosTest [
 	"generate a sample document with informations"
 
-	"PDFDemos infos"
+	"PDFDemos infosTest"
 	
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
@@ -356,17 +291,17 @@ PDFDemos class >> infos [
 	aPage := PDFPage new.
 	
 	pdfdoc add: aPage.
-	pdfdoc exportToFile: '/Users/olivier/Desktop/infos.pdf'.
+	pdfdoc exportToFile: self demoPath , 'infosTest.pdf'.
 
 	
 	
 ]
 
-{ #category : #'as yet unclassified' }
-PDFDemos class >> multiOrientations [
-	"a simple demonstration of Artefact"
+{ #category : #document }
+PDFDemos class >> multiOrientationsTest [
+	"Create a document with two pages and two different orientations"
 	
-	"PDFDemos multiOrientations"
+	"PDFDemos multiOrientationsTest"
 	
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
 	pdfdoc := PDFDocument new.	
@@ -391,12 +326,12 @@ PDFDemos class >> multiOrientations [
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
 
-	pdfdoc exportToFile: '/Users/olivier/Desktop/multiOrientations.pdf'.
+	pdfdoc exportToFile: self demoPath , 'multiOrientationsTest.pdf'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #highLevel }
 PDFDemos class >> paragraphTest [
-	"a simple demonstration of Artefact"
+	"Use of paragraphs"
 	
 	"PDFDemos paragraphTest"
 	
@@ -434,34 +369,84 @@ PDFDemos class >> paragraphTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/paragraph.pdf'.
+	pdfdoc exportToFile: self demoPath , 'paragraph.pdf'.
+]
+
+{ #category : #draw }
+PDFDemos class >> thicknessTest [
+	"generate a sample document for testing the draw objects"
+
+	"PDFDemos drawTest"
+	
+	| pdfdoc aPage width xy1 xy2 |
+
+	pdfdoc := PDFDocument new.	
+	aPage := PDFPage new.
+	width := 1.
+	xy1 := 10@20.
+	xy2 := 100@20.
+	
+	1 to: 5 do: [ :i |
+		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; width: i).
+		xy1 := (xy1 x) @ (xy1 y + 10).
+		xy2 := (xy2 x) @ (xy2 y + 10).
+	].	
+	
+	aPage add: (PDFRectStyle new 
+		xy: 50@80;
+		wh: 50@50; 
+		width: 5
+		).
+	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath , 'thicknessTest.pdf'.
+
+	
+	
+]
+
+{ #category : #draw }
+PDFDemos class >> twoRectsTest [
+	"intersecting rects"
+	
+	"self twoRects"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFRectStyle new
+		xy: 10@10;
+		wh: 100@30 ).
+	aPage add: (PDFRectStyle new
+		xy: 15@15;
+		wh: 100@30 ).		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'twoRectTest.pdf'.
 ]
 
 { #category : #'as yet unclassified' }
-PDFDemos class >> test [
-	"generate a sample document"
-
-	"PDFDemos ex1"
+PDFDemos class >> unCarresDansUnCarreStyle [
+	"un test de style géométrique"
 	
-	| pdfdoc aPage myFont |
-	pdfdoc := PDFDocument new.
+	"self unCarresDansUnCarreStyle"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
 	
 	aPage := PDFPage new.
-	aPage add: (PDFCellStyle new font: (PDFTimesFont new fontSize: 32);wh: 100@20; border: true; text: 'Hello World!').
-	aPage add: (PDFTextStyle new xy: 50@100; text: 'Another text'; font: (PDFCourierFont new)).
-	aPage add: (PDFTextStyle new xy: 50@150; text: ('euro:' , ((219 asCharacter) asString)); font: (PDFHelveticaFont new)).
-	aPage add: (PDFTextStyle new xy: 50@170; text: ('(euro (): )' , ((219 asCharacter) asString)); font: (PDFTimesFont new)).
+	
+	aPage add: (UnCarreDansUnCarre new
+		xy: 10@10;
+		wh: 100@30;
+		borderSize: 5@2 ).
+		
 	pdfdoc add: aPage.
 	
-	myFont := PDFCourierFont new fontSize: 32.
-	
-	Transcript show: (myFont getStringWidth: 'Hello' into: pdfdoc) asString; cr.
-	Transcript show: (myFont getIdealFontSizeForTheString: 'Hello' width: 100 into: pdfdoc) asString.
-
-	pdfdoc exportToFile: '/Users/olivier/Desktop/test.pdf'.
-
-	
-	
+	pdfdoc exportToFile: '/home/olivier/Desktop/deuxCarreDansUnCarre.pdf'.
 ]
 
 { #category : #'as yet unclassified' }
@@ -493,7 +478,7 @@ PDFDemos class >> widthTest [
 	aPage add: (PDFLineStyle new xy: 10@60; destination: 110@60).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/widthTest.pdf'.
+	pdfdoc exportToFile: self demoPath , 'widthTest.pdf'.
 
 	
 	

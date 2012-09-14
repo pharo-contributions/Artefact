@@ -329,10 +329,7 @@ PDFDocument >> exportToFile: aFileName [
 	
 	| stream |
 	stream := StandardFileStream fileNamed: aFileName.
-	
-	(String crlf split: (self generate)) do: [ :aString | 
-		stream nextPutAll: (aString , String crlf).
-	].
+	stream nextPutAll: self generate.
 	stream close.
 ]
 
@@ -387,7 +384,7 @@ PDFDocument >> formatRef: aRef [
 
 { #category : #action }
 PDFDocument >> generate [
-	" answer the PDF file"
+	" answer the PDF data"
 
 	"new document: reset all"
 	self clearBuffer.
