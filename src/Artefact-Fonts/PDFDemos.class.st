@@ -52,7 +52,7 @@ PDFDemos class >> alignmentsTest [
 PDFDemos class >> colorTest [
 	"generate a sample document with colors"
 
-	"PDFDemos colorTest"
+	"self colorTest"
 	
 	| pdfdoc aPage myFont |
 	pdfdoc := PDFDocument new.
@@ -84,7 +84,7 @@ PDFDemos class >> colorTest [
 PDFDemos class >> datatableTest [
 	"generate a datatable"
 
-	"PDFDemos datatableTest"
+	"self datatableTest"
 	
 	| pdfdoc aPage |
 		
@@ -164,7 +164,47 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/home/olivier/Desktop/'
+	^'/Users/olivier/Desktop/'
+]
+
+{ #category : #draw }
+PDFDemos class >> dottedTest [
+	"drawing with dotted"
+	
+	"self dottedTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFLineStyle new
+		xy: 10@10;
+		destination: 100@30;
+		dotted: (PDFDotted new length: 2; space: 3)
+	).
+	
+	aPage add: (PDFLineStyle new
+		xy: 30@30;
+		destination: 80@50;
+		dotted: (PDFDotted new)
+	).
+
+	aPage add: (PDFLineStyle new
+		xy: 10@10;
+		destination: 10@50
+	 ).
+	
+	aPage add: (PDFRectStyle new
+		xy: 80@80;
+		wh: 100@30; 
+		dotted: (PDFDotted new length: 0.5; space: 0.5);
+		thickness:  2
+		).
+			
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'dottedTest.pdf'.
 ]
 
 { #category : #text }
@@ -192,7 +232,7 @@ PDFDemos class >> euroTest [
 PDFDemos class >> greyLevelTest [
 	"generate a sample document with grey levels"
 
-	"PDFDemos greyLevelTest"
+	"self greyLevelTest"
 	
 	| pdfdoc aPage myFont |
 	pdfdoc := PDFDocument new.
@@ -224,7 +264,7 @@ PDFDemos class >> greyLevelTest [
 PDFDemos class >> headerFooterTest [
 	"generate a sample document with a header and a footer"
 
-	"PDFDemos headerFooterTest"
+	"self headerFooterTest"
 	
 	| pdfdoc aPage secondPage myFont |
 
@@ -257,7 +297,7 @@ PDFDemos class >> headerFooterTest [
 PDFDemos class >> imagePNG [
 	"Artefact use an PNG file"
 	
-	"PDFDemos imagePNG"
+	"self imagePNG"
 	
 	| pdfdoc myImage aPage |
 	pdfdoc := PDFDocument new.	
@@ -277,7 +317,7 @@ PDFDemos class >> imagePNG [
 PDFDemos class >> infosTest [
 	"generate a sample document with informations"
 
-	"PDFDemos infosTest"
+	"self infosTest"
 	
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
@@ -301,7 +341,7 @@ PDFDemos class >> infosTest [
 PDFDemos class >> multiOrientationsTest [
 	"Create a document with two pages and two different orientations"
 	
-	"PDFDemos multiOrientationsTest"
+	"self multiOrientationsTest"
 	
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
 	pdfdoc := PDFDocument new.	
@@ -333,7 +373,7 @@ PDFDemos class >> multiOrientationsTest [
 PDFDemos class >> paragraphTest [
 	"Use of paragraphs"
 	
-	"PDFDemos paragraphTest"
+	"self paragraphTest"
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
@@ -376,7 +416,7 @@ PDFDemos class >> paragraphTest [
 PDFDemos class >> thicknessTest [
 	"generate a sample document for testing the draw objects"
 
-	"PDFDemos drawTest"
+	"self thicknessTest"
 	
 	| pdfdoc aPage width xy1 xy2 |
 
@@ -387,7 +427,7 @@ PDFDemos class >> thicknessTest [
 	xy2 := 100@20.
 	
 	1 to: 5 do: [ :i |
-		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; width: i).
+		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; thickness: i).
 		xy1 := (xy1 x) @ (xy1 y + 10).
 		xy2 := (xy2 x) @ (xy2 y + 10).
 	].	
@@ -395,7 +435,7 @@ PDFDemos class >> thicknessTest [
 	aPage add: (PDFRectStyle new 
 		xy: 50@80;
 		wh: 50@50; 
-		width: 5
+		thickness:  5
 		).
 	
 	pdfdoc add: aPage.
@@ -410,7 +450,7 @@ PDFDemos class >> thicknessTest [
 PDFDemos class >> twoRectsTest [
 	"intersecting rects"
 	
-	"self twoRects"
+	"self twoRectsTest"
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
