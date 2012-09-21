@@ -45,7 +45,7 @@ PDFDraw >> initStyle: aDocument [
 	"Set the dotted if defined"
 	(self dotted isNil) 
 		ifTrue: [ self out: '[] 0 d' ]
-		ifFalse: [ self out: (self dotted getConfigurationInto: aDocument) ]
+		ifFalse: [ self out: (self dotted setDottedInto: aDocument) ]
 
 	
 ]
