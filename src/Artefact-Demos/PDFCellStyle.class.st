@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFCellStyle,
-	#superclass : #PDFFormatedText,
+	#superclass : #PDFCompositeStyle,
 	#instVars : [
 		'linefeed'
 	],

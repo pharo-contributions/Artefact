@@ -139,6 +139,11 @@ PDFPage >> renderContent [
 ]
 
 { #category : #accessing }
+PDFPage >> styleSheet [
+	^ self document styleSheet 
+]
+
+{ #category : #accessing }
 PDFPage >> styles [
 	^ styles ifNil: [ styles := OrderedCollection new ]
 ]

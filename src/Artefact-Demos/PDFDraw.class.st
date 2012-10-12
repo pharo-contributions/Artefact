@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFDraw,
-	#superclass : #PDFVisibleItem,
+	#superclass : #PDFBasicStyle,
 	#instVars : [
 		'destination'
 	],
@@ -28,8 +28,39 @@ PDFDraw >> drawColor: aPDFColor [
 ]
 
 { #category : #accessing }
+PDFDraw >> drawColorIfAbsent: anAlternativeStyleSheet [
+	^ self styleSheet get: #drawColor ifAbsentFrom: anAlternativeStyleSheet 
+]
+
+{ #category : #accessing }
 PDFDraw >> fillColor: aPDFColor [
 	self styleSheet fillColor: aPDFColor 
+]
+
+{ #category : #accessing }
+PDFDraw >> fillColorIfAbsent: anAlternativeStyleSheet [
+	^ self styleSheet get: #fillColor ifAbsentFrom: anAlternativeStyleSheet 
+]
+
+{ #category : #configuration }
+PDFDraw >> initColors: aDocument [
+	| drawColor fillColor pdfcode |
+	
+	drawColor := self drawColorIfAbsent: aDocument styleSheet.
+	fillColor := self fillColorIfAbsent: aDocument styleSheet.
+	
+	pdfcode := OrderedCollection new.
+	
+	(drawColor greyLevel isNil) 
+		ifTrue: [ (drawColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: drawColor) , ' RG') ] ]
+		ifFalse: [ pdfcode add: (PDFColor round: (drawColor greyLevel)) , ' G' ].
+	(fillColor greyLevel isNil)
+		ifTrue: [ (fillColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: fillColor) , ' rg') ] ]
+		ifFalse: [ pdfcode add: (PDFColor round: (fillColor greyLevel)) , ' g' ].
+		
+	self out: pdfcode
+
+
 ]
 
 { #category : #configuration }
@@ -45,9 +76,10 @@ PDFDraw >> initStyle: aDocument [
 	self out: '2 J'.
 	
 	"Set the colors or grey levels"
-	self out: (self setColorForInk: (self styleSheet get: #drawColor ifAbsentFrom: aDocument styleSheet ) 
+	self initColors: aDocument.
+	"self out: (self setColorForInk: (self styleSheet get: #drawColor ifAbsentFrom: aDocument styleSheet ) 
 		fillWith: (self styleSheet get: #fillColor ifAbsentFrom: aDocument styleSheet)
-		).
+		)."
 
 	dotted := (self styleSheet get: #dotted ifAbsentFrom: aDocument styleSheet).
 

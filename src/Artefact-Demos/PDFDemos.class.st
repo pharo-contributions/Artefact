@@ -11,7 +11,7 @@ Class {
 PDFDemos class >> alignmentsTest [
 	"a simple demonstration of Artefact"
 	
-	"PDFDemos alignments"
+	"PDFDemos alignmentsTest"
 	
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
@@ -20,28 +20,25 @@ PDFDemos class >> alignmentsTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFFormatedText new 
 		font: myFont; 
 		wh: 150@10; 
-		border: true; 
-		linefeed: true; 
+		xy: 10@10;
 		text: 'At left'
 	).
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFFormatedText new 
 		font: myFont; 
 		wh: 150@10; 
-		border: true; 
-		linefeed: true; 
+		xy: 10@20;
 		text: 'Center'; 
-		alignToCenter
+		alignCenter
 	).
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFFormatedText new 
 		font: myFont; 
 		wh: 150@10; 
-		border: true; 
-		linefeed: true; 
+		xy: 10@30;
 		text: 'At right'; 
-		alignToTheRight
+		alignRight
 	).
 	pdfdoc add: aPage.
 	
@@ -165,7 +162,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/home/olivier/Desktop/'
+	^'/Users/larcheveque/Desktop/'
 ]
 
 { #category : #draw }
@@ -411,35 +408,67 @@ PDFDemos class >> paragraphTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFParagraphStyle new 
-		wh: 160@20; 
-		border: true; 
-		fillColor: (PDFColor new setGreyLevel: 220);
+		xy: 90@40;
+		wh: 100@20; 
 		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
 	aPage add: (PDFParagraphStyle new 
 		xy: 20@40;
 		wh: 60@60; 
-		border: true; 
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
 	aPage add: (PDFParagraphStyle new 
 		xy: 100@40;
 		wh: 60@70; 
-		border: true; 
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
-		alignToCenter).
+		alignCenter).
 		
 	aPage add: (PDFParagraphStyle new 
 		xy: 10@120;
 		wh: 60@80; 
-		border: true; 
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
-		alignToTheRight
+		alignRight
 		).
 		
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'paragraph.pdf'.
+]
+
+{ #category : #text }
+PDFDemos class >> textTest [
+	"PDFDemos textTest"
+	
+	| pdfdoc myFont myBigFont aPage |
+	pdfdoc := PDFDocument new.	
+
+	myFont := PDFTimesFont new fontSize: 16.
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFTextStyle new  
+		xy: 10@10;
+		text: 'A very simple text'
+	).
+	aPage add: (PDFTextStyle new 
+		font: myFont; 
+		xy: 10@30; 
+		text: 'A very simple text with specified font'
+	).
+	aPage add: (PDFTextStyle new 
+		textColor: (PDFColor new setColor: #(255 0 0 ));
+		xy: 10@50; 
+		text: 'A very simple text with specified color'
+	).
+	aPage add: (PDFTextStyle new 
+		textColor: (PDFColor new setColor: #(0 0 255 ));
+		font: myFont; 
+		xy: 10@70; 
+		text: 'A very simple text with specified color and font'
+	).
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath , 'textTest.pdf'.
 ]
 
 { #category : #draw }
@@ -477,6 +506,32 @@ PDFDemos class >> thicknessTest [
 ]
 
 { #category : #draw }
+PDFDemos class >> twoColoredRectsTest [
+	"intersecting rects"
+	
+	"self twoColoredRectsTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFRectStyle new
+		xy: 10@10;
+		wh: 100@30;
+		fillColor: (PDFColor new setColor: #(142 24 78));
+		drawColor: (PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFRectStyle new
+		xy: 15@15;
+		wh: 100@30;
+		fillColor: (PDFColor new setColor: #(24 57 205));
+		drawColor: (PDFColor new setColor: #(0 255 0))).		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'twoColoredRectTest.pdf'.
+]
+
+{ #category : #draw }
 PDFDemos class >> twoRectsTest [
 	"intersecting rects"
 	
@@ -494,7 +549,7 @@ PDFDemos class >> twoRectsTest [
 		xy: 15@15;
 		wh: 100@30 ).		
 	pdfdoc add: aPage.
-	
+
 	pdfdoc exportToFile: self demoPath  , 'twoRectTest.pdf'.
 ]
 

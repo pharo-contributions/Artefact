@@ -1,56 +1,59 @@
 Class {
 	#name : #PDFFormatedText,
-	#superclass : #PDFText,
+	#superclass : #PDFCompositeTextStyle,
 	#instVars : [
-		'border',
-		'alignment'
+		'textElement'
 	],
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #action }
-PDFFormatedText >> alignToCenter [
-	self alignment: #CENTER
-]
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> defineXYforTextStyle:  aTextElement On: aPage [
 
-{ #category : #action }
-PDFFormatedText >> alignToTheLeft [
-	self alignment: #LEFT
-]
-
-{ #category : #action }
-PDFFormatedText >> alignToTheRight [
-	self alignment: #RIGHT
-]
-
-{ #category : #accessing }
-PDFFormatedText >> alignment [
-	^ alignment ifNil: [ alignment := #LEFT ]
-]
-
-{ #category : #accessing }
-PDFFormatedText >> alignment: anObject [
-	alignment := anObject
-]
-
-{ #category : #accessing }
-PDFFormatedText >> border [
-	^ border ifNil: [ border := false ]
-]
-
-{ #category : #accessing }
-PDFFormatedText >> border: anObject [
-	border := anObject
-]
-
-{ #category : #private }
-PDFFormatedText >> drawBox: aPage [
-	"Draw a box (with fill color) around the text"
-	| cellBackground |
+	"Set right xy values for text"
+	| font width decx |
+	font := aTextElement fontIfAbsent: aPage styleSheet.
+	width := font getStringWidth: aTextElement text into: (aPage document).
 	
-	(self border) ifTrue: [
-		cellBackground := (PDFRectStyle new xy: (self xy); wh: (self wh); styleSheet: (self styleSheet)).
-		(self fillColor isEmpty) ifFalse: [ cellBackground fillColor: (self fillColor) ].
-		self out: cellBackground.	
-	].
+	(self alignment = #RIGHT) 
+			ifTrue: [ decx := self wh x - width ] 
+			ifFalse: [ 
+				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := 0 ] 
+			].
+	
+	(aTextElement xy: ( decx + self xy x)@((self xy y + (self wh y) + (font scaledFontSize: aPage document scaleFactor)) roundDownTo: 0.001)). 
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> font: aFont [
+	textElement font: aFont
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> getStyles: aPage [
+
+	self defineXYforTextStyle: textElement On: aPage.
+
+	^ {textElement}
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> initialize [
+	super initialize.
+	textElement := PDFTextStyle new.
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> text [
+	^ textElement text
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> text: aString [
+	textElement text: aString
+]
+
+{ #category : #'as yet unclassified' }
+PDFFormatedText >> textColor: aColor [
+	textElement textColor: aColor
 ]
