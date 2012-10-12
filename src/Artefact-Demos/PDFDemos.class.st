@@ -129,13 +129,12 @@ PDFDemos class >> demo [
 	
 	aPage := PDFPage new.
 
-	
 	aPage add: (PDFCellStyle new 
 		font: myBigFont; 
 		wh: 100@60; 
 		border: true; 
 		linefeed: true; 
-		ink: (PDFColor new setColor: #(0 255 0));
+		textColor: (PDFColor new setColor: #(0 255 0));
 		text: 'Première ligne').
 		
 	aPage add: (PDFCellStyle new 
@@ -143,7 +142,7 @@ PDFDemos class >> demo [
 		wh: 100@24; 
 		border: true; 
 		linefeed: true;
-		ink: (PDFColor new setColor: #(128 128 0)); 
+		textColor: (PDFColor new setColor: #(128 128 0)); 
 		text: 'Artefact').
 	
 	aPage add: (PDFCellStyle new 
@@ -151,20 +150,22 @@ PDFDemos class >> demo [
 		wh: 100@10; 
 		border: true; 
 		linefeed: true; 
+		textColor: (PDFColor new setColor: #(0 0 0));
 		text: 'PDF Framework for Pharo').
-	
-	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@10; ink:(PDFColor new setColor: #(255 0 0))).
-	aPage add: (PDFLineStyle new xy: 10@10; destination: 10@20; ink:(PDFColor new setColor: #(255 0 0))).
+			
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@10; drawColor: (PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineStyle new xy: 10@10; destination: 10@20; drawColor:(PDFColor new setColor: #(255 0 0))).
 
 	
 	pdfdoc add: aPage.
+	pdfdoc explore.
 	
 	pdfdoc exportToFile: self demoPath , 'demo.pdf'.
 ]
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/Desktop/'
+	^'/home/olivier/Desktop/'
 ]
 
 { #category : #draw }

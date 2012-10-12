@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #accessing }
+PDFText >> fillColor: aColor [
+	self styleSheet fillColor: aColor
+]
+
+{ #category : #accessing }
 PDFText >> font: aFont [
 	self styleSheet font: aFont
 ]
@@ -17,19 +22,18 @@ PDFText >> initStyle: aDocument [
 	
 	"Set the colors or grey levels"
 	| font |
-	self out: (self setColorForInk: (self ink) fillWith: (self fillColor)).
 
+	"Set the colors or grey levels"
+	self out: (
+		self setColorForInk: (self styleSheet get: #textColor ifAbsentFrom: aDocument styleSheet ) 
+		fillWith: (self styleSheet get: #fillColor ifAbsentFrom: aDocument styleSheet)
+		).
+		
 	font := (self styleSheet get: #font ifAbsentFrom: aDocument styleSheet).
 	
 	"Insert the font size in the PDF document"
 	aDocument fonts at: (font fontName) ifAbsent: [ aDocument fonts at: font fontName put: ((aDocument fonts size) + 1) ].
 	self out: 'BT /F', (aDocument fonts at: (font fontName)) asString , ' ' , (font scaledFontSize: aDocument scaleFactor) asString , ' Tf ET'.
-]
-
-{ #category : #render }
-PDFText >> setColorForInk: aInkColor fillWith: aFillColor [
-	"fillColor for the text, inkColor for draw the box"
-	^ (super setColorForInk: aFillColor fillWith: aInkColor)
 ]
 
 { #category : #accessing }

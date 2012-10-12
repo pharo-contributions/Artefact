@@ -44,7 +44,7 @@ PDFFormatedText >> border: anObject [
 ]
 
 { #category : #private }
-PDFFormatedText >> drawBox [
+PDFFormatedText >> drawBox: aPage [
 	"Draw a box (with fill color) around the text"
 	| cellBackground |
 	
