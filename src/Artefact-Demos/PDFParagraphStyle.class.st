@@ -20,13 +20,13 @@ PDFParagraphStyle >> decalageOn: aPage. [
 ]
 
 { #category : #accessing }
-PDFParagraphStyle >> getStyles: aPage [
+PDFParagraphStyle >> getStyles [
 
 	| lines decalage currentXY current |
-	lines := self splitOn: aPage.
-	decalage := self decalageOn: aPage.
+	lines := self splitOn: (self page).
+	decalage := self decalageOn: (self page).
 	currentXY := self xy.
-	^ lines collect: [:aLine | current := PDFFormatedText new styleSheet: (self styleSheet); alignment: self alignment; xy: currentXY; wh: self wh; text: aLine.
+	^ lines collect: [:aLine | current := PDFFormatedTextStyle new styleSheet: (self styleSheet); alignment: self alignment; xy: currentXY; wh: self wh; text: aLine.
 			currentXY := currentXY + (0@decalage).
 			current ].
 ]

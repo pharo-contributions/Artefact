@@ -20,29 +20,156 @@ PDFDemos class >> alignmentsTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFFormatedText new 
+	aPage add: (PDFFormatedTextStyle new 
 		font: myFont; 
 		wh: 150@10; 
-		xy: 10@10;
+		xy: 0@0;
 		text: 'At left'
 	).
-	aPage add: (PDFFormatedText new 
+	aPage add: (PDFFormatedTextStyle new 
 		font: myFont; 
 		wh: 150@10; 
 		xy: 10@20;
 		text: 'Center'; 
-		alignCenter
+		center
 	).
-	aPage add: (PDFFormatedText new 
+	aPage add: (PDFFormatedTextStyle new 
 		font: myFont; 
 		wh: 150@10; 
 		xy: 10@30;
 		text: 'At right'; 
-		alignRight
+		right
 	).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'alignmentsTest.pdf'.
+]
+
+{ #category : #composite }
+PDFDemos class >> cellTest [
+	"PDFDemos cellTest"
+	
+	"Demonstration of PDFCellStyle"
+	
+	| pdfdoc myFont myTitleFont aPage |
+	pdfdoc := PDFDocument new.	
+
+	myTitleFont := PDFTimesFont new fontSize: 24; bold: true.
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFCellStyle new
+		xy: 10@5;
+		wh: 190@10;
+		fillColor: (PDFColor new setGreyLevel: 224);
+		text: 'Demonstration of PDFCellStyle';
+		font: myTitleFont;
+		center
+	).
+	
+	"horizontal alignment"
+	aPage add: (PDFCellStyle new  
+		xy: 10@20;
+		wh: 50@10;
+		text: 'alignment: left'
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 80@20;
+		wh: 50@10;
+		text: 'alignment: center';
+		center
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 150@20;
+		wh: 50@10;
+		text: 'alignment: right';
+		right
+	).
+
+	"vertical alignment"
+	aPage add: (PDFCellStyle new  
+		xy: 10@40;
+		wh: 50@10;
+		text: 'vertical: top'
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 80@40;
+		wh: 50@10;
+		text: 'vertical: middle';
+		center;
+		middle
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 150@40;
+		wh: 50@10;
+		text: 'vertical: bottom';
+		right;
+		bottom
+	).
+
+	"colors"
+	aPage add: (PDFCellStyle new  
+		xy: 10@60;
+		wh: 50@10;
+		textColor: (PDFColor new setColor: #(0 0 255));
+		drawColor: (PDFColor new setColor: #(255 0 0));
+		text: 'text: blue border: red';
+		center;
+		middle
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 80@60;
+		wh: 50@10;
+		textColor: (PDFColor new setColor: #(0 0 255));
+		fillColor: (PDFColor new setColor: #(0 255 0));
+		text: 'background: green';
+		center;
+		middle
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 150@60;
+		wh: 50@10;
+		textColor: (PDFColor new setGreyLevel: 255);
+		fillColor: (PDFColor new setGreyLevel: 128);
+		dotted: (PDFDotted new length: 1; space: 1);
+		text: 'grey level & dotted border';
+		thickness: 2;
+		center;
+		middle
+	).
+	
+	aPage add: (PDFCellStyle new  
+		xy: 10@80;
+		text: 'A cell without wh'
+	).
+	aPage add: (PDFCellStyle new  
+		wh: 50@10;
+		text: 'A cell without xy'
+	).
+	aPage add: (PDFCellStyle new  
+		wh: 50@10;
+		text: 'linefeed: true';
+		linefeed: true
+	).
+	aPage add: (PDFCellStyle new  
+		wh: 50@10;
+		text: 'linefeed: false';
+		linefeed: false
+	).
+	aPage add: (PDFCellStyle new  
+		wh: 50@10;
+		text: 'end'
+	).
+	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath , 'cellTest.pdf'.
 ]
 
 { #category : #color }
@@ -77,7 +204,7 @@ PDFDemos class >> colorTest [
 
 ]
 
-{ #category : #highLevel }
+{ #category : #composite }
 PDFDemos class >> datatableTest [
 	"generate a datatable"
 
@@ -162,7 +289,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/Desktop/'
+	^'/home/olivier/Desktop/'
 ]
 
 { #category : #draw }
@@ -396,7 +523,7 @@ PDFDemos class >> multiOrientationsTest [
 	pdfdoc exportToFile: self demoPath , 'multiOrientationsTest.pdf'.
 ]
 
-{ #category : #highLevel }
+{ #category : #composite }
 PDFDemos class >> paragraphTest [
 	"Use of paragraphs"
 	
@@ -418,16 +545,16 @@ PDFDemos class >> paragraphTest [
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
 	aPage add: (PDFParagraphStyle new 
-		xy: 100@40;
+		xy: 100@80;
 		wh: 60@70; 
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
-		alignCenter).
+		center).
 		
 	aPage add: (PDFParagraphStyle new 
 		xy: 10@120;
 		wh: 60@80; 
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
-		alignRight
+		right
 		).
 		
 	pdfdoc add: aPage.

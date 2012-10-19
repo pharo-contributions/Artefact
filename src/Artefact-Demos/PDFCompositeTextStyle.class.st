@@ -2,25 +2,11 @@ Class {
 	#name : #PDFCompositeTextStyle,
 	#superclass : #PDFCompositeStyle,
 	#instVars : [
-		'alignment'
+		'alignment',
+		'verticalAlignment'
 	],
 	#category : #'Artefact-Styles'
 }
-
-{ #category : #action }
-PDFCompositeTextStyle >> alignCenter [
-	self alignment: #CENTER
-]
-
-{ #category : #action }
-PDFCompositeTextStyle >> alignLeft [
-	self alignment: #LEFT
-]
-
-{ #category : #action }
-PDFCompositeTextStyle >> alignRight [
-	self alignment: #RIGHT
-]
 
 { #category : #accessing }
 PDFCompositeTextStyle >> alignment [
@@ -30,6 +16,16 @@ PDFCompositeTextStyle >> alignment [
 { #category : #accessing }
 PDFCompositeTextStyle >> alignment: anObject [
 	alignment := anObject
+]
+
+{ #category : #action }
+PDFCompositeTextStyle >> bottom [
+	self verticalAlignment: #BOTTOM
+]
+
+{ #category : #action }
+PDFCompositeTextStyle >> center [
+	self alignment: #CENTER
 ]
 
 { #category : #'as yet unclassified' }
@@ -42,6 +38,21 @@ PDFCompositeTextStyle >> fontIfAbsent: aStyleSheet. [
 	^ (self styleSheet get: #font ifAbsentFrom: aStyleSheet)
 ]
 
+{ #category : #action }
+PDFCompositeTextStyle >> left [
+	self alignment: #LEFT
+]
+
+{ #category : #action }
+PDFCompositeTextStyle >> middle [
+	self verticalAlignment: #MIDDLE
+]
+
+{ #category : #action }
+PDFCompositeTextStyle >> right [
+	self alignment: #RIGHT
+]
+
 { #category : #'as yet unclassified' }
 PDFCompositeTextStyle >> textColor: aColor [
 	self styleSheet textColor: aColor
@@ -50,4 +61,19 @@ PDFCompositeTextStyle >> textColor: aColor [
 { #category : #'as yet unclassified' }
 PDFCompositeTextStyle >> textColorIfAbsent: anAlternativeStyleSheet [
 	^ self styleSheet get: #textColor ifAbsentFrom: anAlternativeStyleSheet 
+]
+
+{ #category : #action }
+PDFCompositeTextStyle >> top [
+	self verticalAlignment: #TOP
+]
+
+{ #category : #accessing }
+PDFCompositeTextStyle >> verticalAlignment [
+	^ verticalAlignment ifNil: [ verticalAlignment := #TOP ]
+]
+
+{ #category : #accessing }
+PDFCompositeTextStyle >> verticalAlignment: anObject [
+	verticalAlignment := anObject
 ]

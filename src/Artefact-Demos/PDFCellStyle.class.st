@@ -1,11 +1,54 @@
 Class {
 	#name : #PDFCellStyle,
-	#superclass : #PDFCompositeStyle,
+	#superclass : #PDFFormatedTextStyle,
 	#instVars : [
-		'linefeed'
+		'linefeed',
+		'rectElement'
 	],
 	#category : #'Artefact-Styles'
 }
+
+{ #category : #accessing }
+PDFCellStyle >> dotted: anObject [
+	rectElement dotted: anObject
+]
+
+{ #category : #accessing }
+PDFCellStyle >> drawColor: aColor [
+	rectElement drawColor: aColor
+]
+
+{ #category : #accessing }
+PDFCellStyle >> fillColor: aColor [
+	rectElement fillColor: aColor
+]
+
+{ #category : #render }
+PDFCellStyle >> getStyles [
+	
+	"get the current position in the page if xy is not defined"
+	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
+	
+	self defineXYforTextStyle: textElement On: (self page).
+	
+	"set the new current position and linefeed ?"
+	self page lasth: self wh y.	
+	(self linefeed) 
+		ifTrue: [ self page xy: (self page margins x) @ (self page xy y + self wh y) ] 
+		ifFalse: [ self page xy: (self page xy x + self wh x) @ (self page xy y) ].
+	
+	"answer the style description"	
+	^ OrderedCollection new 
+		add: (rectElement xy: self xy; wh: self wh); 
+		add: textElement; 
+		yourself.
+]
+
+{ #category : #'initialize-release' }
+PDFCellStyle >> initialize [
+	super initialize.
+	rectElement := PDFRectStyle new.
+]
 
 { #category : #accessing }
 PDFCellStyle >> linefeed [
@@ -21,6 +64,7 @@ PDFCellStyle >> linefeed: anObject [
 PDFCellStyle >> renderContentOn: aPage [
 	| decx width cellmargin cellBackground font |
 
+	"WARNING - NOT USED"
 	
 	(self xy isNil) ifTrue: [ self xy: aPage xy ] ifFalse: [ aPage xy: self xy ].
 	"self drawBox: aPage."
@@ -59,5 +103,24 @@ PDFCellStyle >> renderContentOn: aPage [
 
 
 	
+
+]
+
+{ #category : #accessing }
+PDFCellStyle >> thickness: aThickness [
+	rectElement thickness: aThickness 
+]
+
+{ #category : #accessing }
+PDFCellStyle >> wh [
+	"answer the with of the string if wh isn't defined"
+	| font width height |
+	
+	^wh ifNil: [
+		font := textElement fontIfAbsent: ((self page document) styleSheet).
+		width := font getStringWidth: (textElement text) into: (self page document).
+		height := (font scaledFontSize: (self page) document scaleFactor) roundDownTo: 0.001.
+		wh :=  width@height
+	]
 
 ]
