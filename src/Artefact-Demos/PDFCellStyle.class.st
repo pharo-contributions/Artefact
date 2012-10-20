@@ -8,6 +8,28 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
+{ #category : #'as yet unclassified' }
+PDFCellStyle >> defineXYforTextStyle:  aTextElement On: aPage [
+
+	"Set right xy values for text"
+	| font height decx decy |
+
+	"call the superclass method to determine the x position (right, center, left ?)"
+	super defineXYforTextStyle: aTextElement  On: aPage.
+
+	font := aTextElement fontIfAbsent: aPage styleSheet.
+	height := (font scaledFontSize: aPage document scaleFactor) roundDownTo: 0.001.
+	
+	"determining the vertical offset"
+	(self verticalAlignment = #BOTTOM)
+		ifTrue: [ decy := self wh y ]
+		ifFalse: [ 
+				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := (self wh y  * 0.5) + (height * 0.3) ] ifFalse: [ decy := height ]
+			].
+
+	aTextElement xy: aTextElement xy x@((self xy y + decy)) 
+]
+
 { #category : #accessing }
 PDFCellStyle >> dotted: anObject [
 	rectElement dotted: anObject

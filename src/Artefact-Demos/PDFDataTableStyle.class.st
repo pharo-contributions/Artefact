@@ -30,26 +30,6 @@ PDFDataTableStyle >> data: anObject [
 	data := anObject
 ]
 
-{ #category : #accessing }
-PDFDataTableStyle >> fillColorForColumns [
-	^ fillColorForColumns ifNil: [ fillColorForColumns := self fillColor ]
-]
-
-{ #category : #accessing }
-PDFDataTableStyle >> fillColorForColumns: anObject [
-	fillColorForColumns := anObject
-]
-
-{ #category : #accessing }
-PDFDataTableStyle >> inkForColumns [
-	^ inkForColumns ifNil: [ inkForColumns := self ink ]
-]
-
-{ #category : #accessing }
-PDFDataTableStyle >> inkForColumns: anObject [
-	inkForColumns := anObject
-]
-
 { #category : #render }
 PDFDataTableStyle >> renderContentOn: aPage [
 	"answer the content of a datatable"

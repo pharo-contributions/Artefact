@@ -10,30 +10,22 @@ Class {
 { #category : #'as yet unclassified' }
 PDFFormatedTextStyle >> defineXYforTextStyle:  aTextElement On: aPage [
 
-	"Set right xy values for text"
-	| font width height decx decy |
+	"Set right x values for text"
+	| font width decx height |
 	
 	font := aTextElement fontIfAbsent: aPage styleSheet.
 	
 	width := font getStringWidth: aTextElement text into: (aPage document).
 	height := (font scaledFontSize: aPage document scaleFactor) roundDownTo: 0.001.
-	
+		
 	"determining the horizontal offset"
 	(self alignment = #RIGHT) 
 			ifTrue: [ decx := self wh x - width ] 
 			ifFalse: [ 
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := 0 ] 
 			].
-	
-	"determining the vertical offset"
-	(self verticalAlignment = #BOTTOM)
-		ifTrue: [ decy := self wh y - height ]
-		ifFalse: [ 
-				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := ((self wh y - height) / 2) ] ifFalse: [ decy := 0 ]
-			].
-	
-	"(aTextElement xy: ( decx + self xy x)@((self xy y + (self wh y) + (font scaledFontSize: aPage document scaleFactor)) roundDownTo: 0.001)). "
-	aTextElement xy: ( decx + self xy x)@((self xy y + height + decy)) 
+		
+	aTextElement xy: (decx + self xy x)@(self xy y + height) 
 ]
 
 { #category : #'as yet unclassified' }
