@@ -9,16 +9,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFCellStyle >> defineXYforTextStyle:  aTextElement On: aPage [
+PDFCellStyle >> determineDecyForTextStyleOn: aPage With: aFont [
 
 	"Set right xy values for text"
-	| font height decx decy |
+	| height decy |
 
-	"call the superclass method to determine the x position (right, center, left ?)"
-	super defineXYforTextStyle: aTextElement  On: aPage.
-
-	font := aTextElement fontIfAbsent: aPage styleSheet.
-	height := (font scaledFontSize: aPage document scaleFactor) roundDownTo: 0.001.
+	height := aFont scaledFontSize: aPage document scaleFactor.
 	
 	"determining the vertical offset"
 	(self verticalAlignment = #BOTTOM)
@@ -27,7 +23,7 @@ PDFCellStyle >> defineXYforTextStyle:  aTextElement On: aPage [
 				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := (self wh y  * 0.5) + (height * 0.3) ] ifFalse: [ decy := height ]
 			].
 
-	aTextElement xy: aTextElement xy x@((self xy y + decy)) 
+	^decy 
 ]
 
 { #category : #accessing }
@@ -49,12 +45,18 @@ PDFCellStyle >> fillColor: aColor [
 PDFCellStyle >> getStyles [
 	
 	"get the current position in the page if xy is not defined"
+	| decx decy font |
 	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
 	
-	self defineXYforTextStyle: textElement On: (self page).
+	"set the position of the text element"
+	font := textElement fontIfAbsent: (self page) styleSheet.
+	decx := self determineDecxForTextStyle: textElement On: (self page) With: font.
+	decy := self determineDecyForTextStyleOn: (self page) With: font. 
+
+	textElement xy: (decx + self xy x)@(self xy y + decy).
 	
 	"set the new current position and linefeed ?"
-	self page lasth: self wh y.	
+ 	self page lasth: self wh y.	
 	(self linefeed) 
 		ifTrue: [ self page xy: (self page margins x) @ (self page xy y + self wh y) ] 
 		ifFalse: [ self page xy: (self page xy x + self wh x) @ (self page xy y) ].

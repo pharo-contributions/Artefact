@@ -289,7 +289,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/home/olivier/Desktop/'
+	^'/Users/olivier/Desktop/'
 ]
 
 { #category : #draw }

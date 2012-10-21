@@ -8,15 +8,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> defineXYforTextStyle:  aTextElement On: aPage [
+PDFFormatedTextStyle >> determineDecxForTextStyle:  aTextElement On: aPage With: aFont [
 
 	"Set right x values for text"
-	| font width decx height |
+	| font width decx |
 	
-	font := aTextElement fontIfAbsent: aPage styleSheet.
-	
-	width := font getStringWidth: aTextElement text into: (aPage document).
-	height := (font scaledFontSize: aPage document scaleFactor) roundDownTo: 0.001.
+	width := aFont getStringWidth: aTextElement text into: (aPage document).
 		
 	"determining the horizontal offset"
 	(self alignment = #RIGHT) 
@@ -25,7 +22,7 @@ PDFFormatedTextStyle >> defineXYforTextStyle:  aTextElement On: aPage [
 				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := 0 ] 
 			].
 		
-	aTextElement xy: (decx + self xy x)@(self xy y + height) 
+	^decx
 ]
 
 { #category : #'as yet unclassified' }
@@ -36,8 +33,14 @@ PDFFormatedTextStyle >> font: aFont [
 { #category : #'as yet unclassified' }
 PDFFormatedTextStyle >> getStyles [
 
-	self defineXYforTextStyle: textElement On: (self page).
+	| height font decx |
 
+	font := textElement fontIfAbsent: (self page styleSheet).
+	height := font scaledFontSize: (self page document scaleFactor).
+	
+	decx := self determineDecxForTextStyle: textElement On: (self page) With: font.
+
+	textElement xy: (decx + self xy x)@(self xy y + height).
 	^ {textElement}
 ]
 
