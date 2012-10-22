@@ -78,7 +78,21 @@ PDFDemos class >> arrowTest [
 		destination: 140@40;
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
-				
+
+	aPage add: (PDFArrowStyle new
+		xy: 125@40;
+		destination: 100@80;
+		drawColor: (PDFColor new setColor: #(0 255 0));
+		dotted: (PDFDotted new length: 2; space: 3)
+	).	
+
+	aPage add: (PDFArrowStyle new
+		xy: 40@50;
+		destination: 80@90;
+		drawColor: (PDFColor new setColor: #(192 255 0));
+		thickness:  5
+	 ).		
+					
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath  , 'arrowTest.pdf'.

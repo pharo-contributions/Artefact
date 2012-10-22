@@ -9,7 +9,14 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #accessing }
+PDFArrowStyle >> dotted: aPDFDottedObject [
+	lineElement dotted: aPDFDottedObject.
+	headFirstElement dotted: aPDFDottedObject.
+	headSecondElement dotted: aPDFDottedObject.
+]
+
+{ #category : #accessing }
 PDFArrowStyle >> drawColor: aPDFColor [
 	lineElement drawColor: aPDFColor.
 	headFirstElement drawColor: aPDFColor.
@@ -47,4 +54,11 @@ PDFArrowStyle >> initialize [
 	lineElement := PDFLineStyle new.
 	headFirstElement := PDFLineStyle new.
 	headSecondElement := PDFLineStyle new.
+]
+
+{ #category : #accessing }
+PDFArrowStyle >> thickness: aThickness [
+	lineElement thickness: aThickness.
+	headFirstElement thickness: aThickness.
+	headSecondElement thickness: aThickness.
 ]
