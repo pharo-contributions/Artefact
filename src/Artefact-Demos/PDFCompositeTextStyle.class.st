@@ -28,12 +28,12 @@ PDFCompositeTextStyle >> center [
 	self alignment: #CENTER
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFCompositeTextStyle >> font: aFont [
 	self styleSheet font: aFont
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFCompositeTextStyle >> fontIfAbsent: aStyleSheet. [
 	^ (self styleSheet get: #font ifAbsentFrom: aStyleSheet)
 ]
@@ -53,12 +53,12 @@ PDFCompositeTextStyle >> right [
 	self alignment: #RIGHT
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFCompositeTextStyle >> textColor: aColor [
 	self styleSheet textColor: aColor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFCompositeTextStyle >> textColorIfAbsent: anAlternativeStyleSheet [
 	^ self styleSheet get: #textColor ifAbsentFrom: anAlternativeStyleSheet 
 ]

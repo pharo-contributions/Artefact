@@ -46,6 +46,45 @@ PDFDemos class >> alignmentsTest [
 ]
 
 { #category : #composite }
+PDFDemos class >> arrowTest [
+	"drawing arrows"
+	
+	"self arrowTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFArrowStyle new
+		xy: 10@10;
+		destination: 100@30;
+		drawColor: (PDFColor new setColor: #(255 0 0))
+	).
+
+	aPage add: (PDFArrowStyle new
+		xy: 10@20;
+		destination: 30@30
+	).
+
+	aPage add: (PDFArrowStyle new
+		xy: 120@10;
+		destination: 120@40;
+		drawColor: (PDFColor new setColor: #(0 0 255))
+	).
+
+	aPage add: (PDFArrowStyle new
+		xy: 125@40;
+		destination: 140@40;
+		drawColor: (PDFColor new setColor: #(0 0 255))
+	).
+				
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'arrowTest.pdf'.
+]
+
+{ #category : #composite }
 PDFDemos class >> cellTest [
 	"PDFDemos cellTest"
 	
