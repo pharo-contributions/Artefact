@@ -8,8 +8,20 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #'as yet unclassified' }
-PDFCellStyle >> determineDecyForTextStyleOn: aPage With: aFont [
+{ #category : #accessing }
+PDFCellStyle >> alignment [
+	^ alignment ifNil: [ alignment := #CENTER ]
+]
+
+{ #category : #action }
+PDFCellStyle >> cellmargin [
+	"answer the cell margin"
+	
+	^self page format leftMargin / 10.
+]
+
+{ #category : #action }
+PDFCellStyle >> determineDecyForTextStyleOn: aPage with: aFont [
 
 	"Set right xy values for text"
 	| height decy |
@@ -46,12 +58,13 @@ PDFCellStyle >> getStyles [
 	
 	"get the current position in the page if xy is not defined"
 	| decx decy font |
+
 	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
 	
 	"set the position of the text element"
 	font := textElement fontIfAbsent: (self page) styleSheet.
-	decx := self determineDecxForTextStyle: textElement On: (self page) With: font.
-	decy := self determineDecyForTextStyleOn: (self page) With: font. 
+	decx := self determineDecxForTextStyle: textElement on: (self page) margin: (self cellmargin) with: font.
+	decy := self determineDecyForTextStyleOn: (self page) with: font. 
 
 	textElement xy: (decx + self xy x)@(self xy y + decy).
 	
@@ -84,55 +97,14 @@ PDFCellStyle >> linefeed: anObject [
 	linefeed := anObject
 ]
 
-{ #category : #render }
-PDFCellStyle >> renderContentOn: aPage [
-	| decx width cellmargin cellBackground font |
-
-	"WARNING - NOT USED"
-	
-	(self xy isNil) ifTrue: [ self xy: aPage xy ] ifFalse: [ aPage xy: self xy ].
-	"self drawBox: aPage."
-
-	font := (self styleSheet get: #font ifAbsentFrom: aPage document styleSheet).
-	
-	((self text) isEmpty) ifFalse: [ 	
-		decx := 0.
-		width := font getStringWidth: self text into: (aPage document).
-		(self border) 
-			ifTrue: [ cellmargin := (aPage format leftMargin) / 10 ] 
-			ifFalse: [ cellmargin := 0 ].
-		(self alignment = #RIGHT) 
-			ifTrue: [ decx := self wh x - cellmargin - width ] 
-			ifFalse: [ 
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := cellmargin ] 
-			].
-	
-	self out: (PDFTextStyle new xy: ( decx + self xy x)@((self xy y + (0.5 * self wh y) + (0.3 * (font scaledFontSize: aPage document scaleFactor))) roundDownTo: 0.001); 
-		textColor:  (self styleSheet get: #textColor ifAbsentFrom: (aPage document styleSheet));
-		fillColor: (self styleSheet get: #fillColor ifAbsentFrom: (aPage document styleSheet));
-		font: (self styleSheet get: #font ifAbsentFrom: (aPage document styleSheet));
-		text: self text).
-	].
-
-	"set the new current position and linefeed ?"
-	aPage lasth: self wh y.	
-
-	(self linefeed) 
-		ifTrue: [ 	
-			aPage xy: (aPage margins x) @ (aPage xy y + self wh y).
-		 ] 
-		ifFalse: [ aPage xy: (aPage xy x + self wh x) @ (aPage xy y) ].
-	
-	 ^self buffer
-
-
-	
-
-]
-
 { #category : #accessing }
 PDFCellStyle >> thickness: aThickness [
 	rectElement thickness: aThickness 
+]
+
+{ #category : #accessing }
+PDFCellStyle >> verticalAlignment [
+	^ verticalAlignment ifNil: [ verticalAlignment := #MIDDLE ]
 ]
 
 { #category : #accessing }
@@ -142,7 +114,7 @@ PDFCellStyle >> wh [
 	
 	^wh ifNil: [
 		font := textElement fontIfAbsent: ((self page document) styleSheet).
-		width := font getStringWidth: (textElement text) into: (self page document).
+		width := (font getStringWidth: (textElement text) into: (self page document)) + (self cellmargin * 2).
 		height := (font scaledFontSize: (self page) document scaleFactor) roundDownTo: 0.001.
 		wh :=  width@height
 	]

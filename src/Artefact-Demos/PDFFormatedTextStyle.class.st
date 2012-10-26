@@ -8,8 +8,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> determineDecxForTextStyle:  aTextElement On: aPage With: aFont [
-
+PDFFormatedTextStyle >> determineDecxForTextStyle:  aTextElement on: aPage margin: aMargin with: aFont [
 	"Set right x values for text"
 	| font width decx |
 	
@@ -17,9 +16,9 @@ PDFFormatedTextStyle >> determineDecxForTextStyle:  aTextElement On: aPage With:
 		
 	"determining the horizontal offset"
 	(self alignment = #RIGHT) 
-			ifTrue: [ decx := self wh x - width ] 
+			ifTrue: [ decx := self wh x - aMargin - width ] 
 			ifFalse: [ 
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := 0 ] 
+				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := aMargin ] 
 			].
 		
 	^decx
@@ -38,7 +37,7 @@ PDFFormatedTextStyle >> getStyles [
 	font := textElement fontIfAbsent: (self page styleSheet).
 	height := font scaledFontSize: (self page document scaleFactor).
 	
-	decx := self determineDecxForTextStyle: textElement On: (self page) With: font.
+	decx := self determineDecxForTextStyle: textElement on: (self page) margin: 0 with: font.
 
 	textElement xy: (decx + self xy x)@(self xy y + height).
 	^ {textElement}

@@ -124,15 +124,15 @@ PDFDemos class >> cellTest [
 	aPage add: (PDFCellStyle new  
 		xy: 10@20;
 		wh: 50@10;
-		text: 'alignment: left'
+		text: 'alignment: left';
+		left
 	).
 	
 	aPage add: (PDFCellStyle new  
 		xy: 80@20;
 		wh: 50@10;
-		text: 'alignment: center';
-		center
-	).
+		text: 'alignment: center'
+	 ).
 	
 	aPage add: (PDFCellStyle new  
 		xy: 150@20;
@@ -145,7 +145,9 @@ PDFDemos class >> cellTest [
 	aPage add: (PDFCellStyle new  
 		xy: 10@40;
 		wh: 50@10;
-		text: 'vertical: top'
+		text: 'vertical: top';
+		left;
+		top
 	).
 	
 	aPage add: (PDFCellStyle new  
@@ -342,7 +344,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/home/olivier/Desktop/'
+	^'/Users/olivier/Desktop/'
 ]
 
 { #category : #draw }
