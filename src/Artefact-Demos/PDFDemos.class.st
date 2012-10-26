@@ -342,7 +342,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/olivier/Desktop/'
+	^'/home/olivier/Desktop/'
 ]
 
 { #category : #draw }
@@ -615,6 +615,35 @@ PDFDemos class >> paragraphTest [
 	pdfdoc exportToFile: self demoPath , 'paragraph.pdf'.
 ]
 
+{ #category : #draw }
+PDFDemos class >> rectsTest [
+	"intersecting rects"
+	
+	"self twoRectsTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFRectStyle new
+		xy: 10@10;
+		wh: 100@30 ).
+	aPage add: (PDFFilledRectStyle new
+		xy: 15@15;
+		wh: 100@30;
+		fillColor: (PDFColor new setColor: #(142 24 78))
+		).		
+	aPage add: (PDFRectStyle new
+		xy: 20@20;
+		wh: 100@30;
+		drawColor: (PDFColor new setColor: #(0 255 0)) 
+		).
+	pdfdoc add: aPage.
+
+	pdfdoc exportToFile: self demoPath  , 'twoRectTest.pdf'.
+]
+
 { #category : #text }
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
@@ -709,28 +738,6 @@ PDFDemos class >> twoColoredRectsTest [
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath  , 'twoColoredRectTest.pdf'.
-]
-
-{ #category : #draw }
-PDFDemos class >> twoRectsTest [
-	"intersecting rects"
-	
-	"self twoRectsTest"
-	
-	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
-	aPage := PDFPage new.
-	
-	aPage add: (PDFRectStyle new
-		xy: 10@10;
-		wh: 100@30 ).
-	aPage add: (PDFRectStyle new
-		xy: 15@15;
-		wh: 100@30 ).		
-	pdfdoc add: aPage.
-
-	pdfdoc exportToFile: self demoPath  , 'twoRectTest.pdf'.
 ]
 
 { #category : #'as yet unclassified' }

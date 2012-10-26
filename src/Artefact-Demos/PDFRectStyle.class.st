@@ -4,15 +4,17 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
+{ #category : #accessing }
+PDFRectStyle >> fillmode [
+	^'S'
+]
+
 { #category : #render }
 PDFRectStyle >> renderContentOn: aPage [
-
-	|  fill |
 	
 	"Draw a rectangle from xy with a specified size wh"
-	((self styleSheet get: #fillColor ifAbsentFrom: (aPage document styleSheet)) isEmpty) ifTrue: [ fill := 'S' ] ifFalse: [ fill := 'B'].
-	
-	self out: (self xy x asString , ' -' , self xy y asString , ' ' , self wh x asString , ' -' , self wh y asString , ' re ' , fill).
+		
+	self out: (self xy x asString , ' -' , self xy y asString , ' ' , self wh x asString , ' -' , self wh y asString , ' re ' , self fillmode).
 	
 	^buffer
 ]
