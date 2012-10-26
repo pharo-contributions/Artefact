@@ -84,7 +84,7 @@ PDFCellStyle >> getStyles [
 { #category : #'initialize-release' }
 PDFCellStyle >> initialize [
 	super initialize.
-	rectElement := PDFRectStyle new.
+	rectElement := PDFFilledRectStyle new.
 ]
 
 { #category : #accessing }
