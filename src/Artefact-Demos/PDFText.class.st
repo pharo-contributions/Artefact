@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFText,
-	#superclass : #PDFBasicStyle,
+	#superclass : #PDFBasic,
 	#instVars : [
 		'text'
 	],

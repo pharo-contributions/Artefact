@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFFormatedTextStyle,
-	#superclass : #PDFCompositeTextStyle,
+	#superclass : #PDFCompositeTextStyles,
 	#instVars : [
 		'textElement'
 	],

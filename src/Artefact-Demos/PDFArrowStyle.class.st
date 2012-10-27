@@ -1,43 +1,28 @@
 Class {
 	#name : #PDFArrowStyle,
-	#superclass : #PDFCompositeDrawStyle,
-	#instVars : [
-		'lineElement',
-		'headFirstElement',
-		'headSecondElement'
-	],
+	#superclass : #PDFArrow,
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #accessing }
-PDFArrowStyle >> dotted: aPDFDottedObject [
-	lineElement dotted: aPDFDottedObject.
-	headFirstElement dotted: aPDFDottedObject.
-	headSecondElement dotted: aPDFDottedObject.
-]
-
-{ #category : #accessing }
-PDFArrowStyle >> drawColor: aPDFColor [
-	lineElement drawColor: aPDFColor.
-	headFirstElement drawColor: aPDFColor.
-	headSecondElement drawColor: aPDFColor.	
-]
-
 { #category : #render }
 PDFArrowStyle >> getStyles [ 
-	| ink headlen dxy angle angleValue  |
+	| ink headlen dxy angle  |
 	
 	headlen := 3.
 	dxy := (destination x - xy x)@(destination y - xy y).
 	angle :=  (dxy y) arcTan: dxy x.
 	
-	lineElement xy: self xy; destination: self destination.
+	lineElement 
+		xy: self xy; 
+		destination: self destination.
 
-	angleValue := angle - ((Float pi) / 6).
-	headFirstElement xy: self destination; destination: (self destination x - (headlen * (angleValue cos)))@(self destination y - (headlen * (angleValue sin))).
-	
-	angleValue := angle + ((Float pi) / 6). 
-	headSecondElement xy: self destination; destination: (self destination x - (headlen * (angleValue cos)))@(self destination y - (headlen * (angleValue sin))).
+	headFirstElement 
+		xy: self destination; 
+		destination: (self destinationOfHeadItem: (angle - ((Float pi) / 6)) headLen: headlen).
+	 
+	headSecondElement 
+		xy: self destination; 
+		destination: (self destinationOfHeadItem: (angle + ((Float pi) / 6)) headLen: headlen).
 
 	"answer the style description"	
 	 ^ OrderedCollection new 
@@ -46,19 +31,4 @@ PDFArrowStyle >> getStyles [
 		add: headSecondElement;
 		yourself.
 
-]
-
-{ #category : #'initialize-release' }
-PDFArrowStyle >> initialize [
-	super initialize.
-	lineElement := PDFLineStyle new.
-	headFirstElement := PDFLineStyle new.
-	headSecondElement := PDFLineStyle new.
-]
-
-{ #category : #accessing }
-PDFArrowStyle >> thickness: aThickness [
-	lineElement thickness: aThickness.
-	headFirstElement thickness: aThickness.
-	headSecondElement thickness: aThickness.
 ]

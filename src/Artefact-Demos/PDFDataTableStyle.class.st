@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFDataTableStyle,
-	#superclass : #PDFCompositeStyle,
+	#superclass : #PDFComposite,
 	#instVars : [
 		'columns',
 		'data',

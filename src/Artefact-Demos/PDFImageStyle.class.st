@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFImageStyle,
-	#superclass : #PDFBasicStyle,
+	#superclass : #PDFBasic,
 	#category : #'Artefact-Styles'
 }
 

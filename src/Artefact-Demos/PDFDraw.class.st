@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFDraw,
-	#superclass : #PDFBasicStyle,
+	#superclass : #PDFBasic,
 	#instVars : [
 		'destination'
 	],
