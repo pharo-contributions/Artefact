@@ -1,11 +1,6 @@
 Class {
 	#name : #PDFArrow,
 	#superclass : #PDFCompositeDraw,
-	#instVars : [
-		'lineElement',
-		'headFirstElement',
-		'headSecondElement'
-	],
 	#category : #'Artefact-Styles'
 }
 
@@ -20,16 +15,6 @@ PDFArrow >> destinationOfHeadItem: aAngleValue with: aPosition [
 	^(aPosition x - (self headLength * (aAngleValue cos)))@(aPosition y - (self headLength * (aAngleValue sin)))
 ]
 
-{ #category : #accessing }
-PDFArrow >> dotted: aPDFDottedObject [
-	self subclassResponsibility
-]
-
-{ #category : #accessing }
-PDFArrow >> drawColor: aPDFColor [
-	self subclassResponsibility
-]
-
 { #category : #render }
 PDFArrow >> getStyles [
 	self subclassResponsibility
@@ -39,16 +24,4 @@ PDFArrow >> getStyles [
 PDFArrow >> headLength [
 	"answer the length of the head of the arrow"
 	^3
-]
-
-{ #category : #'initialize-release' }
-PDFArrow >> initialize [
-	super initialize.
-	
-
-]
-
-{ #category : #accessing }
-PDFArrow >> thickness: aThickness [
-	self subclassResponsibility
 ]
