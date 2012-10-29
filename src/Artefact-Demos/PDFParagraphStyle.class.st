@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFParagraphStyle,
-	#superclass : #PDFCompositeTextStyles,
+	#superclass : #PDFCompositeText,
 	#instVars : [
 		'text'
 	],

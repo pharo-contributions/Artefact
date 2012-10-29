@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFFormatedTextStyle,
-	#superclass : #PDFCompositeTextStyles,
+	#superclass : #PDFCompositeText,
 	#instVars : [
 		'textElement'
 	],
@@ -39,7 +39,7 @@ PDFFormatedTextStyle >> getStyles [
 	
 	decx := self determineDecxForTextStyle: textElement on: (self page) margin: 0 with: font.
 
-	textElement xy: (decx + self xy x)@(self xy y + height).
+	textElement styleSheet: (self styleSheet) xy: (decx + self xy x)@(self xy y + height).
 	^ {textElement}
 ]
 
@@ -57,9 +57,4 @@ PDFFormatedTextStyle >> text [
 { #category : #'as yet unclassified' }
 PDFFormatedTextStyle >> text: aString [
 	textElement text: aString
-]
-
-{ #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> textColor: aColor [
-	textElement textColor: aColor
 ]

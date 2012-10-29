@@ -42,6 +42,7 @@ PDFPage >> buildStyle: aStyle [
 					self buildStyle: (item renderIn: self).					
 
 					(item className = 'PDFLineFeed') ifTrue: [
+						self explore.
 						self xy: self margins x @ self xy y.
 						(item height isNil) ifTrue: [ self xy: self xy x @ (self xy y + self lasth)] ifFalse: [ self xy: self xy x @ self xy y + item height ].
 					]

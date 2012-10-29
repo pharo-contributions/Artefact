@@ -40,17 +40,17 @@ PDFCellStyle >> determineDecyForTextStyleOn: aPage with: aFont [
 
 { #category : #accessing }
 PDFCellStyle >> dotted: anObject [
-	rectElement dotted: anObject
+	self styleSheet dotted: anObject 
 ]
 
 { #category : #accessing }
 PDFCellStyle >> drawColor: aColor [
-	rectElement drawColor: aColor
+	self styleSheet drawColor: aColor
 ]
 
 { #category : #accessing }
 PDFCellStyle >> fillColor: aColor [
-	rectElement fillColor: aColor
+	self styleSheet fillColor: aColor
 ]
 
 { #category : #render }
@@ -65,8 +65,6 @@ PDFCellStyle >> getStyles [
 	font := textElement fontIfAbsent: (self page) styleSheet.
 	decx := self determineDecxForTextStyle: textElement on: (self page) margin: (self cellmargin) with: font.
 	decy := self determineDecyForTextStyleOn: (self page) with: font. 
-
-	textElement xy: (decx + self xy x)@(self xy y + decy).
 	
 	"set the new current position and linefeed ?"
  	self page lasth: self wh y.	
@@ -77,14 +75,14 @@ PDFCellStyle >> getStyles [
 	"answer the style description"	
 	^ OrderedCollection new 
 		add: (rectElement xy: self xy; wh: self wh); 
-		add: textElement; 
+		add: (textElement styleSheet: (self styleSheet); xy: (decx + self xy x)@(self xy y + decy));  
 		yourself.
 ]
 
 { #category : #'initialize-release' }
 PDFCellStyle >> initialize [
 	super initialize.
-	rectElement := PDFFilledRectStyle new.
+	rectElement := PDFFilledRectStyle new styleSheet: (self styleSheet).
 ]
 
 { #category : #accessing }
@@ -99,7 +97,8 @@ PDFCellStyle >> linefeed: anObject [
 
 { #category : #accessing }
 PDFCellStyle >> thickness: aThickness [
-	rectElement thickness: aThickness 
+	self styleSheet thickness: aThickness 
+ 
 ]
 
 { #category : #accessing }

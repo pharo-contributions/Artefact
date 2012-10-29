@@ -279,7 +279,20 @@ PDFDemos class >> datatableTest [
 	pdfdoc title: 'Users report'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFDataTableStyle new columns: #('Name'  'Surname' 'email');
+	aPage add: (PDFDataTableStyle new
+		data: #(
+			#('Smith' 'Peter' 'peter.smith@mail.org')
+			#('Jones' 'Mickael' 'mickael.jones@epr.com')
+			#('washington' 'robert' 'robert.washington@blif.com')
+		);
+		textColor:(PDFColor new setColor: #(255 0 0));
+		fillColor: (PDFColor new setGreyLevel: 230);
+		font: (PDFHelveticaFont new fontSize: 10);
+		xy: 10@10;
+		wh: 60@5
+	).
+	
+"	aPage add: (PDFDataTableStyle new columns: #('Name'  'Surname' 'email');
 		data: #(
 			#('Smith' 'Peter' 'peter.smith@mail.org')
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
@@ -292,7 +305,8 @@ PDFDemos class >> datatableTest [
 		font: (PDFHelveticaFont new fontSize: 10);
 		xy: 10@10;
 		wh: 60@5	
-	  ).
+	  )."
+
 	pdfdoc add: aPage.
 		
 	pdfdoc exportToFile: self demoPath , 'datatableTest.pdf'.

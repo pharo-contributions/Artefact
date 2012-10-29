@@ -1,33 +1,25 @@
 Class {
 	#name : #PDFDataTableStyle,
-	#superclass : #PDFComposite,
-	#instVars : [
-		'columns',
-		'data',
-		'inkForColumns',
-		'fillColorForColumns'
-	],
+	#superclass : #PDFDataTable,
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #accessing }
-PDFDataTableStyle >> columns [
-	^ columns
-]
+{ #category : #render }
+PDFDataTableStyle >> getStyles [ 
+	"answer a representation of a datatable"
 
-{ #category : #accessing }
-PDFDataTableStyle >> columns: anObject [
-	columns := anObject
-]
+	self data do: [ :line |
+		line do: [ :value | 
+			elements add: (PDFCellStyle new 
+				wh: self wh; 
+				styleSheet: (self styleSheet); 
+				text: value).
+			]. 
+			elements add: (PDFLineFeed new).
+		].
+	
+	 ^elements
 
-{ #category : #accessing }
-PDFDataTableStyle >> data [
-	^ data
-]
-
-{ #category : #accessing }
-PDFDataTableStyle >> data: anObject [
-	data := anObject
 ]
 
 { #category : #render }
