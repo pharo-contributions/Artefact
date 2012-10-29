@@ -35,19 +35,9 @@ PDFPage >> buffer: aString [
 PDFPage >> buildStyle: aStyle [
 	"build all items of a style at the current position on the page"
 	
-	aStyle do: [ :item |
-			(item className = 'ByteString')
-				ifTrue: [ self out: item ]
-				ifFalse: [ 
-					self buildStyle: (item renderIn: self).					
+	aStyle do: [ :item | self out: item ]
+	
 
-					(item className = 'PDFLineFeed') ifTrue: [
-						self explore.
-						self xy: self margins x @ self xy y.
-						(item height isNil) ifTrue: [ self xy: self xy x @ (self xy y + self lasth)] ifFalse: [ self xy: self xy x @ self xy y + item height ].
-					]
-				]
-		]
 ]
 
 { #category : #accessing }

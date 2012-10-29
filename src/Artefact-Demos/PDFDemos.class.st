@@ -642,7 +642,7 @@ PDFDemos class >> paragraphTest [
 PDFDemos class >> rectsTest [
 	"intersecting rects"
 	
-	"self twoRectsTest"
+	"self rectsTest"
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
@@ -664,7 +664,7 @@ PDFDemos class >> rectsTest [
 		).
 	pdfdoc add: aPage.
 
-	pdfdoc exportToFile: self demoPath  , 'twoRectTest.pdf'.
+	pdfdoc exportToFile: self demoPath  , 'rectsTest.pdf'.
 ]
 
 { #category : #text }

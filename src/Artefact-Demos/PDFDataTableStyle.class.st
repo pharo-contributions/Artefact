@@ -15,7 +15,7 @@ PDFDataTableStyle >> getStyles [
 				styleSheet: (self styleSheet); 
 				text: value).
 			]. 
-			elements add: (PDFLineFeed new).
+			elements add: (PDFLineFeedStyle new).
 		].
 	
 	 ^elements
@@ -39,7 +39,7 @@ PDFDataTableStyle >> renderContentOn: aPage [
 			]
 		].
 	
-	self out: (PDFLineFeed new).
+	self out: (PDFLineFeedStyle new).
 	
 	(self data isNil) ifFalse: [
 		self data do: [ :line |
@@ -53,7 +53,7 @@ PDFDataTableStyle >> renderContentOn: aPage [
 				text: value;
 				alignToCenter).
 				].
-				self out: (PDFLineFeed new).
+				self out: (PDFLineFeedStyle new).
 			].
 		].
 	

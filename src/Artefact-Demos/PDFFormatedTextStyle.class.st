@@ -39,7 +39,7 @@ PDFFormatedTextStyle >> getStyles [
 	
 	decx := self determineDecxForTextStyle: textElement on: (self page) margin: 0 with: font.
 
-	textElement styleSheet: (self styleSheet) xy: (decx + self xy x)@(self xy y + height).
+	textElement styleSheet: (self styleSheet); xy: (decx + self xy x)@(self xy y + height).
 	^ {textElement}
 ]
 
