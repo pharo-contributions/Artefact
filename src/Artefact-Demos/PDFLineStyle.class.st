@@ -8,7 +8,15 @@ Class {
 PDFLineStyle >> renderContentOn: aPage [
 	"Draw a line from xy to destination"
 			
-	self out: (self xy x asString , ' -' , self xy y asString , ' m ' , self destination x asString , ' -' , self destination y asString , ' l S').
+	self out: (
+		(self userUnitToPoints: self xy x into: aPage document) asString , 
+		' -' , 
+		(self userUnitToPoints: self xy y into: aPage document) asString , 
+		' m ' , 
+		(self userUnitToPoints: self destination x into: aPage document) asString , 
+		' -' , 
+		(self userUnitToPoints: self destination y into: aPage document) asString , 
+		' l S').
 	
 	^buffer
 ]

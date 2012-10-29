@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFVisibleItem >> userUnitToPointsInto: aDocument [
+PDFVisibleItem >> userUnitToPoints: aValue into: aDocument [
 	"answer the value in points"
-	^ self * (aDocument scaleFactor) 
+	^ aValue * (aDocument scaleFactor) 
 ]
 
 { #category : #accessing }
