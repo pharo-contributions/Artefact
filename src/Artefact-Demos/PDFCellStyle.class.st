@@ -21,12 +21,12 @@ PDFCellStyle >> cellmargin [
 ]
 
 { #category : #action }
-PDFCellStyle >> determineDecyForTextStyleOn: aPage with: aFont [
+PDFCellStyle >> determineDecyForTextStyleWith: aFont [
 
 	"Set right xy values for text"
 	| height decy |
 
-	height := aFont scaledFontSize: aPage document scaleFactor.
+	height := (aFont scaledFontSize: (self page document scaleFactor)).
 	
 	"determining the vertical offset"
 	(self verticalAlignment = #BOTTOM)
@@ -62,9 +62,10 @@ PDFCellStyle >> getStyles [
 	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
 	
 	"set the position of the text element"
-	font := textElement fontIfAbsent: (self page) styleSheet.
-	decx := self determineDecxForTextStyle: textElement on: (self page) margin: (self cellmargin) with: font.
-	decy := self determineDecyForTextStyleOn: (self page) with: font. 
+	font := textElement fontIfAbsent: (self page styleSheet).
+
+	decx := self determineDecxForTextStyle: textElement margin: (self cellmargin) with: font.
+	decy := self determineDecyForTextStyleWith: font. 
 	
 	"set the new current position and linefeed ?"
  	self page lasth: self wh y.	
@@ -73,8 +74,9 @@ PDFCellStyle >> getStyles [
 		ifFalse: [ self page xy: (self page xy x + self wh x) @ (self page xy y) ].
 	
 	"answer the style description"	
+
 	^ OrderedCollection new 
-		add: (rectElement xy: self xy; wh: self wh); 
+		add: (rectElement styleSheet: (self styleSheet); xy: self xy; wh: self wh); 
 		add: (textElement styleSheet: (self styleSheet); xy: (decx + self xy x)@(self xy y + decy));  
 		yourself.
 ]
@@ -82,7 +84,7 @@ PDFCellStyle >> getStyles [
 { #category : #'initialize-release' }
 PDFCellStyle >> initialize [
 	super initialize.
-	rectElement := PDFFilledRectStyle new styleSheet: (self styleSheet).
+	rectElement := PDFFilledRectStyle new.
 ]
 
 { #category : #accessing }

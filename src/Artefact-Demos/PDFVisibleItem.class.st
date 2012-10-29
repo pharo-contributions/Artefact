@@ -8,6 +8,12 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
+{ #category : #'as yet unclassified' }
+PDFVisibleItem >> userUnitToPointsInto: aDocument [
+	"answer the value in points"
+	^ self * (aDocument scaleFactor) 
+]
+
 { #category : #accessing }
 PDFVisibleItem >> wh [
 	^ wh
