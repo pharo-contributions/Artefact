@@ -62,9 +62,9 @@ PDFCellStyle >> getStyles [
 	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
 	
 	"set the position of the text element"
-	font := textElement fontIfAbsent: (self page styleSheet).
+	font := self fontIfAbsent: (self page styleSheet).
 
-	decx := self determineDecxForTextStyle: textElement margin: (self cellmargin) with: font.
+	decx := self determineDecxForTextStyle: (self text) margin: (self cellmargin) with: font.
 	decy := self determineDecyForTextStyleWith: font. 
 	
 	"set the new current position and linefeed ?"
@@ -77,7 +77,7 @@ PDFCellStyle >> getStyles [
 
 	^ OrderedCollection new 
 		add: (rectElement styleSheet: (self styleSheet); xy: self xy; wh: self wh); 
-		add: (textElement styleSheet: (self styleSheet); xy: (decx + self xy x)@(self xy y + decy));  
+		add: (PDFTextStyle new styleSheet: (self styleSheet); text: (self text); xy: (decx + self xy x)@(self xy y + decy));  
 		yourself.
 ]
 
@@ -114,8 +114,8 @@ PDFCellStyle >> wh [
 	| font width height |
 	
 	^wh ifNil: [
-		font := textElement fontIfAbsent: ((self page document) styleSheet).
-		width := (font getStringWidth: (textElement text) into: (self page document)) + (self cellmargin * 2).
+		font := self fontIfAbsent: (self page styleSheet).
+		width := (font getStringWidth: (self text) into: (self page document)) + (self cellmargin * 2).
 		height := (font scaledFontSize: (self page) document scaleFactor) roundDownTo: 0.001.
 		wh :=  width@height
 	]

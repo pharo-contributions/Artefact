@@ -47,7 +47,7 @@ PDFText >> initStyle: aDocument [
 	
 	"Insert the font size in the PDF document"
 	aDocument fonts at: (font fontName) ifAbsent: [ aDocument fonts at: font fontName put: ((aDocument fonts size) + 1) ].
-	self out: 'BT /F', (aDocument fonts at: (font fontName)) asString , ' ' , (font scaledFontSize: aDocument scaleFactor) asString , ' Tf ET'.
+	self out: 'BT /F', (aDocument fonts at: (font fontName)) asString , ' ' , (font fontSize asString) , ' Tf ET'.
 ]
 
 { #category : #accessing }

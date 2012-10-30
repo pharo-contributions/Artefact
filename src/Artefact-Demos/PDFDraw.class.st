@@ -77,13 +77,10 @@ PDFDraw >> initStyle: aDocument [
 	
 	"Set the colors or grey levels"
 	self initColors: aDocument.
-	"self out: (self setColorForInk: (self styleSheet get: #drawColor ifAbsentFrom: aDocument styleSheet ) 
-		fillWith: (self styleSheet get: #fillColor ifAbsentFrom: aDocument styleSheet)
-		)."
 
+	"Set the dotted propertie"
 	dotted := (self styleSheet get: #dotted ifAbsentFrom: aDocument styleSheet).
 
-	"Set the dotted if defined"
 	dotted ifNil: [ self out: '[] 0 d' ]
 		ifNotNil: [ self out: (dotted setDottedInto: aDocument) ]
 

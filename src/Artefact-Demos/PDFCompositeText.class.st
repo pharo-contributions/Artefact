@@ -2,6 +2,7 @@ Class {
 	#name : #PDFCompositeText,
 	#superclass : #PDFComposite,
 	#instVars : [
+		'text',
 		'alignment',
 		'verticalAlignment'
 	],
@@ -51,6 +52,16 @@ PDFCompositeText >> middle [
 { #category : #action }
 PDFCompositeText >> right [
 	self alignment: #RIGHT
+]
+
+{ #category : #accessing }
+PDFCompositeText >> text [
+	^text
+]
+
+{ #category : #accessing }
+PDFCompositeText >> text: aString [
+	text := aString
 ]
 
 { #category : #accessing }

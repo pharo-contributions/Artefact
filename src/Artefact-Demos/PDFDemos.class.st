@@ -422,6 +422,10 @@ PDFDemos class >> dottedTest [
 	
 	aPage := PDFPage new.
 	
+	aPage add: (PDFLineStyle new xy: 0@0; destination: 30@0).
+	aPage add: (PDFLineStyle new xy: 0@0; destination: 0@30).
+	aPage add: (PDFLineStyle new xy: 0@5; destination: 150@5).
+	
 	aPage add: (PDFLineStyle new
 		xy: 10@10;
 		destination: 100@30;
@@ -610,6 +614,27 @@ PDFDemos class >> infosTest [
 	
 ]
 
+{ #category : #draw }
+PDFDemos class >> lineTest [
+	"drawing with simple line"
+	
+	"self lineTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFLineStyle new xy: 0@0; destination: 210@0).
+	aPage add: (PDFLineStyle new xy: 0@0; destination: 0@297).
+	aPage add: (PDFLineStyle new xy: 0@297; destination: 210@297).
+	aPage add: (PDFLineStyle new xy: 210@297; destination: 210@0).
+			
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'linedTest.pdf'.
+]
+
 { #category : #document }
 PDFDemos class >> multiOrientationsTest [
 	"Create a document with two pages and two different orientations"
@@ -693,6 +718,10 @@ PDFDemos class >> rectsTest [
 	aPage := PDFPage new.
 	
 	aPage add: (PDFRectStyle new
+		xy: 0@0;
+		wh: 210@297
+	).
+	aPage add: (PDFRectStyle new
 		xy: 10@10;
 		wh: 100@30 ).
 	aPage add: (PDFFilledRectStyle new
@@ -717,7 +746,7 @@ PDFDemos class >> textTest [
 	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.	
 
-	myFont := PDFTimesFont new fontSize: 16.
+	myFont := PDFTimesFont new fontSize: 24.
 	
 	aPage := PDFPage new.
 

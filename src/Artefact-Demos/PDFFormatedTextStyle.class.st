@@ -1,9 +1,6 @@
 Class {
 	#name : #PDFFormatedTextStyle,
 	#superclass : #PDFCompositeText,
-	#instVars : [
-		'textElement'
-	],
 	#category : #'Artefact-Styles'
 }
 
@@ -12,7 +9,7 @@ PDFFormatedTextStyle >> determineDecxForTextStyle: aTextElement margin: aMargin 
 	"Set right x values for text"
 	| font width decx |
 	
-	width := aFont getStringWidth: aTextElement text into: (self page document).
+	width := aFont getStringWidth: aTextElement into: (self page document).
 	
 	"determining the horizontal offset"
 	(self alignment = #RIGHT) 
@@ -24,36 +21,19 @@ PDFFormatedTextStyle >> determineDecxForTextStyle: aTextElement margin: aMargin 
 ]
 
 { #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> font: aFont [
-	textElement font: aFont
-]
-
-{ #category : #'as yet unclassified' }
 PDFFormatedTextStyle >> getStyles [
 
 	| height font decx |
 
-	font := textElement fontIfAbsent: (self page styleSheet).
+	font := self fontIfAbsent: (self page styleSheet).
 	height := font scaledFontSize: (self page document scaleFactor).
 	
-	decx := self determineDecxForTextStyle: textElement margin: 0 with: font.
+	decx := self determineDecxForTextStyle: (self text) margin: 0 with: font.
 
-	textElement styleSheet: (self styleSheet); xy: (decx + self xy x)@(self xy y + height).
-	^ {textElement}
+	^ {PDFTextStyle new styleSheet: (self styleSheet); text: (self text); xy: (decx + self xy x)@(self xy y + height)}
 ]
 
 { #category : #'as yet unclassified' }
 PDFFormatedTextStyle >> initialize [
 	super initialize.
-	textElement := PDFTextStyle new.
-]
-
-{ #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> text [
-	^ textElement text
-]
-
-{ #category : #'as yet unclassified' }
-PDFFormatedTextStyle >> text: aString [
-	textElement text: aString
 ]

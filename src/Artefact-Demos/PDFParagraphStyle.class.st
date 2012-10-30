@@ -1,9 +1,6 @@
 Class {
 	#name : #PDFParagraphStyle,
 	#superclass : #PDFCompositeText,
-	#instVars : [
-		'text'
-	],
 	#category : #'Artefact-Styles'
 }
 
@@ -63,16 +60,6 @@ PDFParagraphStyle >> splitOn: aPage [
 	line close.
 	
 	^ lines
-]
-
-{ #category : #private }
-PDFParagraphStyle >> text [
-	^ text 
-]
-
-{ #category : #private }
-PDFParagraphStyle >> text: aText [
-	text := aText.
 ]
 
 { #category : #private }

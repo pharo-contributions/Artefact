@@ -8,7 +8,15 @@ Class {
 PDFTextStyle >> renderContentOn: aPage [
 	"Draw a text at xy position"
 		
-	self out: 'BT ' , self xy x asString , ' -' , self xy y asString , ' Td ' , ((aPage document) textString: self text) , ' Tj ET'.
+	self out: (
+		'BT ' ,
+		(self userUnitToPoints: self xy x into: aPage document) asString ,
+		' ' ,
+		((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document)) asString ,
+		' Td ' ,
+		((aPage document) textString: self text) , 
+		' Tj ET'
+	).	
 	
 	^self buffer
 	

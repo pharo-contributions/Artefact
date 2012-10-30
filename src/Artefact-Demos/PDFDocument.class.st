@@ -196,10 +196,10 @@ self out: { '<<' . '/Type /Page' . '/Parent 1 0 R' }.
 	self out: { ('<< /Length ' , (self numberOfObjects + 1) asString  , ' 0 R >>') . 'stream' }.
 	self offset: self buffer size.
 
-	self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (aPage format size y asString) , ' cm'.
+	"self out: ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 0 ' , ((self scaleFactor roundDownTo: 0.000001) asString) , ' 0 ' , (aPage format size y asString) , ' cm'."
 
 	"Set line width to n point"
-	self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'.
+	"self out: ((1 / self scaleFactor) roundDownTo: 0.001) asString , ' w'."
 
 	"Set line cap style to square"
 	self out: '2 J'.

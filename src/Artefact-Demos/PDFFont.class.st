@@ -103,15 +103,16 @@ PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
 
 { #category : #action }
 PDFFont >> getStringWidth: aString into: aDocument [
-	"answer the width of the string with the specified font"
+	"answer the width of the string with the specified font in the user unit"
 	
 	| width |
 	
 	width := 0.
-	"aString do: [ :char | width := width + ((self charWidths at: (self getFontName)) at: char) ]."
 	aString do: [ :char | width := width + (self getCharWidthOf: char in: (self getFontName)) ].
+	Transcript show: ((width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001) asString;cr.
 	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
 	
+
 ]
 
 { #category : #accessing }
