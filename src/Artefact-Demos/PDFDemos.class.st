@@ -234,34 +234,6 @@ PDFDemos class >> cellTest [
 	pdfdoc exportToFile: self demoPath , 'cellTest.pdf'.
 ]
 
-{ #category : #composite }
-PDFDemos class >> cellTest2 [
-	"PDFDemos cellTest2"
-	
-	"Demonstration of PDFCellStyle"
-	
-	| pdfdoc myFont myTitleFont aPage |
-	pdfdoc := PDFDocument new.	
-
-	myTitleFont := PDFTimesFont new fontSize: 24; bold: true.
-	
-	aPage := PDFPage new.
-
-	aPage add: (PDFCellStyle new
-		xy: 10@5;
-		wh: 190@10;
-		fillColor: (PDFColor new setGreyLevel: 224);
-		text: 'Demonstration of PDFCellStyle';
-		font: myTitleFont;
-		center;
-		middle
-	).
-	
-	pdfdoc add: aPage.
-	
-	pdfdoc exportToFile: self demoPath , 'cellTest.pdf'.
-]
-
 { #category : #color }
 PDFDemos class >> colorTest [
 	"generate a sample document with colors"
@@ -313,9 +285,6 @@ PDFDemos class >> datatableTest [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		textColor:(PDFColor new setColor: #(255 0 0));
-		fillColor: (PDFColor new setGreyLevel: 230);
-		font: (PDFHelveticaFont new fontSize: 10);
 		xy: 10@10;
 		wh: 60@5
 	).
@@ -326,7 +295,7 @@ PDFDemos class >> datatableTest [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		textColor:(PDFColor new setColor: #(255 0 0));
+		textColor:(PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setGreyLevel: 230);
 		font: (PDFTimesFont new fontSize: 6);
 		dotted: (PDFDotted new length: 0.2; space: 0.2);
@@ -334,21 +303,17 @@ PDFDemos class >> datatableTest [
 		wh: 30@5
 	).
 	
-	
-"	aPage add: (PDFDataTableStyle new columns: #('Name'  'Surname' 'email');
+	aPage add: (PDFDataTableWithColumnsCaptionStyle new
+		captions: #( 'Name' 'Surname' 'email');
 		data: #(
 			#('Smith' 'Peter' 'peter.smith@mail.org')
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		inkForColumns: (PDFColor new setColor: #(0 0 0));
-		fillColorForColumns: (PDFColor new setGreyLevel: 196);
-		ink: (PDFColor new setColor: #(0 0 0));
-		fillColor: (PDFColor new setGreyLevel: 230);
-		font: (PDFHelveticaFont new fontSize: 10);
-		xy: 10@10;
-		wh: 60@5	
-	  )."
+		xy: 10@50;
+		wh: 40@5
+	).	
+
 
 	pdfdoc add: aPage.
 		

@@ -52,7 +52,7 @@ PDFFont >> fontName: anObject [
 
 { #category : #accessing }
 PDFFont >> fontSize [
-	^ fontSize ifNil: [ fontSize := 12 ]
+	^ fontSize ifNil: [ fontSize := 8 ]
 ]
 
 { #category : #accessing }
@@ -109,7 +109,6 @@ PDFFont >> getStringWidth: aString into: aDocument [
 	
 	width := 0.
 	aString do: [ :char | width := width + (self getCharWidthOf: char in: (self getFontName)) ].
-	Transcript show: ((width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001) asString;cr.
 	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
 	
 
