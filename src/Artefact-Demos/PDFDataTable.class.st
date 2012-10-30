@@ -11,16 +11,6 @@ Class {
 }
 
 { #category : #accessing }
-PDFDataTable >> columns [
-	^ columns
-]
-
-{ #category : #accessing }
-PDFDataTable >> columns: anObject [
-	columns := anObject
-]
-
-{ #category : #accessing }
 PDFDataTable >> data [
 	^ data
 ]
