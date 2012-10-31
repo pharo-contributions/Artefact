@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'elements',
 		'cellElement',
-		'columns',
 		'data'
 	],
 	#category : #'Artefact-Styles'
@@ -12,12 +11,12 @@ Class {
 
 { #category : #accessing }
 PDFDataTable >> data [
-	^ data
+	^data
 ]
 
 { #category : #accessing }
-PDFDataTable >> data: anObject [
-	data := anObject
+PDFDataTable >> data: anArray [
+	data := anArray
 ]
 
 { #category : #accessing }

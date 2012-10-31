@@ -7,13 +7,18 @@ Class {
 { #category : #'as yet unclassified' }
 PDFDataTableWithColumnsCaptionStyle >> getStyles [ 
 
-	| dataStartAtPos |
+	| dataStartAtPos ink background|
+	
+	ink := self textColorIfAbsent: (self page styleSheet).
+	background := self fillColorIfAbsent: (self page styleSheet).
 	
 	^OrderedCollection new 
 		add: (PDFDataTableStyle new 
-			styleSheet: self styleSheet; 
+			styleSheet: (self styleSheet copy); 
 			xy: self xy; 
 			wh: self wh; 
+			textColor: background;
+			fillColor: ink;
 			data: (OrderedCollection new add: self captions; yourself));
 		add: (PDFDataTableStyle new
 			styleSheet: self styleSheet;

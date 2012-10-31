@@ -267,6 +267,59 @@ PDFDemos class >> colorTest [
 ]
 
 { #category : #composite }
+PDFDemos class >> datatableCustomizedStyleTest [
+	"generate a customized datatable"
+
+	"self datatableCustomizedStyleTest"
+	
+	| pdfdoc aPage |
+		
+	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFA4Format new.
+	pdfdoc title: 'Users report'.
+	
+	aPage := PDFPage new.
+	aPage add: (PDFDataTableCustomizedStyle new
+		data: {
+			{
+			"Column captions"
+			PDFCellStyle new text: 'Name'; fillColor: (PDFColor new setGreyLevel: 230).
+			PDFCellStyle new text: 'Surname'; fillColor: (PDFColor new setGreyLevel: 230).
+			PDFCellStyle new text: 'Email'; fillColor: (PDFColor new setGreyLevel: 230).
+			}.		
+			{
+			"first line"
+			PDFCellStyle new text: 'Smith'.
+			PDFCellStyle new text: 'Peter'.
+			PDFCellStyle new text: 'peter.smith@mail.org'.
+			}.
+			{
+			"second line"
+			"the email is in a red cell... probably a bad email address :-)"
+			PDFCellStyle new text: 'Jones'.
+			PDFCellStyle new text: 'Mickael'.
+			PDFCellStyle new text: 'mickael.jones@epr.com'; fillColor: (PDFColor new setColor: #(255 0 0)).
+			}.
+			{
+			"third line Unmatched"
+			PDFCellStyle new text: 'washington'.
+			PDFCellStyle new text: 'robert'.
+			PDFCellStyle new text: 'robert.washington@blif.com'.
+			}.
+		};
+		xy: 10@20;
+		wh: 40@5
+	). 
+	
+	pdfdoc add: aPage.
+		
+	pdfdoc exportToFile: self demoPath , 'datatableCustomizedStyleTest.pdf'.
+
+	
+	
+]
+
+{ #category : #composite }
 PDFDemos class >> datatableTest [
 	"generate a datatable"
 
@@ -303,6 +356,28 @@ PDFDemos class >> datatableTest [
 		wh: 30@5
 	).
 	
+	pdfdoc add: aPage.
+		
+	pdfdoc exportToFile: self demoPath , 'datatableTest.pdf'.
+
+	
+	
+]
+
+{ #category : #composite }
+PDFDemos class >> datatableWithCaptionsTest [
+	"generate a datatable with captions"
+
+	"self datatableWithCaptionsTest"
+	
+	| pdfdoc aPage |
+		
+	pdfdoc := PDFDocument new.
+	pdfdoc setFormat: PDFA4Format new.
+	pdfdoc title: 'Users report'.
+	
+	aPage := PDFPage new.
+	
 	aPage add: (PDFDataTableWithColumnsCaptionStyle new
 		captions: #( 'Name' 'Surname' 'email');
 		data: #(
@@ -310,14 +385,24 @@ PDFDemos class >> datatableTest [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		xy: 10@50;
+		xy: 10@20;
 		wh: 40@5
 	).	
 
-
+	"aPage add: (PDFDataTableWithRowsCaptionStyle new
+		captions: #( 'Name' 'Surname' 'email');
+		data: #(
+			#('Smith' 'Jones' 'washington')
+			#('Peter' 'Mickael' 'robert')
+			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
+		);
+		xy: 10@50;
+		wh: 40@5
+	)."
+	
 	pdfdoc add: aPage.
 		
-	pdfdoc exportToFile: self demoPath , 'datatableTest.pdf'.
+	pdfdoc exportToFile: self demoPath , 'datatableWithCaptionsTest.pdf'.
 
 	
 	

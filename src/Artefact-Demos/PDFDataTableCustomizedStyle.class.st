@@ -1,30 +1,24 @@
 Class {
-	#name : #PDFDataTableStyle,
+	#name : #PDFDataTableCustomizedStyle,
 	#superclass : #PDFDataTable,
 	#category : #'Artefact-Styles'
 }
 
 { #category : #render }
-PDFDataTableStyle >> getStyles [ 
+PDFDataTableCustomizedStyle >> getStyles [ 
 	"answer a representation of a datatable"
 	
 	| position |
 	
 	position := self xy.
 	
-	self styleSheet explore.
 	self data do: [ :line |
-		line do: [ :value | 
-			elements add: (PDFCellStyle new 
-				xy: position; 
-				wh: self wh; 
-				styleSheet: (self styleSheet); 
-				text: value).
+		line do: [ :cell | 
+			elements add: (cell xy: position; wh: self wh).
 			position := ((position x) + (self wh x)) @ position y.
 		].
 		position := (self xy x) @ (position y + self wh y).
 	].
 	
 	 ^elements
-
 ]
