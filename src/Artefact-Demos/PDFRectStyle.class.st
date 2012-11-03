@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #accessing }
+{ #category : #render }
 PDFRectStyle >> fillmode [
 	^'S'
 ]

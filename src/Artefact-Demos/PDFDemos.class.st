@@ -460,7 +460,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/olivier/Desktop/'
+	^'/home/olivier/Desktop/'
 ]
 
 { #category : #draw }
@@ -756,6 +756,35 @@ PDFDemos class >> paragraphTest [
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'paragraph.pdf'.
+]
+
+{ #category : #draw }
+PDFDemos class >> polygonsTest [
+	"drawing polygons"
+	
+	"self polygonsTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFPolygonStyle new 
+		xy: 10@10; 
+		destination: { 60@20 . 50@40 . 30@50 . 15@45 };
+		drawColor: (PDFColor new setColor: #(0 0 255))
+	).
+	
+	aPage add: (PDFFilledPolygonStyle new 
+		xy: 10@55; 
+		destination: { 60@60 . 50@100 . 30@110 . 15@105 };
+		drawColor: (PDFColor new setColor: #(0 0 255));
+		fillColor: (PDFColor new setColor: #(255 0 0));
+		thickness: 5	
+	).
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'polygonsTest.pdf'.
 ]
 
 { #category : #draw }
