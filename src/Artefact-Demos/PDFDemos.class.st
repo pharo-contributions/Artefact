@@ -228,6 +228,7 @@ PDFDemos class >> cellTest [
 		wh: 50@10;
 		text: 'end'
 	).
+
 	
 	pdfdoc add: aPage.
 	
@@ -389,7 +390,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 		wh: 40@5
 	).	
 
-	"aPage add: (PDFDataTableWithRowsCaptionStyle new
+	aPage add: (PDFDataTableWithRowsCaptionStyle new
 		captions: #( 'Name' 'Surname' 'email');
 		data: #(
 			#('Smith' 'Jones' 'washington')
@@ -397,8 +398,9 @@ PDFDemos class >> datatableWithCaptionsTest [
 			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
 		);
 		xy: 10@50;
-		wh: 40@5
-	)."
+		wh: 40@5;
+		textColor: (PDFColor new setGreyLevel: 128)
+	 ).
 	
 	pdfdoc add: aPage.
 		

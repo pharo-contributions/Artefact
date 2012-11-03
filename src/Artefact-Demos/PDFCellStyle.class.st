@@ -53,6 +53,11 @@ PDFCellStyle >> fillColor: aColor [
 	self styleSheet fillColor: aColor
 ]
 
+{ #category : #accessing }
+PDFCellStyle >> fillColorIfAbsent: anAlternativeStyleSheet [
+	^ self styleSheet get: #fillColor ifAbsentFrom: anAlternativeStyleSheet 
+]
+
 { #category : #render }
 PDFCellStyle >> getStyles [
 	

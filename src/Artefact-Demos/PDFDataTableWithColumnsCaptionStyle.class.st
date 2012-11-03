@@ -4,22 +4,18 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableWithColumnsCaptionStyle >> getStyles [ 
-
-	| dataStartAtPos ink background|
+	"answer a datatable model with the captions in the columns"
 	
-	ink := self textColorIfAbsent: (self page styleSheet).
-	background := self fillColorIfAbsent: (self page styleSheet).
+	elements := self captions collect: [ :aCaption | self buildCaption: aCaption ].
 	
 	^OrderedCollection new 
-		add: (PDFDataTableStyle new 
-			styleSheet: (self styleSheet copy); 
-			xy: self xy; 
-			wh: self wh; 
-			textColor: background;
-			fillColor: ink;
-			data: (OrderedCollection new add: self captions; yourself));
+		add: (PDFDataTableCustomizedStyle new
+			styleSheet: self styleSheet;
+			xy: self xy;
+			wh: self wh;
+			data: { elements } );
 		add: (PDFDataTableStyle new
 			styleSheet: self styleSheet;
 			xy: self xy + (0 @ (self wh y));
@@ -27,4 +23,7 @@ PDFDataTableWithColumnsCaptionStyle >> getStyles [
 			data: self data
 		);
 		yourself
+
+		
+
 ]

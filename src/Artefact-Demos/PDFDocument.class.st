@@ -651,7 +651,7 @@ PDFDocument >> subject: aString [
 PDFDocument >> textString: aString [
 	"Answer a formated text string"
 	
-	^('(' , (self escape: aString) , ')')
+	^('(' , (self escape: (aString asString)) , ')')
 ]
 
 { #category : #accessing }

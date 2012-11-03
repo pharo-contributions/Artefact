@@ -24,7 +24,6 @@ PDFRectStyle >> renderContentOn: aPage [
 		((self userUnitToPoints: self wh y into: aPage document) * -1) asString,
 		' re ' , self fillmode
 	).	
-	"self out: (self xy x asString , ' -' , self xy y asString , ' ' , self wh x asString , ' -' , self wh y asString , ' re ' , self fillmode)."
 	
 	^buffer
 ]

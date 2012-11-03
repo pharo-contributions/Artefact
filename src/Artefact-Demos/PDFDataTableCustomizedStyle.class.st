@@ -6,7 +6,7 @@ Class {
 
 { #category : #render }
 PDFDataTableCustomizedStyle >> getStyles [ 
-	"answer a representation of a datatable"
+	"answer a view of a datatable"
 	
 	| position |
 	

@@ -6,25 +6,16 @@ Class {
 
 { #category : #render }
 PDFDataTableStyle >> getStyles [ 
-	"answer a representation of a datatable"
+	"answer a model of a datatable"
 	
-	| position |
-	
-	position := self xy.
-	
-	self styleSheet explore.
-	self data do: [ :line |
-		line do: [ :value | 
-			elements add: (PDFCellStyle new 
-				xy: position; 
-				wh: self wh; 
-				styleSheet: (self styleSheet); 
-				text: value).
-			position := ((position x) + (self wh x)) @ position y.
-		].
-		position := (self xy x) @ (position y + self wh y).
+	self data do: [ :aLine |
+		elements add: (aLine collect: [ :aValue | self buildValue: aValue ]).
 	].
 	
-	 ^elements
-
+	^{ PDFDataTableCustomizedStyle new
+		styleSheet: (self styleSheet);
+		xy: (self xy);
+		wh: (self wh);
+		data: elements }
+		
 ]
