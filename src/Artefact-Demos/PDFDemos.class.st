@@ -235,6 +235,34 @@ PDFDemos class >> cellTest [
 	pdfdoc exportToFile: self demoPath , 'cellTest.pdf'.
 ]
 
+{ #category : #draw }
+PDFDemos class >> circlesTest [
+	"drawing circles"
+	
+	"self circlesTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFCircleStyle new 
+		xy: 50@50;
+		radius: 30
+	).
+
+	aPage add: (PDFFilledCircleStyle new 
+		xy: 120@50;
+		radius: 30;
+		fillColor: (PDFColor new setColor: #(0 255 0));
+		drawColor: (PDFColor new setColor: #(255 0 0))
+	).
+	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'circlesTest.pdf'.
+]
+
 { #category : #color }
 PDFDemos class >> colorTest [
 	"generate a sample document with colors"

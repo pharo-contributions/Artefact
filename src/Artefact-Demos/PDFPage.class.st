@@ -122,7 +122,6 @@ PDFPage >> renderContent [
 	
 	"construct each styles"
 	self styles do: [ :style | self buildStyle: (style renderIn: self) ].
-	
 	^buffer contents 
 	
 
