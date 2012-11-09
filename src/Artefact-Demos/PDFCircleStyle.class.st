@@ -29,22 +29,23 @@ PDFCircleStyle >> renderContentOn: aPage [
 	
 	origin := (self userUnitToPoints: self xy x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document)).
 	r := self userUnitToPoints: self radius into: aPage document.
-	 
-	self out: (
-		(origin x + r) asString , ' ' , origin y asString , ' m ' ,
-		(origin x + r) asString , ' ' , ((r * 0.552) + origin y) asString , ' ' ,
-		((r * 0.552) + origin x) asString , ' ' , (origin y + r) asString , ' ' ,
-		origin x asString , ' ' , (origin y + r) asString , ' c ' ,
-		((-0.552 * r) + origin x) asString , ' ' , (origin y + r) asString , ' ' ,
-		(origin x - r) asString , ' ' , ((r * 0.552) + origin y) asString , ' ' ,
-		(origin x - r) asString , ' ' , origin y asString , ' c ' ,
-		(origin x - r) asString ,' ' , ((-0.552 * r) + origin y) asString , ' ' ,
-		((-0.552 * r) + origin x) asString , ' ' , (origin y - r) asString , ' ' ,
-		origin x asString , ' ' , (origin y - r) asString , ' c ' ,
-		((0.552 * r) + origin x) asString , ' ' , (origin y - r) asString , ' ' ,
-		(origin x + r) asString , ' ' , ((-0.552 * r) + origin y) asString , ' ' ,
-		(origin x + r) asString , ' ' , origin y asString ,' c h ' ,
-		self fillmode
-		).	
+
+	self out: (String streamContents: [ :s |
+		s print: (origin x + r); space;  print: origin y; nextPutAll: ' m ';
+		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
+		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
+		print: origin x; space; print: (origin y + r); nextPutAll: ' c ';
+		print: ((-0.552 * r) + origin x); space; print: (origin y + r); space;
+		print: (origin x - r); space; print: ((r * 0.552) + origin y); space;
+		print: (origin x - r); space; print: origin y; nextPutAll: ' c ';
+		print: (origin x - r); space; print: ((-0.552 * r) + origin y); space;
+		print: ((-0.552 * r) + origin x); space; print:  (origin y - r); space;
+		print: origin x; space; print: (origin y - r); nextPutAll: ' c ';
+		print: ((0.552 * r) + origin x); space; print: (origin y - r); space;
+		print: (origin x + r); space; print: ((-0.552 * r) + origin y); space;
+		print: (origin x + r); space; print: origin y; nextPutAll: ' c h ';
+		nextPutAll: (self fillmode)
+	]).
+ 	
 	^buffer
 ]

@@ -9,6 +9,7 @@ Class {
 
 { #category : #text }
 PDFDemos class >> alignmentsTest [
+	<gfggg>
 	"a simple demonstration of Artefact"
 	
 	"PDFDemos alignmentsTest"
@@ -43,6 +44,24 @@ PDFDemos class >> alignmentsTest [
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'alignmentsTest.pdf'.
+]
+
+{ #category : #draw }
+PDFDemos class >> alineTest [
+	"drawing with simple line"
+	
+	"self alineTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFLineStyle new xy: 0@0; destination: 210@60).
+			
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'alinedTest.pdf'.
 ]
 
 { #category : #composite }

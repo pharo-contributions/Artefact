@@ -16,8 +16,7 @@ PDFPolygonStyle >> renderContentOn: aPage [
 	| origin points |
 	
 	origin := (self userUnitToPoints: self xy x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document)).
-	self out: (origin x asString , ' ' , origin y asString , ' m ').
-		
+	
 	points := OrderedCollection new 
 		addAll: (self destination collect: [ :pos | 
 			(self userUnitToPoints: pos x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: pos y into: aPage document))
@@ -25,8 +24,20 @@ PDFPolygonStyle >> renderContentOn: aPage [
 		add: origin;
 		yourself.
 	
-	points do: [ :pos | self out: (pos x asString , ' ' , pos y asString , ' l ') ].
-	self out: (self fillmode). 
+	self out: (String streamContents: [ :s |
+		s print: origin x;
+		space;
+		print: origin y;
+		nextPutAll: ' m '.
+		points do: [ :pos | 
+			s print: pos x;
+			space;
+			print: pos y;
+			nextPutAll: ' l '
+		].
+		s nextPutAll: (self fillmode)
+	]).
+			 
 
 	^buffer
 ]
