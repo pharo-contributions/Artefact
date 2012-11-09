@@ -6,5 +6,5 @@ Class {
 
 { #category : #render }
 PDFFilledRectStyle >> fillmode [
-	^'B'
+	^PDFByteCode filling
 ]

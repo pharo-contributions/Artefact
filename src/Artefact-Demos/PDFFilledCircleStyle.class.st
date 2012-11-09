@@ -6,5 +6,5 @@ Class {
 
 { #category : #render }
 PDFFilledCircleStyle >> fillmode [
-	^ 'B'
+	^ PDFByteCode filling
 ]

@@ -9,7 +9,7 @@ Class {
 
 { #category : #render }
 PDFCircleStyle >> fillmode [
-	^ 'S'
+	^ PDFByteCode noFilling
 ]
 
 { #category : #accessing }

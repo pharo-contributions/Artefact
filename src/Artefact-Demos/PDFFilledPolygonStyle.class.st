@@ -6,5 +6,5 @@ Class {
 
 { #category : #render }
 PDFFilledPolygonStyle >> fillmode [
-	^'B'
+	^ PDFByteCode filling 
 ]

@@ -6,7 +6,7 @@ Class {
 
 { #category : #render }
 PDFPolygonStyle >> fillmode [
-	^ 'S'
+	^ PDFByteCode noFilling
 ]
 
 { #category : #render }
@@ -38,6 +38,5 @@ PDFPolygonStyle >> renderContentOn: aPage [
 		s nextPutAll: (self fillmode)
 	]).
 			 
-
 	^buffer
 ]

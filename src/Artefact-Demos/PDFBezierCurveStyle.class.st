@@ -19,7 +19,7 @@ PDFBezierCurveStyle >> renderContentOn: aPage [
 			print: ((aPage format defaultSize y) - (self userUnitToPoints: p y into: aPage document));
 			space
 		].
-		s nextPutAll: 'c S'.
+		s nextPutAll: PDFByteCode curve; space; nextPutAll: PDFByteCode noFilling.
 	]).
 	
 	^buffer

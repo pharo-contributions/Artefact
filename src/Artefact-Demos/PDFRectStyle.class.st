@@ -6,7 +6,7 @@ Class {
 
 { #category : #render }
 PDFRectStyle >> fillmode [
-	^'S'
+	^PDFByteCode noFilling 
 ]
 
 { #category : #render }
