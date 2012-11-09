@@ -21,9 +21,14 @@ PDFDotted >> length: anObject [
 { #category : #private }
 PDFDotted >> setDottedInto: aDocument [
 	"Answer the dotted configuration"
-	
-	^ '[' , (((self length * aDocument scaleFactor) roundDownTo: 0.001) asString), ' ' , (((self space * aDocument scaleFactor) roundDownTo: 0.001) asString) , '] 0 d'.
 
+	^(String streamContents: [ :s |
+		s nextPutAll: '[';
+		print: ((self length * aDocument scaleFactor) roundDownTo: 0.001);
+		space;
+		print: ((self space * aDocument scaleFactor) roundDownTo: 0.001);
+		nextPutAll: '] 0 d'
+	]).
 ]
 
 { #category : #accessing }

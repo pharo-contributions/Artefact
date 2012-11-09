@@ -109,19 +109,41 @@ PDFDemos class >> arrowTest [
 		xy: 40@50;
 		destination: 80@90;
 		drawColor: (PDFColor new setColor: #(192 255 0));
-		thickness:  5
+		thickness:  2
 	 ).		
 	
 	aPage add: (PDFDoubleArrowStyle new
 		xy: 10@80;
 		destination: 100@150;
 		drawColor: (PDFColor new setColor: #(0 128 0));
-		dotted: (PDFDotted new length: 0.2; space: 0.2)
+		dotted: (PDFDotted new length: 2; space: 2)
 	).
 			
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath  , 'arrowTest.pdf'.
+]
+
+{ #category : #draw }
+PDFDemos class >> bezierTest [
+	"drawing bezier curves"
+	
+	"self bezierTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFBezierCurveStyle new 
+		xy: 10@50;
+		destination: { 100@10 . 140@100 . 200@30 };
+		thickness: 5
+	).
+	
+	pdfdoc add: aPage.
+	
+	pdfdoc exportToFile: self demoPath  , 'bezierTest.pdf'.
 ]
 
 { #category : #composite }
@@ -716,7 +738,7 @@ PDFDemos class >> infosTest [
 
 { #category : #draw }
 PDFDemos class >> lineTest [
-	"drawing with simple line"
+	"drawing with simple lines around the page"
 	
 	"self lineTest"
 	
@@ -732,7 +754,7 @@ PDFDemos class >> lineTest [
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'linedTest.pdf'.
+	pdfdoc exportToFile: self demoPath  , 'lineTest.pdf'.
 ]
 
 { #category : #document }

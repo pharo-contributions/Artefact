@@ -66,11 +66,12 @@ PDFDraw >> initColors: aDocument [
 { #category : #configuration }
 PDFDraw >> initStyle: aDocument [
 
-	
 	"Set line thickness to n point"
+
 	| dotted thickness |
+
 	thickness := (self styleSheet get: #thickness ifAbsentFrom: aDocument styleSheet).
-	self out: ((thickness / aDocument scaleFactor) roundDownTo: 0.001) asString , ' w'.
+	self out: (self userUnitToPoints: thickness into: aDocument) asString , ' w'.
 	
 	"Set line cap style to square"
 	self out: '2 J'.
