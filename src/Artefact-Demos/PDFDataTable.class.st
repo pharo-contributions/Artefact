@@ -9,26 +9,6 @@ Class {
 }
 
 { #category : #action }
-PDFDataTable >> buildCaption: aString [
-	"answer a PDFCellStyle instance for a caption datatable cell"
-
-	|ink captionElement |
-
-	captionElement := PDFCellStyle new 
-		styleSheet: (self styleSheet deepCopy); 
-		wh: self wh; 
-		text: aString.
-		
-	"textcolor and fillcolor are reversed for the captions"	
-	ink := captionElement textColorIfAbsent: (self page styleSheet). 
-	captionElement textColor: (captionElement fillColorIfAbsent: (self page styleSheet)).
-	captionElement fillColor: ink. 
-	
-	^captionElement
-		
-]
-
-{ #category : #action }
 PDFDataTable >> buildValue: aValue [
 	"answer a PDFCellStyle instance for a value datatable cell"
 

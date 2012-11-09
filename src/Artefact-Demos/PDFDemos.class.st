@@ -415,7 +415,8 @@ PDFDemos class >> datatableWithCaptionsTest [
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
 		xy: 10@20;
-		wh: 40@5
+		wh: 40@5;
+		captionColor: (PDFColor new setGreyLevel: 192)
 	).	
 
 	aPage add: (PDFDataTableWithRowsCaptionStyle new
@@ -427,8 +428,8 @@ PDFDemos class >> datatableWithCaptionsTest [
 		);
 		xy: 10@50;
 		wh: 40@5;
-		textColor: (PDFColor new setGreyLevel: 128)
-	 ).
+		captionColor: (PDFColor new setGreyLevel: 192)
+	).
 	
 	pdfdoc add: aPage.
 		
