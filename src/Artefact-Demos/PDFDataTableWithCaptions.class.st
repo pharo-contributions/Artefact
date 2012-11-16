@@ -17,7 +17,8 @@ PDFDataTableWithCaptions >> buildCaption: aString [
 	captionElement := PDFCellStyle new 
 		styleSheet: (self styleSheet deepCopy); 
 		wh: self wh; 
-		text: aString.
+		text: aString;
+		margin: self margin.
 		
 	"The fill color is remplaced by the caption color"
 	captionElement fillColor: (self captionColor). 

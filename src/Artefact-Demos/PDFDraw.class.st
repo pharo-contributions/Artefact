@@ -91,7 +91,7 @@ PDFDraw >> initStyle: aDocument [
 { #category : #accessing }
 PDFDraw >> initialize [
 	super initialize. 
-	self styleSheet: PDFStyleSheet draw
+	self styleSheet: PDFStyleSheet new
 ]
 
 { #category : #action }

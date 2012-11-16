@@ -242,7 +242,7 @@ PDFDemos class >> cellTest [
 		fillColor: (PDFColor new setGreyLevel: 128);
 		dotted: (PDFDotted new length: 1; space: 1);
 		text: 'grey level & dotted border';
-		thickness: 2;
+		thickness: 0.2;
 		center;
 		middle
 	).

@@ -3,7 +3,8 @@ Class {
 	#superclass : #PDFComposite,
 	#instVars : [
 		'elements',
-		'data'
+		'data',
+		'margin'
 	],
 	#category : #'Artefact-Styles'
 }
@@ -15,7 +16,8 @@ PDFDataTable >> buildValue: aValue [
 	^PDFCellStyle new
 		styleSheet: (self styleSheet deepCopy);
 		wh: (self wh);
-		text: (aValue)
+		text: (aValue);
+		margin: (self margin)
 ]
 
 { #category : #accessing }
@@ -72,6 +74,16 @@ PDFDataTable >> fontIfAbsent: aStyleSheet. [
 PDFDataTable >> initialize [
 	super initialize.
 	elements := OrderedCollection new.
+]
+
+{ #category : #accessing }
+PDFDataTable >> margin [
+	^margin ifNil: [ margin := self page document pointsToUserUnit: 1 ]
+]
+
+{ #category : #accessing }
+PDFDataTable >> margin: aMargin [
+	margin := aMargin
 ]
 
 { #category : #accessing }

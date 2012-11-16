@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Styles'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFFormatedTextStyle >> determineDecxForTextStyle: aTextElement margin: aMargin with: aFont [
 	"Set right x values for text"
 	| font width decx |
@@ -20,7 +20,7 @@ PDFFormatedTextStyle >> determineDecxForTextStyle: aTextElement margin: aMargin 
 	^decx
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFFormatedTextStyle >> getStyles [
 
 	| height font decx |
@@ -28,12 +28,12 @@ PDFFormatedTextStyle >> getStyles [
 	font := self fontIfAbsent: (self page styleSheet).
 	height := font scaledFontSize: (self page document scaleFactor).
 	
-	decx := self determineDecxForTextStyle: (self text) margin: 0 with: font.
+	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
 
 	^ {PDFTextStyle new styleSheet: (self styleSheet); text: (self text); xy: (decx + self xy x)@(self xy y + height)}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFFormatedTextStyle >> initialize [
 	super initialize.
 ]

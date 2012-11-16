@@ -13,11 +13,9 @@ PDFCellStyle >> alignment [
 	^ alignment ifNil: [ alignment := #CENTER ]
 ]
 
-{ #category : #action }
-PDFCellStyle >> cellmargin [
-	"answer the cell margin"
-	
-	^self page format leftMargin / 10.
+{ #category : #style }
+PDFCellStyle >> defaultMargin [
+	^self page document pointsToUserUnit: 1
 ]
 
 { #category : #action }
@@ -30,9 +28,9 @@ PDFCellStyle >> determineDecyForTextStyleWith: aFont [
 	
 	"determining the vertical offset"
 	(self verticalAlignment = #BOTTOM)
-		ifTrue: [ decy := self wh y ]
+		ifTrue: [ decy := (self wh y - self margin) ]
 		ifFalse: [ 
-				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := (self wh y  * 0.5) + (height * 0.3) ] ifFalse: [ decy := height ]
+				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := (self wh y  * 0.5) + (height * 0.3) ] ifFalse: [ decy := height + self margin ]
 			].
 
 	^decy 
@@ -69,7 +67,7 @@ PDFCellStyle >> getStyles [
 	"set the position of the text element"
 	font := self fontIfAbsent: (self page styleSheet).
 
-	decx := self determineDecxForTextStyle: (self text) margin: (self cellmargin) with: font.
+	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
 	decy := self determineDecyForTextStyleWith: font. 
 	
 	"set the new current position and linefeed ?"
@@ -120,7 +118,7 @@ PDFCellStyle >> wh [
 	
 	^wh ifNil: [
 		font := self fontIfAbsent: (self page styleSheet).
-		width := (font getStringWidth: (self text) into: (self page document)) + (self cellmargin * 2).
+		width := (font getStringWidth: (self text) into: (self page document)) + (self margin * 2).
 		height := (font scaledFontSize: (self page) document scaleFactor) roundDownTo: 0.001.
 		wh :=  width@height
 	]

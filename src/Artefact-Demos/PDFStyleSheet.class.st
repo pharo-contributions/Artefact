@@ -8,12 +8,7 @@ Class {
 	#category : #Artefact
 }
 
-{ #category : #'as yet unclassified' }
-PDFStyleSheet class >> dataTable [
-	self new managedAttributes: #(#fillColor #drawColor)
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFStyleSheet class >> defaultForDocument: aDocument [
 	^ self new 
 		setAttribute: #textColor value: (PDFColor new setColor:#(0 0 0)); 
@@ -23,11 +18,6 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		setAttribute: #dotted value: nil;
 		setAttribute: #font value: PDFHelveticaFont new;
 		yourself
-]
-
-{ #category : #'as yet unclassified' }
-PDFStyleSheet class >> draw [
-	^ self new "managedAttributes: #(#fillColor #drawColor)"
 ]
 
 { #category : #accessing }

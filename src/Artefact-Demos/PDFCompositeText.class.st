@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'text',
 		'alignment',
-		'verticalAlignment'
+		'verticalAlignment',
+		'margin'
 	],
 	#category : #'Artefact-Styles'
 }
@@ -29,6 +30,11 @@ PDFCompositeText >> center [
 	self alignment: #CENTER
 ]
 
+{ #category : #style }
+PDFCompositeText >> defaultMargin [
+	^0
+]
+
 { #category : #accessing }
 PDFCompositeText >> font: aFont [
 	self styleSheet font: aFont
@@ -42,6 +48,16 @@ PDFCompositeText >> fontIfAbsent: aStyleSheet. [
 { #category : #action }
 PDFCompositeText >> left [
 	self alignment: #LEFT
+]
+
+{ #category : #accessing }
+PDFCompositeText >> margin [
+	^margin ifNil: [ margin := self defaultMargin ]
+]
+
+{ #category : #accessing }
+PDFCompositeText >> margin: aMargin [
+	margin := aMargin
 ]
 
 { #category : #action }
