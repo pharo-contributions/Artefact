@@ -52,11 +52,11 @@ PDFDraw >> initColors: aDocument [
 	pdfcode := OrderedCollection new.
 	
 	(drawColor greyLevel isNil) 
-		ifTrue: [ (drawColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: drawColor) , ' RG') ] ]
-		ifFalse: [ pdfcode add: (PDFColor round: (drawColor greyLevel)) , ' G' ].
+		ifTrue: [ (drawColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: drawColor) , ' ' , PDFByteCode drawWithColor) ] ]
+		ifFalse: [ pdfcode add: (PDFColor round: (drawColor greyLevel)) , ' ' , PDFByteCode drawWithGreyLevel ].
 	(fillColor greyLevel isNil)
-		ifTrue: [ (fillColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: fillColor) , ' rg') ] ]
-		ifFalse: [ pdfcode add: (PDFColor round: (fillColor greyLevel)) , ' g' ].
+		ifTrue: [ (fillColor red isNil) ifFalse: [ pdfcode add: ((PDFColor formatRGB: fillColor) , ' ' , PDFByteCode fillWithColor) ] ]
+		ifFalse: [ pdfcode add: (PDFColor round: (fillColor greyLevel)) , ' ' , PDFByteCode fillWithGreyLevel ].
 		
 	self out: pdfcode
 
@@ -71,10 +71,10 @@ PDFDraw >> initStyle: aDocument [
 	| dotted thickness |
 
 	thickness := (self styleSheet get: #thickness ifAbsentFrom: aDocument styleSheet).
-	self out: (self userUnitToPoints: thickness into: aDocument) asString , ' w'.
+	self out: (self userUnitToPoints: thickness into: aDocument) asString , ' ' , PDFByteCode thickness.
 	
 	"Set line cap style to square"
-	self out: '2 J'.
+	self out: ('2 ' , PDFByteCode lineCapStyle).
 	
 	"Set the colors or grey levels"
 	self initColors: aDocument.
@@ -82,7 +82,7 @@ PDFDraw >> initStyle: aDocument [
 	"Set the dotted propertie"
 	dotted := (self styleSheet get: #dotted ifAbsentFrom: aDocument styleSheet).
 
-	dotted ifNil: [ self out: '[] 0 d' ]
+	dotted ifNil: [ self out: ('[] 0 ' , PDFByteCode dotted) ]
 		ifNotNil: [ self out: (dotted setDottedInto: aDocument) ]
 
 	

@@ -27,7 +27,9 @@ PDFDotted >> setDottedInto: aDocument [
 		print: ((self length * aDocument scaleFactor) roundDownTo: 0.001);
 		space;
 		print: ((self space * aDocument scaleFactor) roundDownTo: 0.001);
-		nextPutAll: '] 0 d'
+		nextPutAll: '] 0';
+		space;
+		nextPutAll: PDFByteCode dotted
 	]).
 ]
 

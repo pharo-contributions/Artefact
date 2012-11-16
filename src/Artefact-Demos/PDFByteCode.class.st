@@ -14,9 +14,34 @@ PDFByteCode class >> curve [
 	^'c'
 ]
 
+{ #category : #style }
+PDFByteCode class >> dotted [
+	^'d'
+]
+
+{ #category : #style }
+PDFByteCode class >> drawWithColor [
+	^'RG'
+]
+
+{ #category : #style }
+PDFByteCode class >> drawWithGreyLevel [
+	^'G'
+]
+
 { #category : #text }
 PDFByteCode class >> endOfText [
 	^'ET'
+]
+
+{ #category : #style }
+PDFByteCode class >> fillWithColor [
+	^'rg'
+]
+
+{ #category : #style }
+PDFByteCode class >> fillWithGreyLevel [
+	^'g'
 ]
 
 { #category : #draw }
@@ -27,6 +52,11 @@ PDFByteCode class >> filling [
 { #category : #draw }
 PDFByteCode class >> line [
 	^'l'
+]
+
+{ #category : #style }
+PDFByteCode class >> lineCapStyle [
+	^'J'
 ]
 
 { #category : #draw }
@@ -52,4 +82,9 @@ PDFByteCode class >> setTextPosition [
 { #category : #text }
 PDFByteCode class >> showTextString [
 	^'Tj'
+]
+
+{ #category : #style }
+PDFByteCode class >> thickness [
+	^'w'
 ]
