@@ -94,6 +94,24 @@ PDFDraw >> initialize [
 	self styleSheet: PDFStyleSheet draw
 ]
 
+{ #category : #action }
+PDFDraw >> moveTo: aPosition on: aPage [
+	"answer the PDF code to setting the start position for drawing"
+	
+	| pos |
+	
+	pos := self determinePosition: aPosition on: aPage.
+	 
+	^(String streamContents: [ :s |
+		s print: (pos x);
+		space;
+		print: (pos y);
+		space;
+		nextPutAll: PDFByteCode moveTo;
+		space
+	]) 
+]
+
 { #category : #accessing }
 PDFDraw >> thickness: anObject [
 	self styleSheet thickness: anObject

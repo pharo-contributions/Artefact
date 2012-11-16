@@ -9,7 +9,7 @@ Class {
 
 { #category : #text }
 PDFDemos class >> alignmentsTest [
-	<gfggg>
+
 	"a simple demonstration of Artefact"
 	
 	"PDFDemos alignmentsTest"

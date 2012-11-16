@@ -27,11 +27,12 @@ PDFCircleStyle >> renderContentOn: aPage [
 	"Draw a line from xy to destination"
 	| origin r |
 	
-	origin := (self userUnitToPoints: self xy x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document)).
+	origin := self determinePosition: self xy on: aPage.
+	 	
 	r := self userUnitToPoints: self radius into: aPage document.
-
+	
 	self out: (String streamContents: [ :s |
-		s print: (origin x + r); space;  print: origin y; nextPutAll: ' m ';
+		s nextPutAll: (self moveTo: ((self xy x + self radius) @ (self xy y)) on: aPage); 
 		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
 		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
 		print: origin x; space; print: (origin y + r); nextPutAll: ' c ';

@@ -13,27 +13,22 @@ PDFPolygonStyle >> fillmode [
 PDFPolygonStyle >> renderContentOn: aPage [
 	"Draw a polygon from xy to destination (a array of positions)"
 	
-	| origin points |
-	
-	origin := (self userUnitToPoints: self xy x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document)).
+	| points |
 	
 	points := OrderedCollection new 
-		addAll: (self destination collect: [ :pos | 
-			(self userUnitToPoints: pos x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: pos y into: aPage document))
+		addAll: (self destination collect: [ :position |
+			self determinePosition: position on: aPage
 		]);
-		add: origin;
+		add: (self determinePosition: self xy on: aPage);
 		yourself.
 	
 	self out: (String streamContents: [ :s |
-		s print: origin x;
-		space;
-		print: origin y;
-		nextPutAll: ' m '.
+		s nextPutAll: (self moveTo: self xy on: aPage).
 		points do: [ :pos | 
-			s print: pos x;
+			s nextPutAll: (self splitCoordinates: pos);
 			space;
-			print: pos y;
-			nextPutAll: ' l '
+			nextPutAll: PDFByteCode line;
+			space
 		].
 		s nextPutAll: (self fillmode)
 	]).

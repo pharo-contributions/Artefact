@@ -7,16 +7,18 @@ Class {
 { #category : #render }
 PDFLineStyle >> renderContentOn: aPage [
 	"Draw a line from xy to destination"
-				
+	
+	| dest |
+	
+	dest := self determinePosition: self destination on: aPage.
+	 			
 	self out: (String streamContents: [ :s |
-		s print: (self userUnitToPoints: self xy x into: aPage document);
+		s nextPutAll: (self moveTo: self xy on: aPage);
+		nextPutAll: (self splitCoordinates: dest);
 		space;
-		print: ((aPage format defaultSize y) - (self userUnitToPoints: self xy y into: aPage document));
-		nextPutAll: ' m ';
-		print: (self userUnitToPoints: self destination x into: aPage document);
+		nextPutAll: PDFByteCode line;
 		space;
-		print: ((aPage format defaultSize y) - (self userUnitToPoints: self destination y into: aPage document));
-		nextPutAll: ' l S'
+		nextPutAll: PDFByteCode noFilling
 	]).
 	
 	^buffer
