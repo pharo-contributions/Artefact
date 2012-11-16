@@ -425,7 +425,7 @@ PDFDocument >> initialize [
 	super initialize.
 
 	self setFormat: self defaultFormat.
-	self styleSheet: PDFStyleSheet default.
+	self styleSheet: (PDFStyleSheet defaultForDocument: self).
 
 	"self setAutoPageBreak: true margin: self margin."
 
@@ -580,6 +580,12 @@ PDFDocument >> pages [
 { #category : #accessing }
 PDFDocument >> pages: aListOfPDFPage [
 	pages := aListOfPDFPage
+]
+
+{ #category : #private }
+PDFDocument >> pointsToUserUnit: aValue [
+	"answer the value in the user unit"
+	^(aValue / self scaleFactor)
 ]
 
 { #category : #configuration }

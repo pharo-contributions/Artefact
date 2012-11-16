@@ -2,7 +2,8 @@ Class {
 	#name : #PDFStyleSheet,
 	#superclass : #Object,
 	#instVars : [
-		'attributes'
+		'attributes',
+		'document'
 	],
 	#category : #Artefact
 }
@@ -13,12 +14,12 @@ PDFStyleSheet class >> dataTable [
 ]
 
 { #category : #'as yet unclassified' }
-PDFStyleSheet class >> default [
+PDFStyleSheet class >> defaultForDocument: aDocument [
 	^ self new 
 		setAttribute: #textColor value: (PDFColor new setColor:#(0 0 0)); 
 		setAttribute: #fillColor value: (PDFColor new setColor: #(255 255 255)); 
 		setAttribute: #drawColor value: (PDFColor new setColor:#(0 0 0)); 
-		setAttribute: #thickness value: 1;
+		setAttribute: #thickness value: (aDocument pointsToUserUnit: 1);
 		setAttribute: #dotted value: nil;
 		setAttribute: #font value: PDFHelveticaFont new;
 		yourself
@@ -27,6 +28,16 @@ PDFStyleSheet class >> default [
 { #category : #'as yet unclassified' }
 PDFStyleSheet class >> draw [
 	^ self new "managedAttributes: #(#fillColor #drawColor)"
+]
+
+{ #category : #accessing }
+PDFStyleSheet >> document [
+	^document 
+]
+
+{ #category : #accessing }
+PDFStyleSheet >> document: aDocumentObject [
+	document := aDocumentObject 
 ]
 
 { #category : #attributes }
