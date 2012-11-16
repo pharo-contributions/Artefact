@@ -7,7 +7,7 @@ Class {
 		'verticalAlignment',
 		'margin'
 	],
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #accessing }

@@ -5,7 +5,7 @@ Class {
 		'captions',
 		'captionColor'
 	],
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #action }
@@ -14,7 +14,7 @@ PDFDataTableWithCaptions >> buildCaption: aString [
 
 	|ink captionElement |
 
-	captionElement := PDFCellStyle new 
+	captionElement := PDFCellElement new 
 		styleSheet: (self styleSheet deepCopy); 
 		wh: self wh; 
 		text: aString;

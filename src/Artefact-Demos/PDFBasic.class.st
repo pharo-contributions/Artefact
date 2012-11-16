@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFBasic,
 	#superclass : #PDFVisibleItem,
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #action }

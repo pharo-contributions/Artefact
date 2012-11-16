@@ -1,10 +1,10 @@
 Class {
 	#name : #PDFLayout,
-	#superclass : #PDFStyle,
+	#superclass : #PDFElement,
 	#instVars : [
 		'height'
 	],
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #accessing }

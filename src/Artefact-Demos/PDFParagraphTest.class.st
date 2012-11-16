@@ -44,7 +44,7 @@ PDFParagraphTest >> setUp [
 	self doc: PDFDocument new.
 	self page: PDFPage new.
 	
-	self paragraph: (PDFParagraphStyle new 
+	self paragraph: (PDFParagraphElement new 
 		wh: 160@60; 
 		border: false; 
 		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').

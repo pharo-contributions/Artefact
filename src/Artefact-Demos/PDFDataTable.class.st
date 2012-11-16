@@ -6,14 +6,14 @@ Class {
 		'data',
 		'margin'
 	],
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #action }
 PDFDataTable >> buildValue: aValue [
 	"answer a PDFCellStyle instance for a value datatable cell"
 
-	^PDFCellStyle new
+	^PDFCellElement new
 		styleSheet: (self styleSheet deepCopy);
 		wh: (self wh);
 		text: (aValue);

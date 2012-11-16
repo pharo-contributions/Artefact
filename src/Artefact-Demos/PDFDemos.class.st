@@ -21,20 +21,20 @@ PDFDemos class >> alignmentsTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFFormatedTextStyle new 
+	aPage add: (PDFFormatedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		xy: 0@0;
 		text: 'At left'
 	).
-	aPage add: (PDFFormatedTextStyle new 
+	aPage add: (PDFFormatedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		xy: 10@20;
 		text: 'Center'; 
 		center
 	).
-	aPage add: (PDFFormatedTextStyle new 
+	aPage add: (PDFFormatedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		xy: 10@30;
@@ -57,7 +57,7 @@ PDFDemos class >> alineTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFLineStyle new xy: 0@0; destination: 210@60).
+	aPage add: (PDFLineElement new xy: 0@0; destination: 210@60).
 			
 	pdfdoc add: aPage.
 	
@@ -75,44 +75,44 @@ PDFDemos class >> arrowTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 10@10;
 		destination: 100@30;
 		drawColor: (PDFColor new setColor: #(255 0 0))
 	).
 
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 10@20;
 		destination: 30@30
 	).
 
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 120@10;
 		destination: 120@40;
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 125@40;
 		destination: 140@40;
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 125@40;
 		destination: 100@80;
 		drawColor: (PDFColor new setColor: #(0 255 0));
 		dotted: (PDFDotted new length: 2; space: 3)
 	).	
 
-	aPage add: (PDFArrowStyle new
+	aPage add: (PDFArrowElement new
 		xy: 40@50;
 		destination: 80@90;
 		drawColor: (PDFColor new setColor: #(192 255 0));
 		thickness:  2
 	 ).		
 	
-	aPage add: (PDFDoubleArrowStyle new
+	aPage add: (PDFDoubleArrowElement new
 		xy: 10@80;
 		destination: 100@150;
 		drawColor: (PDFColor new setColor: #(0 128 0));
@@ -135,7 +135,7 @@ PDFDemos class >> bezierTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFBezierCurveStyle new 
+	aPage add: (PDFBezierCurveElement new 
 		xy: 10@50;
 		destination: { 100@10 . 140@100 . 200@30 };
 		thickness: 5
@@ -150,7 +150,7 @@ PDFDemos class >> bezierTest [
 PDFDemos class >> cellTest [
 	"PDFDemos cellTest"
 	
-	"Demonstration of PDFCellStyle"
+	"Demonstration of PDFCellElement"
 	
 	| pdfdoc myFont myTitleFont aPage |
 	pdfdoc := PDFDocument new.	
@@ -159,7 +159,7 @@ PDFDemos class >> cellTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFCellStyle new
+	aPage add: (PDFCellElement new
 		xy: 10@5;
 		wh: 190@10;
 		fillColor: (PDFColor new setGreyLevel: 224);
@@ -169,20 +169,20 @@ PDFDemos class >> cellTest [
 	).
 	
 	"horizontal alignment"
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 10@20;
 		wh: 50@10;
 		text: 'alignment: left';
 		left
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 80@20;
 		wh: 50@10;
 		text: 'alignment: center'
 	 ).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 150@20;
 		wh: 50@10;
 		text: 'alignment: right';
@@ -190,7 +190,7 @@ PDFDemos class >> cellTest [
 	).
 
 	"vertical alignment"
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 10@40;
 		wh: 50@10;
 		text: 'vertical: top';
@@ -198,7 +198,7 @@ PDFDemos class >> cellTest [
 		top
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 80@40;
 		wh: 50@10;
 		text: 'vertical: middle';
@@ -206,7 +206,7 @@ PDFDemos class >> cellTest [
 		middle
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 150@40;
 		wh: 50@10;
 		text: 'vertical: bottom';
@@ -215,7 +215,7 @@ PDFDemos class >> cellTest [
 	).
 
 	"colors"
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 10@60;
 		wh: 50@10;
 		textColor: (PDFColor new setColor: #(0 0 255));
@@ -225,7 +225,7 @@ PDFDemos class >> cellTest [
 		middle
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 80@60;
 		wh: 50@10;
 		textColor: (PDFColor new setColor: #(0 0 255));
@@ -235,7 +235,7 @@ PDFDemos class >> cellTest [
 		middle
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 150@60;
 		wh: 50@10;
 		textColor: (PDFColor new setGreyLevel: 255);
@@ -247,25 +247,25 @@ PDFDemos class >> cellTest [
 		middle
 	).
 	
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		xy: 10@80;
 		text: 'A cell without wh'
 	).
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		wh: 50@10;
 		text: 'A cell without xy'
 	).
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		wh: 50@10;
 		text: 'linefeed: true';
 		linefeed: true
 	).
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		wh: 50@10;
 		text: 'linefeed: false';
 		linefeed: false
 	).
-	aPage add: (PDFCellStyle new  
+	aPage add: (PDFCellElement new  
 		wh: 50@10;
 		text: 'end'
 	).
@@ -287,12 +287,12 @@ PDFDemos class >> circlesTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFCircleStyle new 
+	aPage add: (PDFCircleElement new 
 		xy: 50@50;
 		radius: 30
 	).
 
-	aPage add: (PDFFilledCircleStyle new 
+	aPage add: (PDFFilledCircleElement new 
 		xy: 120@50;
 		radius: 30;
 		fillColor: (PDFColor new setColor: #(0 255 0));
@@ -314,7 +314,7 @@ PDFDemos class >> colorTest [
 	pdfdoc := PDFDocument new.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFCellElement new 
 		font: (PDFTimesFont new fontSize: 32);
 		wh: 100@20; 
 		border: true; 
@@ -322,7 +322,7 @@ PDFDemos class >> colorTest [
 		ink: (PDFColor new setColor: #(255 0 0) );
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
-	aPage add: (PDFRectStyle new 
+	aPage add: (PDFRectElement new 
 		xy: 10@50;
 		wh: 50@50; 
 		width: 5;
@@ -337,10 +337,10 @@ PDFDemos class >> colorTest [
 ]
 
 { #category : #composite }
-PDFDemos class >> datatableCustomizedStyleTest [
+PDFDemos class >> datatableCustomizedElementTest [
 	"generate a customized datatable"
 
-	"self datatableCustomizedStyleTest"
+	"self datatableCustomizedElementTest"
 	
 	| pdfdoc aPage |
 		
@@ -349,32 +349,32 @@ PDFDemos class >> datatableCustomizedStyleTest [
 	pdfdoc title: 'Users report'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFDataTableCustomizedStyle new
+	aPage add: (PDFDataTableCustomizedElement new
 		data: {
 			{
 			"Column captions"
-			PDFCellStyle new text: 'Name'; fillColor: (PDFColor new setGreyLevel: 230).
-			PDFCellStyle new text: 'Surname'; fillColor: (PDFColor new setGreyLevel: 230).
-			PDFCellStyle new text: 'Email'; fillColor: (PDFColor new setGreyLevel: 230).
+			PDFCellElement new text: 'Name'; fillColor: (PDFColor new setGreyLevel: 230).
+			PDFCellElement new text: 'Surname'; fillColor: (PDFColor new setGreyLevel: 230).
+			PDFCellElement new text: 'Email'; fillColor: (PDFColor new setGreyLevel: 230).
 			}.		
 			{
 			"first line"
-			PDFCellStyle new text: 'Smith'.
-			PDFCellStyle new text: 'Peter'.
-			PDFCellStyle new text: 'peter.smith@mail.org'.
+			PDFCellElement new text: 'Smith'.
+			PDFCellElement new text: 'Peter'.
+			PDFCellElement new text: 'peter.smith@mail.org'.
 			}.
 			{
 			"second line"
 			"the email is in a red cell... probably a bad email address :-)"
-			PDFCellStyle new text: 'Jones'.
-			PDFCellStyle new text: 'Mickael'.
-			PDFCellStyle new text: 'mickael.jones@epr.com'; fillColor: (PDFColor new setColor: #(255 0 0)).
+			PDFCellElement new text: 'Jones'.
+			PDFCellElement new text: 'Mickael'.
+			PDFCellElement new text: 'mickael.jones@epr.com'; fillColor: (PDFColor new setColor: #(255 0 0)).
 			}.
 			{
 			"third line Unmatched"
-			PDFCellStyle new text: 'washington'.
-			PDFCellStyle new text: 'robert'.
-			PDFCellStyle new text: 'robert.washington@blif.com'.
+			PDFCellElement new text: 'washington'.
+			PDFCellElement new text: 'robert'.
+			PDFCellElement new text: 'robert.washington@blif.com'.
 			}.
 		};
 		xy: 10@20;
@@ -402,7 +402,7 @@ PDFDemos class >> datatableTest [
 	pdfdoc title: 'Users report'.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFDataTableStyle new
+	aPage add: (PDFDataTableElement new
 		data: #(
 			#('Smith' 'Peter' 'peter.smith@mail.org')
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
@@ -412,7 +412,7 @@ PDFDemos class >> datatableTest [
 		wh: 60@5
 	).
 
-	aPage add: (PDFDataTableStyle new
+	aPage add: (PDFDataTableElement new
 		data: #(
 			#('Smith' 'Peter' 'peter.smith@mail.org')
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
@@ -448,7 +448,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFDataTableWithColumnsCaptionStyle new
+	aPage add: (PDFDataTableWithColumnsCaptionElement new
 		captions: #( 'Name' 'Surname' 'email');
 		data: #(
 			#('Smith' 'Peter' 'peter.smith@mail.org')
@@ -460,7 +460,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 		captionColor: (PDFColor new setGreyLevel: 192)
 	).	
 
-	aPage add: (PDFDataTableWithRowsCaptionStyle new
+	aPage add: (PDFDataTableWithRowsCaptionElement new
 		captions: #( 'Name' 'Surname' 'email');
 		data: #(
 			#('Smith' 'Jones' 'washington')
@@ -494,7 +494,7 @@ PDFDemos class >> demo [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFCellElement new 
 		font: myBigFont; 
 		wh: 100@60; 
 		border: true; 
@@ -502,7 +502,7 @@ PDFDemos class >> demo [
 		textColor: (PDFColor new setColor: #(0 255 0));
 		text: 'Première ligne').
 		
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFCellElement new 
 		font: myBigFont;
 		wh: 100@24; 
 		border: true; 
@@ -510,7 +510,7 @@ PDFDemos class >> demo [
 		textColor: (PDFColor new setColor: #(128 128 0)); 
 		text: 'Artefact').
 	
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFCellElement new 
 		font: myFont; 
 		wh: 100@10; 
 		border: true; 
@@ -518,8 +518,8 @@ PDFDemos class >> demo [
 		textColor: (PDFColor new setColor: #(0 0 0));
 		text: 'PDF Framework for Pharo').
 			
-	aPage add: (PDFLineStyle new xy: 10@10; destination: 20@10; drawColor: (PDFColor new setColor: #(255 0 0))).
-	aPage add: (PDFLineStyle new xy: 10@10; destination: 10@20; drawColor:(PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineElement new xy: 10@10; destination: 20@10; drawColor: (PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineElement new xy: 10@10; destination: 10@20; drawColor:(PDFColor new setColor: #(255 0 0))).
 
 	
 	pdfdoc add: aPage.
@@ -544,28 +544,28 @@ PDFDemos class >> dottedTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFLineStyle new xy: 0@0; destination: 30@0).
-	aPage add: (PDFLineStyle new xy: 0@0; destination: 0@30).
-	aPage add: (PDFLineStyle new xy: 0@5; destination: 150@5).
+	aPage add: (PDFLineElement new xy: 0@0; destination: 30@0).
+	aPage add: (PDFLineElement new xy: 0@0; destination: 0@30).
+	aPage add: (PDFLineElement new xy: 0@5; destination: 150@5).
 	
-	aPage add: (PDFLineStyle new
+	aPage add: (PDFLineElement new
 		xy: 10@10;
 		destination: 100@30;
 		dotted: (PDFDotted new length: 2; space: 3)
 	).
 	
-	aPage add: (PDFLineStyle new
+	aPage add: (PDFLineElement new
 		xy: 30@30;
 		destination: 80@50;
 		dotted: (PDFDotted new)
 	).
 
-	aPage add: (PDFLineStyle new
+	aPage add: (PDFLineElement new
 		xy: 10@10;
 		destination: 10@50
 	 ).
 	
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 80@80;
 		wh: 100@30; 
 		dotted: (PDFDotted new length: 5; space: 3);
@@ -588,7 +588,7 @@ PDFDemos class >> drawStyleSheetTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFRectStyle new 
+	aPage add: (PDFRectElement new 
 		xy: 10@50;
 		wh: 50@50; 
 		thickness: 5;
@@ -596,7 +596,7 @@ PDFDemos class >> drawStyleSheetTest [
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
 		
-	aPage add: (PDFRectStyle new 
+	aPage add: (PDFRectElement new 
 		xy: 50@60;
 		wh: 50@50).
 		
@@ -618,9 +618,9 @@ PDFDemos class >> euroTest [
        aPage := PDFPage new.
 	theText :=  ('Price: (24{1})A\B' format: { (128 asCharacter) asString} ).
 	
-       aPage add: (PDFTextStyle new xy: 50@10; text: theText; font: (PDFTimesFont new)).
-       aPage add: (PDFTextStyle new xy: 50@20; text: theText; font: (PDFCourierFont new)).
-       aPage add: (PDFTextStyle new xy: 50@30; text: theText; font: (PDFHelveticaFont  new)).
+       aPage add: (PDFTextElement new xy: 50@10; text: theText; font: (PDFTimesFont new)).
+       aPage add: (PDFTextElement new xy: 50@20; text: theText; font: (PDFCourierFont new)).
+       aPage add: (PDFTextElement new xy: 50@30; text: theText; font: (PDFHelveticaFont  new)).
 
 	pdfdoc add: aPage.
 	
@@ -638,14 +638,14 @@ PDFDemos class >> greyLevelTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFTextStyle new 
+	aPage add: (PDFTextElement new 
 		xy: 10@10; 
 		text: 'A grey level text'; 
 		font: (PDFCourierFont new);
 		ink: (PDFColor new setGreyLevel: 128)
 		).
 		
-	aPage add: (PDFRectStyle new 
+	aPage add: (PDFRectElement new 
 		xy: 10@20;
 		wh: 50@50; 
 		width: 5;
@@ -672,14 +672,14 @@ PDFDemos class >> headerFooterTest [
 	pdfdoc := PDFDocument new.
 	
 	aPage := PDFPage new.
-	aPage add: (PDFCellStyle new 
+	aPage add: (PDFCellElement new 
 		font: myFont;
 		text: 'Header and Footer test').
 
 	pdfdoc add: aPage.
 
 	secondPage := PDFPage new.
-	secondPage add: (PDFCellStyle new 
+	secondPage add: (PDFCellElement new 
 		font: myFont;
 		text: 'Header and Footer test').	
 			
@@ -747,10 +747,10 @@ PDFDemos class >> lineTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFLineStyle new xy: 0@0; destination: 210@0).
-	aPage add: (PDFLineStyle new xy: 0@0; destination: 0@297).
-	aPage add: (PDFLineStyle new xy: 0@297; destination: 210@297).
-	aPage add: (PDFLineStyle new xy: 210@297; destination: 210@0).
+	aPage add: (PDFLineElement new xy: 0@0; destination: 210@0).
+	aPage add: (PDFLineElement new xy: 0@0; destination: 0@297).
+	aPage add: (PDFLineElement new xy: 0@297; destination: 210@297).
+	aPage add: (PDFLineElement new xy: 210@297; destination: 210@0).
 			
 	pdfdoc add: aPage.
 	
@@ -771,14 +771,14 @@ PDFDemos class >> multiOrientationsTest [
 	myBigFont := PDFTimesFont new fontSize: 16.
 	
 	firstPage := PDFPage new.	
-	firstPage add: (PDFCellStyle new 
+	firstPage add: (PDFCellElement new 
 		font: myBigFont; 
 		wh: 40@10; 
 		text: 'Page 1').
 	
 	secondPage := PDFPage new format: myLandscapeFormat.
 	
-	secondPage add: (PDFCellStyle new 
+	secondPage add: (PDFCellElement new 
 		font: myBigFont; 
 		wh: 40@10; 
 		text: 'Page en A3').	
@@ -800,23 +800,23 @@ PDFDemos class >> paragraphTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFParagraphStyle new 
+	aPage add: (PDFParagraphElement new 
 		xy: 90@40;
 		wh: 100@20; 
 		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
-	aPage add: (PDFParagraphStyle new 
+	aPage add: (PDFParagraphElement new 
 		xy: 20@40;
 		wh: 60@60; 
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
-	aPage add: (PDFParagraphStyle new 
+	aPage add: (PDFParagraphElement new 
 		xy: 100@80;
 		wh: 60@70; 
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
 		center).
 		
-	aPage add: (PDFParagraphStyle new 
+	aPage add: (PDFParagraphElement new 
 		xy: 10@120;
 		wh: 60@80; 
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
@@ -839,13 +839,13 @@ PDFDemos class >> polygonsTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFPolygonStyle new 
+	aPage add: (PDFPolygonElement new 
 		xy: 10@10; 
 		destination: { 60@20 . 50@40 . 30@50 . 15@45 };
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 	
-	aPage add: (PDFFilledPolygonStyle new 
+	aPage add: (PDFFilledPolygonElement new 
 		xy: 10@55; 
 		destination: { 60@60 . 50@100 . 30@110 . 15@105 };
 		drawColor: (PDFColor new setColor: #(0 0 255));
@@ -868,19 +868,19 @@ PDFDemos class >> rectsTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 0@0;
 		wh: 210@297
 	).
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 10@10;
 		wh: 100@30 ).
-	aPage add: (PDFFilledRectStyle new
+	aPage add: (PDFFilledRectElement new
 		xy: 15@15;
 		wh: 100@30;
 		fillColor: (PDFColor new setColor: #(142 24 78))
 		).		
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 20@20;
 		wh: 100@30;
 		drawColor: (PDFColor new setColor: #(0 255 0)) 
@@ -901,21 +901,21 @@ PDFDemos class >> textTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFTextStyle new  
+	aPage add: (PDFTextElement new  
 		xy: 10@10;
 		text: 'A very simple text'
 	).
-	aPage add: (PDFTextStyle new 
+	aPage add: (PDFTextElement new 
 		font: myFont; 
 		xy: 10@30; 
 		text: 'A very simple text with specified font'
 	).
-	aPage add: (PDFTextStyle new 
+	aPage add: (PDFTextElement new 
 		textColor: (PDFColor new setColor: #(255 0 0 ));
 		xy: 10@50; 
 		text: 'A very simple text with specified color'
 	).
-	aPage add: (PDFTextStyle new 
+	aPage add: (PDFTextElement new 
 		textColor: (PDFColor new setColor: #(0 0 255 ));
 		font: myFont; 
 		xy: 10@70; 
@@ -941,12 +941,12 @@ PDFDemos class >> thicknessTest [
 	xy2 := 100@20.
 	
 	1 to: 5 do: [ :i |
-		aPage add: (PDFLineStyle new xy: xy1; destination: xy2; thickness: i).
+		aPage add: (PDFLineElement new xy: xy1; destination: xy2; thickness: i).
 		xy1 := (xy1 x) @ (xy1 y + 10).
 		xy2 := (xy2 x) @ (xy2 y + 10).
 	].	
 	
-	aPage add: (PDFRectStyle new 
+	aPage add: (PDFRectElement new 
 		xy: 50@80;
 		wh: 50@50; 
 		thickness:  5
@@ -971,12 +971,12 @@ PDFDemos class >> twoColoredRectsTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 10@10;
 		wh: 100@30;
 		fillColor: (PDFColor new setColor: #(142 24 78));
 		drawColor: (PDFColor new setColor: #(255 0 0))).
-	aPage add: (PDFRectStyle new
+	aPage add: (PDFRectElement new
 		xy: 15@15;
 		wh: 100@30;
 		fillColor: (PDFColor new setColor: #(24 57 205));
@@ -1028,12 +1028,12 @@ PDFDemos class >> widthTest [
 	
 	width := myFont getStringWidth: text into: pdfdoc.
 	
-	aPage add: (PDFCellStyle new font: myFont; wh: width@10; border: true; linefeed: true; text: text).
+	aPage add: (PDFCellElement new font: myFont; wh: width@10; border: true; linefeed: true; text: text).
 
 	"aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text)."
 	
 	"Transcript show: pdfdoc margins asString."
-	aPage add: (PDFLineStyle new xy: 10@60; destination: 110@60).
+	aPage add: (PDFLineElement new xy: 10@60; destination: 110@60).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'widthTest.pdf'.

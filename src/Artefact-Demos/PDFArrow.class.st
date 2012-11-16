@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFArrow,
 	#superclass : #PDFCompositeDraw,
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #action }

@@ -1,11 +1,11 @@
 Class {
 	#name : #PDFVisibleItem,
-	#superclass : #PDFStyle,
+	#superclass : #PDFElement,
 	#instVars : [
 		'xy',
 		'wh'
 	],
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #'as yet unclassified' }

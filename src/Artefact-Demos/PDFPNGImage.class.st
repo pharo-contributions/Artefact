@@ -13,7 +13,7 @@ stream close.
 Class {
 	#name : #PDFPNGImage,
 	#superclass : #PDFImage,
-	#category : #'Artefact-Styles'
+	#category : #'Artefact-Elements'
 }
 
 { #category : #action }
