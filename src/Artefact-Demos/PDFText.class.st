@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'text'
 	],
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #accessing }

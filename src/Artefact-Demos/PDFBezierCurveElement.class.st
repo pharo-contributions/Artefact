@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFBezierCurveElement,
 	#superclass : #PDFDraw,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

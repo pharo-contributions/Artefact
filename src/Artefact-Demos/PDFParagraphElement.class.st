@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFParagraphElement,
 	#superclass : #PDFCompositeText,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #private }

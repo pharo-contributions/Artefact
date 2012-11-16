@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'destination'
 	],
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #accessing }

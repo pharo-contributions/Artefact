@@ -6,7 +6,7 @@ Class {
 		'data',
 		'margin'
 	],
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #action }

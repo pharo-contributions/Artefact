@@ -7,7 +7,7 @@ Class {
 		'verticalAlignment',
 		'margin'
 	],
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #accessing }

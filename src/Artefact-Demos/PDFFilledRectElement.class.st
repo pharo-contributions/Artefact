@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFFilledRectElement,
 	#superclass : #PDFRectElement,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

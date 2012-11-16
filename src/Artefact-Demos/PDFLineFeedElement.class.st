@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFLineFeedElement,
 	#superclass : #PDFLayout,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Layout'
 }
 
 { #category : #render }

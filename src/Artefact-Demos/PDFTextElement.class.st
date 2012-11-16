@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFTextElement,
 	#superclass : #PDFText,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

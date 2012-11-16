@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFDataTableWithColumnsCaptionElement,
 	#superclass : #PDFDataTableWithCaptions,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #render }

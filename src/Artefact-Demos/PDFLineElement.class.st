@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFLineElement,
 	#superclass : #PDFDraw,
-	#category : #'Artefact-Elements'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }
