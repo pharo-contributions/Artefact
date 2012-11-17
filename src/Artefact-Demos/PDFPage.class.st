@@ -61,11 +61,21 @@ PDFPage >> format: aPDFFormat [
 	format :=  aPDFFormat
 ]
 
+{ #category : #accessing }
+PDFPage >> from [
+	^ xy
+]
+
+{ #category : #accessing }
+PDFPage >> from: aCurrentPosition [
+	xy := aCurrentPosition
+]
+
 { #category : #private }
 PDFPage >> initRender [
 	"prepare the render step"
 	self margins: (self format margins x / self document scaleFactor) @ (self format margins y / self document scaleFactor).
-	self xy: margins.
+	self from: margins.
 	self lasth: 0.
 	self buffer resetContents.
 ]
@@ -141,14 +151,4 @@ PDFPage >> styles [
 { #category : #accessing }
 PDFPage >> styles: aCollectionOfStyle [
 	styles := aCollectionOfStyle
-]
-
-{ #category : #accessing }
-PDFPage >> xy [
-	^ xy
-]
-
-{ #category : #accessing }
-PDFPage >> xy: aCurrentPosition [
-	xy := aCurrentPosition
 ]

@@ -22,8 +22,8 @@ PDFParagraphElement >> getStyles [
 	| lines decalage currentXY current |
 	lines := self splitOn: (self page).
 	decalage := self decalageOn: (self page).
-	currentXY := self xy.
-	^ lines collect: [:aLine | current := PDFFormatedTextElement new styleSheet: (self styleSheet); alignment: self alignment; xy: currentXY; wh: self wh; text: aLine.
+	currentXY := self from.
+	^ lines collect: [:aLine | current := PDFFormatedTextElement new styleSheet: (self styleSheet); alignment: self alignment; from: currentXY; wh: self wh; text: aLine.
 			currentXY := currentXY + (0@decalage).
 			current ].
 ]

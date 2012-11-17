@@ -28,12 +28,12 @@ PDFCircleElement >> renderContentOn: aPage [
 	
 	| origin r |
 	
-	origin := self determinePosition: self xy on: aPage.
+	origin := self determinePosition: self from on: aPage.
 	 	
 	r := self userUnitToPoints: self radius into: aPage document.
 	
 	self out: (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: ((self xy x + self radius) @ (self xy y)) on: aPage); 
+		s nextPutAll: (self moveTo: ((self from x + self radius) @ (self from y)) on: aPage); 
 		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
 		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
 		print: origin x; space; print: (origin y + r); nextPutAll: ' c ';

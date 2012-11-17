@@ -15,7 +15,7 @@ PDFRectElement >> renderContentOn: aPage [
 	
 	| position |
 	
-	position := self determinePosition: self xy on: aPage.
+	position := self determinePosition: self from on: aPage.
 	 
 	self out: (String streamContents: [ :s |
 		s nextPutAll: (self splitCoordinates: position);

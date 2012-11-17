@@ -6,7 +6,7 @@ Class {
 
 { #category : #action }
 PDFArrow >> angle [
-	^(destination y - xy y) arcTan: (destination x - xy x)
+	^(to y - from y) arcTan: (to x - from x)
 ]
 
 { #category : #action }

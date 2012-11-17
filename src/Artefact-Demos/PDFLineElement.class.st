@@ -10,10 +10,10 @@ PDFLineElement >> renderContentOn: aPage [
 	
 	| dest |
 	
-	dest := self determinePosition: self destination on: aPage.
+	dest := self determinePosition: self to on: aPage.
 	 			
 	self out: (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self xy on: aPage);
+		s nextPutAll: (self moveTo: self from on: aPage);
 		nextPutAll: (self splitCoordinates: dest);
 		space;
 		nextPutAll: PDFByteCode line;

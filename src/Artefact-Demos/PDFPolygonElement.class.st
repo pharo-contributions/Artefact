@@ -16,14 +16,14 @@ PDFPolygonElement >> renderContentOn: aPage [
 	| points |
 	
 	points := OrderedCollection new 
-		addAll: (self destination collect: [ :position |
+		addAll: (self to collect: [ :position |
 			self determinePosition: position on: aPage
 		]);
-		add: (self determinePosition: self xy on: aPage);
+		add: (self determinePosition: self from on: aPage);
 		yourself.
 	
 	self out: (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self xy on: aPage).
+		s nextPutAll: (self moveTo: self from on: aPage).
 		points do: [ :pos | 
 			s nextPutAll: (self splitCoordinates: pos);
 			space;

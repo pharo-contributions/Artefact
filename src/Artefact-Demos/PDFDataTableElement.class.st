@@ -14,7 +14,7 @@ PDFDataTableElement >> getStyles [
 	
 	^{ PDFDataTableCustomizedElement new
 		styleSheet: (self styleSheet);
-		xy: (self xy);
+		from: (self from);
 		wh: (self wh);
 		data: elements }
 		

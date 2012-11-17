@@ -62,7 +62,7 @@ PDFCellElement >> getStyles [
 	"get the current position in the page if xy is not defined"
 	| decx decy font |
 
-	(self xy isNil) ifTrue: [ self xy: self page xy ] ifFalse: [ self page xy: self xy ].
+	(self from isNil) ifTrue: [ self from: self page from ] ifFalse: [ self page from: self from ].
 	
 	"set the position of the text element"
 	font := self fontIfAbsent: (self page styleSheet).
@@ -73,14 +73,14 @@ PDFCellElement >> getStyles [
 	"set the new current position and linefeed ?"
  	self page lasth: self wh y.	
 	(self linefeed) 
-		ifTrue: [ self page xy: (self page margins x) @ (self page xy y + self wh y) ] 
-		ifFalse: [ self page xy: (self page xy x + self wh x) @ (self page xy y) ].
+		ifTrue: [ self page from: (self page margins x) @ (self page from y + self wh y) ] 
+		ifFalse: [ self page from: (self page from x + self wh x) @ (self page from y) ].
 	
 	"answer the style description"	
 
 	^ OrderedCollection new 
-		add: (rectElement styleSheet: (self styleSheet); xy: self xy; wh: self wh); 
-		add: (PDFTextElement new styleSheet: (self styleSheet); text: (self text); xy: (decx + self xy x)@(self xy y + decy));  
+		add: (rectElement styleSheet: (self styleSheet); from: self from; wh: self wh); 
+		add: (PDFTextElement new styleSheet: (self styleSheet); text: (self text); from: (decx + self from x)@(self from y + decy));  
 		yourself.
 ]
 

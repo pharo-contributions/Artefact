@@ -13,12 +13,12 @@ PDFDataTableWithColumnsCaptionElement >> getStyles [
 	^OrderedCollection new 
 		add: (PDFDataTableCustomizedElement new
 			styleSheet: self styleSheet;
-			xy: self xy;
+			from: self from;
 			wh: self wh;
 			data: { elements } );
 		add: (PDFDataTableElement new
 			styleSheet: self styleSheet;
-			xy: self xy + (0 @ (self wh y));
+			from: self from + (0 @ (self wh y));
 			wh: self wh;
 			data: self data
 		);

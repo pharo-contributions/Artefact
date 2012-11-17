@@ -2,11 +2,21 @@ Class {
 	#name : #PDFVisibleItem,
 	#superclass : #PDFElement,
 	#instVars : [
-		'xy',
-		'wh'
+		'wh',
+		'from'
 	],
 	#category : #'Artefact-Elements'
 }
+
+{ #category : #accessing }
+PDFVisibleItem >> from [
+	^ from
+]
+
+{ #category : #accessing }
+PDFVisibleItem >> from: anObject [
+	from := anObject
+]
 
 { #category : #'as yet unclassified' }
 PDFVisibleItem >> userUnitToPoints: aValue into: aDocument [
@@ -22,14 +32,4 @@ PDFVisibleItem >> wh [
 { #category : #accessing }
 PDFVisibleItem >> wh: anObject [
 	wh := anObject
-]
-
-{ #category : #accessing }
-PDFVisibleItem >> xy [
-	^ xy
-]
-
-{ #category : #accessing }
-PDFVisibleItem >> xy: anObject [
-	xy := anObject
 ]

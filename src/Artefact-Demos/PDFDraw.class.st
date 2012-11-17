@@ -2,20 +2,10 @@ Class {
 	#name : #PDFDraw,
 	#superclass : #PDFBasic,
 	#instVars : [
-		'destination'
+		'to'
 	],
 	#category : #'Artefact-Elements-Basic'
 }
-
-{ #category : #accessing }
-PDFDraw >> destination [
-	^ destination
-]
-
-{ #category : #accessing }
-PDFDraw >> destination: anObject [
-	destination := anObject
-]
 
 { #category : #accessing }
 PDFDraw >> dotted: anObject [
@@ -115,4 +105,14 @@ PDFDraw >> moveTo: aPosition on: aPage [
 { #category : #accessing }
 PDFDraw >> thickness: anObject [
 	self styleSheet thickness: anObject
+]
+
+{ #category : #accessing }
+PDFDraw >> to [
+	^ to
+]
+
+{ #category : #accessing }
+PDFDraw >> to: anObject [
+	to := anObject
 ]

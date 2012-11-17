@@ -9,7 +9,7 @@ PDFTextElement >> renderContentOn: aPage [
 	"Draw a text at xy position"
 	| position |
 	
-	position := self determinePosition: self xy on: aPage.
+	position := self determinePosition: self from on: aPage.
 	 		
 	self out: (String streamContents: [ :s |
 		s nextPutAll: PDFByteCode beginText; 

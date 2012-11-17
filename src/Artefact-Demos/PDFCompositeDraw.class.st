@@ -2,20 +2,10 @@ Class {
 	#name : #PDFCompositeDraw,
 	#superclass : #PDFComposite,
 	#instVars : [
-		'destination'
+		'to'
 	],
 	#category : #'Artefact-Elements-Composites'
 }
-
-{ #category : #accessing }
-PDFCompositeDraw >> destination [
-	^destination
-]
-
-{ #category : #accessing }
-PDFCompositeDraw >> destination: anObject [
-	destination := anObject
-]
 
 { #category : #accessing }
 PDFCompositeDraw >> dotted: aPDFDottedObject [
@@ -45,4 +35,14 @@ PDFCompositeDraw >> thickness: aThickness [
 { #category : #accessing }
 PDFCompositeDraw >> thicknessIfAbsent: anAlternativeStyleSheet [
 	^ self styleSheet get: #thickness ifAbsentFrom: anAlternativeStyleSheet 
+]
+
+{ #category : #accessing }
+PDFCompositeDraw >> to [
+	^to
+]
+
+{ #category : #accessing }
+PDFCompositeDraw >> to: anObject [
+	to := anObject
 ]

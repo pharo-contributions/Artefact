@@ -19,7 +19,7 @@ PDFDataTableWithRowsCaptionElement >> getStyles [
 	^OrderedCollection new 
 		add: (PDFDataTableCustomizedElement new
 			styleSheet: self styleSheet;
-			xy: self xy;
+			from: self from;
 			wh: self wh;
 			data: elements);
 			yourself
