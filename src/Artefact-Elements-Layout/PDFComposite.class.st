@@ -48,6 +48,14 @@ PDFComposite >> fontIfAbsent: aStyleSheet. [
 ]
 
 { #category : #render }
+PDFComposite >> generateCodeSegmentArrayIn: aPage [
+	self page: aPage.
+	
+	^ (self getSubElements) inject: {} into: [ :str :anElement | str, (anElement generateCodeSegmentArrayIn: aPage)].
+	
+]
+
+{ #category : #render }
 PDFComposite >> getSubElements [
 	""
 	self subclassResponsibility
@@ -61,14 +69,6 @@ PDFComposite >> page [
 { #category : #accessing }
 PDFComposite >> page: aPageObject [
 	page := aPageObject
-]
-
-{ #category : #render }
-PDFComposite >> renderIn: aPage [
-	self page: aPage.
-	
-	^ (self getSubElements) inject: {} into: [ :str :aStyle | str, (aStyle renderIn: aPage)].
-	
 ]
 
 { #category : #accessing }

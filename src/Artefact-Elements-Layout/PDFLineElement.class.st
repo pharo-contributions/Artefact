@@ -5,14 +5,12 @@ Class {
 }
 
 { #category : #render }
-PDFLineElement >> renderContentOn: aPage [
-	"Draw a line from xy to destination"
-	
+PDFLineElement >> produceElementCodeOn: aPage [
 	| dest |
 	
 	dest := self determinePosition: self to on: aPage.
 	 			
-	self out: (String streamContents: [ :s |
+	^  (String streamContents: [ :s |
 		s nextPutAll: (self moveTo: self from on: aPage);
 		nextPutAll: (self splitCoordinates: dest);
 		space;
@@ -20,6 +18,4 @@ PDFLineElement >> renderContentOn: aPage [
 		space;
 		nextPutAll: PDFByteCode noFilling
 	]).
-	
-	^buffer
 ]

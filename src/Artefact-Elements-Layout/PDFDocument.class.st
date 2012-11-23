@@ -235,6 +235,12 @@ PDFDocument >> clearBuffer [
 	self images removeAll.
 ]
 
+{ #category : #tools }
+PDFDocument >> convertToPoints: aValue [
+	"answer the value in points"
+	^ aValue * (self scaleFactor) 
+]
+
 { #category : #accessing }
 PDFDocument >> creator [
 	^ creator ifNil: [ creator := '' ]

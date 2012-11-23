@@ -10,7 +10,7 @@ PDFPolygonElement >> fillmode [
 ]
 
 { #category : #render }
-PDFPolygonElement >> renderContentOn: aPage [
+PDFPolygonElement >> produceElementCodeOn: aPage [
 	"Draw a polygon from xy to destination (a array of positions)"
 	
 	| points |
@@ -22,7 +22,7 @@ PDFPolygonElement >> renderContentOn: aPage [
 		add: (self determinePosition: self from on: aPage);
 		yourself.
 	
-	self out: (String streamContents: [ :s |
+	^ (String streamContents: [ :s |
 		s nextPutAll: (self moveTo: self from on: aPage).
 		points do: [ :pos | 
 			s nextPutAll: (self splitCoordinates: pos);
@@ -32,6 +32,4 @@ PDFPolygonElement >> renderContentOn: aPage [
 		].
 		s nextPutAll: (self fillmode)
 	]).
-			 
-	^buffer
 ]

@@ -20,6 +20,19 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFStyleSheet >> + aStyleSheet [
+	| newStyleSheet |
+	newStyleSheet := self deepCopy.
+	aStyleSheet attributes keysAndValuesDo: [:aKey :aValue | newStyleSheet attributes at: aKey put: aValue ].
+	^ newStyleSheet
+]
+
+{ #category : #'as yet unclassified' }
+PDFStyleSheet >> attributes [
+	^ attributes
+]
+
 { #category : #accessing }
 PDFStyleSheet >> document [
 	^document 

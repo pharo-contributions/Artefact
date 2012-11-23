@@ -19,6 +19,13 @@ PDFElement >> buffer: anObject [
 ]
 
 { #category : #render }
+PDFElement >> generateCodeSegmentArrayIn: aPage [
+	"initialize the style and answer the style content. The style receive the document context and the current page"
+
+	^ {self renderContentOn: aPage}
+]
+
+{ #category : #render }
 PDFElement >> initStyle: aDocument [
 	self subclassResponsibility 
 ]
@@ -41,17 +48,13 @@ PDFElement >> out: aItem [
 ]
 
 { #category : #render }
-PDFElement >> renderContentOn: aPage [
-	self subclassResponsibility
+PDFElement >> produceElementCodeOn: aPage [
+	self subclassResponsibility 
 ]
 
 { #category : #render }
-PDFElement >> renderIn: aPage [
-	"initialize the style and answer the style content. The style receive the document context and the current page"
-	
-	self initStyle: aPage document.
-	
-	^(self renderContentOn: aPage)
+PDFElement >> renderContentOn: aPage [
+	^ PDFCodeSegment code: (self produceElementCodeOn: aPage) styleSheet: self styleSheet isDrawElement: self isDrawElement
 ]
 
 { #category : #accessing }

@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #render }
-PDFTextElement >> renderContentOn: aPage [
+PDFTextElement >> produceElementCodeOn: aPage [
 	"Draw a text at xy position"
 	| position |
 	
 	position := self determinePosition: self from on: aPage.
 	 		
-	self out: (String streamContents: [ :s |
+	^ (String streamContents: [ :s |
 		s nextPutAll: PDFByteCode beginText; 
 		space;
 		nextPutAll: (self splitCoordinates: position);
@@ -24,8 +24,6 @@ PDFTextElement >> renderContentOn: aPage [
 		space;
 		nextPutAll: PDFByteCode endOfText
 	]).
-
-	^self buffer
 	
 
 ]

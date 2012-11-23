@@ -57,7 +57,7 @@ PDFDemos class >> alineTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFLineElement new from: 0@0; to: 210@60).
+	aPage add: (PDFLineElement new from: 0@0; to: 210@60; drawColor: (PDFColor new setColor: #(255 0 0) )).
 			
 	pdfdoc add: aPage.
 	

@@ -12,27 +12,17 @@ PDFCircleElement >> fillmode [
 	^ PDFByteCode noFilling
 ]
 
-{ #category : #accessing }
-PDFCircleElement >> radius [
-	^radius
-]
-
-{ #category : #accessing }
-PDFCircleElement >> radius: aValue [
-	radius := aValue
-]
-
 { #category : #render }
-PDFCircleElement >> renderContentOn: aPage [
+PDFCircleElement >> produceElementCodeOn: aPage [
 	"Draw a line from xy to destination"
 	
 	| origin r |
 	
 	origin := self determinePosition: self from on: aPage.
 	 	
-	r := self userUnitToPoints: self radius into: aPage document.
+	r := aPage document convertToPoints: self radius.
 	
-	self out: (String streamContents: [ :s |
+	^ (String streamContents: [ :s |
 		s nextPutAll: (self moveTo: ((self from x + self radius) @ (self from y)) on: aPage); 
 		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
 		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
@@ -49,5 +39,14 @@ PDFCircleElement >> renderContentOn: aPage [
 		nextPutAll: (self fillmode)
 	]).
  	
-	^buffer
+]
+
+{ #category : #accessing }
+PDFCircleElement >> radius [
+	^radius
+]
+
+{ #category : #accessing }
+PDFCircleElement >> radius: aValue [
+	radius := aValue
 ]

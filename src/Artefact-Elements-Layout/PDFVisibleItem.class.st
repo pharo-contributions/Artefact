@@ -18,12 +18,6 @@ PDFVisibleItem >> from: anObject [
 	from := anObject
 ]
 
-{ #category : #'as yet unclassified' }
-PDFVisibleItem >> userUnitToPoints: aValue into: aDocument [
-	"answer the value in points"
-	^ aValue * (aDocument scaleFactor) 
-]
-
 { #category : #accessing }
 PDFVisibleItem >> wh [
 	^ wh

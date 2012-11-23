@@ -8,7 +8,12 @@ Class {
 PDFBasic >> determinePosition: aPosition on: aPage [
 	"answer the real position of the PDF element on the page"
 	
-	^(self userUnitToPoints: aPosition x into: aPage document) @ ((aPage format defaultSize y) - (self userUnitToPoints: aPosition y into: aPage document))
+	^(aPage document convertToPoints: aPosition x) @ ((aPage format defaultSize y) - (aPage document convertToPoints: aPosition y))
+]
+
+{ #category : #action }
+PDFBasic >> isDrawElement [
+	^ SubclassResponsibility 
 ]
 
 { #category : #action }

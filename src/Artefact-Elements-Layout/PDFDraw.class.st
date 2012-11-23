@@ -84,6 +84,11 @@ PDFDraw >> initialize [
 	self styleSheet: PDFStyleSheet new
 ]
 
+{ #category : #accessing }
+PDFDraw >> isDrawElement [
+	^ true
+]
+
 { #category : #action }
 PDFDraw >> moveTo: aPosition on: aPage [
 	"answer the PDF code to setting the start position for drawing"
