@@ -9,7 +9,7 @@ Class {
 	#category : #Artefact
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean [
 	^ self new code: aCode; styleSheet: aStyleSheet; isDrawElement: aBoolean; yourself 
 ]
