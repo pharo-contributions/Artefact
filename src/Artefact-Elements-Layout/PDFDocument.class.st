@@ -1,42 +1,46 @@
 "
-#!/usr/bin/rebol
+! Introduction
 
-REBOL []
+|  _____          __          _____               __   
+  /  _  \________/  |_  _____/ ____\____    _____/  |_ 
+ /  /_\  \_  __ \   __\/ __ \   __\\__  \ _/ ___\   __\
+/    |    \  | \/|  | \  ___/|  |   / __ \\  \___|  |  
+\____|__  /__|   |__|  \___  >__|  (____  /\___  >__|  
+        \/                 \/           \/     \/      
 
-code: {
-}
-result: """"
-str: """"
-parse code [ any [ thru ""=>"" copy str to "","" ( append result (join str "" . "")) ] ] 
-print result
+Artefact is a framework to generate PDF documents. There is fully written in Smalltalk and external libraries are not needed. There is light, platform independant and it's a tool with a high level of abstraction to easily creating PDF documents.  
 
+ * written in Smalltalk (and only Smalltalk),
+ * multi format document,
+ * pages creation order could be totally different of the pages order in the PDF document,
+ * ability to create multiple versions of a document,
+ * page composition based on reusables PDF elements,
+ * ability to define PDF code segments for inserting PDF instructions directly in the document (low level code),
+ * PDF code optimization to produce compact files
 
-PDFDocument has not been documented yet. The class comment should describe the purpose of the class, its collaborations and its variables.
+Authors: Olivier Auverlot and Guillaume Larcheveque
 
-Instance Variables:
-	title	<String>
-	subject	<String>
-	author	<String>
-	keywords	<String>
-	creator	<String>
-	buffer	<AbstractSound | Announcement class | Collection | Exception class | ExceptionSet>
-	numberOfObjects	<Collection | Color | DateAndTime | Duration | Number | Point | Timespan | TraitComposition | TraitDescription | TraitTransformation>
-	pages	<OrderedCollection>
-	offsets	<Dictionary>
-	offset	<ProtoObject | PseudoContext>
-	fontNames	<ProtoObject>
-	fonts	<Dictionary>
-	orientation	<ProtoObject | PseudoContext>
-	pageNumber	<Integer>
-	format	<MarginBorder | PDFDocument | PDFFormat>
-	size	<Point | TTPoint>
-	margins	<Point | TTPoint>
-	scaleFactor	<Number | Point>
-	autoPageBreak	<ProtoObject | PseudoContext>
-	pageBreakTrigger	<ProtoObject | PseudoContext>
-	currentFont	<PDFCurrentFont>
-	images	<ProtoObject | PseudoContext>
-	charWidths	<ProtoObject>
+! How to creating my first PDF document ?
+! Configuration of a PDF document
+! The PDF elements
+!! Using the stylesheet
+!! Geometric shapes
+!!! Lines
+!!! Arrows
+!!! Rectangles
+!!! Polygons
+!!! Circles
+!!! Bezier curves
+!! Texts
+!!! Formatted texts
+!!! Cells of text
+!!! Paragraphs
+!! Datatables
+!!! Data table basic
+!!! Datatable with captions
+!!! Datatable customizable
+! Creating PDF elements
+! FAQ
 "
 Class {
 	#name : #PDFDocument,
@@ -67,6 +71,12 @@ Class {
 	],
 	#category : #Artefact
 }
+
+{ #category : #'as yet unclassified' }
+PDFDocument class >> FrameworkManual [
+	<wikiStyleHelp: #'Artefact (PDF framework)'>
+	^ self comment
+]
 
 { #category : #action }
 PDFDocument >> add: aPage [

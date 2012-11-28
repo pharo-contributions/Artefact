@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFCellElement,
-	#superclass : #PDFFormatedTextElement,
+	#superclass : #PDFFormattedTextElement,
 	#instVars : [
 		'linefeed',
 		'rectElement'

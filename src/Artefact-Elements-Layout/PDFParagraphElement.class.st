@@ -23,7 +23,7 @@ PDFParagraphElement >> getSubElements [
 	lines := self splitOn: (self page).
 	decalage := self decalageOn: (self page).
 	currentXY := self from.
-	^ lines collect: [:aLine | current := PDFFormatedTextElement new styleSheet: (self styleSheet); alignment: self alignment; from: currentXY; wh: self wh; text: aLine.
+	^ lines collect: [:aLine | current := PDFFormattedTextElement new styleSheet: (self styleSheet); alignment: self alignment; from: currentXY; wh: self wh; text: aLine.
 			currentXY := currentXY + (0@decalage).
 			current ].
 ]

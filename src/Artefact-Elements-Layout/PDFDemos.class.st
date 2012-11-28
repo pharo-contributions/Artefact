@@ -21,20 +21,20 @@ PDFDemos class >> alignmentsTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFFormatedTextElement new 
+	aPage add: (PDFFormattedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		from: 0@0;
 		text: 'At left'
 	).
-	aPage add: (PDFFormatedTextElement new 
+	aPage add: (PDFFormattedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		from: 10@20;
 		text: 'Center'; 
 		center
 	).
-	aPage add: (PDFFormatedTextElement new 
+	aPage add: (PDFFormattedTextElement new 
 		font: myFont; 
 		wh: 150@10; 
 		from: 10@30;
