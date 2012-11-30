@@ -1,7 +1,7 @@
 "
 ! Introduction
 
-|  _____          __          _____               __   
+.  _____          __          _____               __   
   /  _  \________/  |_  _____/ ____\____    _____/  |_ 
  /  /_\  \_  __ \   __\/ __ \   __\\__  \ _/ ___\   __\
 /    |    \  | \/|  | \  ___/|  |   / __ \\  \___|  |  
@@ -22,8 +22,21 @@ Authors: Olivier Auverlot and Guillaume Larcheveque
 
 ! How to creating my first PDF document ?
 ! Configuration of a PDF document
+!! PDF metadata
+!! Units of measurement
+!! Document formats
+!! Setting the position of items on a page
+!! Selecting the display mode
+! Controlling the pages
+!! Creating and adding a page into a document
+!! Setting the page format
+!! Choosing the orientation
 ! The PDF elements
-!! Using the stylesheet
+!! Apparences of PDF elements
+!!! Playing with fonts
+!!! Colors and grey levels
+!!! The story of dots
+!!! Using the stylesheet
 !! Geometric shapes
 !!! Lines
 !!! Arrows

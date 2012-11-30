@@ -530,7 +530,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/pdf/'
+	^'/home/olivier/Desktop/'
 ]
 
 { #category : #draw }
@@ -1037,6 +1037,21 @@ PDFDemos class >> widthTest [
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'widthTest.pdf'.
+
+	
+	
+]
+
+{ #category : #document }
+PDFDemos class >> zoomTest [
+	"generate documents with zooms"
+
+	"self zoomTest"
+
+	PDFDocument new fullPage; yourself; 
+		add: (PDFPage new add: (PDFTextElement text: 'Fullpage document'));
+		exportToFile: self demoPath , 'fullPageTest.pdf'.
+		
 
 	
 	
