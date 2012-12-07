@@ -7,6 +7,11 @@ Class {
 	#category : #'Artefact-Elements'
 }
 
+{ #category : #render }
+PDFPageElement >> generateCodeSegmentWithParent: aPage [
+	^ PDFPageElementCodeSegment code: (self producePageElementCodeOn: aPage) styleSheet: self styleSheet isDrawElement: self isDrawElement
+]
+
 { #category : #'initialize-release' }
 PDFPageElement >> initialize [ 
 	super initialize.
@@ -17,11 +22,6 @@ PDFPageElement >> initialize [
 { #category : #render }
 PDFPageElement >> producePageElementCodeOn: aPage [
 	self subclassResponsibility 
-]
-
-{ #category : #render }
-PDFPageElement >> renderContentOn: aPage [
-	^ PDFPageElementCodeSegment code: (self producePageElementCodeOn: aPage) styleSheet: self styleSheet isDrawElement: self isDrawElement
 ]
 
 { #category : #accessing }

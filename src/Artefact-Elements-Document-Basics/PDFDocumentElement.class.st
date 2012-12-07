@@ -5,11 +5,11 @@ Class {
 }
 
 { #category : #builder }
-PDFDocumentElement >> produceDocumentElementCodeOn: aDocument [
-	^ self subclassResponsibility
+PDFDocumentElement >> generateCodeSegmentWithParent: aDocument [
+	^ PDFElementCodeSegment new code: (self produceDocumentElementCodeOn: aDocument)
 ]
 
 { #category : #builder }
-PDFDocumentElement >> renderContentOn: aDocument [
-	^ PDFDocumentElementCodeSegment new code: (self produceDocumentElementCodeOn: aDocument)
+PDFDocumentElement >> produceDocumentElementCodeOn: aDocument [
+	^ self subclassResponsibility
 ]

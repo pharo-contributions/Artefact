@@ -770,7 +770,7 @@ PDFDemos class >> infosTest [
 	| pdfdoc aPage aSecondPage |
 	pdfdoc := PDFDocument new.
 	
-	pdfdoc title: 'Le titre du document'; 
+	pdfdoc metaData title: 'Le titre du document'; 
 		subject: 'test de la zone d''information'; 
 		author: 'Olivier Auverlot'; 
 		keywords: 'test zone infos';

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFLineFeedElement >> renderContentOn: aPage [
+PDFLineFeedElement >> generateCodeSegmentWithParent: aPage [
 	aPage from: aPage margins x @ aPage from y.
 	(self height isNil) 
 		ifTrue: [ aPage from: aPage from x @ (aPage from y + aPage lasth)] 

@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFDisplayMode,
-	#superclass : #PDFDocumentBasicElement,
+	#superclass : #PDFDocumentElement,
 	#instVars : [
 		'displayMode',
 		'zoom'

@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFDisplayLayout,
-	#superclass : #PDFDocumentBasicElement,
+	#superclass : #PDFDocumentElement,
 	#instVars : [
 		'layout'
 	],

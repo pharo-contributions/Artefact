@@ -59,11 +59,7 @@ Class {
 	#name : #PDFDocument,
 	#superclass : #Object,
 	#instVars : [
-		'title',
-		'subject',
-		'author',
-		'keywords',
-		'creator',
+		'metaData',
 		'buffer',
 		'numberOfObjects',
 		'pages',
@@ -186,17 +182,6 @@ PDFDocument >> addThepagesRoot: aNumberOfObjects [
 ]
 
 { #category : #accessing }
-PDFDocument >> author [
-	^ author ifNil: [ author := '' ]
-	
-]
-
-{ #category : #accessing }
-PDFDocument >> author: aString [
-	author := aString
-]
-
-{ #category : #accessing }
 PDFDocument >> autoPageBreak [
 	^autoPageBreak
 ]
@@ -270,17 +255,6 @@ PDFDocument >> continuousPages [
 PDFDocument >> convertToPoints: aValue [
 	"answer the value in points"
 	^ aValue * (self scaleFactor) 
-]
-
-{ #category : #accessing }
-PDFDocument >> creator [
-	^ creator ifNil: [ creator := '' ]
-	
-]
-
-{ #category : #accessing }
-PDFDocument >> creator: aString [
-	creator := aString
 ]
 
 { #category : #accessing }
@@ -467,7 +441,7 @@ PDFDocument >> generate [
 	"new document: reset all"
 	self clearBuffer.
 	
-	self out: (version renderContentOn: self) code.
+	self out: (version generateCodeSegmentWithParent: self) code.
 		
 	self pages do: [ :page |
 		
@@ -488,6 +462,11 @@ PDFDocument >> generate [
 	
 ]
 
+{ #category : #generate }
+PDFDocument >> generateWith: aPDFGenerator on: aStream [
+	aPDFGenerator generateDocument: aPDFGenerator on: aStream
+]
+
 { #category : #accessing }
 PDFDocument >> height [
 	^(self format size y)
@@ -505,6 +484,7 @@ PDFDocument >> initialize [
 
 	self setFormat: self defaultFormat.
 	self styleSheet: (PDFStyleSheet defaultForDocument: self).
+	self metaData: PDFMetaData new.
 	version := PDFVersion new.
 	self displayMode: (PDFDisplayMode new).
 	self displayLayout: (PDFDisplayLayout new)
@@ -517,8 +497,8 @@ PDFDocument >> insertCatalog [
 
 	self newObj.
 	self out: { '<<' . '/Type /Catalog' . '/Pages 1 0 R'}.
-	self out: ((self displayMode renderContentOn: self) code). 
-	self out: ((self displayLayout renderContentOn: self) code).
+	self out: ((self displayMode generateCodeSegmentWithParent: self) code). 
+	self out: ((self displayLayout generateCodeSegmentWithParent: self) code).
 	self out: {'>>' . 'endobj' }.
 
 ]
@@ -569,14 +549,13 @@ PDFDocument >> insertTrailer: aBufferSize [
 ]
 
 { #category : #accessing }
-PDFDocument >> keywords [
-	^ keywords ifNil: [ keywords := '' ]
-	
+PDFDocument >> metaData [
+	^ metaData
 ]
 
 { #category : #accessing }
-PDFDocument >> keywords: aString [
-	keywords := aString
+PDFDocument >> metaData: anObject [
+	metaData := anObject
 ]
 
 { #category : #private }
@@ -735,33 +714,11 @@ PDFDocument >> styleSheet: anObject [
 	styleSheet := anObject
 ]
 
-{ #category : #accessing }
-PDFDocument >> subject [
-	^ subject ifNil: [ subject := '' ]
-	
-]
-
-{ #category : #accessing }
-PDFDocument >> subject: aString [
-	subject := aString
-]
-
 { #category : #tools }
 PDFDocument >> textString: aString [
 	"Answer a formated text string"
 	
 	^('(' , (self escape: (aString asString)) , ')')
-]
-
-{ #category : #accessing }
-PDFDocument >> title [
-	^ title ifNil: [ title := '' ]
-	
-]
-
-{ #category : #accessing }
-PDFDocument >> title: aString [
-	title := aString
 ]
 
 { #category : #displayLayout }
