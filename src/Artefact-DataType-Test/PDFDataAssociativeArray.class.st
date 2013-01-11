@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #accessing }
+PDFDataAssociativeArray >> add: aPDFDataCouple [
+	associativeArray add: aPDFDataCouple
+]
+
+{ #category : #accessing }
 PDFDataAssociativeArray >> associativeArray [
 	^ associativeArray
 ]
@@ -17,24 +22,17 @@ PDFDataAssociativeArray >> associativeArray: anObject [
 	associativeArray := anObject
 ]
 
-{ #category : #'as yet unclassified' }
-PDFDataAssociativeArray >> at: aKey put: aValue [
-	associativeArray at: aKey put: aValue
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFDataAssociativeArray >> initialize [ 
-	associativeArray := Dictionary new
+	associativeArray := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PDFDataAssociativeArray >> printOn: aStream [
 	aStream nextPutAll: '<<'; crlf.
-	associativeArray keysAndValuesDo: 
-		[:aKey :aValue | 
-			aKey printOn: aStream. 
-			aStream space. 
-			aValue printOn: aStream.
+	associativeArray do: 
+		[:aCouple | 
+			aCouple printOn: aStream. 
 			aStream crlf ].
 	aStream nextPutAll: '>>'
 ]

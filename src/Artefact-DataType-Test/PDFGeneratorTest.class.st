@@ -2,7 +2,6 @@ Class {
 	#name : #PDFGeneratorTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'aStream',
 		'generator'
 	],
 	#category : #'Artefact-Generator-Test'
@@ -10,33 +9,32 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFGeneratorTest >> setUp [
-	aStream := WriteStream on: ''.
 	generator := PDFGenerator new.
 ]
 
 { #category : #'as yet unclassified' }
-PDFGeneratorTest >> testGenerateEOF [
-
-	generator generate: (PDFEOF new) on: aStream.
-	self assert: aStream contents equals: ('%%EOF', String crlf)
+PDFGeneratorTest >> testGenerateEmptyPage [
+	| page pageDataType contentDataType |
+	page:= PDFPage new format: (PDFA4Format new).
+	pageDataType:= generator generatePDFPage: page.
+	self assert: pageDataType class equals: PDFDataObject.
+	self assert: pageDataType id equals: 1.
+	self assert: pageDataType revision equals: 0.
+	self assert: pageDataType contents class equals: PDFDataReference.
+	contentDataType:= pageDataType contents referencedObject .
+	self assert: contentDataType class equals: PDFDataObject.
+	self assert: pageDataType id equals: 2.
+	self assert: pageDataType revision equals: 0.
 ]
 
 { #category : #'as yet unclassified' }
-PDFGeneratorTest >> testGenerateVersion [
-	generator generate: (PDFVersion new) on: aStream.
-	self assert: aStream contents equals: ('%PDF-1.3', String crlf)
-]
-
-{ #category : #'as yet unclassified' }
-PDFGeneratorTest >> testMetaData [
-	generator generate: (PDFMetaData new) on: aStream.
-	self assert: (aStream contents replaceFrom: 107 to: 120 with: '00000000000000') equals: ('<<' , String crlf,
-'/Producer (Artefact)' , String crlf,
-'/Title ()' , String crlf,
-'/Subject ()' , String crlf,
-'/Author ()' , String crlf,
-'/Keywords ()' , String crlf,
-'/Creator ()' , String crlf,
-'/CreationDate (D:00000000000000)' , String crlf,
-'>>' , String crlf)
+PDFGeneratorTest >> testGeneratePDFFormat [
+	| dataType format |
+	format := PDFA3Format new setLandscape.
+	dataType:= generator generatePDFFormat: format.
+	self assert: dataType class equals: PDFDataCouple.
+	self assert: dataType key class equals: PDFDataSymbol.
+	self assert: dataType key symbol equals: 'MediaBox'.
+	self assert: dataType value class equals: PDFDataArray.
+	self assert: dataType value elements equals: { 0 . 0 . format width . format height }
 ]

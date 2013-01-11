@@ -12,7 +12,7 @@ PDFDataValue class >> value: aValue [
 	^ self new value: aValue; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PDFDataValue >> printOn: aStream [
 	aStream nextPutAll: value asString
 ]
