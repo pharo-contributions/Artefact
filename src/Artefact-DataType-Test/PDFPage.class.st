@@ -74,6 +74,11 @@ PDFPage >> document: aPDFDocument [
 ]
 
 { #category : #accessing }
+PDFPage >> elements [
+	^ self styles
+]
+
+{ #category : #accessing }
 PDFPage >> format [
 	^ format ifNil: [ format := self document format ]
 ]

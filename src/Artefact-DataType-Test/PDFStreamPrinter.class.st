@@ -16,6 +16,25 @@ PDFStreamPrinter >> addLine: aString on: aStream [
 ]
 
 { #category : #'as yet unclassified' }
+PDFStreamPrinter >> escape: aString [
+	"answer a clean string at PDF format"
+	
+	| str |
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
+	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
+
+	^str
+]
+
+{ #category : #render }
+PDFStreamPrinter >> formatString: aString [
+	"Answer a formated text string"
+	
+	^('(' , (self escape: (aString asString)) , ')')
+]
+
+{ #category : #'as yet unclassified' }
 PDFStreamPrinter >> generateDocument: aPDFDocument on: aStream [
 	self generate: (PDFVersion new) on: aStream.
 	aPDFDocument pages do: [:aPage | self generate: aPage on: aStream].

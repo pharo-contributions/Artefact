@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFMetaData,
-	#superclass : #PDFDocumentElement,
+	#superclass : #Object,
 	#instVars : [
 		'title',
 		'subject',
@@ -75,19 +75,6 @@ PDFMetaData >> keywords [
 { #category : #accessing }
 PDFMetaData >> keywords: anObject [
 	keywords := anObject
-]
-
-{ #category : #accessing }
-PDFMetaData >> produceDocumentElementCodeOn: aDocument [
-	^ self produceLinesFrom: {'<<' .
-		('/Producer ' , (self formatString: self producer)) .
-		('/Title ' , (self formatString: self title)) .
-		('/Subject ' , (self formatString: self subject)) .	
-		('/Author ' , (self formatString: self author)) .
-		('/Keywords ' , (self formatString: self keywords)) .
-		('/Creator ' , (self formatString: self creator)) .
-		('/CreationDate (D:' , self currentDateAndTimeInPDFFormat , ')') .
-		'>>'}
 ]
 
 { #category : #accessing }

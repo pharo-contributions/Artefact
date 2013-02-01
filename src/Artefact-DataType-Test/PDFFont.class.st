@@ -4,9 +4,7 @@ Class {
 	#instVars : [
 		'bold',
 		'italic',
-		'fontName',
 		'fontSize',
-		'charWidths',
 		'pdfDocument'
 	],
 	#category : #'Artefact-Fonts'
@@ -22,16 +20,49 @@ PDFFont >> bold: anObject [
 	bold := anObject
 ]
 
+{ #category : #name }
+PDFFont >> boldAndItalicName [
+	^ self subclassResponsibility 
+]
+
+{ #category : #widths }
+PDFFont >> boldAndItalicWidths [
+	^ self subclassResponsibility
+]
+
+{ #category : #name }
+PDFFont >> boldName [
+	^ self subclassResponsibility 
+]
+
+{ #category : #widths }
+PDFFont >> boldWidths [
+	^ self subclassResponsibility
+]
+
 { #category : #widths }
 PDFFont >> charWidths [
 	"Answer a collection of the width of each caracter"
-	
-	self subclassResponsibility
+
+	^ self bold
+		ifTrue: [ 
+			self italic
+				ifTrue: [ self boldAndItalicWidths ]
+				ifFalse: [ self boldWidths ] ]
+		ifFalse: [ 
+			self italic
+				ifTrue: [ self italicWidths ]
+				ifFalse: [ self classicWidths ] ]
 ]
 
-{ #category : #accessing }
-PDFFont >> charWidths: anObject [
-	charWidths := anObject
+{ #category : #name }
+PDFFont >> classicName [
+	^ self subclassResponsibility 
+]
+
+{ #category : #widths }
+PDFFont >> classicWidths [
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -40,14 +71,18 @@ PDFFont >> family [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #name }
 PDFFont >> fontName [
-	^fontName ifNil: [ fontName := self getFontName ]
-]
 
-{ #category : #accessing }
-PDFFont >> fontName: anObject [
-	fontName := anObject
+	^ self bold
+		ifTrue: [ 
+			self italic
+				ifTrue: [ self boldAndItalicName ]
+				ifFalse: [ self boldName ] ]
+		ifFalse: [ 
+			self italic
+				ifTrue: [ self italicName ]
+				ifFalse: [ self classicName ] ]
 ]
 
 { #category : #accessing }
@@ -61,24 +96,12 @@ PDFFont >> fontSize: anObject [
 ]
 
 { #category : #action }
-PDFFont >> getCharWidthOf: aChar in: aFont [
+PDFFont >> getCharWidthOf: aChar [
 	"If the char is not a ascii char, the method return a default width"
-	((aChar asInteger) > 255)
-		ifTrue: [ ^0 ]
-		ifFalse: [ ^ ((self charWidths at: aFont) at: aChar) ]
-]
 
-{ #category : #private }
-PDFFont >> getFontName [
-	"answer the PDF name of the font"
-	
-	| style |
-
-	style := String new.
-	(self bold) ifTrue: [ style := style , 'B' ].
-	(self italic) ifTrue: [ style := style , 'I' ].
-	
-	^(self family , style)
+	aChar asInteger > 255
+		ifTrue: [ ^ 0 ]
+		ifFalse: [ ^ self charWidths at: aChar ]
 ]
 
 { #category : #action }
@@ -108,7 +131,7 @@ PDFFont >> getStringWidth: aString into: aDocument [
 	| width |
 	
 	width := 0.
-	aString do: [ :char | width := width + (self getCharWidthOf: char in: (self getFontName)) ].
+	aString do: [ :char | width := width + (self getCharWidthOf: char) ].
 	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
 	
 
@@ -124,6 +147,16 @@ PDFFont >> italic: anObject [
 	italic := anObject
 ]
 
+{ #category : #name }
+PDFFont >> italicName [
+	^ self subclassResponsibility 
+]
+
+{ #category : #widths }
+PDFFont >> italicWidths [
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 PDFFont >> pdfDocument [
 	^ pdfDocument
@@ -137,15 +170,4 @@ PDFFont >> pdfDocument: anObject [
 { #category : #accessing }
 PDFFont >> scaledFontSize: aScaleFactor [
 	^ ((self fontSize / aScaleFactor) roundDownTo: 0.01)
-]
-
-{ #category : #private }
-PDFFont >> setCharWidths: aWidthsCollection [
-	"answer a dictionnay that contains the size of each char"
-	
-	| widths |
-	widths := Dictionary new.
-	
-	1 to: 255 do: [ :i | widths at: (Character value: (i - 1))  put: (aWidthsCollection at: i) ].
-	^widths
 ]

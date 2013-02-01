@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFVisibleItem,
-	#superclass : #PDFPageElement,
+	#superclass : #PDFElement,
 	#instVars : [
 		'wh',
 		'from'

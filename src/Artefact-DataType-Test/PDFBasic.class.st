@@ -11,9 +11,21 @@ PDFBasic >> determinePosition: aPosition on: aPage [
 	^(aPage document convertToPoints: aPosition x) @ ((aPage format defaultSize y) - (aPage document convertToPoints: aPosition y))
 ]
 
+{ #category : #render }
+PDFBasic >> generateCodeSegmentArrayIn: aPage [
+	"initialize the style and answer the style content. The style receive the document context and the current page"
+
+	^ {(PDFElementCodeSegment code: (self producePageElementCodeOn: aPage) styleSheet: self styleSheet)}
+]
+
 { #category : #action }
 PDFBasic >> isDrawElement [
 	^ SubclassResponsibility 
+]
+
+{ #category : #render }
+PDFBasic >> producePageElementCodeOn: aPage [
+	self subclassResponsibility 
 ]
 
 { #category : #action }

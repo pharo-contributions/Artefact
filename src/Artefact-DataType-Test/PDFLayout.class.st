@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFLayout,
-	#superclass : #PDFPageElement,
+	#superclass : #PDFElement,
 	#instVars : [
 		'height'
 	],

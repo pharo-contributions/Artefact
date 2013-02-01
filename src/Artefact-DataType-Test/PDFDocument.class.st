@@ -108,18 +108,6 @@ PDFDocument >> addTheImages [
 ]
 
 { #category : #private }
-PDFDocument >> addTheListOfFonts [
-	"Add the list of fonts in the PDF document"
-		
-	1 to: (self fonts size) do: [ :pos |
-		self newObj.
-		self out: {  '<<' . '/Type /Font' .  '/Subtype /Type1' . ('/BaseFont /' , (self fontFullName: (self fonts keyAtValue: pos))) .   '/Encoding /WinAnsiEncoding' . '>>' . 'endobj' }.
-	]
-
-
-]
-
-{ #category : #private }
 PDFDocument >> addTheOrientations: aNumberOfObjects [
 	"each page can have a different orientation (landscape or portrait) and a different size"
 	
@@ -327,32 +315,6 @@ PDFDocument >> displayMode: anObject [
 	displayMode := anObject
 ]
 
-{ #category : #private }
-PDFDocument >> endDoc [
-	"End of the PDF document"
-	
-	|  nObjects |
-	
-	nObjects := self numberOfObjects.
-	"self addTheOrientations: nObjects."
-	self addTheListOfFonts.
-	self addTheImages.
-	self addThepagesRoot: nObjects.
-
-
-]
-
-{ #category : #private }
-PDFDocument >> endPage: aPageSize [
-
-	"End of the page contents"
-	self out: { 'endstream' . 'endobj' }.
-	"Size of page contents stream"
-	self newObj.
-	self out: { (aPageSize asString) . 'endobj' }.
-
-]
-
 { #category : #tools }
 PDFDocument >> escape: aString [
 	"answer a clean string at PDF format"
@@ -373,26 +335,6 @@ PDFDocument >> exportToFile: aFileName [
 	stream := StandardFileStream fileNamed: aFileName.
 	stream nextPutAll: self generate.
 	stream close.
-]
-
-{ #category : #private }
-PDFDocument >> fontFullName: aFontName [
-	"Answer the full name of a font"
-
-	^ ((self fontNames) at: aFontName)
-]
-
-{ #category : #fonts }
-PDFDocument >> fontNames [
-	^ fontNames ifNil: [ 
-		fontNames := {
-			'courier'->'Courier' . 'courierB'->'Courier-Bold' . 'courierI' -> 'Courier-Oblique' . 'courierBI'->'Courier-BoldOblique' .
-			'helvetica'->'Helvetica' . 'helveticaB'->'Helvetica-Bold' . 'helveticaI'->'Helvetica-Oblique' . 'helveticaBI'->'Helvetica-BoldOblique' .
-			'times'->'Times-Roman' . 'timesB'->'Times-Bold' . 'timesI'->'Times-Oblique' . 'timesBI'->'Times-BoldItalic' .
-			'symbol'->'Symbol' . 'symbolB'->'Symbol' . 'symbolI'->'Symbol' . 'symbolBI'->'Symbol' .
-			'zapfdingbats'->'ZapfDingbats' . 'zapfdingbatsB'->'ZapfDingbats' . 'zapfdingbatsI'->'ZapfDingbats' . 'zapfdingbatsBI'->'ZapfDingbats'			
-		} asDictionary.
-	]
 ]
 
 { #category : #accessing }
@@ -434,31 +376,10 @@ PDFDocument >> fullWidth [
 	self displayMode fullWidth
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFDocument >> generate [
-	" answer the PDF data"
-
-	"new document: reset all"
-	self clearBuffer.
-	
-	self out: (version generateCodeSegmentWithParent: self) code.
-		
-	self pages do: [ :page |
-		
-		"Start of the page"
-		self beginPage: page.
-		
-		"construct each styles in the document context"		
-		self out: (page renderContent).
-
-		"End of the page contents"
-		self endPage:  (self buffer size) - (self offset).
-	].
-	"insert the end of the document"
-	self endDoc.
-
-	"Transcript  clear; show: self buffer."
-	^self buffer contents 
+	"generate a PDFDataObject from document"
+	^ PDFGenerator new generatePDFDocument: self.
 	
 ]
 
@@ -485,9 +406,6 @@ PDFDocument >> initialize [
 	self setFormat: self defaultFormat.
 	self styleSheet: (PDFStyleSheet defaultForDocument: self).
 	self metaData: PDFMetaData new.
-	version := PDFVersion new.
-	self displayMode: (PDFDisplayMode new).
-	self displayLayout: (PDFDisplayLayout new)
 	
 ]
 
