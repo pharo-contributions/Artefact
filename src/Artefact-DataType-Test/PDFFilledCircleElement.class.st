@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFFilledCircleElement,
 	#superclass : #PDFCircleElement,
-	#category : #'Artefact-Elements-Page-Basics'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

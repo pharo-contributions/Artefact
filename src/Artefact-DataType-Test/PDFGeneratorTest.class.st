@@ -28,6 +28,14 @@ PDFGeneratorTest >> testGenerateEmptyPage [
 ]
 
 { #category : #'as yet unclassified' }
+PDFGeneratorTest >> testGeneratePDFEOF [
+	| dataType eof |
+	eof := '%EOF'.
+	dataType:= generator generatePDFEOF: eof.
+	self assert: dataType class equals: PDFDataComment.
+]
+
+{ #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGeneratePDFFormat [
 	| dataType format |
 	format := PDFA3Format new setLandscape.
@@ -37,4 +45,12 @@ PDFGeneratorTest >> testGeneratePDFFormat [
 	self assert: dataType key symbol equals: 'MediaBox'.
 	self assert: dataType value class equals: PDFDataArray.
 	self assert: dataType value elements equals: { 0 . 0 . format width . format height }
+]
+
+{ #category : #'as yet unclassified' }
+PDFGeneratorTest >> testGeneratePDFVersion [
+	| dataType version |
+	version := '1.3'.
+	dataType:= generator generatePDFVersion: version.
+	self assert: dataType class equals: PDFDataComment.
 ]

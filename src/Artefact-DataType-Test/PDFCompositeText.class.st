@@ -7,7 +7,7 @@ Class {
 		'verticalAlignment',
 		'margin'
 	],
-	#category : #'Artefact-Elements-Page-Composites'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #private }

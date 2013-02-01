@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'radius'
 	],
-	#category : #'Artefact-Elements-Page-Basics'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

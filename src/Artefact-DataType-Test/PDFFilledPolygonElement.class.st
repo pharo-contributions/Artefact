@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFFilledPolygonElement,
 	#superclass : #PDFPolygonElement,
-	#category : #'Artefact-Elements-Page-Basics'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }

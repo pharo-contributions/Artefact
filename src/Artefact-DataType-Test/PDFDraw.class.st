@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'to'
 	],
-	#category : #'Artefact-Elements-Page-Basics'
+	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #accessing }

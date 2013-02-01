@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFDataTableCustomizedElement,
 	#superclass : #PDFDataTable,
-	#category : #'Artefact-Elements-Page-Composites'
+	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #render }
