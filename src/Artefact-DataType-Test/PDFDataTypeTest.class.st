@@ -94,6 +94,11 @@ PDFDataTypeTest >> testDataReference [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDataTypeTest >> testDataString [
+	self assert: (PDFDataString text: 'a string') print: '(a string)'
+]
+
+{ #category : #'as yet unclassified' }
 PDFDataTypeTest >> testDataSymbol [
 	self assert: (PDFDataSymbol symbol: 'Type') print: '/Type'
 ]

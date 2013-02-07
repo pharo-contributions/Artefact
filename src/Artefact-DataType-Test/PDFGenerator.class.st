@@ -16,6 +16,19 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFGenerator >> createCatalogObject [
+	| catalogObject |
+	catalogObject := self createNewPDFDataObject.
+	catalogObject
+		addContent:
+			(PDFDataAssociativeArray new
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: self document));
+				yourself).
+	^ catalogObject
+]
+
+{ #category : #'as yet unclassified' }
 PDFGenerator >> createFontObject: aFont [
 	| fontObject |
 	fontObject := self createNewPDFDataObject.
@@ -28,6 +41,24 @@ PDFGenerator >> createFontObject: aFont [
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Encoding') value: (PDFDataSymbol symbol: 'WinAnsiEncoding'));
 				yourself).
 	^ fontObject
+]
+
+{ #category : #'as yet unclassified' }
+PDFGenerator >> createMetaDataObject: aMetaData [
+	| metadataObject |
+	metadataObject := self createNewPDFDataObject.
+	metadataObject
+		addContent:
+			(PDFDataAssociativeArray new
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Producer') value: (PDFDataString text: (aMetaData producer)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Title') value: (PDFDataString text: (aMetaData title)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Subject') value: (PDFDataString text: (aMetaData subject)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Author') value: (PDFDataString text: (aMetaData author)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Keywords') value: (PDFDataString text: (aMetaData keywords)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Creator') value: (PDFDataString text: (aMetaData creator)));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'CreationDate') value: (PDFDataDateAndTime date: (Date today) time: (Time now)));
+				yourself).
+	^ metadataObject
 ]
 
 { #category : #'as yet unclassified' }

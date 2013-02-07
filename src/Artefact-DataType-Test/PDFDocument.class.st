@@ -258,7 +258,7 @@ PDFDocument >> currentFont: aCurrentFont [
 { #category : #private }
 PDFDocument >> dateAndTimeInPDFFormat [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
-	
+	"A supprimer car gérer maintenant par le type PDFDataDateAndTime"
 	| str time hour minutes seconds |
 	
 	
