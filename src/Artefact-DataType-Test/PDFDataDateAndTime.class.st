@@ -8,6 +8,11 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
+{ #category : #'as yet unclassified' }
+PDFDataDateAndTime class >> date: aDate time: aTime [
+	^ self new date: aDate; time: aTime; yourself
+]
+
 { #category : #accessing }
 PDFDataDateAndTime >> date [
 	^ date
@@ -25,7 +30,7 @@ PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	| str timeStr hour minutes seconds |
 
 	hour := aTime hours.
-	str = hour asString.
+	str := hour asString.
 	(hour < 12) ifTrue: [ str := '0' , str ].
 	timeStr := str.
 	
@@ -34,7 +39,7 @@ PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	(minutes < 10) ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.
 	
-	seconds := Time seconds.
+	seconds := aTime seconds.
 	str := seconds asString.
 	(seconds < 10) ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.

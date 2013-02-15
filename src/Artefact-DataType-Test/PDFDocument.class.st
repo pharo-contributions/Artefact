@@ -379,7 +379,7 @@ PDFDocument >> fullWidth [
 { #category : #generate }
 PDFDocument >> generate [
 	"generate a PDFDataObject from document"
-	^ PDFGenerator new generatePDFDocument: self.
+	^ (PDFGenerator new generatePDFCompleteModelFrom: self) explore.
 	
 ]
 

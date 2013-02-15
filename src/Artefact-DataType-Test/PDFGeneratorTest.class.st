@@ -40,7 +40,7 @@ PDFGeneratorTest >> testGeneratePDFDocument [
 	
 	| pdfObject |
 	pdfObject := PDFDocument new format: PDFA3Format new; generate.
-	self assert: pdfObject asString equals: '1 0 obj
+	self assert: pdfObject asString withUnixLineEndings equals: '1 0 obj
 <<
 /Type /Pages
 /Kids [ ]
@@ -54,15 +54,7 @@ PDFGeneratorTest >> testGeneratePDFDocument [
 >>
 >>
 >>
-endobj'
-]
-
-{ #category : #'as yet unclassified' }
-PDFGeneratorTest >> testGeneratePDFEOF [
-	| dataType eof |
-	eof := '%EOF'.
-	dataType:= generator generatePDFEOF: eof.
-	self assert: dataType class equals: PDFDataComment.
+endobj' withUnixLineEndings
 ]
 
 { #category : #'as yet unclassified' }

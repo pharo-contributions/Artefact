@@ -7,6 +7,11 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
+{ #category : #creation }
+PDFDataString class >> text: aText [
+	^ self new text: aText; yourself
+]
+
 { #category : #action }
 PDFDataString >> escape: aString [
 	"answer a clean string at PDF format"

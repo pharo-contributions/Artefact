@@ -10,9 +10,8 @@ Class {
 	#instVars : [
 		'currentObjectNumber',
 		'document',
-		'rootReference',
-		'infoReference',
-		'usedFonts'
+		'usedFonts',
+		'xref'
 	],
 	#category : #'Artefact-Generator'
 }
@@ -36,7 +35,6 @@ PDFGenerator >> createFontObject: aFont [
 PDFGenerator >> createMetaDataObject: aMetaData [
 	| metadataObject |
 	metadataObject := self createNewPDFDataObject.
-	infoReference := PDFDataReference reference: metadataObject.
 	
 	metadataObject
 		addContent:
@@ -54,11 +52,14 @@ PDFGenerator >> createMetaDataObject: aMetaData [
 
 { #category : #action }
 PDFGenerator >> createNewPDFDataObject [
+	| object |
 	currentObjectNumber := currentObjectNumber + 1.
-	^ PDFDataObject new
+	object := PDFDataObject new
 		id: currentObjectNumber;
 		revision: 0;
-		yourself
+		yourself.
+	xref AddReferenceTo: object.
+	^ object
 ]
 
 { #category : #action }
@@ -72,12 +73,11 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 PDFGenerator >> createRootObject [
 	| rootObject |
 	rootObject := self createNewPDFDataObject.
-	rootReference := PDFDataReference reference: rootObject.
 	rootObject
 		addContent:
 			(PDFDataAssociativeArray new
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: self document));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: document));
 				yourself).
 	^ rootObject
 ]
@@ -141,6 +141,22 @@ PDFGenerator >> generateListOfFonts [
 ]
 
 { #category : #action }
+PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
+	document := self generatePDFDocument: aPDFDocument.
+	^ PDFDataTrailer new
+		addContent:
+				(PDFDataAssociativeArray new
+						add:
+								(PDFDataCouple key: (PDFDataSymbol symbol: 'Root') value: (PDFDataReference reference: self createRootObject));
+						add:
+								(PDFDataCouple
+										key: (PDFDataSymbol symbol: 'Info')
+										value: (PDFDataReference reference: (self createMetaDataObject: aPDFDocument metaData)));
+						add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Size') value: currentObjectNumber + 1));
+		addContent: (PDFDataStartXref to: xref)
+]
+
+{ #category : #action }
 PDFGenerator >> generatePDFDocument: aPDFDocument [
 	"should receive a PDFDocument and return a PDFDataObject representing the document"
 	
@@ -149,6 +165,7 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 	document := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Pages')).
+	"Generate Pages"
 	references := aPDFDocument pages collect: [ :aPage | PDFDataReference reference: (self generatePDFPage: aPage) ].
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Kids') value: (PDFDataArray from: references)).
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Count') value: (PDFDataValue value: references size)).
@@ -207,6 +224,7 @@ PDFGenerator >> generatePDFVersion: aPDFVersion [
 PDFGenerator >> initialize [
 	currentObjectNumber := 0.
 	usedFonts := Set new.
+	xref := PDFDataXRef new.
 ]
 
 { #category : #action }

@@ -59,7 +59,7 @@ PDFFontTest >> testCourierWidth [
 
 { #category : #fontsWidth }
 PDFFontTest >> testHelveticaBIWidth [
-	self assert: (PDFHelveticaFont new fontSize: 16; bold: true; italic: true; getStringWidth: 'hello' into: self doc) = 13.174.
+	self assert: ((PDFHelveticaFont new fontSize: 16; bold: true; italic: true; getStringWidth: 'hello' into: self doc) closeTo: 13.174)
 ]
 
 { #category : #fontsWidth }
