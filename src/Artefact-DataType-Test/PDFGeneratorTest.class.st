@@ -31,6 +31,11 @@ PDFGeneratorTest >> testGenerateEmptyPage [
 ]
 
 { #category : #'as yet unclassified' }
+PDFGeneratorTest >> testGenerateFontID [
+	self assert: (generator fontID: 2) equals: 'F2'.
+]
+
+{ #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGeneratePDFDocument [
 	
 	| pdfObject |

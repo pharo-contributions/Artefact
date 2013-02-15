@@ -10,23 +10,12 @@ Class {
 	#instVars : [
 		'currentObjectNumber',
 		'document',
+		'rootReference',
+		'infoReference',
 		'usedFonts'
 	],
 	#category : #'Artefact-Generator'
 }
-
-{ #category : #section }
-PDFGenerator >> createCatalogObject [
-	| catalogObject |
-	catalogObject := self createNewPDFDataObject.
-	catalogObject
-		addContent:
-			(PDFDataAssociativeArray new
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: self document));
-				yourself).
-	^ catalogObject
-]
 
 { #category : #section }
 PDFGenerator >> createFontObject: aFont [
@@ -47,6 +36,8 @@ PDFGenerator >> createFontObject: aFont [
 PDFGenerator >> createMetaDataObject: aMetaData [
 	| metadataObject |
 	metadataObject := self createNewPDFDataObject.
+	infoReference := PDFDataReference reference: metadataObject.
+	
 	metadataObject
 		addContent:
 			(PDFDataAssociativeArray new
@@ -75,6 +66,27 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 	^ PDFDataStream
 		codeSegments:
 			(aPage elements inject: {} into: [ :str :anElement | str , (anElement generateCodeSegmentArrayIn: aPage) ])
+]
+
+{ #category : #section }
+PDFGenerator >> createRootObject [
+	| rootObject |
+	rootObject := self createNewPDFDataObject.
+	rootReference := PDFDataReference reference: rootObject.
+	rootObject
+		addContent:
+			(PDFDataAssociativeArray new
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: self document));
+				yourself).
+	^ rootObject
+]
+
+{ #category : #tool }
+PDFGenerator >> fontID: aID [
+	"answer a PDF id for a font"
+	
+	^('F' , aID asString)
 ]
 
 { #category : #section }
@@ -114,13 +126,17 @@ PDFGenerator >> generateContentsFor: aPage [
 
 { #category : #section }
 PDFGenerator >> generateListOfFonts [
-	| fonts |
+	| fonts id |
+	
+	id := 1.
 	fonts := PDFDataAssociativeArray new.
+	
 	usedFonts
 		do: [ :aFont | 
 			fonts
 				add:
-					(PDFDataCouple key: (PDFDataSymbol symbol: 'F1') value: (PDFDataReference reference: (self createFontObject: aFont))) ].
+					(PDFDataCouple key: (PDFDataSymbol symbol: (self fontID: id)) value: (PDFDataReference reference: (self createFontObject: aFont))) ].
+			id := id + 1.
 	^ fonts
 ]
 
