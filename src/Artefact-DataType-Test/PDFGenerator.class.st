@@ -15,7 +15,7 @@ Class {
 	#category : #'Artefact-Generator'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> createCatalogObject [
 	| catalogObject |
 	catalogObject := self createNewPDFDataObject.
@@ -28,7 +28,7 @@ PDFGenerator >> createCatalogObject [
 	^ catalogObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> createFontObject: aFont [
 	| fontObject |
 	fontObject := self createNewPDFDataObject.
@@ -43,7 +43,7 @@ PDFGenerator >> createFontObject: aFont [
 	^ fontObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> createMetaDataObject: aMetaData [
 	| metadataObject |
 	metadataObject := self createNewPDFDataObject.
@@ -61,7 +61,7 @@ PDFGenerator >> createMetaDataObject: aMetaData [
 	^ metadataObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> createNewPDFDataObject [
 	currentObjectNumber := currentObjectNumber + 1.
 	^ PDFDataObject new
@@ -70,14 +70,14 @@ PDFGenerator >> createNewPDFDataObject [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> createPDFDataStreamFrom: aPage [
 	^ PDFDataStream
 		codeSegments:
 			(aPage elements inject: {} into: [ :str :anElement | str , (anElement generateCodeSegmentArrayIn: aPage) ])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> generateContents: aPage [
 	| contents associativeArray stream lengthObject |
 	contents := self createNewPDFDataObject.
@@ -93,7 +93,7 @@ PDFGenerator >> generateContents: aPage [
 	^ contents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> generateContentsFor: aPage [
 	| contents associativeArray stream lengthObject |
 	contents := self createNewPDFDataObject.
@@ -112,7 +112,7 @@ PDFGenerator >> generateContentsFor: aPage [
 	^ contents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> generateListOfFonts [
 	| fonts |
 	fonts := PDFDataAssociativeArray new.
@@ -124,13 +124,11 @@ PDFGenerator >> generateListOfFonts [
 	^ fonts
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> generatePDFDocument: aPDFDocument [
 	"should receive a PDFDocument and return a PDFDataObject representing the document"
 	
 	| associativeArray references resources |
-	
-	aPDFDocument explore.
 	
 	document := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
@@ -155,18 +153,17 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Resources') value: resources).
 	document addContent: associativeArray.
 	
-	document explore.
 	^ document
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> generatePDFFormat: aPDFFormat [
 	^ PDFDataCouple new
 		key: (PDFDataSymbol symbol: 'MediaBox');
 		value: (PDFDataArray from: {0 . 0 . aPDFFormat width . aPDFFormat height } )
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> generatePDFPage: aPDFPage [
 	| page associativeArray |
 	page := self createNewPDFDataObject.
@@ -184,19 +181,19 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 	^ page
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #section }
 PDFGenerator >> generatePDFVersion: aPDFVersion [
 	^ PDFDataComment new comment: ('PDF-' , aPDFVersion).
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFGenerator >> initialize [
 	currentObjectNumber := 0.
 	usedFonts := Set new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFGenerator >> registerFontsForCodeSegments: aCollectionOfCodeSegments [
 	aCollectionOfCodeSegments
 		do: [ :aCodeSegment | 
