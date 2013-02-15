@@ -13,6 +13,11 @@ PDFDataDateAndTime class >> date: aDate time: aTime [
 	^ self new date: aDate; time: aTime; yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataDateAndTime >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataDateAndTime: self
+]
+
 { #category : #accessing }
 PDFDataDateAndTime >> date [
 	^ date
@@ -45,6 +50,11 @@ PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	timeStr := timeStr , str.
 	
 	^((aDate yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , timeStr)
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataDateAndTime >> isPrintable [
+	^ true
 ]
 
 { #category : #accessing }

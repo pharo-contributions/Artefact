@@ -14,6 +14,11 @@ PDFDataStreamRefSize class >> stream: aStream [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataStreamRefSize >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataStreamRefSize: self
+]
+
 { #category : #accessing }
 PDFDataStreamRefSize >> pdfDataStream [
 	^ pdfDataStream
@@ -22,4 +27,9 @@ PDFDataStreamRefSize >> pdfDataStream [
 { #category : #accessing }
 PDFDataStreamRefSize >> pdfDataStream: anObject [
 	pdfDataStream := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataStreamRefSize >> printWith: aPDFPrinter [
+	aPDFPrinter printPDFDataStreamRefSize: self
 ]

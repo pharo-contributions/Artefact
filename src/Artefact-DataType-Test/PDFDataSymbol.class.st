@@ -12,6 +12,16 @@ PDFDataSymbol class >> symbol: aSymbol [
 	^ self new symbol: aSymbol; yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataSymbol >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataSymbol: self
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataSymbol >> isPrintable [
+	^ true
+]
+
 { #category : #accessing }
 PDFDataSymbol >> printOn: aStream [
 	aStream nextPut: $/; nextPutAll: symbol asString

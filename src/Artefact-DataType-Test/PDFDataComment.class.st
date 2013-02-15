@@ -15,6 +15,11 @@ PDFDataComment class >> text: aTextComment [
 	^ self new comment: aTextComment
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataComment >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataComment: self
+]
+
 { #category : #accessing }
 PDFDataComment >> comment [
 	^ comment
@@ -23,6 +28,11 @@ PDFDataComment >> comment [
 { #category : #accessing }
 PDFDataComment >> comment: anObject [
 	comment := anObject
+]
+
+{ #category : #printing }
+PDFDataComment >> isPrintable [
+	^ true
 ]
 
 { #category : #printing }

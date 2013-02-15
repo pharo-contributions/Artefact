@@ -14,6 +14,11 @@ PDFDataStream class >> codeSegments: aCollectionOfCodeSegments [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataStream >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataStream: self
+]
+
 { #category : #accessing }
 PDFDataStream >> codeSegments [
 	^ codeSegments
@@ -22,4 +27,9 @@ PDFDataStream >> codeSegments [
 { #category : #accessing }
 PDFDataStream >> codeSegments: anObject [
 	codeSegments := anObject
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataStream >> printWith: aPDFPrinter [
+	aPDFPrinter printPDFDataStream: self
 ]

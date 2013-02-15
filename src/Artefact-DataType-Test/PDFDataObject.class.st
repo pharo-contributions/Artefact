@@ -10,6 +10,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFDataObject >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataObject: self
+]
+
+{ #category : #'as yet unclassified' }
 PDFDataObject >> addContent: aContent [
 	contents addLast: aContent
 ]

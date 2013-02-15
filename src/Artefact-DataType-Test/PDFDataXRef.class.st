@@ -13,6 +13,11 @@ PDFDataXRef >> AddReferenceTo: aPDFDataObject [
 ]
 
 { #category : #'as yet unclassified' }
+PDFDataXRef >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataXRef: self
+]
+
+{ #category : #'as yet unclassified' }
 PDFDataXRef >> initialize [
 	referencies := OrderedCollection new.
 	referencies add: PDFDataXRefEntry new.

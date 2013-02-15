@@ -12,6 +12,16 @@ PDFDataValue class >> value: aValue [
 	^ self new value: aValue; yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataValue >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataValue: self
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataValue >> isPrintable [
+	^ true
+]
+
 { #category : #printing }
 PDFDataValue >> printOn: aStream [
 	aStream nextPutAll: value asString

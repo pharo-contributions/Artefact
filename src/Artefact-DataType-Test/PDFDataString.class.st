@@ -12,6 +12,11 @@ PDFDataString class >> text: aText [
 	^ self new text: aText; yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataString >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataString: self
+]
+
 { #category : #action }
 PDFDataString >> escape: aString [
 	"answer a clean string at PDF format"
@@ -22,6 +27,11 @@ PDFDataString >> escape: aString [
 	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
 
 	^str
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataString >> isPrintable [
+	^ true
 ]
 
 { #category : #accessing }

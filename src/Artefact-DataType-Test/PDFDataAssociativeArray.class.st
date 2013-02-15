@@ -7,6 +7,11 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
+{ #category : #'as yet unclassified' }
+PDFDataAssociativeArray >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataAssociativeArray: self
+]
+
 { #category : #accessing }
 PDFDataAssociativeArray >> add: aPDFDataCouple [
 	associativeArray add: aPDFDataCouple
@@ -25,6 +30,12 @@ PDFDataAssociativeArray >> associativeArray: anObject [
 { #category : #'initialize-release' }
 PDFDataAssociativeArray >> initialize [ 
 	associativeArray := OrderedCollection new
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataAssociativeArray >> isPrintable [
+	"Because it will never contain an unprintable dataType"
+	^ true
 ]
 
 { #category : #printing }

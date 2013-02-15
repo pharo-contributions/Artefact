@@ -327,6 +327,13 @@ PDFDocument >> escape: aString [
 	^str
 ]
 
+{ #category : #generate }
+PDFDocument >> exportTo: aStream [
+	"generate a PDFDataObject from document"
+
+	^ PDFStreamPrinter new printModel: (PDFGenerator new generatePDFCompleteModelFrom: self) on: aStream
+]
+
 { #category : #action }
 PDFDocument >> exportToFile: aFileName [
 	"Export the PDF document in a file"
@@ -379,8 +386,8 @@ PDFDocument >> fullWidth [
 { #category : #generate }
 PDFDocument >> generate [
 	"generate a PDFDataObject from document"
-	^ (PDFGenerator new generatePDFCompleteModelFrom: self) explore.
-	
+
+	^ PDFGenerator new generatePDFCompleteModelFrom: self
 ]
 
 { #category : #generate }

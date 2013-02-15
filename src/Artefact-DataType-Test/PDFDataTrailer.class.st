@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFDataTrailer >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataTrailer: self
+]
+
+{ #category : #'as yet unclassified' }
 PDFDataTrailer >> addContent: aContent [
 	contents addLast: aContent
 ]

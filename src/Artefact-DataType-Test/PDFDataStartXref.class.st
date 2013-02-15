@@ -14,6 +14,16 @@ PDFDataStartXref class >> to: aPDFDataXRef [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDataStartXref >> acceptVisitor: aVisitor [
+	^ aVisitor visitPDFDataStartXref: self
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataStartXref >> printWith: aPDFPrinter [
+	aPDFPrinter printPDFDataStartXref: self
+]
+
 { #category : #accessing }
 PDFDataStartXref >> xref [
 	^ xref

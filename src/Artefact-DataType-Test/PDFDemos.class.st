@@ -943,7 +943,7 @@ PDFDemos class >> rectsTest [
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
 	
-	| pdfdoc myFont myBigFont aPage |
+	| pdfdoc myFont myBigFont aPage buffer |
 	pdfdoc := PDFDocument new.	
 
 	myFont := PDFTimesFont new fontSize: 24.
@@ -971,7 +971,9 @@ PDFDemos class >> textTest [
 		text: 'A very simple text with specified color and font'
 	).
 	pdfdoc add: aPage.
-	
+	buffer := TextStream on: ''.
+	pdfdoc exportTo: buffer.
+	self halt.
 	pdfdoc exportToFile: self demoPath , 'textTest.pdf'.
 ]
 

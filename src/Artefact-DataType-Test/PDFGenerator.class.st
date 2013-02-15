@@ -152,7 +152,7 @@ PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 								(PDFDataCouple
 										key: (PDFDataSymbol symbol: 'Info')
 										value: (PDFDataReference reference: (self createMetaDataObject: aPDFDocument metaData)));
-						add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Size') value: currentObjectNumber + 1));
+						add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Size') value: (PDFDataValue value: currentObjectNumber + 1)));
 		addContent: (PDFDataStartXref to: xref)
 ]
 
@@ -193,7 +193,13 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 PDFGenerator >> generatePDFFormat: aPDFFormat [
 	^ PDFDataCouple new
 		key: (PDFDataSymbol symbol: 'MediaBox');
-		value: (PDFDataArray from: {0 . 0 . aPDFFormat width . aPDFFormat height } )
+		value:
+				(PDFDataArray
+						from:
+							{(PDFDataValue value: 0).
+							(PDFDataValue value: 0).
+							(PDFDataValue value: aPDFFormat width).
+							(PDFDataValue value: aPDFFormat height)})
 ]
 
 { #category : #action }
