@@ -20,7 +20,7 @@ Class {
 
 { #category : #conversion }
 PDFGenerator >> convertToPoints: aUnitValue [ 
-	^ (aUnitValue convertTo: Unit points) value
+	^ (aUnitValue convertTo: #points) value
 	
 ]
 
@@ -234,7 +234,7 @@ PDFGenerator >> generatePDFVersion: aPDFVersion [
 
 { #category : #section }
 PDFGenerator >> getFontIdFor: aPDFFont [
-	usedFonts at: aPDFFont fontName ifAbsentPut: [ self generateFontId ]
+	^ usedFonts at: aPDFFont fontName ifAbsentPut: [ self generateFontId ]
 ]
 
 { #category : #'initialize-release' }

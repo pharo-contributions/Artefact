@@ -8,18 +8,9 @@ Class {
 	#category : #'Artefact-CodeSegment'
 }
 
-{ #category : #'as yet unclassified' }
-PDFElementCodeSegment class >> code: aString styleSheet: aPDFStyleSheet fontId: aFontId [
-	^ self new
-		code: aString;
-		fontId: aFontId;
-		styleSheet: aPDFStyleSheet;
-		yourself
-]
-
 { #category : #'initialize-release' }
-PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean [
-	^ self new code: aCode; styleSheet: aStyleSheet; isDrawElement: aBoolean; yourself 
+PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean fontId: aFontId [
+	^ self new code: aCode; styleSheet: aStyleSheet; isDrawElement: aBoolean; fontId: aFontId; yourself 
 ]
 
 { #category : #accessing }

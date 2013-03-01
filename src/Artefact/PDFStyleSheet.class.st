@@ -14,7 +14,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		setAttribute: #textColor value: (PDFColor new setColor:#(0 0 0)); 
 		setAttribute: #fillColor value: (PDFColor new setColor: #(255 255 255)); 
 		setAttribute: #drawColor value: (PDFColor new setColor:#(0 0 0)); 
-		setAttribute: #thickness value: 1 point;
+		setAttribute: #thickness value: 1 pt;
 		setAttribute: #dotted value: nil;
 		setAttribute: #font value: PDFHelveticaFont new;
 		yourself
@@ -23,7 +23,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 { #category : #'as yet unclassified' }
 PDFStyleSheet >> + aStyleSheet [
 	| newStyleSheet |
-	newStyleSheet := self deepCopy.
+	newStyleSheet := self copy.
 	aStyleSheet attributes keysAndValuesDo: [:aKey :aValue | newStyleSheet attributes at: aKey put: aValue ].
 	^ newStyleSheet
 ]

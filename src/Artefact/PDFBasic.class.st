@@ -17,7 +17,11 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	| mixedStyleSheet |
 	mixedStyleSheet := aStyleSheet + self styleSheet.
-	^ PDFElementCodeSegment code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet) styleSheet: mixedStyleSheet fontId: (aPDFGenerator getFontIdFor: mixedStyleSheet font)
+	^ PDFElementCodeSegment
+		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet)
+		styleSheet: mixedStyleSheet
+		isDrawElement: self isDrawElement
+		fontId: (aPDFGenerator getFontIdFor: mixedStyleSheet font)
 ]
 
 { #category : #action }

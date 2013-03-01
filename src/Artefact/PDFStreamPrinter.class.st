@@ -17,7 +17,7 @@ Class {
 
 { #category : #conversion }
 PDFStreamPrinter >> convertToPoints: aUnitValue [ 
-	^ (aUnitValue convertTo: Unit points) value
+	^ (aUnitValue convertTo: #points) value
 	
 ]
 
