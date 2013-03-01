@@ -15,7 +15,7 @@ PDFCellElement >> alignment [
 
 { #category : #style }
 PDFCellElement >> defaultMargin [
-	^self page document pointsToUserUnit: 1
+	^ 1 point
 ]
 
 { #category : #action }

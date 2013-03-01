@@ -48,11 +48,13 @@ PDFComposite >> fontIfAbsent: aStyleSheet. [
 ]
 
 { #category : #render }
-PDFComposite >> generateCodeSegmentWith: aStyleSheet [
+PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 	| compositeStyleSheet |
 	compositeStyleSheet := aStyleSheet + self styleSheet.
 	^ PDFCompositeCodeSegment
-		from: (self getSubElements collect: [ :aSubElement | aSubElement generateCodeSegmentWith: compositeStyleSheet ])
+		from:
+			(self getSubElements
+				collect: [ :aSubElement | aSubElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ])
 		styleSheet: compositeStyleSheet
 ]
 

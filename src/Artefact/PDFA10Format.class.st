@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFA10Format >> DefaultSize [
-	^73.7@104.88
+PDFA10Format >> defaultSize [
+	^ 73.7 point @ 104.88 point
 ]

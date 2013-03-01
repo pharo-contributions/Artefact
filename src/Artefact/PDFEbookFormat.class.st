@@ -6,5 +6,5 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFEbookFormat >> defaultSize [
-	^324@431.9
+	^ 324 point @ 431.9 point
 ]

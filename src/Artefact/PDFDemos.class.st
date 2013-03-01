@@ -942,39 +942,38 @@ PDFDemos class >> rectsTest [
 { #category : #text }
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
-	
+
 	| pdfdoc myFont myBigFont aPage buffer |
-	pdfdoc := PDFDocument new.	
-
+	pdfdoc := PDFDocument new.
 	myFont := PDFTimesFont new fontSize: 24.
-	
 	aPage := PDFPage new.
-
-	aPage add: (PDFTextElement new  
-		from: 10@10;
-		text: 'A very simple text'
-	).
-	aPage add: (PDFTextElement new 
-		font: myFont; 
-		from: 10@30; 
-		text: 'A very simple text with specified font'
-	).
-	aPage add: (PDFTextElement new 
-		textColor: (PDFColor new setColor: #(255 0 0 ));
-		from: 10@50; 
-		text: 'A very simple text with specified color'
-	).
-	aPage add: (PDFTextElement new 
-		textColor: (PDFColor new setColor: #(0 0 255 ));
-		font: myFont; 
-		from: 10@70; 
-		text: 'A very simple text with specified color and font'
-	).
+	aPage
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'A very simple text').
+	aPage
+		add:
+			(PDFTextElement new
+				font: myFont;
+				from: 10 mm @ 30 mm;
+				text: 'A very simple text with specified font').
+	aPage
+		add:
+			(PDFTextElement new
+				textColor: (PDFColor new setColor: #(255 0 0));
+				from: 10 mm @ 50 mm;
+				text: 'A very simple text with specified color').
+	aPage
+		add:
+			(PDFTextElement new
+				textColor: (PDFColor new setColor: #(0 0 255));
+				font: myFont;
+				from: 10 mm @ 70 mm;
+				text: 'A very simple text with specified color and font').
 	pdfdoc add: aPage.
-	buffer := TextStream on: ''.
+	buffer := FileStream fileNamed: self demoPath , 'textTest.pdf'.
 	pdfdoc exportTo: buffer.
-	self halt.
-	pdfdoc exportToFile: self demoPath , 'textTest.pdf'.
 ]
 
 { #category : #draw }

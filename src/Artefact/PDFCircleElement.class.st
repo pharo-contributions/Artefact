@@ -13,17 +13,17 @@ PDFCircleElement >> fillmode [
 ]
 
 { #category : #render }
-PDFCircleElement >> producePageElementCodeOn: aPage [
+PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	"Draw a line from xy to destination"
 	
 	| origin r |
 	
-	origin := self determinePosition: self from on: aPage.
+	origin := aPDFGenerator determinePositionOnCurrentPage: self from.
 	 	
-	r := aPage document convertToPoints: self radius.
+	r := aPDFGenerator convertToPoints: self radius.
 	
 	^ (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: ((self from x + self radius) @ (self from y)) on: aPage); 
+		s nextPutAll: (self moveTo: ((self from x + self radius) @ (self from y)) with: aPDFGenerator); 
 		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
 		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
 		print: origin x; space; print: (origin y + r); nextPutAll: ' c ';

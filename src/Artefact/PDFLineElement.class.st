@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #render }
-PDFLineElement >> producePageElementCodeOn: aPage [
+PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	| dest |
 	
-	dest := self determinePosition: self to on: aPage.
+	dest := aPDFGenerator determinePositionOnCurrentPage: self to.
 	 			
 	^  (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self from on: aPage);
+		s nextPutAll: (self moveTo: self from with: aPDFGenerator);
 		nextPutAll: (self splitCoordinates: dest);
 		space;
 		nextPutAll: PDFByteCode line;

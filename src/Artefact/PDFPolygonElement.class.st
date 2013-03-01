@@ -10,20 +10,20 @@ PDFPolygonElement >> fillmode [
 ]
 
 { #category : #render }
-PDFPolygonElement >> producePageElementCodeOn: aPage [
+PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	"Draw a polygon from xy to destination (a array of positions)"
 	
 	| points |
 	
 	points := OrderedCollection new 
 		addAll: (self to collect: [ :position |
-			self determinePosition: position on: aPage
+			aPDFGenerator determinePositionOnCurrentPage: position
 		]);
-		add: (self determinePosition: self from on: aPage);
+		add: (aPDFGenerator determinePositionOnCurrentPage: self from);
 		yourself.
 	
 	^ (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self from on: aPage).
+		s nextPutAll: (self moveTo: self from with: aPDFGenerator ).
 		points do: [ :pos | 
 			s nextPutAll: (self splitCoordinates: pos);
 			space;

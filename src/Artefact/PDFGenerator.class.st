@@ -11,21 +11,29 @@ Class {
 		'currentObjectNumber',
 		'document',
 		'usedFonts',
-		'xref'
+		'xref',
+		'currentPage',
+		'currentFontId'
 	],
 	#category : #'Artefact-Generator'
 }
 
+{ #category : #conversion }
+PDFGenerator >> convertToPoints: aUnitValue [ 
+	^ (aUnitValue convertTo: Unit points) value
+	
+]
+
 { #category : #section }
-PDFGenerator >> createFontObject: aFont [
+PDFGenerator >> createFontObject: aFontName [
 	| fontObject |
 	fontObject := self createNewPDFDataObject.
 	fontObject
 		addContent:
 			(PDFDataAssociativeArray new
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Font'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'SubType') value: (PDFDataSymbol symbol: 'Type1'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'BaseFont') value: (PDFDataSymbol symbol: aFont));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Subtype') value: (PDFDataSymbol symbol: 'Type1'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'BaseFont') value: (PDFDataSymbol symbol: aFontName));
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Encoding') value: (PDFDataSymbol symbol: 'WinAnsiEncoding'));
 				yourself).
 	^ fontObject
@@ -67,8 +75,9 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 	^ PDFDataStream
 		codeSegment:
 			(PDFCompositeCodeSegment
-				from: (aPage elements collect: [ :anElement | anElement generateCodeSegmentWith: aPage styleSheet ])
-				stylesheet: aPage styleSheet)
+				from:
+					(aPage elements collect: [ :anElement | anElement generateCodeSegmentWith: self styleSheet: aPage styleSheet ])
+				styleSheet: aPage styleSheet)
 ]
 
 { #category : #section }
@@ -84,11 +93,19 @@ PDFGenerator >> createRootObject [
 	^ rootObject
 ]
 
-{ #category : #tool }
-PDFGenerator >> fontID: aID [
-	"answer a PDF id for a font"
-	
-	^('F' , aID asString)
+{ #category : #accessing }
+PDFGenerator >> currentPage [
+	^ currentPage
+]
+
+{ #category : #accessing }
+PDFGenerator >> currentPage: anObject [
+	currentPage := anObject
+]
+
+{ #category : #conversion }
+PDFGenerator >> determinePositionOnCurrentPage: aPosition [ 
+	^ (self convertToPoints: (aPosition x)) @ (self convertToPoints: (self currentPage format defaultSize y - aPosition y) )
 ]
 
 { #category : #action }
@@ -97,8 +114,6 @@ PDFGenerator >> generateContentsFor: aPage [
 	contents := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
 	stream := self createPDFDataStreamFrom: aPage.
-	stream explore.
-	self registerFontsForCodeSegments: stream codeSegments.
 	
 	lengthObject := self createNewPDFDataObject.
 	lengthObject addContent: (PDFDataStreamRefSize stream: stream).
@@ -111,18 +126,22 @@ PDFGenerator >> generateContentsFor: aPage [
 ]
 
 { #category : #section }
+PDFGenerator >> generateFontId [
+	currentFontId := currentFontId + 1.
+	^ 'F' , currentFontId asString
+]
+
+{ #category : #section }
 PDFGenerator >> generateListOfFonts [
-	| fonts id |
-	
-	id := 1.
+	| fonts |
 	fonts := PDFDataAssociativeArray new.
-	
 	usedFonts
-		do: [ :aFont | 
+		keysAndValuesDo: [ :aFontName :aFontId | 
 			fonts
 				add:
-					(PDFDataCouple key: (PDFDataSymbol symbol: (self fontID: id)) value: (PDFDataReference reference: (self createFontObject: aFont))) ].
-			id := id + 1.
+					(PDFDataCouple
+						key: (PDFDataSymbol symbol: (aFontId asString))
+						value: (PDFDataReference reference: (self createFontObject: aFontName))) ].
 	^ fonts
 ]
 
@@ -184,13 +203,14 @@ PDFGenerator >> generatePDFFormat: aPDFFormat [
 						from:
 							{(PDFDataValue value: 0).
 							(PDFDataValue value: 0).
-							(PDFDataValue value: aPDFFormat width).
-							(PDFDataValue value: aPDFFormat height)})
+							(PDFDataValue value: (aPDFFormat width convertTo: Unit points) value).
+							(PDFDataValue value: (aPDFFormat height convertTo: Unit points) value)})
 ]
 
 { #category : #action }
 PDFGenerator >> generatePDFPage: aPDFPage [
 	| page associativeArray |
+	currentPage := aPDFPage.
 	page := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray
 		new
@@ -212,18 +232,15 @@ PDFGenerator >> generatePDFVersion: aPDFVersion [
 		
 ]
 
+{ #category : #section }
+PDFGenerator >> getFontIdFor: aPDFFont [
+	usedFonts at: aPDFFont fontName ifAbsentPut: [ self generateFontId ]
+]
+
 { #category : #'initialize-release' }
 PDFGenerator >> initialize [
 	currentObjectNumber := 0.
-	usedFonts := Set new.
+	currentFontId := 0.
+	usedFonts := Dictionary new.
 	xref := PDFDataXRef new.
-]
-
-{ #category : #action }
-PDFGenerator >> registerFontsForCodeSegments: aCollectionOfCodeSegments [
-	aCollectionOfCodeSegments
-		do: [ :aCodeSegment | 
-			[ usedFonts add: (aCodeSegment styleSheet get: #font) fontName ]
-				on: NotFound
-				do: [  ] ].
 ]

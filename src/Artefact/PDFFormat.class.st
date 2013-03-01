@@ -20,6 +20,11 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
+{ #category : #'initialize-release' }
+PDFFormat >> defaultSize [
+	^ self subclassResponsibility 
+]
+
 { #category : #description }
 PDFFormat >> height [
 	"Answer the height of a page"
@@ -27,12 +32,11 @@ PDFFormat >> height [
 ]
 
 { #category : #'initialize-release' }
-PDFFormat >> initialize [ 
+PDFFormat >> initialize [
 	super initialize.
-	
-	self margins: 28.35@28.35.
+	self margins: 28.35 point @ 28.35 point.
 	self size: self defaultSize.
-	self setPortrait.
+	self setPortrait
 ]
 
 { #category : #description }

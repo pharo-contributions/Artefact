@@ -6,5 +6,5 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFA9Format >> defaultSize [
-	^104.88@147.4
+	^ 104.88 point @ 147.4 point
 ]

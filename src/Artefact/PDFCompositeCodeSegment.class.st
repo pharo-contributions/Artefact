@@ -13,6 +13,11 @@ PDFCompositeCodeSegment class >> from: aCollectionOfSegments styleSheet: aStyles
 ]
 
 { #category : #accessing }
+PDFCompositeCodeSegment >> printWith: aPDFWriter [ 
+	aPDFWriter printCompositeCodeSegment: self
+]
+
+{ #category : #accessing }
 PDFCompositeCodeSegment >> segments [
 	^ segments
 ]

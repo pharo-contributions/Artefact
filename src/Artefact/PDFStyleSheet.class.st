@@ -14,7 +14,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		setAttribute: #textColor value: (PDFColor new setColor:#(0 0 0)); 
 		setAttribute: #fillColor value: (PDFColor new setColor: #(255 255 255)); 
 		setAttribute: #drawColor value: (PDFColor new setColor:#(0 0 0)); 
-		setAttribute: #thickness value: (aDocument pointsToUserUnit: 1);
+		setAttribute: #thickness value: 1 point;
 		setAttribute: #dotted value: nil;
 		setAttribute: #font value: PDFHelveticaFont new;
 		yourself
@@ -56,6 +56,11 @@ PDFStyleSheet >> drawColor: aPDFColor [
 { #category : #attributes }
 PDFStyleSheet >> fillColor: aPDFColor [
 	self setAttribute: #fillColor value: aPDFColor 
+]
+
+{ #category : #private }
+PDFStyleSheet >> font [
+	^ self get: #font
 ]
 
 { #category : #attributes }

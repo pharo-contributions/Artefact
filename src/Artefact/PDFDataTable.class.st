@@ -38,7 +38,7 @@ PDFDataTable >> initialize [
 
 { #category : #accessing }
 PDFDataTable >> margin [
-	^margin ifNil: [ margin := self page document pointsToUserUnit: 1 ]
+	^margin ifNil: [ margin := 1 point ]
 ]
 
 { #category : #accessing }

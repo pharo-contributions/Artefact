@@ -8,6 +8,18 @@ Class {
 }
 
 { #category : #accessing }
+PDFText >> escape: aString [
+	"answer a clean string at PDF format"
+	
+	| str |
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
+	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
+
+	^str
+]
+
+{ #category : #accessing }
 PDFText >> font: aFont [
 	self styleSheet font: aFont
 ]
@@ -31,4 +43,11 @@ PDFText >> text: anObject [
 { #category : #accessing }
 PDFText >> textColor: aColor [
 	self styleSheet textColor: aColor
+]
+
+{ #category : #accessing }
+PDFText >> textString: aString [
+	"Answer a formated text string"
+	
+	^('(' , (self escape: (aString asString)) , ')')
 ]

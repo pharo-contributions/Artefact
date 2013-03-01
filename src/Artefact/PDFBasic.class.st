@@ -12,12 +12,12 @@ PDFBasic >> determinePosition: aPosition on: aPage [
 ]
 
 { #category : #render }
-PDFBasic >> generateCodeSegmentWith: aStyleSheet [
-	"initialize the style and answer the style content. The style receive the document context and the current page"
+PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
+	"generate a CodeSegment based on the addition of the received stylesheet and the element styleSheet (prioritary)"
 
 	| mixedStyleSheet |
 	mixedStyleSheet := aStyleSheet + self styleSheet.
-	^ PDFCodeSegment code: (self producePageElementCodeOn: mixedStyleSheet) styleSheet: mixedStyleSheet
+	^ PDFElementCodeSegment code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet) styleSheet: mixedStyleSheet fontId: (aPDFGenerator getFontIdFor: mixedStyleSheet font)
 ]
 
 { #category : #action }
@@ -26,7 +26,7 @@ PDFBasic >> isDrawElement [
 ]
 
 { #category : #render }
-PDFBasic >> producePageElementCodeOn: aPage [
+PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	self subclassResponsibility 
 ]
 

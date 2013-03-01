@@ -44,12 +44,12 @@ PDFDraw >> isDrawElement [
 ]
 
 { #category : #action }
-PDFDraw >> moveTo: aPosition on: aPage [
+PDFDraw >> moveTo: aPosition with: aGenerator [
 	"answer the PDF code to setting the start position for drawing"
 	
 	| pos |
 	
-	pos := self determinePosition: aPosition on: aPage.
+	pos := aGenerator determinePositionOnCurrentPage: aPosition.
 	 
 	^(String streamContents: [ :s |
 		s print: (pos x);

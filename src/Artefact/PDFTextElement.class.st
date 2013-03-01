@@ -5,11 +5,11 @@ Class {
 }
 
 { #category : #render }
-PDFTextElement >> producePageElementCodeOn: aPage [
+PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: anObject [
 	"Draw a text at xy position"
 	| position |
 	
-	position := self determinePosition: self from on: aPage.
+	position := aGenerator determinePositionOnCurrentPage: self from.
 	 		
 	^ (String streamContents: [ :s |
 		s nextPutAll: PDFByteCode beginText; 
@@ -18,7 +18,7 @@ PDFTextElement >> producePageElementCodeOn: aPage [
 		space;
 		nextPutAll: PDFByteCode setTextPosition; 
 		space;
-		nextPutAll: ((aPage document) textString: self text);
+		nextPutAll: (self textString: self text);
 		space;
 		nextPutAll: PDFByteCode showTextString;
 		space;

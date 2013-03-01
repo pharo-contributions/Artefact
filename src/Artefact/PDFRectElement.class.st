@@ -10,7 +10,7 @@ PDFRectElement >> fillmode [
 ]
 
 { #category : #render }
-PDFRectElement >> producePageElementCodeOn: aPage [
+PDFRectElement >> producePageElementCodeWith: aPage StyleSheet: anObject [
 	"Draw a rectangle from xy with a specified size wh"
 	
 	| position |

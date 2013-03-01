@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #render }
-PDFElement >> generateCodeSegmentWith: aPage [
+PDFElement >> generateCodeSegmentWith: aPage styleSheet: aStyleSheet [
 	^ self subclassResponsibility 
 ]
 

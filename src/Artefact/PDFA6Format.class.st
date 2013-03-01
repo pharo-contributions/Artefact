@@ -6,5 +6,5 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFA6Format >> defaultSize [
-	^297.65@419.54
+	^ 297.65 point @ 419.54 point
 ]

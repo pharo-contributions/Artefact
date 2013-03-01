@@ -6,5 +6,5 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFLetterFormat >> defaultSize [
-	^612@1008
+	^ 612 point @ 1008 point
 ]

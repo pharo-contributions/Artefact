@@ -2,15 +2,15 @@ Class {
 	#name : #PDFDataStream,
 	#superclass : #PDFDataType,
 	#instVars : [
-		'codeSegments'
+		'codeSegment'
 	],
 	#category : #'Artefact-DataType'
 }
 
 { #category : #'as yet unclassified' }
-PDFDataStream class >> codeSegments: aCollectionOfCodeSegments [
+PDFDataStream class >> codeSegment: aCodeSegment [
 	^ self new
-		codeSegments: aCollectionOfCodeSegments;
+		codeSegment: aCodeSegment;
 		yourself
 ]
 
@@ -20,13 +20,13 @@ PDFDataStream >> acceptVisitor: aVisitor [
 ]
 
 { #category : #accessing }
-PDFDataStream >> codeSegments [
-	^ codeSegments
+PDFDataStream >> codeSegment [
+	^ codeSegment
 ]
 
 { #category : #accessing }
-PDFDataStream >> codeSegments: anObject [
-	codeSegments := anObject
+PDFDataStream >> codeSegment: anObject [
+	codeSegment := anObject
 ]
 
 { #category : #'as yet unclassified' }
