@@ -316,15 +316,15 @@ PDFDemos class >> colorTest [
 	aPage := PDFPage new.
 	aPage add: (PDFCellElement new 
 		font: (PDFTimesFont new fontSize: 32);
-		wh: 100@20; 
+		wh: 100 mm @ 20 mm; 
 		border: true; 
 		text: 'Hello World!';
 		ink: (PDFColor new setColor: #(255 0 0) );
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
 	aPage add: (PDFRectElement new 
-		from: 10@50;
-		wh: 50@50; 
+		from: 10 mm @ 50 mm;
+		wh: 50 mm @ 50 mm; 
 		width: 5;
 		ink: (PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setColor: #(0 255 0))
@@ -377,8 +377,8 @@ PDFDemos class >> datatableCustomizedElementTest [
 			PDFCellElement new text: 'robert.washington@blif.com'.
 			}.
 		};
-		from: 10@20;
-		wh: 40@5
+		from: 10 mm @ 20 mm;
+		wh: 40 mm @ 5  mm
 	). 
 	
 	pdfdoc add: aPage.
@@ -408,8 +408,8 @@ PDFDemos class >> datatableTest [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		from: 10@10;
-		wh: 60@5
+		from: 10 mm @ 10 mm;
+		wh: 60 mm @ 5 mm
 	).
 
 	aPage add: (PDFDataTableElement new
@@ -422,8 +422,8 @@ PDFDemos class >> datatableTest [
 		fillColor: (PDFColor new setGreyLevel: 230);
 		font: (PDFTimesFont new fontSize: 6);
 		dotted: (PDFDotted new length: 0.2; space: 0.2);
-		from: 10@30;
-		wh: 30@5
+		from: 10 mm @ 30 mm;
+		wh: 30 mm @ 5 mm
 	).
 	
 	pdfdoc add: aPage.
@@ -455,8 +455,8 @@ PDFDemos class >> datatableWithCaptionsTest [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		from: 10@20;
-		wh: 40@5;
+		from: 10 mm @ 20 mm;
+		wh: 40 mm @ 5 mm;
 		captionColor: (PDFColor new setGreyLevel: 192)
 	).	
 
@@ -467,8 +467,8 @@ PDFDemos class >> datatableWithCaptionsTest [
 			#('Peter' 'Mickael' 'robert')
 			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
 		);
-		from: 10@50;
-		wh: 40@5;
+		from: 10 mm @ 50 mm;
+		wh: 40 mm @ 5 mm;
 		captionColor: (PDFColor new setGreyLevel: 192)
 	).
 	
@@ -496,7 +496,7 @@ PDFDemos class >> demo [
 
 	aPage add: (PDFCellElement new 
 		font: myBigFont; 
-		wh: 100@60; 
+		wh: 100 mm @ 60 mm; 
 		border: true; 
 		linefeed: true; 
 		textColor: (PDFColor new setColor: #(0 255 0));
@@ -504,7 +504,7 @@ PDFDemos class >> demo [
 		
 	aPage add: (PDFCellElement new 
 		font: myBigFont;
-		wh: 100@24; 
+		wh: 100 mm @ 24 mm; 
 		border: true; 
 		linefeed: true;
 		textColor: (PDFColor new setColor: #(128 128 0)); 
@@ -512,14 +512,14 @@ PDFDemos class >> demo [
 	
 	aPage add: (PDFCellElement new 
 		font: myFont; 
-		wh: 100@10; 
+		wh: 100 mm @ 10 mm; 
 		border: true; 
 		linefeed: true; 
 		textColor: (PDFColor new setColor: #(0 0 0));
 		text: 'PDF Framework for Pharo').
 			
-	aPage add: (PDFLineElement new from: 10@10; to: 20@10; drawColor: (PDFColor new setColor: #(255 0 0))).
-	aPage add: (PDFLineElement new from: 10@10; to: 10@20; drawColor:(PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineElement new from: 10 mm @ 10 mm; to: 20 mm @ 10 mm; drawColor: (PDFColor new setColor: #(255 0 0))).
+	aPage add: (PDFLineElement new from: 10 mm @ 10 mm; to: 10 mm @ 20 mm; drawColor:(PDFColor new setColor: #(255 0 0))).
 
 	
 	pdfdoc add: aPage.
@@ -540,18 +540,18 @@ PDFDemos class >> displayLayoutTest [
 	"self displayLayoutTest"
 
 	PDFDocument new continuousPages;
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'continuousPages Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'continuousPages Page 2'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 1'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 2'));
 		exportToFile: self demoPath , 'continuousPagesTest.pdf'.
 
 	PDFDocument new singlePage; 
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'singlePage Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'singlePage Page 2'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 1'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 2'));
 		exportToFile: self demoPath , 'singlePage.pdf'.
 	
 	PDFDocument new twoPages; 
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'twoPages Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'twoPages Page 2'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 1'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 2'));
 		exportToFile: self demoPath , 'twoPages.pdf'.
 
 	
@@ -567,15 +567,15 @@ PDFDemos class >> displayModeTest [
 	| doc |
 	
 	doc := PDFDocument new fullPage.
-	doc add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'Fullpage document')).
+	doc add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'Fullpage document')).
 	doc exportToFile: self demoPath , 'fullPageTest.pdf'.
 
 	doc := PDFDocument new zoom: 300; 
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'zoom'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'zoom'));
 		exportToFile: self demoPath , 'zoomTest.pdf'.
 	
 	doc := PDFDocument new fullWidth; 
-		add: (PDFPage new add: (PDFTextElement new from: 5@5; text: 'full width'));
+		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'full width'));
 		exportToFile: self demoPath , 'fullWidth.pdf'.
 
 	
@@ -593,32 +593,32 @@ PDFDemos class >> dottedTest [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFLineElement new from: 0@0; to: 30@0).
-	aPage add: (PDFLineElement new from: 0@0; to: 0@30).
-	aPage add: (PDFLineElement new from: 0@5; to: 150@5).
+	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 30 mm@ 0 mm).
+	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 0 mm @ 30 mm).
+	aPage add: (PDFLineElement new from: 0 mm @ 5 mm; to: 150 mm @ 5 mm).
 	
 	aPage add: (PDFLineElement new
-		from: 10@10;
-		to: 100@30;
-		dotted: (PDFDotted new length: 2; space: 3)
+		from: 10 mm @ 10 mm;
+		to: 100 mm @ 30 mm;
+		dotted: (PDFDotted new length: 2 mm; space: 3 mm)
 	).
 	
 	aPage add: (PDFLineElement new
-		from: 30@30;
-		to: 80@50;
+		from: 30 mm @ 30 mm;
+		to: 80 mm @ 50 mm;
 		dotted: (PDFDotted new)
 	).
 
 	aPage add: (PDFLineElement new
-		from: 10@10;
-		to: 10@50
+		from: 10 mm @ 10 mm ;
+		to: 10 mm @ 50 mm
 	 ).
 	
 	aPage add: (PDFRectElement new
-		from: 80@80;
-		wh: 100@30; 
-		dotted: (PDFDotted new length: 5; space: 3);
-		thickness:  2
+		from: 80 mm @ 80 mm;
+		wh: 100 mm @ 30 mm; 
+		dotted: (PDFDotted new length: 5 mm; space: 3 mm);
+		thickness:  2 mm
 		).
 			
 	pdfdoc add: aPage.
@@ -638,16 +638,16 @@ PDFDemos class >> drawStyleSheetTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFRectElement new 
-		from: 10@50;
-		wh: 50@50; 
-		thickness: 5;
+		from: 10 mm @ 50 mm;
+		wh: 50 mm @ 50 mm; 
+		thickness: 5 mm;
 		drawColor: (PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setColor: #(0 255 0))
 		).
 		
 	aPage add: (PDFRectElement new 
-		from: 50@60;
-		wh: 50@50).
+		from: 50 mm @ 60 mm;
+		wh: 50 mm @ 50 mm).
 		
 	pdfdoc add: aPage.
 	
@@ -667,9 +667,9 @@ PDFDemos class >> euroTest [
        aPage := PDFPage new.
 	theText :=  ('Price: (24{1})A\B' format: { (128 asCharacter) asString} ).
 	
-       aPage add: (PDFTextElement new from: 50@10; text: theText; font: (PDFTimesFont new)).
-       aPage add: (PDFTextElement new from: 50@20; text: theText; font: (PDFCourierFont new)).
-       aPage add: (PDFTextElement new from: 50@30; text: theText; font: (PDFHelveticaFont  new)).
+       aPage add: (PDFTextElement new from: 50 mm @ 10 mm; text: theText; font: (PDFTimesFont new)).
+       aPage add: (PDFTextElement new from: 50 mm @ 20 mm; text: theText; font: (PDFCourierFont new)).
+       aPage add: (PDFTextElement new from: 50 mm @ 30 mm; text: theText; font: (PDFHelveticaFont  new)).
 
 	pdfdoc add: aPage.
 	
@@ -688,16 +688,16 @@ PDFDemos class >> greyLevelTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFTextElement new 
-		from: 10@10; 
+		from: 10 mm @ 10 mm; 
 		text: 'A grey level text'; 
 		font: (PDFCourierFont new);
 		ink: (PDFColor new setGreyLevel: 128)
 		).
 		
 	aPage add: (PDFRectElement new 
-		from: 10@20;
-		wh: 50@50; 
-		width: 5;
+		from: 10 mm @ 20 mm;
+		wh: 50 mm @ 50 mm; 
+		width: 5 mm;
 		ink: (PDFColor new setGreyLevel: 196);
 		fillColor: (PDFColor new setGreyLevel: 164)
 		).
@@ -796,10 +796,10 @@ PDFDemos class >> lineTest [
 	
 	aPage := PDFPage new.
 
-	aPage add: (PDFLineElement new from: 0@0; to: 210@0).
-	aPage add: (PDFLineElement new from: 0@0; to: 0@297).
-	aPage add: (PDFLineElement new from: 0@297; to: 210@297).
-	aPage add: (PDFLineElement new from: 210@297; to: 210@0).
+	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 210 mm @ 0 mm).
+	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 0 mm @ 297 mm).
+	aPage add: (PDFLineElement new from: 0 mm @ 297 mm; to: 210 mm @ 297 mm).
+	aPage add: (PDFLineElement new from: 210 mm @ 297 mm; to: 210 mm @ 0 mm).
 			
 	pdfdoc add: aPage.
 	
@@ -822,14 +822,14 @@ PDFDemos class >> multiOrientationsTest [
 	firstPage := PDFPage new.	
 	firstPage add: (PDFCellElement new 
 		font: myBigFont; 
-		wh: 40@10; 
+		wh: 40 mm @ 10 mm; 
 		text: 'Page 1').
 	
 	secondPage := PDFPage new format: myLandscapeFormat.
 	
 	secondPage add: (PDFCellElement new 
 		font: myBigFont; 
-		wh: 40@10; 
+		wh: 40 mm @ 10 mm; 
 		text: 'Page en A3').	
 			
 	pdfdoc add: firstPage.
@@ -850,24 +850,24 @@ PDFDemos class >> paragraphTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFParagraphElement new 
-		from: 90@40;
-		wh: 100@20; 
+		from: 90 mm @ 40 mm;
+		wh: 100 mm @ 20 mm; 
 		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
 	aPage add: (PDFParagraphElement new 
-		from: 20@40;
-		wh: 60@60; 
+		from: 20 mm @ 40 mm;
+		wh: 60 mm @ 60 mm; 
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
 	aPage add: (PDFParagraphElement new 
-		from: 100@80;
-		wh: 60@70; 
+		from: 100 mm @ 80 mm;
+		wh: 60 mm @ 70 mm; 
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
 		center).
 		
 	aPage add: (PDFParagraphElement new 
-		from: 10@120;
-		wh: 60@80; 
+		from: 10 mm @ 120 mm;
+		wh: 60 mm @ 80 mm; 
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
 		right
 		).
@@ -889,17 +889,17 @@ PDFDemos class >> polygonsTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFPolygonElement new 
-		from: 10@10; 
-		to: { 60@20 . 50@40 . 30@50 . 15@45 };
+		from: 10 mm @ 10 mm ; 
+		to: { 60  mm @ 20 mm . 50 mm @ 40 mm . 30 mm @ 50 mm . 15 mm@ 45 mm };
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 	
 	aPage add: (PDFFilledPolygonElement new 
-		from: 10@55; 
-		to: { 60@60 . 50@100 . 30@110 . 15@105 };
+		from: 10 mm @ 55 mm; 
+		to: { 60 mm @  60 mm  . 50 mm @ 100  mm . 30 mm @ 110 mm . 15 mm @ 105  mm };
 		drawColor: (PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setColor: #(255 0 0));
-		thickness: 5	
+		thickness: 5 mm	
 	).
 	pdfdoc add: aPage.
 	
@@ -918,20 +918,20 @@ PDFDemos class >> rectsTest [
 	aPage := PDFPage new.
 	
 	aPage add: (PDFRectElement new
-		from: 0@0;
-		wh: 210@297
+		from: 0 mm @ 0 mm;
+		wh: 210 mm @ 297 mm
 	).
 	aPage add: (PDFRectElement new
-		from: 10@10;
-		wh: 100@30 ).
+		from: 10 mm @ 10 mm;
+		wh: 100 mm @ 30 mm).
 	aPage add: (PDFFilledRectElement new
-		from: 15@15;
-		wh: 100@30;
+		from: 15 mm @ 15 mm;
+		wh: 100 mm @ 30 mm;
 		fillColor: (PDFColor new setColor: #(142 24 78))
 		).		
 	aPage add: (PDFRectElement new
-		from: 20@20;
-		wh: 100@30;
+		from: 20 mm @ 20 mm;
+		wh: 100 mm @ 30 mm;
 		drawColor: (PDFColor new setColor: #(0 255 0)) 
 		).
 	pdfdoc add: aPage.
@@ -986,20 +986,20 @@ PDFDemos class >> thicknessTest [
 
 	pdfdoc := PDFDocument new.	
 	aPage := PDFPage new.
-	width := 1.
-	xy1 := 10@20.
-	xy2 := 100@20.
+	width := 1 mm.
+	xy1 := 10 mm @ 20 mm.
+	xy2 := 100 mm@ 20 mm.
 	
 	1 to: 5 do: [ :i |
 		aPage add: (PDFLineElement new from: xy1; to: xy2; thickness: i).
-		xy1 := (xy1 x) @ (xy1 y + 10).
-		xy2 := (xy2 x) @ (xy2 y + 10).
+		xy1 := (xy1 x) @ (xy1 y + 10 mm).
+		xy2 := (xy2 x) @ (xy2 y + 10 mm).
 	].	
 	
 	aPage add: (PDFRectElement new 
-		from: 50@80;
-		wh: 50@50; 
-		thickness:  5
+		from: 50 mm @ 80 mm;
+		wh: 50 mm @ 50 mm; 
+		thickness:  5 mm
 		).
 	
 	pdfdoc add: aPage.
@@ -1022,13 +1022,13 @@ PDFDemos class >> twoColoredRectsTest [
 	aPage := PDFPage new.
 	
 	aPage add: (PDFRectElement new
-		from: 10@10;
-		wh: 100@30;
+		from: 10 mm @ 10 mm;
+		wh: 100 mm @ 30 mm;
 		fillColor: (PDFColor new setColor: #(142 24 78));
 		drawColor: (PDFColor new setColor: #(255 0 0))).
 	aPage add: (PDFRectElement new
-		from: 15@15;
-		wh: 100@30;
+		from: 15 mm @ 15 mm;
+		wh: 100 mm @30 mm;
 		fillColor: (PDFColor new setColor: #(24 57 205));
 		drawColor: (PDFColor new setColor: #(0 255 0))).		
 	pdfdoc add: aPage.
@@ -1047,11 +1047,12 @@ PDFDemos class >> unCarresDansUnCarreStyle [
 	
 	aPage := PDFPage new.
 	
+	"
 	aPage add: (UnCarreDansUnCarre new
-		from: 10@10;
-		wh: 100@30;
-		borderSize: 5@2 ).
-		
+		from: 10 mm @10 mm;
+		wh: 100 mm@ 30 mm;
+		borderSize: 5 mm @2 mm).
+		"
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: '/home/olivier/Desktop/deuxCarreDansUnCarre.pdf'.
@@ -1083,7 +1084,7 @@ PDFDemos class >> widthTest [
 	"aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text)."
 	
 	"Transcript show: pdfdoc margins asString."
-	aPage add: (PDFLineElement new from: 10@60; to: 110@60).
+	aPage add: (PDFLineElement new from: 10 mm @ 60 mm; to: 110 mm @ 60 mm).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportToFile: self demoPath , 'widthTest.pdf'.
