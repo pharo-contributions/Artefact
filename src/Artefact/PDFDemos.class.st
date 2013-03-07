@@ -43,7 +43,7 @@ PDFDemos class >> alignmentsTest [
 	).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'alignmentsTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'alignmentsTest.pdf')
 ]
 
 { #category : #draw }
@@ -61,7 +61,7 @@ PDFDemos class >> alineTest [
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'alinedTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'alinedTest.pdf')
 ]
 
 { #category : #composite }
@@ -76,52 +76,52 @@ PDFDemos class >> arrowTest [
 	aPage := PDFPage new.
 	
 	aPage add: (PDFArrowElement new
-		from: 10@10;
-		to: 100@30;
+		from: 10 mm @ 10 mm;
+		to: 100 mm @30 mm;
 		drawColor: (PDFColor new setColor: #(255 0 0))
 	).
 
 	aPage add: (PDFArrowElement new
-		from: 10@20;
-		to: 30@30
+		from: 10 mm @20 mm;
+		to: 30 mm @30 mm
 	).
 
 	aPage add: (PDFArrowElement new
-		from: 120@10;
-		to: 120@40;
+		from: 120 mm @10 mm;
+		to: 120 mm @ 40 mm;
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 
 	aPage add: (PDFArrowElement new
-		from: 125@40;
-		to: 140@40;
+		from: 125 mm @ 40 mm;
+		to: 140 mm @ 40 mm;
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 
 	aPage add: (PDFArrowElement new
-		from: 125@40;
-		to: 100@80;
+		from: 125 mm @ 40 mm;
+		to: 100 mm @ 80 mm;
 		drawColor: (PDFColor new setColor: #(0 255 0));
 		dotted: (PDFDotted new length: 2; space: 3)
 	).	
 
 	aPage add: (PDFArrowElement new
-		from: 40@50;
-		to: 80@90;
+		from: 40 mm @ 50 mm;
+		to: 80 mm @ 90 mm;
 		drawColor: (PDFColor new setColor: #(192 255 0));
-		thickness:  2
+		thickness:  2 mm
 	 ).		
 	
 	aPage add: (PDFDoubleArrowElement new
-		from: 10@80;
-		to: 100@150;
+		from: 10 mm @ 80 mm;
+		to: 100 mm @ 150 mm;
 		drawColor: (PDFColor new setColor: #(0 128 0));
-		dotted: (PDFDotted new length: 2; space: 2)
+		dotted: (PDFDotted new length: 2 mm; space: 2 mm)
 	).
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'arrowTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'arrowTest.pdf').
 ]
 
 { #category : #draw }
@@ -143,7 +143,7 @@ PDFDemos class >> bezierTest [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'bezierTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'bezierTest.pdf')
 ]
 
 { #category : #composite }
@@ -160,8 +160,8 @@ PDFDemos class >> cellTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFCellElement new
-		from: 10@5;
-		wh: 190@10;
+		from: 10 mm @ 5 mm;
+		wh: 190 mm @ 10 mm;
 		fillColor: (PDFColor new setGreyLevel: 224);
 		text: 'Demonstration of PDFCellStyle';
 		font: myTitleFont;
@@ -170,45 +170,45 @@ PDFDemos class >> cellTest [
 	
 	"horizontal alignment"
 	aPage add: (PDFCellElement new  
-		from: 10@20;
-		wh: 50@10;
+		from: 10 mm @ 20 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'alignment: left';
 		left
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 80@20;
-		wh: 50@10;
+		from: 80 mm @ 20 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'alignment: center'
 	 ).
 	
 	aPage add: (PDFCellElement new  
-		from: 150@20;
-		wh: 50@10;
+		from: 150 mm @ 20 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'alignment: right';
 		right
 	).
 
 	"vertical alignment"
 	aPage add: (PDFCellElement new  
-		from: 10@40;
-		wh: 50@10;
+		from: 10 mm @ 40 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'vertical: top';
 		left;
 		top
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 80@40;
-		wh: 50@10;
+		from: 80 mm @ 40 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'vertical: middle';
 		center;
 		middle
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 150@40;
-		wh: 50@10;
+		from: 150 mm @ 40 mm;
+		wh: 50 mm @ 10 mm;
 		text: 'vertical: bottom';
 		right;
 		bottom
@@ -216,8 +216,8 @@ PDFDemos class >> cellTest [
 
 	"colors"
 	aPage add: (PDFCellElement new  
-		from: 10@60;
-		wh: 50@10;
+		from: 10 mm @ 60 mm ;
+		wh: 50 mm @ 10 mm;
 		textColor: (PDFColor new setColor: #(0 0 255));
 		drawColor: (PDFColor new setColor: #(255 0 0));
 		text: 'text: blue border: red';
@@ -226,8 +226,8 @@ PDFDemos class >> cellTest [
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 80@60;
-		wh: 50@10;
+		from: 80 mm @ 60 mm;
+		wh: 50 mm @ 10 mm;
 		textColor: (PDFColor new setColor: #(0 0 255));
 		fillColor: (PDFColor new setColor: #(0 255 0));
 		text: 'background: green';
@@ -236,44 +236,43 @@ PDFDemos class >> cellTest [
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 150@60;
-		wh: 50@10;
+		from: 150 mm @ 60 mm;
+		wh: 50 mm @ 10 mm;
 		textColor: (PDFColor new setGreyLevel: 255);
 		fillColor: (PDFColor new setGreyLevel: 128);
 		dotted: (PDFDotted new length: 1; space: 1);
 		text: 'grey level & dotted border';
-		thickness: 0.2;
+		thickness: 0.2 mm;
 		center;
 		middle
 	).
 	
 	aPage add: (PDFCellElement new  
-		from: 10@80;
+		from: 10 mm @ 80 mm;
 		text: 'A cell without wh'
 	).
 	aPage add: (PDFCellElement new  
-		wh: 50@10;
+		wh: 50 mm @ 10 mm;
 		text: 'A cell without xy'
 	).
 	aPage add: (PDFCellElement new  
-		wh: 50@10;
+		wh: 50 mm @ 10 mm;
 		text: 'linefeed: true';
 		linefeed: true
 	).
 	aPage add: (PDFCellElement new  
-		wh: 50@10;
+		wh: 50 mm @ 10 mm;
 		text: 'linefeed: false';
 		linefeed: false
 	).
 	aPage add: (PDFCellElement new  
-		wh: 50@10;
+		wh: 50 mm @ 10 mm;
 		text: 'end'
 	).
 
-	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'cellTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'cellTest.pdf').
 ]
 
 { #category : #draw }
@@ -288,20 +287,20 @@ PDFDemos class >> circlesTest [
 	aPage := PDFPage new.
 
 	aPage add: (PDFCircleElement new 
-		from: 50@50;
-		radius: 30
+		from: 50 mm @ 50 mm;
+		radius: 30 mm
 	).
 
 	aPage add: (PDFFilledCircleElement new 
-		from: 120@50;
-		radius: 30;
+		from: 120 mm @ 50 mm;
+		radius: 30 mm;
 		fillColor: (PDFColor new setColor: #(0 255 0));
 		drawColor: (PDFColor new setColor: #(255 0 0))
 	).
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'circlesTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'circlesTest.pdf').
 ]
 
 { #category : #color }
@@ -332,7 +331,7 @@ PDFDemos class >> colorTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'colorTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'colorTest.pdf').
 
 ]
 
@@ -382,8 +381,7 @@ PDFDemos class >> datatableCustomizedElementTest [
 	). 
 	
 	pdfdoc add: aPage.
-		
-	pdfdoc exportToFile: self demoPath , 'datatableCustomizedStyleTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableCustomizedStyleTest.pdf').		
 
 	
 	
@@ -428,7 +426,7 @@ PDFDemos class >> datatableTest [
 	
 	pdfdoc add: aPage.
 		
-	pdfdoc exportToFile: self demoPath , 'datatableTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableTest.pdf').
 
 	
 	
@@ -474,7 +472,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 	
 	pdfdoc add: aPage.
 		
-	pdfdoc exportToFile: self demoPath , 'datatableWithCaptionsTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableWithCaptions.pdf').
 
 	
 	
@@ -525,12 +523,12 @@ PDFDemos class >> demo [
 	pdfdoc add: aPage.
 	pdfdoc explore.
 	
-	pdfdoc exportToFile: self demoPath , 'demo.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'demo.pdf').
 ]
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/pdf/'
+	^'/Users/olivier/Desktop/'
 ]
 
 { #category : #document }
@@ -542,17 +540,17 @@ PDFDemos class >> displayLayoutTest [
 	PDFDocument new continuousPages;
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 1'));
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 2'));
-		exportToFile: self demoPath , 'continuousPagesTest.pdf'.
+		exportTo: (FileStream fileNamed: self demoPath , 'continuousPagesTest.pdf').
 
 	PDFDocument new singlePage; 
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 1'));
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 2'));
-		exportToFile: self demoPath , 'singlePage.pdf'.
+		exportTo: (FileStream fileNamed: self demoPath , 'singlePage.pdf').
 	
 	PDFDocument new twoPages; 
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 1'));
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 2'));
-		exportToFile: self demoPath , 'twoPages.pdf'.
+		exportTo: (FileStream fileNamed: self demoPath , 'twoPages.pdf').
 
 	
 	
@@ -568,15 +566,15 @@ PDFDemos class >> displayModeTest [
 	
 	doc := PDFDocument new fullPage.
 	doc add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'Fullpage document')).
-	doc exportToFile: self demoPath , 'fullPageTest.pdf'.
+	doc exportTo: (FileStream fileNamed: self demoPath , 'fullPageTest.pdf').
 
 	doc := PDFDocument new zoom: 300; 
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'zoom'));
-		exportToFile: self demoPath , 'zoomTest.pdf'.
+		exportTo: (FileStream fileNamed: self demoPath , 'zoomPageTest.pdf').
 	
 	doc := PDFDocument new fullWidth; 
 		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'full width'));
-		exportToFile: self demoPath , 'fullWidth.pdf'.
+		exportTo: (FileStream fileNamed: self demoPath , 'fullWidthTest.pdf').
 
 	
 	
@@ -623,7 +621,7 @@ PDFDemos class >> dottedTest [
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'dottedTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'dottedTest.pdf')
 ]
 
 { #category : #color }
@@ -651,7 +649,7 @@ PDFDemos class >> drawStyleSheetTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'drawStyleSheetTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'drawStyleSheetTest.pdf').
 
 ]
 
@@ -673,7 +671,7 @@ PDFDemos class >> euroTest [
 
 	pdfdoc add: aPage.
 	
-       pdfdoc exportToFile: self demoPath , 'euroTest.pdf'.
+      pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'euroTest.pdf')
 ]
 
 { #category : #color }
@@ -704,7 +702,7 @@ PDFDemos class >> greyLevelTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'greyLevelTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'greyLevelTest.pdf').
 
 ]
 
@@ -735,7 +733,7 @@ PDFDemos class >> headerFooterTest [
 	"secondPage header: false; footer: false."
 	pdfdoc add: secondPage.		
 			
-	pdfdoc exportToFile: self demoPath , 'headerFooterTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'headerFooterTest.pdf').
 
 	
 	
@@ -749,7 +747,7 @@ PDFDemos class >> imagePNG [
 	
 	| pdfdoc myImage aPage |
 	pdfdoc := PDFDocument new.	
-	myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/artefact/phare.png'.
+	"myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/artefact/phare.png'."
 	myImage inspect.
 	
 	aPage := PDFPage new.
@@ -758,7 +756,7 @@ PDFDemos class >> imagePNG [
 		wh: 100@30)."
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/Users/olivier/Desktop/demo.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imagePNG.pdf')
 ]
 
 { #category : #document }
@@ -779,7 +777,7 @@ PDFDemos class >> infosTest [
 	aPage := PDFPage new.
 	
 	pdfdoc add: aPage.
-	pdfdoc exportToFile: self demoPath , 'infosTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'infoTest.pdf')
 
 	
 	
@@ -803,7 +801,7 @@ PDFDemos class >> lineTest [
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'lineTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'lineTest.pdf')
 ]
 
 { #category : #document }
@@ -835,7 +833,7 @@ PDFDemos class >> multiOrientationsTest [
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
 
-	pdfdoc exportToFile: self demoPath , 'multiOrientationsTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'multiOrientationsTest.pdf')
 ]
 
 { #category : #composite }
@@ -874,7 +872,7 @@ PDFDemos class >> paragraphTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'paragraph.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'paragraphTest.pdf').
 ]
 
 { #category : #draw }
@@ -903,7 +901,8 @@ PDFDemos class >> polygonsTest [
 	).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'polygonsTest.pdf'.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'polygonsTest.pdf')
 ]
 
 { #category : #draw }
@@ -936,14 +935,14 @@ PDFDemos class >> rectsTest [
 		).
 	pdfdoc add: aPage.
 
-	pdfdoc exportToFile: self demoPath  , 'rectsTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'rectsTest.pdf')
 ]
 
 { #category : #text }
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
 
-	| pdfdoc myFont myBigFont aPage buffer |
+	| pdfdoc myFont myBigFont aPage |
 	pdfdoc := PDFDocument new.
 	myFont := PDFTimesFont new fontSize: 24.
 	aPage := PDFPage new.
@@ -972,8 +971,8 @@ PDFDemos class >> textTest [
 				from: 10 mm @ 70 mm;
 				text: 'A very simple text with specified color and font').
 	pdfdoc add: aPage.
-	buffer := FileStream fileNamed: self demoPath , 'textTest.pdf'.
-	pdfdoc exportTo: buffer.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'textTest.pdf')
 ]
 
 { #category : #draw }
@@ -1004,7 +1003,7 @@ PDFDemos class >> thicknessTest [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'thicknessTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'thicknesTest.pdf')
 
 	
 	
@@ -1033,7 +1032,7 @@ PDFDemos class >> twoColoredRectsTest [
 		drawColor: (PDFColor new setColor: #(0 255 0))).		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath  , 'twoColoredRectTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'twoColoredRectsTest.pdf')
 ]
 
 { #category : #'as yet unclassified' }
@@ -1055,7 +1054,7 @@ PDFDemos class >> unCarresDansUnCarreStyle [
 		"
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: '/home/olivier/Desktop/deuxCarreDansUnCarre.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'deuxCarreDansUnCarre.pdf').
 ]
 
 { #category : #'as yet unclassified' }
@@ -1087,7 +1086,7 @@ PDFDemos class >> widthTest [
 	aPage add: (PDFLineElement new from: 10 mm @ 60 mm; to: 110 mm @ 60 mm).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportToFile: self demoPath , 'widthTest.pdf'.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'widthTest.pdf').
 
 	
 	
