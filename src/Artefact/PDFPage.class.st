@@ -5,8 +5,6 @@ Class {
 		'document',
 		'format',
 		'elements',
-		'xy',
-		'lasth',
 		'margins'
 	],
 	#category : #Artefact
@@ -49,31 +47,10 @@ PDFPage >> format: aPDFFormat [
 	format :=  aPDFFormat
 ]
 
-{ #category : #accessing }
-PDFPage >> from [
-	^ xy
-]
-
-{ #category : #accessing }
-PDFPage >> from: aCurrentPosition [
-	xy := aCurrentPosition
-]
-
 { #category : #'initialize-release' }
 PDFPage >> initialize [
 	super initialize.
 	elements := OrderedCollection new
-]
-
-{ #category : #accessing }
-PDFPage >> lasth [
-	"height of last cell printed"
-	^ lasth
-]
-
-{ #category : #accessing }
-PDFPage >> lasth: lastCellHeight [
-	lasth :=  lastCellHeight
 ]
 
 { #category : #accessing }
