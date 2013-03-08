@@ -25,6 +25,12 @@ PDFColor class >> round: aValue [
 ]
 
 { #category : #accessing }
+PDFColor >> = anotherPDFColor [
+	^ #(#blue #red #green #greyLevel)
+		allSatisfy: [ :selector | (self perform: selector) = (anotherPDFColor perform: selector) ]
+]
+
+{ #category : #accessing }
 PDFColor >> blue [
 	^ blue
 ]
@@ -58,6 +64,12 @@ PDFColor >> greyLevel: anObject [
 PDFColor >> isEmpty [
 	"Answer true if the color is undefined"
 	^(self red isNil and: [ self greyLevel isNil ])
+]
+
+{ #category : #accessing }
+PDFColor >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPutAll: self value
 ]
 
 { #category : #accessing }

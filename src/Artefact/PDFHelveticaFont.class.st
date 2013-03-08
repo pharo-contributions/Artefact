@@ -1,3 +1,9 @@
+"
+A PDFHelveticaFont represent the Helvetica font
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFHelveticaFont,
 	#superclass : #PDFFont,

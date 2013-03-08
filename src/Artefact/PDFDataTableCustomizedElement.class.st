@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableCustomizedElement >> getSubElements [ 
+PDFDataTableCustomizedElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
 	"answer a view of a datatable"
 	
 	| position |

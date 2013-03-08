@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFArrowElement >> getSubElements [ 
+PDFArrowElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
 	"answer the style description"
 	
 	^ OrderedCollection new

@@ -15,7 +15,7 @@ PDFDataTableWithCaptions >> buildCaption: aString [
 	|ink captionElement |
 
 	captionElement := PDFCellElement new 
-		styleSheet: (self styleSheet deepCopy); 
+		styleSheet: (self styleSheet copy); 
 		wh: self wh; 
 		text: aString;
 		margin: self margin.
@@ -29,10 +29,9 @@ PDFDataTableWithCaptions >> buildCaption: aString [
 
 { #category : #accessing }
 PDFDataTableWithCaptions >> captionColor [
-	"Answer the color for the background of a caption. 
-	If not defined, answer the fill color of the style or the default fill color of the document"
-.
-	^ captionColor ifNil: [ captionColor := (self fillColorIfAbsent: (self page document styleSheet)) ]
+	"Answer the color for the background of a caption. "
+	
+	^ captionColor
 ]
 
 { #category : #accessing }

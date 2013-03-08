@@ -2,8 +2,7 @@ Class {
 	#name : #PDFCellElement,
 	#superclass : #PDFFormattedTextElement,
 	#instVars : [
-		'linefeed',
-		'rectElement'
+		'linefeed'
 	],
 	#category : #'Artefact-Elements-Composites'
 }
@@ -24,7 +23,9 @@ PDFCellElement >> determineDecyForTextStyleWith: aFont [
 	"Set right xy values for text"
 	| height decy |
 
-	height := (aFont scaledFontSize: (self page document scaleFactor)).
+	self wh ifNil: [ ^ self margin ].
+	
+	height := aFont fontSize.
 	
 	"determining the vertical offset"
 	(self verticalAlignment = #BOTTOM)
@@ -37,37 +38,25 @@ PDFCellElement >> determineDecyForTextStyleWith: aFont [
 ]
 
 { #category : #render }
-PDFCellElement >> getSubElements [
-	
+PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	"get the current position in the page if xy is not defined"
-	| decx decy font |
 
-	(self from isNil) ifTrue: [ self from: self page from ] ifFalse: [ self page from: self from ].
-	
+	| decx decy font dimensions |
 	"set the position of the text element"
-	font := self fontIfAbsent: (self page styleSheet).
-
-	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
-	decy := self determineDecyForTextStyleWith: font. 
-	
-	"set the new current position and linefeed ?"
- 	self page lasth: self wh y.	
-	(self linefeed) 
-		ifTrue: [ self page from: (self page margins x) @ (self page from y + self wh y) ] 
-		ifFalse: [ self page from: (self page from x + self wh x) @ (self page from y) ].
-	
-	"answer the style description"	
-
-	^ OrderedCollection new 
-		add: (rectElement styleSheet: (self styleSheet); from: self from; wh: self wh); 
-		add: (PDFTextElement new styleSheet: (self styleSheet); text: (self text); from: (decx + self from x)@(self from y + decy));  
-		yourself.
-]
-
-{ #category : #'initialize-release' }
-PDFCellElement >> initialize [
-	super initialize.
-	rectElement := PDFFilledRectElement new.
+	font := aStyleSheet font.
+	dimensions := self wh
+		ifNil: [ ((font getStringWidth: self text) + (2 * self margin)) @ (font fontSize + (2 * self margin)) ]
+		ifNotNil: [ self wh ].
+	decx := self determineDecxForTextStyle: self text margin: self margin with: font.
+	decy := self determineDecyForTextStyleWith: font.
+	^ {(PDFRectElement new
+		styleSheet: aStyleSheet;
+		from: self from;
+		wh: dimensions).
+	(PDFTextElement new
+		styleSheet: aStyleSheet;
+		text: self text;
+		from: (decx + self from x) @ (self from y + decy))}
 ]
 
 { #category : #accessing }
@@ -87,14 +76,5 @@ PDFCellElement >> verticalAlignment [
 
 { #category : #accessing }
 PDFCellElement >> wh [
-	"answer the with of the string if wh isn't defined"
-	| font width height |
-	
-	^wh ifNil: [
-		font := self fontIfAbsent: (self page styleSheet).
-		width := (font getStringWidth: (self text) into: (self page document)) + (self margin * 2).
-		height := (font scaledFontSize: (self page) document scaleFactor) roundDownTo: 0.001.
-		wh :=  width@height
-	]
-
+	^ wh
 ]

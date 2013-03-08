@@ -14,7 +14,7 @@ PDFDataTable >> buildValue: aValue [
 	"answer a PDFCellStyle instance for a value datatable cell"
 
 	^PDFCellElement new
-		styleSheet: (self styleSheet deepCopy);
+		styleSheet: (self styleSheet copy);
 		wh: (self wh);
 		text: (aValue);
 		margin: (self margin)

@@ -1,3 +1,13 @@
+"
+A PDFElement is the abstract class for each element that can be included in a PDFPage.
+
+Instance Variables
+	styleSheet:		<Object>
+
+styleSheet
+	- xxxxx
+
+"
 Class {
 	#name : #PDFElement,
 	#superclass : #Object,

@@ -7,9 +7,11 @@ Class {
 { #category : #action }
 PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement margin: aMargin with: aFont [
 	"Set right x values for text"
-	| font width decx |
+	| width decx |
 	
-	width := aFont getStringWidth: aTextElement into: (self page document).
+	self wh ifNil: [ ^ self margin ].
+	
+	width := aFont getStringWidth: aTextElement.
 	
 	"determining the horizontal offset"
 	(self alignment = #RIGHT) 
@@ -21,13 +23,12 @@ PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement margin: aMarg
 ]
 
 { #category : #render }
-PDFFormattedTextElement >> getSubElements [
+PDFFormattedTextElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	| height font decx |
 
-	font := self fontIfAbsent: (self page styleSheet).
-	height := font scaledFontSize: (self page document scaleFactor).
-	
+	font := aStyleSheet font.
+	height := font fontSize.
 	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
 
 	^ {PDFTextElement new styleSheet: (self styleSheet); text: (self text); from: (decx + self from x)@(self from y + height)}

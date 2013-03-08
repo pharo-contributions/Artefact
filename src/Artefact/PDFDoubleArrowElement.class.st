@@ -11,12 +11,19 @@ PDFDoubleArrowElement >> angle [
 ]
 
 { #category : #render }
-PDFDoubleArrowElement >> getSubElements [ 
+PDFDoubleArrowElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	"answer the style description"
-	
+
 	^ OrderedCollection new
-		add: (PDFArrowElement new styleSheet: (self styleSheet); from: self from; to: self to);
-		add: (PDFLineElement new styleSheet: (self styleSheet); from: self from; to: (self destinationOfHeadItem: (self angle - ((Float pi) / 6)) with: self from));
-		add: (PDFLineElement new styleSheet: (self styleSheet); from: self from; to: (self destinationOfHeadItem: (self angle + ((Float pi) / 6)) with: self from));
-		yourself.
+		add:
+				(PDFArrowElement new
+						styleSheet: aStyleSheet;
+						from: (self from + self to) / 2;
+						to: self to);
+		add:
+				(PDFArrowElement new
+						styleSheet: aStyleSheet;
+						from: (self from + self to) / 2;
+						to: self from);
+		yourself
 ]

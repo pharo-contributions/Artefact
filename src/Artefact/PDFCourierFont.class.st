@@ -1,3 +1,9 @@
+"
+A PDFCourierFont represent the Courrier font.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFCourierFont,
 	#superclass : #PDFFont,

@@ -1,3 +1,9 @@
+"
+A PDFZapfdingbatsFont represent the Zapfdingbats font
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFZapfdingbatsFont,
 	#superclass : #PDFFont,

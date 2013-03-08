@@ -14,8 +14,10 @@ PDFGeneratorTest >> setUp [
 
 { #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGenerateEmptyPage [
-	| page pageDataType contentDataType |
+	| page pageDataType contentDataType document |
+	document := PDFDocument new.
 	page := PDFPage new format: PDFA4Format new.
+	document add: page.
 	generator := PDFGenerator new.
 	generator generatePDFDocument: PDFDocument new.
 	pageDataType := generator generatePDFPage: page.
@@ -26,13 +28,14 @@ PDFGeneratorTest >> testGenerateEmptyPage [
 	contentDataType := pageDataType contents first associativeArray fourth value.
 	self assert: contentDataType class equals: PDFDataReference.
 	self assert: contentDataType referencedObject id equals: 3.
-	self assert: contentDataType referencedObject revision equals: 0.
-	pageDataType explore
+	self assert: contentDataType referencedObject revision equals: 0
 ]
 
 { #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGenerateFontID [
-	self assert: (generator fontID: 2) equals: 'F2'.
+	self assert: generator generateFontId equals: 'F1'.
+	self assert: generator generateFontId equals: 'F2'.
+	self assert: generator generateFontId equals: 'F3'
 ]
 
 { #category : #'as yet unclassified' }

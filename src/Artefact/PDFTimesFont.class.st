@@ -1,3 +1,9 @@
+"
+A PDFTimesFont represent the Times font
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFTimesFont,
 	#superclass : #PDFFont,

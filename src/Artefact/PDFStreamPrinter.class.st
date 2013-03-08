@@ -41,10 +41,10 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 		dotted := styleSheet get: #dotted.
 
 		dotted ifNil: [ code nextPutAll: ('[] 0 ' , PDFByteCode dotted); nextPutAll: String crlf ]
-			ifNotNil: [ code nextPutAll: (dotted setDottedInto: self document); nextPutAll: String crlf ].
+			ifNotNil: [ code nextPutAll: (dotted generateCodeWith: self); nextPutAll: String crlf ].
 		
 		"Insert the font size in the PDF document"
-		code nextPutAll: ('BT /', anElementCodeSegment fontId , ' ' , (styleSheet font fontSize asString) , ' Tf ET'); nextPutAll: String crlf.
+		code nextPutAll: ('BT /', anElementCodeSegment fontId , ' ' , (styleSheet font fontSizeAsPoints asString) , ' Tf ET'); nextPutAll: String crlf.
 	]
 ]
 

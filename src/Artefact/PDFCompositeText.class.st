@@ -32,7 +32,7 @@ PDFCompositeText >> center [
 
 { #category : #style }
 PDFCompositeText >> defaultMargin [
-	^0
+	^ 0 pt
 ]
 
 { #category : #action }

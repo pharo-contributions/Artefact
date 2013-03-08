@@ -1,3 +1,25 @@
+"
+A PDFFont is the abstract class that inherits all usable fonts for creating PDF.
+
+Instance Variables
+	bold:		<Object>
+	fontSize:		<Object>
+	italic:		<Object>
+	pdfDocument:		<Object>
+
+bold
+	- xxxxx
+
+fontSize
+	- xxxxx
+
+italic
+	- xxxxx
+
+pdfDocument
+	- xxxxx
+
+"
 Class {
 	#name : #PDFFont,
 	#superclass : #Object,
@@ -87,7 +109,7 @@ PDFFont >> fontName [
 
 { #category : #accessing }
 PDFFont >> fontSize [
-	^ fontSize ifNil: [ fontSize := 8 ]
+	^ fontSize ifNil: [ fontSize := 8 pt ]
 ]
 
 { #category : #accessing }
@@ -95,20 +117,27 @@ PDFFont >> fontSize: anObject [
 	fontSize := anObject
 ]
 
+{ #category : #accessing }
+PDFFont >> fontSizeAsPoints [
+	^ (self fontSize convertTo: Unit points) value 
+]
+
 { #category : #action }
 PDFFont >> getCharWidthOf: aChar [
 	"If the char is not a ascii char, the method return a default width"
 
 	aChar asInteger > 255
-		ifTrue: [ ^ 0 ]
-		ifFalse: [ ^ self charWidths at: aChar asInteger ]
+		ifTrue: [ ^ 0 pt ]
+		ifFalse: [ ^ (self charWidths at: aChar asInteger) * self fontSize / 1000 ]
 ]
 
 { #category : #action }
 PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
 	"answer the ideal font size for the specified width. The size of the font is not modified"
-
+	
 	| fsize width originalFontSize |
+	self flag: 'to adapt'.
+
 	fsize := 0.
 	width := 0.
 	
@@ -116,7 +145,7 @@ PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
 	[ width >=  aWidth ] whileFalse: [
 		fsize := fsize + 1. 
 		self fontSize: fsize.
-		width := self getStringWidth: aString into: aDocument.
+		width := self getStringWidth: aString.
 	].
 	self fontSize: originalFontSize.
 	^(fsize - 1)
@@ -125,16 +154,10 @@ PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
 ]
 
 { #category : #action }
-PDFFont >> getStringWidth: aString into: aDocument [
-	"answer the width of the string with the specified font in the user unit"
+PDFFont >> getStringWidth: aString [
+	"answer the width of the string using this font"
 	
-	| width |
-	
-	width := 0.
-	aString do: [ :char | width := width + (self getCharWidthOf: char) ].
-	^(width * ((self fontSize  / aDocument scaleFactor) / 1000)) roundDownTo: 0.001	
-	
-
+	^ aString sum: [ :char | self getCharWidthOf: char]
 ]
 
 { #category : #accessing }
@@ -165,9 +188,4 @@ PDFFont >> pdfDocument [
 { #category : #accessing }
 PDFFont >> pdfDocument: anObject [
 	pdfDocument := anObject
-]
-
-{ #category : #accessing }
-PDFFont >> scaledFontSize: aScaleFactor [
-	^ ((self fontSize / aScaleFactor) roundDownTo: 0.01)
 ]

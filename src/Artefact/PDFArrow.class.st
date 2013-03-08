@@ -6,7 +6,7 @@ Class {
 
 { #category : #action }
 PDFArrow >> angle [
-	^(to y - from y) arcTan: (to x - from x)
+	^ ((to y - from y) convertTo: Unit point) value arcTan: ((to x - from x) convertTo: Unit point) value
 ]
 
 { #category : #action }
@@ -16,12 +16,12 @@ PDFArrow >> destinationOfHeadItem: aAngleValue with: aPosition [
 ]
 
 { #category : #render }
-PDFArrow >> getSubElements [
+PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
 PDFArrow >> headLength [
 	"answer the length of the head of the arrow"
-	^3
+	^3 pt
 ]

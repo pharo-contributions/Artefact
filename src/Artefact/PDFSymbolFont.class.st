@@ -1,3 +1,9 @@
+"
+A PDFSymbolFont represent the Symbol font
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFSymbolFont,
 	#superclass : #PDFFont,

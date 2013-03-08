@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableWithColumnsCaptionElement >> getSubElements [ 
+PDFDataTableWithColumnsCaptionElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
 	"answer a datatable model with the captions in the columns"
 	
 	elements := self captions collect: [ :aCaption | self buildCaption: aCaption ].

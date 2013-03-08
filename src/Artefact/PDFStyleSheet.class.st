@@ -84,6 +84,11 @@ PDFStyleSheet >> initialize [
 	attributes := Dictionary new.
 ]
 
+{ #category : #attributes }
+PDFStyleSheet >> postCopy [
+	attributes := attributes copy
+]
+
 { #category : #private }
 PDFStyleSheet >> setAttribute: anAttribute value: aValue [
 	attributes at: anAttribute put: aValue 

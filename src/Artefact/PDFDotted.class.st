@@ -8,25 +8,15 @@ Class {
 	#category : #Artefact
 }
 
-{ #category : #accessing }
-PDFDotted >> length [
-	^ length ifNil: [ length := 1 ]
-]
-
-{ #category : #accessing }
-PDFDotted >> length: anObject [
-	length := anObject
-]
-
 { #category : #private }
-PDFDotted >> setDottedInto: aDocument [
+PDFDotted >> generateCodeWith: aPDFGenerator [
 	"Answer the dotted configuration"
 
 	^(String streamContents: [ :s |
 		s nextPutAll: '[';
-		print: ((self length * aDocument scaleFactor) roundDownTo: 0.001);
+		print: (aPDFGenerator convertToPoints: self length);
 		space;
-		print: ((self space * aDocument scaleFactor) roundDownTo: 0.001);
+		print: (aPDFGenerator convertToPoints: self space);
 		nextPutAll: '] 0';
 		space;
 		nextPutAll: PDFByteCode dotted
@@ -34,8 +24,25 @@ PDFDotted >> setDottedInto: aDocument [
 ]
 
 { #category : #accessing }
+PDFDotted >> initialize [ 
+	super initialize.
+	self length: 1 pt.
+	self space: 1 pt
+]
+
+{ #category : #accessing }
+PDFDotted >> length [
+	^ length
+]
+
+{ #category : #accessing }
+PDFDotted >> length: anObject [
+	length := anObject
+]
+
+{ #category : #accessing }
 PDFDotted >> space [
-	^ space ifNil: [ space := 1 ]
+	^ space
 ]
 
 { #category : #accessing }

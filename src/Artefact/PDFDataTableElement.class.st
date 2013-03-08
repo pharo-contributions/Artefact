@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableElement >> getSubElements [ 
+PDFDataTableElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
 	"answer a model of a datatable"
 	
 	self data do: [ :aLine |
