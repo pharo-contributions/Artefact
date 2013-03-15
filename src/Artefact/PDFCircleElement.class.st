@@ -8,11 +8,6 @@ Class {
 }
 
 { #category : #render }
-PDFCircleElement >> fillmode [
-	^ PDFByteCode noFilling
-]
-
-{ #category : #render }
 PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	"Draw a line from xy to destination"
 	

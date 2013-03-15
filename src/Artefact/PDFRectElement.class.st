@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #render }
-PDFRectElement >> fillmode [
-	^PDFByteCode noFilling 
-]
-
-{ #category : #render }
 PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a rectangle from xy with a specified size wh"
 	

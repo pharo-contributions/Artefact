@@ -90,7 +90,7 @@ PDFFontTest >> testHelveticaBIWidth [
 				bold: true;
 				italic: true;
 				getStringWidth: 'hello') rounded
-		equals: 47 pt
+		equals: 37 pt
 ]
 
 { #category : #fontsWidth }
@@ -101,7 +101,7 @@ PDFFontTest >> testHelveticaBWidth [
 				fontSize: 16 pt;
 				bold: true;
 				getStringWidth: 'hello') rounded
-		equals: 47 pt
+		equals: 37 pt
 ]
 
 { #category : #fontsWidth }
@@ -112,7 +112,7 @@ PDFFontTest >> testHelveticaIWidth [
 				fontSize: 16 pt;
 				italic: true;
 				getStringWidth: 'hello') rounded
-		equals: 43 pt
+		equals: 34 pt
 ]
 
 { #category : #fontsWidth }
@@ -122,7 +122,7 @@ PDFFontTest >> testHelveticaWidth [
 			(PDFHelveticaFont new
 				fontSize: 16 pt;
 				getStringWidth: 'hello') rounded
-		equals: 43 pt
+		equals: 34 pt
 ]
 
 { #category : #fontsWidth }
@@ -132,7 +132,7 @@ PDFFontTest >> testSymbolWidth [
 			(PDFSymbolFont new
 				fontSize: 16 pt;
 				getStringWidth: 'hello') rounded
-		equals: 40 pt
+		equals: 43 pt
 ]
 
 { #category : #fontsWidth }
@@ -144,7 +144,7 @@ PDFFontTest >> testTimesBIWidth [
 				bold: true;
 				italic: true;
 				getStringWidth: 'hello') rounded
-		equals: 41 pt
+		equals: 33 pt
 ]
 
 { #category : #fontsWidth }
@@ -155,7 +155,7 @@ PDFFontTest >> testTimesBWidth [
 				fontSize: 16 pt;
 				bold: true;
 				getStringWidth: 'hello') rounded
-		equals: 44 pt
+		equals: 33 pt
 ]
 
 { #category : #fontsWidth }
@@ -166,7 +166,7 @@ PDFFontTest >> testTimesIWidth [
 				fontSize: 16 pt;
 				italic: true;
 				getStringWidth: 'hello') rounded
-		equals: 38 pt
+		equals: 32 pt
 ]
 
 { #category : #fontsWidth }
@@ -176,7 +176,7 @@ PDFFontTest >> testTimesWidth [
 			(PDFTimesFont new
 				fontSize: 16 pt;
 				getStringWidth: 'hello') rounded
-		equals: 40 pt
+		equals: 32 pt
 ]
 
 { #category : #fontsWidth }

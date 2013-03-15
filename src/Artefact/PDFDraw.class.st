@@ -2,7 +2,8 @@ Class {
 	#name : #PDFDraw,
 	#superclass : #PDFBasic,
 	#instVars : [
-		'to'
+		'to',
+		'filled'
 	],
 	#category : #'Artefact-Elements-Basic'
 }
@@ -18,23 +19,32 @@ PDFDraw >> drawColor: aPDFColor [
 ]
 
 { #category : #accessing }
-PDFDraw >> drawColorIfAbsent: anAlternativeStyleSheet [
-	^ self styleSheet get: #drawColor ifAbsentFrom: anAlternativeStyleSheet 
-]
-
-{ #category : #accessing }
 PDFDraw >> fillColor: aPDFColor [
+	self filled: true.
 	self styleSheet fillColor: aPDFColor 
 ]
 
 { #category : #accessing }
-PDFDraw >> fillColorIfAbsent: anAlternativeStyleSheet [
-	^ self styleSheet get: #fillColor ifAbsentFrom: anAlternativeStyleSheet 
+PDFDraw >> filled [
+	^ filled
+]
+
+{ #category : #accessing }
+PDFDraw >> filled: anObject [
+	filled := anObject
+]
+
+{ #category : #accessing }
+PDFDraw >> fillmode [
+	^ self filled
+		ifTrue: [ PDFByteCode filling ]
+		ifFalse: [ PDFByteCode noFilling ]
 ]
 
 { #category : #accessing }
 PDFDraw >> initialize [
 	super initialize. 
+	self filled: false.
 	self styleSheet: PDFStyleSheet new
 ]
 

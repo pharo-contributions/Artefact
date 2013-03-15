@@ -23,29 +23,31 @@ PDFStreamPrinter >> convertToPoints: aUnitValue [
 
 { #category : #util }
 PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
-	| dotted thickness font styleSheet|
-
+	| dotted thickness styleSheet |
 	styleSheet := anElementCodeSegment styleSheet.
-
-	^ String streamContents: [ :code |
-		thickness := styleSheet get: #thickness.
-		code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String crlf.
-	
-		"Set line cap style to square"
-		code nextPutAll: ('2 ' , PDFByteCode lineCapStyle); nextPutAll: String crlf.
-	
-		"Set the colors or grey levels"
-		code nextPutAll: (self initColors: styleSheet useDrawColor: anElementCodeSegment isDrawElement); nextPutAll: String crlf.
-
-		"Set the dotted propertie"
-		dotted := styleSheet get: #dotted.
-
-		dotted ifNil: [ code nextPutAll: ('[] 0 ' , PDFByteCode dotted); nextPutAll: String crlf ]
-			ifNotNil: [ code nextPutAll: (dotted generateCodeWith: self); nextPutAll: String crlf ].
-		
-		"Insert the font size in the PDF document"
-		code nextPutAll: ('BT /', anElementCodeSegment fontId , ' ' , (styleSheet font fontSizeAsPoints asString) , ' Tf ET'); nextPutAll: String crlf.
-	]
+	^ String
+		streamContents: [ :code | 
+			thickness := styleSheet get: #thickness.
+			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String crlf.	"Set line cap style to square"
+			code
+				nextPutAll: '2 ' , PDFByteCode lineCapStyle;
+				nextPutAll: String crlf.	"Set the colors or grey levels"
+			code
+				nextPutAll: (self initColors: styleSheet useDrawColor: anElementCodeSegment isDrawElement);
+				nextPutAll: String crlf.	"Set the dotted propertie"
+			dotted := styleSheet get: #dotted.
+			dotted
+				ifNil: [ 
+					code
+						nextPutAll: '[] 0 ' , PDFByteCode dotted;
+						nextPutAll: String crlf ]
+				ifNotNil: [ 
+					code
+						nextPutAll: (dotted generateCodeWith: self);
+						nextPutAll: String crlf ].	"Insert the font size in the PDF document"
+			code
+				nextPutAll: 'BT /' , anElementCodeSegment fontId , ' ' , styleSheet font fontSizeAsPoints asString , ' Tf ET';
+				nextPutAll: String crlf ]
 ]
 
 { #category : #util }
@@ -166,7 +168,7 @@ PDFStreamPrinter >> visitPDFDataDateAndTime: aPDFDataDateAndTime [
 
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
-	self positions at: aPDFDataObject put: stream position + 1.
+	self positions at: aPDFDataObject put: stream position.
 	stream
 		nextPutAll: aPDFDataObject id asString;
 		space;
@@ -237,7 +239,7 @@ PDFStreamPrinter >> visitPDFDataValue: aPDFDataValue [
 
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
-	self positions at: aPDFDataXRef put: stream position + 1.
+	self positions at: aPDFDataXRef put: stream position.
 	stream
 		nextPutAll: 'xref';
 		crlf.

@@ -109,7 +109,7 @@ PDFColor >> value [
 		ifTrue: [ ^nil ] 
 		ifFalse: [
 			(self red isNil) 
-				ifTrue: [ ^ self greyLevel ]
+				ifTrue: [ ^ self greyLevel asString ]
 				ifFalse: [ ^ (self red asString) , '.' , (self green asString) , '.' , (self blue asString) ]
 		]
 

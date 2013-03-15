@@ -10,7 +10,7 @@ PDFDemos class >> alignmentsTest [
 
 	"PDFDemos alignmentsTest"
 
-	| pdfdoc myFont myBigFont aPage |
+	| pdfdoc myFont aPage |
 	pdfdoc := PDFDocument new.
 	myFont := PDFHelveticaFont new fontSize: 16 pt.
 	aPage := PDFPage new.
@@ -18,45 +18,27 @@ PDFDemos class >> alignmentsTest [
 		add:
 			(PDFFormattedTextElement new
 				font: myFont;
-				wh: 150 mm @ 10 mm;
+				wh: 210 mm @ 10 mm;
 				from: 0 mm @ 0 mm;
 				text: 'At left').
 	aPage
 		add:
 			(PDFFormattedTextElement new
 				font: myFont;
-				wh: 150 mm @ 10 mm;
-				from: 10 mm @ 20 mm;
+				wh: 210 mm @ 10 mm;
+				from: 0 mm @ 20 mm;
 				text: 'Center';
 				center).
 	aPage
 		add:
 			(PDFFormattedTextElement new
 				font: myFont;
-				wh: 150 mm @ 10 mm;
-				from: 10 mm @ 30 mm;
+				wh: 210 mm @ 10 mm;
+				from: 0 mm @ 30 mm;
 				text: 'At right';
 				right).
 	pdfdoc add: aPage.
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'alignmentsTest.pdf')
-]
-
-{ #category : #draw }
-PDFDemos class >> alineTest [
-	"drawing with simple line"
-	
-	"self alineTest"
-	
-	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
-	aPage := PDFPage new.
-
-	aPage add: (PDFLineElement new from: 0mm@0mm; to: 210mm@60mm; drawColor: (PDFColor new setColor: #(255 0 0) )).
-			
-	pdfdoc add: aPage.
-	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'alinedTest.pdf')
 ]
 
 { #category : #composite }
@@ -515,7 +497,7 @@ PDFDemos class >> demo [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'demo.pdf').
+	pdfdoc exportTo: (StandardFileStream fileNamed: self demoPath , 'demo.pdf').
 ]
 
 { #category : #accessing }
@@ -663,7 +645,7 @@ PDFDemos class >> euroTest [
 
 	pdfdoc add: aPage.
 	
-      pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'euroTest.pdf')
+      pdfdoc exportTo: (StandardFileStream fileNamed: self demoPath , 'euroTest.pdf')
 ]
 
 { #category : #color }
@@ -844,7 +826,7 @@ PDFDemos class >> multiOrientationsTest [
 	secondPage := PDFPage new format: myLandscapeFormat.
 	
 	secondPage add: (PDFCellElement new 
-		from: 15mm@15mm;
+		from: 10mm@10mm;
 		font: myBigFont; 
 		wh: 40 mm @ 10 mm; 
 		text: 'Page en A3').	
@@ -947,7 +929,7 @@ PDFDemos class >> rectsTest [
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		wh: 100 mm @ 30 mm).
-	aPage add: (PDFFilledRectElement new
+	aPage add: (PDFRectElement new
 		from: 15 mm @ 15 mm;
 		wh: 100 mm @ 30 mm;
 		fillColor: (PDFColor new setColor: #(142 24 78))
@@ -1068,28 +1050,6 @@ PDFDemos class >> twoColoredRectsTest [
 	pdfdoc add: aPage.
 	
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'twoColoredRectsTest.pdf')
-]
-
-{ #category : #'as yet unclassified' }
-PDFDemos class >> unCarresDansUnCarreStyle [
-	"un test de style géométrique"
-	
-	"self unCarresDansUnCarreStyle"
-	
-	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
-	aPage := PDFPage new.
-	
-	"
-	aPage add: (UnCarreDansUnCarre new
-		from: 10 mm @10 mm;
-		wh: 100 mm@ 30 mm;
-		borderSize: 5 mm @2 mm).
-		"
-	pdfdoc add: aPage.
-	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'deuxCarreDansUnCarre.pdf').
 ]
 
 { #category : #'as yet unclassified' }

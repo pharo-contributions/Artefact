@@ -20,6 +20,18 @@ PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
 	self subclassResponsibility
 ]
 
+{ #category : #'as yet unclassified' }
+PDFArrow >> headAt: aPosition angle: anAngle [
+	^ {(PDFLineElement new
+		styleSheet: self styleSheet;
+		from: aPosition;
+		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition)).
+	(PDFLineElement new
+		styleSheet: self styleSheet;
+		from: aPosition;
+		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition))}
+]
+
 { #category : #accessing }
 PDFArrow >> headLength [
 	"answer the length of the head of the arrow"

@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #render }
-PDFPolygonElement >> fillmode [
-	^ PDFByteCode noFilling
-]
-
-{ #category : #render }
 PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	"Draw a polygon from xy to destination (a array of positions)"
 	

@@ -105,7 +105,7 @@ PDFGenerator >> currentPage: anObject [
 
 { #category : #conversion }
 PDFGenerator >> determinePositionOnCurrentPage: aPosition [ 
-	^ (self convertToPoints: (aPosition x)) @ (self convertToPoints: (self currentPage format defaultSize y - aPosition y) )
+	^ (self convertToPoints: (aPosition x)) @ (self convertToPoints: (self currentPage format size y - aPosition y) )
 ]
 
 { #category : #action }

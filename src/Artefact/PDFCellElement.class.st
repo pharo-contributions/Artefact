@@ -22,10 +22,10 @@ PDFCellElement >> determineDecyForTextStyleWith: aFont [
 
 	"Set right xy values for text"
 	| height decy |
-
-	self wh ifNil: [ ^ self margin ].
 	
 	height := aFont fontSize.
+	
+	self wh ifNil: [ ^ height - self margin ].
 	
 	"determining the vertical offset"
 	(self verticalAlignment = #BOTTOM)
@@ -51,6 +51,7 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	decy := self determineDecyForTextStyleWith: font.
 	^ {(PDFRectElement new
 		styleSheet: aStyleSheet;
+		filled: self filled;
 		from: self from;
 		wh: dimensions).
 	(PDFTextElement new

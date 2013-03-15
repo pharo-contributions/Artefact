@@ -128,7 +128,7 @@ PDFFont >> getCharWidthOf: aChar [
 
 	aChar asInteger > 255
 		ifTrue: [ ^ 0 pt ]
-		ifFalse: [ ^ (self charWidths at: aChar asInteger) * self fontSize / 1000 ]
+		ifFalse: [ ^ (self charWidths at: aChar asInteger + 1) / 1000 * self fontSize ]
 ]
 
 { #category : #action }

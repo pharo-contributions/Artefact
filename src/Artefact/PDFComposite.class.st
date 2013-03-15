@@ -1,6 +1,9 @@
 Class {
 	#name : #PDFComposite,
 	#superclass : #PDFVisibleItem,
+	#instVars : [
+		'filled'
+	],
 	#category : #'Artefact-Elements'
 }
 
@@ -16,7 +19,18 @@ PDFComposite >> drawColor: aColor [
 
 { #category : #accessing }
 PDFComposite >> fillColor: aColor [
+	self filled: true.
 	self styleSheet fillColor: aColor
+]
+
+{ #category : #accessing }
+PDFComposite >> filled [
+	^ filled
+]
+
+{ #category : #accessing }
+PDFComposite >> filled: anObject [
+	filled := anObject
 ]
 
 { #category : #accessing }
@@ -39,6 +53,12 @@ PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 PDFComposite >> getSubElementsWith: aPDFGenerator styleSheet: anObject [
 	""
 	self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
+PDFComposite >> initialize [ 
+	super initialize.
+	self filled: false
 ]
 
 { #category : #accessing }
