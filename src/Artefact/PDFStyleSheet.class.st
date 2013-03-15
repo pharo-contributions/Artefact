@@ -74,11 +74,6 @@ PDFStyleSheet >> get: anAttribute [
 ]
 
 { #category : #private }
-PDFStyleSheet >> get: anAttribute ifAbsentFrom: anotherStyleSheet [
-	^ attributes at: anAttribute ifAbsent: [anotherStyleSheet get: anAttribute]
-]
-
-{ #category : #private }
 PDFStyleSheet >> initialize [
 	super initialize.
 	attributes := Dictionary new.

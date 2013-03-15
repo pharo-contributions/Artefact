@@ -419,6 +419,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 	| pdfdoc aPage |
 		
 	pdfdoc := PDFDocument new.
+	pdfdoc styleSheet setAttribute: #captionColor value: (PDFColor new setColor: { 158 . 158 .79 }).
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	
@@ -444,8 +445,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
 		);
 		from: 10 mm @ 50 mm;
-		wh: 40 mm @ 5 mm;
-		captionColor: (PDFColor new setGreyLevel: 192)
+		wh: 40 mm @ 5 mm
 	).
 	
 	pdfdoc add: aPage.

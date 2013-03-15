@@ -5,23 +5,22 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableWithRowsCaptionElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
- 
+PDFDataTableWithRowsCaptionElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	"answer a datatable model with the captions in the rows"
-	
-	1 to: (self data size) do: [ :lineNumber |
-		elements add: (OrderedCollection new 
-			add: (self buildCaption: (self captions at: lineNumber));
-			addAll: ((self data at: lineNumber) collect: [ :aValue | self buildValue: aValue ]);
-			yourself ).
-	].
 
-	^OrderedCollection new 
-		add: (PDFDataTableCustomizedElement new
-			styleSheet: self styleSheet;
-			from: self from;
-			wh: self wh;
-			data: elements);
-			yourself
-
+	1 to: self data size do: [ :lineNumber | 
+		elements
+			add:
+				(OrderedCollection new
+					add: (self buildCaption: (self captions at: lineNumber) styleSheet: aStyleSheet);
+					addAll: ((self data at: lineNumber) collect: [ :aValue | self buildValue: aValue ]);
+					yourself) ].
+	^ OrderedCollection new
+		add:
+				(PDFDataTableCustomizedElement new
+						styleSheet: aStyleSheet;
+						from: self from;
+						wh: self wh;
+						data: elements);
+		yourself
 ]
