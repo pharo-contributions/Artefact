@@ -1,3 +1,17 @@
+"
+A PDFElementCodeSegment is the result of the generation of a PDFBasicElement. It contains a code that can be directly printed in the stream by the PDFStreamPrinter.
+
+Instance Variables
+	code:		<Object>
+	fontId:		<Object>
+
+code
+	- xxxxx
+
+fontId
+	- xxxxx
+
+"
 Class {
 	#name : #PDFElementCodeSegment,
 	#superclass : #PDFCodeSegment,

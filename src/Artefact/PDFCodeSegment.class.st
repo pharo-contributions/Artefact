@@ -1,10 +1,23 @@
+"
+A PDFCodeSegment is the intermediate representation of a PDFElement resulting from the generation with PDFGenerator. It contains a styleSheet that the PDFStreamPrinter must convert in pdf.
+
+Instance Variables
+	isDrawElement:		<Object>
+	styleSheet:		<Object>
+
+isDrawElement
+	- xxxxx
+
+styleSheet
+	- xxxxx
+
+"
 Class {
 	#name : #PDFCodeSegment,
 	#superclass : #Object,
 	#instVars : [
 		'styleSheet',
-		'isDrawElement',
-		'wh'
+		'isDrawElement'
 	],
 	#category : #'Artefact-CodeSegment'
 }
@@ -37,14 +50,4 @@ PDFCodeSegment >> styleSheet [
 { #category : #accessing }
 PDFCodeSegment >> styleSheet: anObject [
 	styleSheet := anObject
-]
-
-{ #category : #accessing }
-PDFCodeSegment >> wh [
-	^ wh
-]
-
-{ #category : #accessing }
-PDFCodeSegment >> wh: anObject [
-	wh := anObject
 ]

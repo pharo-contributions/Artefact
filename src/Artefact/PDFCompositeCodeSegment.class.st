@@ -1,3 +1,13 @@
+"
+A PDFCompositeCodeSegment is a composition of PDFCodeSegment, result of the generation of a PDFCompositeElement.
+
+Instance Variables
+	segments:		<Object>
+
+segments
+	- xxxxx
+
+"
 Class {
 	#name : #PDFCompositeCodeSegment,
 	#superclass : #PDFCodeSegment,
