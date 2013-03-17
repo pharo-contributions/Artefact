@@ -1,3 +1,13 @@
+"
+A PDFDataArray is the representation for arrays in PDF.
+
+Instance Variables
+	elements:		<Object>
+
+elements
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataArray,
 	#superclass : #PDFDataType,

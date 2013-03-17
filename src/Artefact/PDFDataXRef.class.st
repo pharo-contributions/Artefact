@@ -1,3 +1,13 @@
+"
+A PDFDataXRef is the representation for the xref table in PDF.
+
+Instance Variables
+	referencies:		<Object>
+
+referencies
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataXRef,
 	#superclass : #PDFDataType,

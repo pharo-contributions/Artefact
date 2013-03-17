@@ -1,3 +1,21 @@
+"
+A PDFDataObject is the representation for objects in PDF.
+
+Instance Variables
+	contents:		<Object>
+	id:		<Object>
+	revision:		<Object>
+
+contents
+	- xxxxx
+
+id
+	- xxxxx
+
+revision
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataObject,
 	#superclass : #PDFDataType,

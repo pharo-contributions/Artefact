@@ -1,3 +1,9 @@
+"
+A PDFPolygonElement is  the basic element for polygons.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFPolygonElement,
 	#superclass : #PDFDraw,

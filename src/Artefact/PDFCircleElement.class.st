@@ -1,3 +1,13 @@
+"
+A PDFCircleElement is  the basic element for circle.
+
+Instance Variables
+	radius:		<Object>
+
+radius
+	- xxxxx
+
+"
 Class {
 	#name : #PDFCircleElement,
 	#superclass : #PDFDraw,

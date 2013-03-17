@@ -1,5 +1,5 @@
 "
-PDF-1.3
+a PDFDataComment is the representation for comments in PDF.
 "
 Class {
 	#name : #PDFDataComment,

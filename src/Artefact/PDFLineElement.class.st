@@ -1,3 +1,9 @@
+"
+A PDFLineElement is  the basic element for line.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFLineElement,
 	#superclass : #PDFDraw,

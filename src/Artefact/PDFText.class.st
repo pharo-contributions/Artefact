@@ -1,3 +1,13 @@
+"
+A PDFText is the superclass for all basics text elements.
+
+Instance Variables
+	text:		<Object>
+
+text
+	- xxxxx
+
+"
 Class {
 	#name : #PDFText,
 	#superclass : #PDFBasic,

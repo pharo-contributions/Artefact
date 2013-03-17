@@ -1,3 +1,13 @@
+"
+A PDFDataXRefEntry is the representation an xref entry which point to an object in PDF.
+
+Instance Variables
+	referencedObject:		<Object>
+
+referencedObject
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataXRefEntry,
 	#superclass : #PDFDataType,

@@ -1,3 +1,9 @@
+"
+A PDFDemos is the class containing all demos for Artefact framework.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFDemos,
 	#superclass : #Object,
@@ -715,6 +721,110 @@ PDFDemos class >> headerFooterTest [
 	
 ]
 
+{ #category : #layout }
+PDFDemos class >> horizontalLayoutTest [
+	"self horizontalLayoutTest"
+
+	"Demonstration of PDFCellElement"
+
+	| pdfdoc myTitleFont aPage |
+	pdfdoc := PDFDocument new.
+	myTitleFont := PDFTimesFont new
+		fontSize: 24 pt;
+		bold: true.
+	aPage := PDFPage new format: PDFA0Format new setLandscape ;
+		add:
+			(PDFHorizontalLayout new from: 10mm@10mm;
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 5 mm;
+								wh: 190 mm @ 10 mm;
+								fillColor: (PDFColor new setGreyLevel: 224);
+								text: 'Demonstration of PDFCellStyle';
+								font: myTitleFont;
+								center);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: left';
+								left);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: center');
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: right';
+								right);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: top';
+								left;
+								top);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: middle';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: bottom';
+								right;
+								bottom);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setColor: #(0 0 255));
+								drawColor: (PDFColor new setColor: #(255 0 0));
+								text: 'text: blue border: red';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setColor: #(0 0 255));
+								fillColor: (PDFColor new setColor: #(0 255 0));
+								text: 'background: green';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setGreyLevel: 255);
+								fillColor: (PDFColor new setGreyLevel: 128);
+								dotted:
+										(PDFDotted new
+												length: 1 mm;
+												space: 1 mm);
+								text: 'grey level & dotted border';
+								thickness: 0.2 mm;
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 80 mm;
+								text: 'A cell without wh');
+				add:
+						(PDFCellElement new
+								wh: 50 mm @ 10 mm;
+								text: 'A cell without xy')).
+	pdfdoc add: aPage.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'horizontalLayoutTest.pdf')
+]
+
 { #category : #experimental }
 PDFDemos class >> imagePNG [
 	"Artefact use an PNG file"
@@ -1052,6 +1162,110 @@ PDFDemos class >> twoColoredRectsTest [
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'twoColoredRectsTest.pdf')
 ]
 
+{ #category : #layout }
+PDFDemos class >> verticalLayoutTest [
+	"self verticalLayoutTest"
+
+	"Demonstration of PDFCellElement"
+
+	| pdfdoc myTitleFont aPage |
+	pdfdoc := PDFDocument new.
+	myTitleFont := PDFTimesFont new
+		fontSize: 24 pt;
+		bold: true.
+	aPage := PDFPage new
+		add:
+			(PDFVerticalLayout new from: 10mm@10mm;
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 5 mm;
+								wh: 190 mm @ 10 mm;
+								fillColor: (PDFColor new setGreyLevel: 224);
+								text: 'Demonstration of PDFCellStyle';
+								font: myTitleFont;
+								center);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: left';
+								left);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: center');
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 20 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'alignment: right';
+								right);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: top';
+								left;
+								top);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: middle';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 40 mm;
+								wh: 50 mm @ 10 mm;
+								text: 'vertical: bottom';
+								right;
+								bottom);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setColor: #(0 0 255));
+								drawColor: (PDFColor new setColor: #(255 0 0));
+								text: 'text: blue border: red';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 80 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setColor: #(0 0 255));
+								fillColor: (PDFColor new setColor: #(0 255 0));
+								text: 'background: green';
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 150 mm @ 60 mm;
+								wh: 50 mm @ 10 mm;
+								textColor: (PDFColor new setGreyLevel: 255);
+								fillColor: (PDFColor new setGreyLevel: 128);
+								dotted:
+										(PDFDotted new
+												length: 1 mm;
+												space: 1 mm);
+								text: 'grey level & dotted border';
+								thickness: 0.2 mm;
+								center;
+								middle);
+				add:
+						(PDFCellElement new
+								from: 10 mm @ 80 mm;
+								text: 'A cell without wh');
+				add:
+						(PDFCellElement new
+								wh: 50 mm @ 10 mm;
+								text: 'A cell without xy')).
+	pdfdoc add: aPage.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'verticalLayoutTest.pdf')
+]
+
 { #category : #'as yet unclassified' }
 PDFDemos class >> widthTest [
 	"generate a sample document for testing the width of fonts"
@@ -1073,7 +1287,7 @@ PDFDemos class >> widthTest [
 	
 	width := myFont getStringWidth: text.
 	
-	aPage add: (PDFCellElement new from: 5mm@10mm; font: myFont; wh: width@10mm; linefeed: true; text: text).
+	aPage add: (PDFCellElement new from: 5mm@10mm; font: myFont; wh: width@10mm; text: text).
 
 	"aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text)."
 	

@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'styleSheet',
-		'isDrawElement'
+		'isDrawElement',
+		'wh'
 	],
 	#category : #'Artefact-CodeSegment'
 }
@@ -36,4 +37,14 @@ PDFCodeSegment >> styleSheet [
 { #category : #accessing }
 PDFCodeSegment >> styleSheet: anObject [
 	styleSheet := anObject
+]
+
+{ #category : #accessing }
+PDFCodeSegment >> wh [
+	^ wh
+]
+
+{ #category : #accessing }
+PDFCodeSegment >> wh: anObject [
+	wh := anObject
 ]

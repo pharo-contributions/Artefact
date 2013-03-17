@@ -1,3 +1,9 @@
+"
+A PDFTextElement is the basic element for text.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFTextElement,
 	#superclass : #PDFText,

@@ -1,3 +1,13 @@
+"
+A PDFDataStartXref is the representation for the stream position of the xref table in PDF.
+
+Instance Variables
+	xref:		<Object>
+
+xref
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataStartXref,
 	#superclass : #PDFDataType,

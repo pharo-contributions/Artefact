@@ -1,3 +1,13 @@
+"
+A PDFDataStreamRefSize is the representation for a stream size in PDF.
+
+Instance Variables
+	pdfDataStream:		<Object>
+
+pdfDataStream
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataStreamRefSize,
 	#superclass : #PDFDataType,

@@ -1,3 +1,13 @@
+"
+A PDFDataReference is the representation for references to objects in PDF.
+
+Instance Variables
+	referencedObject:		<Object>
+
+referencedObject
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataReference,
 	#superclass : #PDFDataType,

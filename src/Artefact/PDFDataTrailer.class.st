@@ -1,3 +1,13 @@
+"
+A PDFDataTrailer is the representation for the trailer in PDF.
+
+Instance Variables
+	contents:		<Object>
+
+contents
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataTrailer,
 	#superclass : #PDFDataType,

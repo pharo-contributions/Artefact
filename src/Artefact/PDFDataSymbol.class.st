@@ -1,3 +1,13 @@
+"
+A PDFDataSymbol is the representation for a symbol in PDF.
+
+Instance Variables
+	symbol:		<Object>
+
+symbol
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataSymbol,
 	#superclass : #PDFDataType,

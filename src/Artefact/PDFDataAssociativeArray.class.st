@@ -1,3 +1,13 @@
+"
+A PDFDataAssociativeArray is the representation for associative arrays in PDF.
+
+Instance Variables
+	associativeArray:		<Object>
+
+associativeArray
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataAssociativeArray,
 	#superclass : #PDFDataType,

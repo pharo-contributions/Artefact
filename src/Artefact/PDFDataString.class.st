@@ -1,3 +1,13 @@
+"
+A PDFDataString is the representation for a string in PDF.
+
+Instance Variables
+	text:		<Object>
+
+text
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataString,
 	#superclass : #PDFDataType,

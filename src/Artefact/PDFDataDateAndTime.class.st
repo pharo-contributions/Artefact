@@ -1,3 +1,17 @@
+"
+A PDFDataDateAndTime is the representation for datetimes in PDF.
+
+Instance Variables
+	date:		<Object>
+	time:		<Object>
+
+date
+	- xxxxx
+
+time
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataDateAndTime,
 	#superclass : #PDFDataType,

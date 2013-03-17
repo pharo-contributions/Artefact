@@ -1,6 +1,18 @@
+"
+A PDFComposite is the abstract class which any composite inherit. A composite is a PDFElement grouping many PDFElement to create more elaborated elements than PDFBasic (for example a PDFArrowElement is a composition of PDFLine to draw an arrow).
+
+A composit that inherit from PDFComposite just have to implement a getSubElements method returning a collection of PDFElement.
+
+Instance Variables
+	filled:		<Object>
+
+filled
+	- xxxxx
+
+"
 Class {
 	#name : #PDFComposite,
-	#superclass : #PDFVisibleItem,
+	#superclass : #PDFElement,
 	#instVars : [
 		'filled'
 	],
@@ -43,10 +55,14 @@ PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 	| compositeStyleSheet |
 	compositeStyleSheet := aStyleSheet + self styleSheet.
 	^ PDFCompositeCodeSegment
-		from:
-			((self getSubElementsWith: aPDFGenerator styleSheet: compositeStyleSheet)
-				collect: [ :aSubElement | aSubElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ])
+		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet)
 		styleSheet: compositeStyleSheet
+]
+
+{ #category : #render }
+PDFComposite >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet [
+	^ (self getSubElementsWith: aPDFGenerator styleSheet: compositeStyleSheet)
+		collect: [ :aSubElement | aSubElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ]
 ]
 
 { #category : #render }

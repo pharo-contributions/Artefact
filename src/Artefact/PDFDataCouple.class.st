@@ -1,3 +1,17 @@
+"
+A PDFDataCouple is the representation for couples in PDF.
+
+Instance Variables
+	key:		<Object>
+	value:		<Object>
+
+key
+	- xxxxx
+
+value
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataCouple,
 	#superclass : #PDFDataType,

@@ -1,3 +1,9 @@
+"
+A PDFRectElement is the basic element for rectangle.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFRectElement,
 	#superclass : #PDFDraw,

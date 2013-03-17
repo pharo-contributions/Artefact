@@ -1,3 +1,17 @@
+"
+A PDFDraw is the superclass for all basics draw elements.
+
+Instance Variables
+	filled:		<Object>
+	to:		<Object>
+
+filled
+	- xxxxx
+
+to
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDraw,
 	#superclass : #PDFBasic,

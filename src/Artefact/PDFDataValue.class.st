@@ -1,3 +1,13 @@
+"
+A PDFDataValue is the representation for a value in PDF.
+
+Instance Variables
+	value:		<Object>
+
+value
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataValue,
 	#superclass : #PDFDataType,

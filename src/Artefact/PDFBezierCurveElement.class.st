@@ -1,3 +1,9 @@
+"
+A PDFBezierCurveElement is  the basic element for bezier curve.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFBezierCurveElement,
 	#superclass : #PDFDraw,

@@ -1,8 +1,19 @@
+"
+A PDFBasic is the superclass for all elements directly implemented in PDF like lines, text... If you want to create a new PDFBasic look at PDFUnsecureBasic.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFBasic,
-	#superclass : #PDFVisibleItem,
+	#superclass : #PDFElement,
 	#category : #'Artefact-Elements'
 }
+
+{ #category : #render }
+PDFBasic >> codeSegmentClass [
+	^ PDFElementCodeSegment
+]
 
 { #category : #action }
 PDFBasic >> determinePosition: aPosition on: aPage [
@@ -17,7 +28,7 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	| mixedStyleSheet |
 	mixedStyleSheet := aStyleSheet + self styleSheet.
-	^ PDFElementCodeSegment
+	^ self codeSegmentClass
 		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet)
 		styleSheet: mixedStyleSheet
 		isDrawElement: self isDrawElement

@@ -1,9 +1,6 @@
 Class {
 	#name : #PDFCellElement,
 	#superclass : #PDFFormattedTextElement,
-	#instVars : [
-		'linefeed'
-	],
 	#category : #'Artefact-Elements-Composites'
 }
 
@@ -44,9 +41,7 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	| decx decy font dimensions |
 	"set the position of the text element"
 	font := aStyleSheet font.
-	dimensions := self wh
-		ifNil: [ ((font getStringWidth: self text) + (2 * self margin)) @ (font fontSize + (2 * self margin)) ]
-		ifNotNil: [ self wh ].
+	dimensions := self minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet.
 	decx := self determineDecxForTextStyle: self text margin: self margin with: font.
 	decy := self determineDecyForTextStyleWith: font.
 	^ {(PDFRectElement new
@@ -61,21 +56,6 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 ]
 
 { #category : #accessing }
-PDFCellElement >> linefeed [
-	^ linefeed ifNil: [ linefeed := false ]
-]
-
-{ #category : #accessing }
-PDFCellElement >> linefeed: anObject [
-	linefeed := anObject
-]
-
-{ #category : #accessing }
 PDFCellElement >> verticalAlignment [
 	^ verticalAlignment ifNil: [ verticalAlignment := #MIDDLE ]
-]
-
-{ #category : #accessing }
-PDFCellElement >> wh [
-	^ wh
 ]

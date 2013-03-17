@@ -1,3 +1,15 @@
+"
+A PDFDataStream is the representation for stream in PDF.
+
+It contains all codeSegments of a page which are the result of the PDFElements generation by PDFGenerator
+
+Instance Variables
+	codeSegment:		<Object>
+
+codeSegment
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataStream,
 	#superclass : #PDFDataType,
