@@ -826,23 +826,22 @@ PDFDemos class >> horizontalLayoutTest [
 ]
 
 { #category : #experimental }
-PDFDemos class >> imagePNG [
-	"Artefact use an PNG file"
+PDFDemos class >> imageJPG [
+	"Artefact use an JPG file"
 	
-	"self imagePNG"
+	"self imageJPG"
 	
-	| pdfdoc myImage aPage |
+	| pdfdoc aPage |
+	
 	pdfdoc := PDFDocument new.	
-	"myImage := PDFPNGImage new fileName: '/Users/olivier/Desktop/artefact/phare.png'."
-	"myImage inspect."
 	
 	aPage := PDFPage new.
-	"aPage add: (PDFImageStyle new image: myImage; 
-		xy: 5@5; 
-		wh: 100@30)."
+	aPage add: (PDFJpegElement new filename: 'logo.jpg'; 
+		from: 5@5; 
+		wh: 100@30).
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imagePNG.pdf')
+	"pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imagePNG.pdf')"
 ]
 
 { #category : #document }
