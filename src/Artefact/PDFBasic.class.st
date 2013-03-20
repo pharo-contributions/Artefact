@@ -32,7 +32,7 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet)
 		styleSheet: mixedStyleSheet
 		isDrawElement: self isDrawElement
-		fontId: (aPDFGenerator getFontIdFor: mixedStyleSheet font)
+		fontId: ([(aPDFGenerator getFontIdFor: mixedStyleSheet font)] on: KeyNotFound do: [nil])
 ]
 
 { #category : #action }

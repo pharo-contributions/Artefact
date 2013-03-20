@@ -32,6 +32,32 @@ PDFLayout >> computeNextElementPositionWith: aPDFGenerator styleSheet: aStyleShe
 	^ self subclassResponsibility
 ]
 
+{ #category : #render }
+PDFLayout >> createOriginalDimensionDictionary [
+	| dimensions |
+	dimensions := Dictionary new. 
+	self elements do: [ :anElement | dimensions at: anElement put: anElement wh ].
+	^ dimensions
+]
+
+{ #category : #render }
+PDFLayout >> createOriginalPositionDictionary [
+	| positions |
+	positions := Dictionary new. 
+	self elements do: [ :anElement | positions at: anElement put: anElement from ].
+	^ positions
+]
+
+{ #category : #render }
+PDFLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+	anElement wh: (anElement minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet)
+]
+
+{ #category : #render }
+PDFLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+	^ self subclassResponsibility 
+]
+
 { #category : #accessing }
 PDFLayout >> elements [
 	^ elements
@@ -44,20 +70,17 @@ PDFLayout >> elements: anObject [
 
 { #category : #render }
 PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet [
-	| oldFrom codeSegment elementPosition |
-	elementPosition := self from.
-	^ self elements
+	| elementsOriginalPosition codeSegments elementsOriginalDimension |
+	elementsOriginalPosition := self createOriginalPositionDictionary.
+	elementsOriginalDimension := self createOriginalDimensionDictionary.
+	codeSegments := self elements
 		collect: [ :anElement | 
-			oldFrom := anElement from.
-			anElement from: elementPosition.
-			codeSegment := anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet.
-			elementPosition := self
-				computeNextElementPositionWith: aPDFGenerator
-				styleSheet: compositeStyleSheet
-				elementPosition: elementPosition
-				dimension: (anElement minimumDimensionWith: aPDFGenerator styleSheet: compositeStyleSheet).
-			anElement from: oldFrom.
-			codeSegment ]
+			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
+			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
+			anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ].
+	elementsOriginalPosition keysAndValuesDo: [ :anElement :aPosition | anElement from: aPosition ].
+	elementsOriginalDimension keysAndValuesDo: [ :anElement :aDimension | anElement wh: aDimension ].
+	^ codeSegments
 ]
 
 { #category : #accessing }

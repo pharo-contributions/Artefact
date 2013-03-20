@@ -6,11 +6,23 @@ Instance Variables
 "
 Class {
 	#name : #PDFVerticalLayout,
-	#superclass : #PDFLayout,
+	#superclass : #PDFSpacedLayout,
 	#category : #'Artefact-Elements-Layouts'
 }
 
 { #category : #'as yet unclassified' }
 PDFVerticalLayout >> computeNextElementPositionWith: aPDFGenerator styleSheet: aStyleSheet elementPosition: aPosition dimension: aDimension [
 	^ aPosition + ( 0 pt @ aDimension y)
+]
+
+{ #category : #'as yet unclassified' }
+PDFVerticalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+	| previousElement |
+	anElement
+		from:
+			(self elements first = anElement
+				ifTrue: [ self from ]
+				ifFalse: [ 
+					previousElement := self elements before: anElement.
+					previousElement from + (0 pt @ (previousElement wh y + self spacing)) ])
 ]

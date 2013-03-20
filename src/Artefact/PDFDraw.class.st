@@ -22,6 +22,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFDraw class >> from: aPosition wh: aDimension [
+	^ self new
+		from: aPosition;
+		wh: aDimension;
+		yourself
+]
+
 { #category : #accessing }
 PDFDraw >> dotted: anObject [
 	self styleSheet dotted: anObject
