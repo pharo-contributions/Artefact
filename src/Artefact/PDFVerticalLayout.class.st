@@ -11,11 +11,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFVerticalLayout >> computeNextElementPositionWith: aPDFGenerator styleSheet: aStyleSheet elementPosition: aPosition dimension: aDimension [
-	^ aPosition + ( 0 pt @ aDimension y)
-]
-
-{ #category : #'as yet unclassified' }
 PDFVerticalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	| previousElement |
 	anElement

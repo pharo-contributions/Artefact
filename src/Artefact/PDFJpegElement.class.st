@@ -1,36 +1,35 @@
+"
+A PDFJpegElement is the pdf representation of an image
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFJpegElement,
 	#superclass : #PDFImage,
+	#instVars : [
+		'stream'
+	],
 	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #render }
 PDFJpegElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
-	| position |
+	| position imageId |
 	
 	position := aPDFGenerator determinePositionOnCurrentPage: self from.
+	
+	imageId:= aPDFGenerator getImageIdFor: self.
 	 			
 	^  (String streamContents: [ :s |
-		s print: 'q'; space;
-		print: (aPDFGenerator convertToPoints: self wh x); space;
-		print: '0 0'; space;
-		print: (aPDFGenerator convertToPoints: self wh y); space;
-		print: (aPDFGenerator convertToPoints: position x); space;
-		print: (aPDFGenerator convertToPoints: position y); space;
+		s nextPutAll:  'q'; space;
+		nextPutAll: (aPDFGenerator convertToPoints: self wh x) asString; space;
+		nextPutAll: '0 0'; space;
+		nextPutAll: (aPDFGenerator convertToPoints: self wh y) asString; space;
+		nextPutAll: (position x) asString; space;
+		nextPutAll: (position y) asString; space;
 		"ici il faut récupérer le numero de l'image"
-		print: '/I1';
-		print: 'Do Q'
+		nextPut: $/; nextPutAll: imageId; space;
+		nextPutAll: 'Do Q'
 	 ]).
-]
-
-{ #category : #action }
-PDFJpegElement >> readImage: aFilename [
-	| stream |
-	"pas très judicieux, il faut le faire au niveau du writer..."
-	stream := FileStream readOnlyFileNamed:  aFilename.
-	stream binary.
-	self reader: (JPEGReadWriter new on: stream reset).
-	self data: self reader nextImage.
-	stream close.
-	
 ]

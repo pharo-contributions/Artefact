@@ -13,7 +13,9 @@ Class {
 		'usedFonts',
 		'xref',
 		'currentPage',
-		'currentFontId'
+		'currentFontId',
+		'usedImages',
+		'currentImageId'
 	],
 	#category : #'Artefact-Generator'
 }
@@ -24,7 +26,7 @@ PDFGenerator >> convertToPoints: aUnitValue [
 	
 ]
 
-{ #category : #section }
+{ #category : #font }
 PDFGenerator >> createFontObject: aFontName [
 	| fontObject |
 	fontObject := self createNewPDFDataObject.
@@ -37,6 +39,30 @@ PDFGenerator >> createFontObject: aFontName [
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Encoding') value: (PDFDataSymbol symbol: 'WinAnsiEncoding'));
 				yourself).
 	^ fontObject
+]
+
+{ #category : #image }
+PDFGenerator >> createImageObject: anImageStream [
+	| imageObject imageStream readWriter |
+	self flag: 'Only works with JPEG'.
+	imageObject := self createNewPDFDataObject.
+	readWriter := (JPEGReadWriter on: anImageStream) nextImage; yourself.
+	imageStream := PDFDataXObjectStream stream: anImageStream.
+	imageObject
+		addContent:
+			(PDFDataAssociativeArray new
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'XObject'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Subtype') value: (PDFDataSymbol symbol: 'Image'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Width') value: (PDFDataValue value: readWriter width));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Height') value: (PDFDataValue value: readWriter height));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'ColorSpace') value: (PDFDataSymbol symbol: 'DeviceRGB'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Interpolate') value: (PDFDataValue value: 'true'));
+				add:
+						(PDFDataCouple key: (PDFDataSymbol symbol: 'BitsPerComponent') value: (PDFDataValue value: readWriter dataPrecision));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Length') value: (PDFDataValue value: imageStream stream size));
+				yourself);
+		addContent: imageStream.
+	^ imageObject
 ]
 
 { #category : #section }
@@ -125,13 +151,19 @@ PDFGenerator >> generateContentsFor: aPage [
 	^ contents
 ]
 
-{ #category : #section }
+{ #category : #font }
 PDFGenerator >> generateFontId [
 	currentFontId := currentFontId + 1.
 	^ 'F' , currentFontId asString
 ]
 
-{ #category : #section }
+{ #category : #image }
+PDFGenerator >> generateImageId [
+	currentImageId := currentImageId + 1.
+	^ 'I' , currentImageId asString
+]
+
+{ #category : #font }
 PDFGenerator >> generateListOfFonts [
 	| fonts |
 	fonts := PDFDataAssociativeArray new.
@@ -143,6 +175,20 @@ PDFGenerator >> generateListOfFonts [
 						key: (PDFDataSymbol symbol: (aFontId asString))
 						value: (PDFDataReference reference: (self createFontObject: aFontName))) ].
 	^ fonts
+]
+
+{ #category : #image }
+PDFGenerator >> generateListOfImages [
+	| images |
+	images := PDFDataAssociativeArray new.
+	usedImages
+		keysAndValuesDo: [ :anImageStream :anImageId | 
+			images
+				add:
+					(PDFDataCouple
+						key: (PDFDataSymbol symbol: (anImageId asString))
+						value: (PDFDataReference reference: (self createImageObject: anImageStream))) ].
+	^ images
 ]
 
 { #category : #action }
@@ -187,7 +233,7 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 									(PDFDataSymbol symbol: 'Text').
 									(PDFDataSymbol symbol: 'ImageC')}));
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Font') value: self generateListOfFonts);
-		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'XObject') value: PDFDataAssociativeArray new).
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'XObject') value: self generateListOfImages).
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Resources') value: resources).
 	document addContent: associativeArray.
 	
@@ -232,15 +278,22 @@ PDFGenerator >> generatePDFVersion: aPDFVersion [
 		
 ]
 
-{ #category : #section }
+{ #category : #font }
 PDFGenerator >> getFontIdFor: aPDFFont [
 	^ usedFonts at: aPDFFont fontName ifAbsentPut: [ self generateFontId ]
+]
+
+{ #category : #image }
+PDFGenerator >> getImageIdFor: aPDFImage [
+	^ usedImages at: (aPDFImage stream) ifAbsentPut: [ self generateImageId ]
 ]
 
 { #category : #'initialize-release' }
 PDFGenerator >> initialize [
 	currentObjectNumber := 0.
 	currentFontId := 0.
+	currentImageId := 0.
 	usedFonts := Dictionary new.
-	xref := PDFDataXRef new.
+	usedImages := Dictionary new.
+	xref := PDFDataXRef new
 ]

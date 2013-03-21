@@ -109,6 +109,31 @@ PDFStreamPrinter >> printModel: aPDFCompleteModel on: aStream [
 ]
 
 { #category : #print }
+PDFStreamPrinter >> printPDFDataAssociativeArray: aPDFDataAssociativeArray [
+	stream
+		nextPutAll: '<<';
+		crlf.
+	aPDFDataAssociativeArray associativeArray
+		do: [ :aCouple | 
+			aCouple isPrintable
+				ifTrue: [ aCouple printOn: stream ]
+				ifFalse: [ aCouple printWith: self ].
+			stream crlf ].
+	stream nextPutAll: '>>'
+]
+
+{ #category : #print }
+PDFStreamPrinter >> printPDFDataCouple: aPDFDataCouple [
+	aPDFDataCouple key isPrintable
+		ifTrue: [ aPDFDataCouple key printOn: stream ]
+		ifFalse: [ aPDFDataCouple key printWith: self ].
+	stream space.
+	aPDFDataCouple value isPrintable
+		ifTrue: [ aPDFDataCouple value printOn: stream ]
+		ifFalse: [ aPDFDataCouple value printWith: self ]
+]
+
+{ #category : #print }
 PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 	stream
 		nextPutAll: 'startxref';
@@ -132,6 +157,18 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 PDFStreamPrinter >> printPDFDataStreamRefSize: aPDFDataStreamRefSize [
 	stream
 		nextPutAll: (self size at: aPDFDataStreamRefSize pdfDataStream) asString
+]
+
+{ #category : #visit }
+PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
+	| endPosition startPosition |
+	stream nextPutAll: 'stream'; crlf.
+	startPosition := stream position.
+	stream nextPutAll: (aPDFDataXObjectStream stream reset contents).
+	endPosition := stream position.
+	stream crlf.
+	self size at: aPDFDataXObjectStream put: endPosition - startPosition.
+	stream nextPutAll: 'endstream'.
 ]
 
 { #category : #accessing }
@@ -234,6 +271,11 @@ PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataValue: aPDFDataValue [
+	
+]
+
+{ #category : #visit }
+PDFStreamPrinter >> visitPDFDataXObjectStream: aPDFDataXObjectStream [
 	
 ]
 

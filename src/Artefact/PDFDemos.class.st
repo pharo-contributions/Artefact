@@ -828,20 +828,20 @@ PDFDemos class >> horizontalLayoutTest [
 { #category : #experimental }
 PDFDemos class >> imageJPG [
 	"Artefact use an JPG file"
-	
+
 	"self imageJPG"
-	
+
 	| pdfdoc aPage |
-	
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-	aPage add: (PDFJpegElement new filename: 'logo.jpg'; 
-		from: 5@5; 
-		wh: 100@30).
+	aPage
+		add:
+			((PDFJpegElement
+				fromStream: (StandardFileStream fileNamed: 'logo.jpg'))
+				from: 5 mm @ 5 mm;
+				wh: 100 mm @ 30 mm).
 	pdfdoc add: aPage.
-	
-	"pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imagePNG.pdf')"
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imageJPG.pdf')
 ]
 
 { #category : #document }

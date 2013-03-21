@@ -59,7 +59,7 @@ PDFCompositeText >> middle [
 PDFCompositeText >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
 	^ self wh
 		ifNil: [ ((aStyleSheet font getStringWidth: self text) + (2 * self margin)) @ (aStyleSheet font fontSize + (2 * self margin)) ]
-		ifNotNil: [ self wh ]
+	
 ]
 
 { #category : #action }

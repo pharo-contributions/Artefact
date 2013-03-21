@@ -20,56 +20,29 @@ Class {
 	#name : #PDFImage,
 	#superclass : #PDFBasic,
 	#instVars : [
-		'filename',
-		'data',
-		'reader'
+		'stream'
 	],
 	#category : #'Artefact-Elements-Basic'
 }
 
-{ #category : #accessing }
-PDFImage >> data [
-	^data
+{ #category : #'as yet unclassified' }
+PDFImage class >> fromStream: aStream [
+	^ self new
+		stream: aStream;
+		yourself
 ]
 
-{ #category : #accessing }
-PDFImage >> data: anObject [
-	data := anObject
-]
-
-{ #category : #accessing }
-PDFImage >> filename [
-	^filename
-]
-
-{ #category : #accessing }
-PDFImage >> filename: aFilename [ 	
-	filename := aFilename.
-	self readImage: filename
-]
-
-{ #category : #'initialize-release' }
-PDFImage >> initialize [
-	super initialize. 
-	self styleSheet: PDFStyleSheet new
-]
-
-{ #category : #accessing }
-PDFImage >> isDrawElement [
+{ #category : #'as yet unclassified' }
+PDFImage >> isDrawElement [ 
 	^ false
 ]
 
-{ #category : #action }
-PDFImage >> readImage: aFilename [ 
-	self subclassResponsibility
+{ #category : #accessing }
+PDFImage >> stream [
+	^ stream
 ]
 
 { #category : #accessing }
-PDFImage >> reader [
-	^reader
-]
-
-{ #category : #accessing }
-PDFImage >> reader: anObject [ 	
-	reader := anObject
+PDFImage >> stream: anObject [
+	stream := anObject
 ]

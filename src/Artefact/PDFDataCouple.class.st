@@ -35,7 +35,7 @@ PDFDataCouple >> acceptVisitor: aVisitor [
 { #category : #'as yet unclassified' }
 PDFDataCouple >> isPrintable [
 	"Because it will never contain an unprintable dataType"
-	^ true
+	^ key isPrintable and: [ value isPrintable ]
 ]
 
 { #category : #accessing }
@@ -53,6 +53,11 @@ PDFDataCouple >> printOn: aStream [
 	key printOn: aStream. 
 	aStream space. 
 	value printOn: aStream..
+]
+
+{ #category : #accessing }
+PDFDataCouple >> printWith: aPDFPrinter [
+	aPDFPrinter printPDFDataCouple: self
 ]
 
 { #category : #accessing }

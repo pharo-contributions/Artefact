@@ -44,8 +44,7 @@ PDFDataAssociativeArray >> initialize [
 
 { #category : #'as yet unclassified' }
 PDFDataAssociativeArray >> isPrintable [
-	"Because it will never contain an unprintable dataType"
-	^ true
+	^ self associativeArray allSatisfy: [ :anElement | anElement isPrintable ]
 ]
 
 { #category : #printing }
@@ -56,4 +55,9 @@ PDFDataAssociativeArray >> printOn: aStream [
 			aCouple printOn: aStream. 
 			aStream crlf ].
 	aStream nextPutAll: '>>'
+]
+
+{ #category : #printing }
+PDFDataAssociativeArray >> printWith: aPDFPrinter [
+	aPDFPrinter printPDFDataAssociativeArray: self
 ]

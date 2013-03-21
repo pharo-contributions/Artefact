@@ -11,11 +11,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFHorizontalLayout >> computeNextElementPositionWith: aPDFGenerator styleSheet: aStyleSheet elementPosition: aPosition dimension: aDimension [
-	^ aPosition + (aDimension x @ 0 pt)
-]
-
-{ #category : #'as yet unclassified' }
 PDFHorizontalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	| previousElement |
 	anElement
