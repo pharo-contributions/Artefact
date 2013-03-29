@@ -49,11 +49,11 @@ PDFDataAssociativeArray >> isPrintable [
 
 { #category : #printing }
 PDFDataAssociativeArray >> printOn: aStream [
-	aStream nextPutAll: '<<'; crlf.
+	aStream nextPutAll: '<<'; lf.
 	associativeArray do: 
 		[:aCouple | 
 			aCouple printOn: aStream. 
-			aStream crlf ].
+			aStream lf ].
 	aStream nextPutAll: '>>'
 ]
 

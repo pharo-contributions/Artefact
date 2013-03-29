@@ -64,8 +64,8 @@ PDFDataObject >> initialize [
 
 { #category : #accessing }
 PDFDataObject >> printOn: aStream [
-	aStream nextPutAll: id asString; space; nextPutAll: revision asString; space; nextPutAll: 'obj'; crlf.
-	contents do: [:aContent | aContent printOn: aStream. aStream crlf].
+	aStream nextPutAll: id asString; space; nextPutAll: revision asString; space; nextPutAll: 'obj'; lf.
+	contents do: [:aContent | aContent printOn: aStream. aStream lf].
 	aStream nextPutAll: 'endobj'
 ]
 

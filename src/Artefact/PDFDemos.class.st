@@ -275,7 +275,7 @@ PDFDemos class >> circlesTest [
 		radius: 30 mm
 	).
 
-	aPage add: (PDFFilledCircleElement new 
+	aPage add: (PDFCircleElement new 
 		from: 120 mm @ 50 mm;
 		radius: 30 mm;
 		fillColor: (PDFColor new setColor: #(0 255 0));
@@ -508,7 +508,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/pdf/'
+	^'/home/olivier/Bureau/'
 ]
 
 { #category : #document }
@@ -837,9 +837,9 @@ PDFDemos class >> imageJPG [
 	aPage
 		add:
 			((PDFJpegElement
-				fromStream: (StandardFileStream fileNamed: 'logo.jpg'))
+				fromStream: (StandardFileStream fileNamed: 'logo3.jpg'))
 				from: 5 mm @ 5 mm;
-				wh: 100 mm @ 30 mm).
+				wh: 20 mm @ 20 mm).
 	pdfdoc add: aPage.
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imageJPG.pdf')
 ]

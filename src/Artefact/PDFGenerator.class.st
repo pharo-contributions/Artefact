@@ -56,7 +56,7 @@ PDFGenerator >> createImageObject: anImageStream [
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Width') value: (PDFDataValue value: readWriter width));
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Height') value: (PDFDataValue value: readWriter height));
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'ColorSpace') value: (PDFDataSymbol symbol: 'DeviceRGB'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Interpolate') value: (PDFDataValue value: 'true'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'DCTDecode'));
 				add:
 						(PDFDataCouple key: (PDFDataSymbol symbol: 'BitsPerComponent') value: (PDFDataValue value: readWriter dataPrecision));
 				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Length') value: (PDFDataValue value: imageStream stream size));

@@ -28,26 +28,26 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 	^ String
 		streamContents: [ :code | 
 			thickness := styleSheet get: #thickness.
-			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String crlf.	"Set line cap style to square"
+			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	"Set line cap style to square"
 			code
 				nextPutAll: '2 ' , PDFByteCode lineCapStyle;
-				nextPutAll: String crlf.	"Set the colors or grey levels"
+				nextPutAll: String lf.	"Set the colors or grey levels"
 			code
 				nextPutAll: (self initColors: styleSheet useDrawColor: anElementCodeSegment isDrawElement);
-				nextPutAll: String crlf.	"Set the dotted propertie"
+				nextPutAll: String lf.	"Set the dotted propertie"
 			dotted := styleSheet get: #dotted.
 			dotted
 				ifNil: [ 
 					code
 						nextPutAll: '[] 0 ' , PDFByteCode dotted;
-						nextPutAll: String crlf ]
+						nextPutAll: String lf ]
 				ifNotNil: [ 
 					code
 						nextPutAll: (dotted generateCodeWith: self);
-						nextPutAll: String crlf ].	"Insert the font size in the PDF document"
+						nextPutAll: String lf ].	"Insert the font size in the PDF document"
 			code
 				nextPutAll: 'BT /' , anElementCodeSegment fontId , ' ' , styleSheet font fontSizeAsPoints asString , ' Tf ET';
-				nextPutAll: String crlf ]
+				nextPutAll: String lf ]
 ]
 
 { #category : #util }
@@ -69,11 +69,11 @@ PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 				ifTrue: [ (textColor red isNil) ifFalse: [ code nextPutAll: ((PDFColor formatRGB: textColor) , ' rg') ] ]
 				ifFalse: [ code nextPutAll: (PDFColor round: (textColor greyLevel)) , ' g' ].
 		].
-		code nextPutAll: String crlf.
+		code nextPutAll: String lf.
 		(drawColor greyLevel isNil) 
 				ifTrue: [ (drawColor red isNil) ifFalse: [ code nextPutAll: ((PDFColor formatRGB: drawColor) , ' ' , PDFByteCode drawWithColor) ] ]
 				ifFalse: [ code nextPutAll: (PDFColor round: (drawColor greyLevel)) , ' ' , PDFByteCode drawWithGreyLevel ].
-		code nextPutAll: String crlf.		
+		code nextPutAll: String lf.		
 	]
 ]
 
@@ -96,15 +96,15 @@ PDFStreamPrinter >> printCompositeCodeSegment: aCompositeCodeSegment [
 { #category : #print }
 PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
 	stream nextPutAll: (self generateStyleCodeForElement: anElementCodeSegment).
-	stream nextPutAll: anElementCodeSegment code; crlf
+	stream nextPutAll: anElementCodeSegment code; lf
 ]
 
 { #category : #print }
 PDFStreamPrinter >> printModel: aPDFCompleteModel on: aStream [
 	stream := aStream.
-	stream nextPutAll: '%PDF-1.3'; crlf.
+	stream nextPutAll: '%PDF-1.3'; lf.
 	aPDFCompleteModel acceptVisitor: self.
-	stream nextPutAll: '%%EOF'; crlf.
+	stream nextPutAll: '%%EOF'; lf.
 	
 ]
 
@@ -118,7 +118,7 @@ PDFStreamPrinter >> printPDFDataAssociativeArray: aPDFDataAssociativeArray [
 			aCouple isPrintable
 				ifTrue: [ aCouple printOn: stream ]
 				ifFalse: [ aCouple printWith: self ].
-			stream crlf ].
+			stream lf ].
 	stream nextPutAll: '>>'
 ]
 
@@ -137,15 +137,15 @@ PDFStreamPrinter >> printPDFDataCouple: aPDFDataCouple [
 PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 	stream
 		nextPutAll: 'startxref';
-		crlf;
+		lf;
 		nextPutAll: (self positions at: aPDFDataStartXref xref) asString;
-		crlf
+		lf
 ]
 
 { #category : #print }
 PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	| endPosition startPosition |
-	stream nextPutAll: 'stream'; crlf.
+	stream nextPutAll: 'stream'; lf.
 	startPosition := stream position.
 	aPDFDataStream codeSegment printWith: self.
 	endPosition := stream position.
@@ -162,11 +162,11 @@ PDFStreamPrinter >> printPDFDataStreamRefSize: aPDFDataStreamRefSize [
 { #category : #visit }
 PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	| endPosition startPosition |
-	stream nextPutAll: 'stream'; crlf.
+	stream nextPutAll: 'stream'; lf.
 	startPosition := stream position.
 	stream nextPutAll: (aPDFDataXObjectStream stream reset contents).
 	endPosition := stream position.
-	stream crlf.
+	stream lf.
 	self size at: aPDFDataXObjectStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'.
 ]
@@ -212,16 +212,16 @@ PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 		nextPutAll: aPDFDataObject revision asString;
 		space;
 		nextPutAll: 'obj';
-		crlf.
+		lf.
 	aPDFDataObject contents
 		do: [ :aContent | 
 			aContent isPrintable
 				ifTrue: [ aContent printOn: stream ]
 				ifFalse: [ aContent printWith: self ].
-			stream crlf ].
+			stream lf ].
 	stream
 		nextPutAll: 'endobj';
-		crlf.
+		lf.
 	aPDFDataObject contents do: [ :aContent | aContent acceptVisitor: self ]
 ]
 
@@ -260,13 +260,13 @@ PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 	aPDFDataTrailer contents do: [ :aContent | aContent acceptVisitor: self ].
 	stream
 		nextPutAll: 'trailer';
-		crlf.
+		lf.
 	aPDFDataTrailer contents
 		do: [ :aContent | 
 			aContent isPrintable
 				ifTrue: [ aContent printOn: stream ]
 				ifFalse: [ aContent printWith: self ].
-			stream crlf ]
+			stream lf ]
 ]
 
 { #category : #visit }
@@ -284,11 +284,11 @@ PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 	self positions at: aPDFDataXRef put: stream position.
 	stream
 		nextPutAll: 'xref';
-		crlf.
+		lf.
 	stream
 		nextPutAll: '0 ';
 		nextPutAll: aPDFDataXRef referencies size asString;
-		crlf.
+		lf.
 	aPDFDataXRef referencies do: [ :aReferency | aReferency acceptVisitor: self ]
 ]
 
@@ -299,12 +299,12 @@ PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 		ifNil: [ 
 			stream
 				nextPutAll: '0000000000 65535 f ';
-				crlf ]
+				lf ]
 		ifNotNilDo: [ :aPDFDataObject | 
 			positionString := (self positions at: aPDFDataObject) asString.
 			1 to: 10 - positionString size do: [ :i | stream nextPut: $0 ].
 			stream
 				nextPutAll: positionString;
 				nextPutAll: ' 00000 n';
-				crlf ]
+				lf ]
 ]

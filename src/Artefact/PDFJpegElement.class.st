@@ -15,10 +15,12 @@ Class {
 
 { #category : #render }
 PDFJpegElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
-	| position imageId |
+	| positionY imageId |
 	
-	position := aPDFGenerator determinePositionOnCurrentPage: self from.
+	"Determine the vertical position of the image"
+	positionY := ((aPDFGenerator convertToPoints: self from y) +(aPDFGenerator convertToPoints: self wh y)) * -1.
 	
+	"Determine the id of the image"
 	imageId:= aPDFGenerator getImageIdFor: self.
 	 			
 	^  (String streamContents: [ :s |
@@ -26,9 +28,8 @@ PDFJpegElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 		nextPutAll: (aPDFGenerator convertToPoints: self wh x) asString; space;
 		nextPutAll: '0 0'; space;
 		nextPutAll: (aPDFGenerator convertToPoints: self wh y) asString; space;
-		nextPutAll: (position x) asString; space;
-		nextPutAll: (position y) asString; space;
-		"ici il faut récupérer le numero de l'image"
+		nextPutAll: (aPDFGenerator convertToPoints: self from x) asString; space;
+		nextPutAll: positionY asString; space;
 		nextPut: $/; nextPutAll: imageId; space;
 		nextPutAll: 'Do Q'
 	 ]).

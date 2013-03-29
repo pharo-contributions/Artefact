@@ -44,6 +44,6 @@ PDFDataTrailer >> initialize [
 
 { #category : #'as yet unclassified' }
 PDFDataTrailer >> printOn: aStream [
-	aStream nextPutAll: 'trailer'; crlf.
-	contents do: [:aContent | aContent printOn: aStream. aStream crlf].
+	aStream nextPutAll: 'trailer'; lf.
+	contents do: [:aContent | aContent printOn: aStream. aStream lf].
 ]
