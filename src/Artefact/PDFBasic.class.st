@@ -7,6 +7,9 @@ Instance Variables
 Class {
 	#name : #PDFBasic,
 	#superclass : #PDFElement,
+	#instVars : [
+		'rotation'
+	],
 	#category : #'Artefact-Elements'
 }
 
@@ -43,6 +46,16 @@ PDFBasic >> isDrawElement [
 { #category : #render }
 PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	self subclassResponsibility 
+]
+
+{ #category : #accessing }
+PDFBasic >> rotation [	
+	^rotation
+]
+
+{ #category : #accessing }
+PDFBasic >> rotation: aAngle [
+	rotation := aAngle
 ]
 
 { #category : #action }

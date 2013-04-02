@@ -20,7 +20,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #Action }
 PDFStyleSheet >> + aStyleSheet [
 	| newStyleSheet |
 	newStyleSheet := self copy.
@@ -28,7 +28,7 @@ PDFStyleSheet >> + aStyleSheet [
 	^ newStyleSheet
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFStyleSheet >> attributes [
 	^ attributes
 ]
@@ -82,6 +82,11 @@ PDFStyleSheet >> initialize [
 { #category : #attributes }
 PDFStyleSheet >> postCopy [
 	attributes := attributes copy
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> rotation: anAngle [
+	self setAttribute: #rotation value: anAngle
 ]
 
 { #category : #private }

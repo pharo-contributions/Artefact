@@ -37,6 +37,7 @@ PDFElement >> generateCodeSegmentWith: aPage styleSheet: aStyleSheet [
 { #category : #render }
 PDFElement >> initialize [ 
 	super initialize.
+
 	self styleSheet: PDFStyleSheet new.
 	
 ]
