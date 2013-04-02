@@ -508,7 +508,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/home/olivier/Bureau/'
+	^'/Users/olivier/Desktop/Projet Artefact/'
 ]
 
 { #category : #document }
@@ -837,9 +837,9 @@ PDFDemos class >> imageJPG [
 	aPage
 		add:
 			((PDFJpegElement
-				fromStream: (StandardFileStream fileNamed: 'logo3.jpg'))
-				from: 5 mm @ 5 mm;
-				wh: 20 mm @ 20 mm).
+				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+				from: 5 mm @ 0 mm;
+				wh: 160 mm  @ 90 mm).
 	pdfdoc add: aPage.
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imageJPG.pdf')
 ]
