@@ -4,18 +4,6 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #private }
-PDFParagraphElement >> chomp: aString [
-	"remove the last char of a string"
-	
-	^aString copyFrom: 1 to: (aString size - 1)
-]
-
-{ #category : #accessing }
-PDFParagraphElement >> decalageOn: aPage. [
-	^ (((self fontIfAbsent: aPage styleSheet) fontSize / aPage document scaleFactor) roundDownTo: 0.01).
-]
-
 { #category : #accessing }
 PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 
@@ -50,12 +38,12 @@ PDFParagraphElement >> splitOn: aPage using: aFont [
 							ArtefactOverSizedContent new
 								content: aWord;
 								signal ].
-					lines add: (self chomp: line contents asString).
+					lines add: (line contents asString allButLast).
 					line
 						resetContents;
 						nextPutAll: word.
 					widthOfLine := widthOfWord ] ].
-	lines add: (self chomp: line contents asString).	"close the stream"
+	lines add: (line contents asString allButLast).	"close the stream"
 	line close.
 	^ lines
 ]

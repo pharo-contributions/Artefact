@@ -22,14 +22,14 @@ Class {
 	#category : #'Artefact-Elements'
 }
 
+{ #category : #'as yet unclassified' }
+PDFLayout class >> on: aCollection [
+	^ self new elements: aCollection
+]
+
 { #category : #adding }
 PDFLayout >> add: aPDFElement [
 	self elements addLast: aPDFElement
-]
-
-{ #category : #render }
-PDFLayout >> computeNextElementPositionWith: aPDFGenerator styleSheet: aStyleSheet elementPosition: aPosition dimension: aDimension [
-	^ self subclassResponsibility
 ]
 
 { #category : #render }
@@ -69,12 +69,13 @@ PDFLayout >> elements: anObject [
 ]
 
 { #category : #render }
-PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet [
-	| elementsOriginalPosition codeSegments elementsOriginalDimension |
+PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet [
+	| elementsOriginalPosition codeSegments compositeStyleSheet elementsOriginalDimension |
 	elementsOriginalPosition := self createOriginalPositionDictionary.
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
 	codeSegments := self elements
 		collect: [ :anElement | 
+			compositeStyleSheet := aStyleSheet + anElement styleSheet.
 			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ].

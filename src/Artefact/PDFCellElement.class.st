@@ -16,22 +16,17 @@ PDFCellElement >> defaultMargin [
 
 { #category : #action }
 PDFCellElement >> determineDecyForTextStyleWith: aFont [
-
 	"Set right xy values for text"
-	| height decy |
-	
-	height := aFont fontSize.
-	
-	self wh ifNil: [ ^ height - self margin ].
-	
-	"determining the vertical offset"
-	(self verticalAlignment = #BOTTOM)
-		ifTrue: [ decy := (self wh y - self margin) ]
-		ifFalse: [ 
-				(self verticalAlignment = #MIDDLE) ifTrue: [ decy := (self wh y  * 0.5) + (height * 0.3) ] ifFalse: [ decy := height + self margin ]
-			].
 
-	^decy 
+	| decy |
+	self wh ifNil: [ ^ self margin ].	"determining the vertical offset"
+	self verticalAlignment = #BOTTOM
+		ifTrue: [ decy := self wh y - self margin - aFont fontSize ]
+		ifFalse: [ 
+			self verticalAlignment = #MIDDLE
+				ifTrue: [ decy := (self wh y - aFont fontSize) / 2 ]
+				ifFalse: [ decy := self margin ] ].
+	^ decy
 ]
 
 { #category : #render }

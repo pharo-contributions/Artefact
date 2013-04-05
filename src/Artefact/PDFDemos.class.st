@@ -136,28 +136,52 @@ PDFDemos class >> brochure [
 	"self brochure"
 
 	| pdfdoc aPage titleFont subtitleFont titleColor |
-	pdfdoc := PDFDocument new. 
-		
+	pdfdoc := PDFDocument new.
 	titleColor := PDFColor new setColor: #(13 100 175).
-	titleFont := PDFHelveticaFont new fontSize: 22 pt; bold: true.
-	subtitleFont := PDFHelveticaFont new fontSize: 16 pt; bold: true.
-	
+	titleFont := PDFHelveticaFont new
+		fontSize: 22 pt;
+		bold: true.
+	subtitleFont := PDFHelveticaFont new
+		fontSize: 16 pt;
+		bold: true.
 	aPage := PDFPage new.
-	aPage add: (PDFFormattedTextElement new from: 15mm @ 80mm; font: titleFont; textColor: titleColor; text: 'About Pharo').
-	aPage add: (PDFFormattedTextElement new from: 15mm @ 90 mm; textColor: titleColor; font: subtitleFont; text: 'Mission').
 	aPage
 		add:
-			((PDFJpegElement
-				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+			((PDFJpegElement fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
 				from: 15 mm @ 0 mm;
-				wh: 160 mm  @ 80 mm).
-	aPage add: (PDFParagraphElement new from: 15 mm @ 97 mm; wh: 180 mm @ 50 mm; text: 'Pharo''s goal is to deliver a clean, innovative, free open-source Smalltalk environment. By providing a stable and small core system, excellent developer tools, and maintained releases, Pharo is an attractive platform to build and deploy mission critical Smalltalk applications. Pharo is MIT licensed and is steered by a board of benevolent dictators. The board makes final decisions if no consensus can be reached within the community. Pharo fosters a healthy ecosystem of both private and commercial contributors who advance and maintain the core system and its external packages.').		
-			
-	aPage add: (PDFFormattedTextElement new from: 15mm @ 115 mm; textColor: titleColor; font: subtitleFont; text: 'Why Pharo?').
-	aPage add: (PDFParagraphElement 	new from: 15 mm @ 122 mm; wh: 180 mm @ 50 mm; text: 'Pharo is a fork from the Squeak open-source Smalltalk. We decided to start Pharo because as active Squeakers, and responsible for Squeak 3.9, we felt the need to reconsider choices made. We want to create a better Smalltalk and be free to enhance it without fear of backwards compatibility to Squeak. Deciding to start Pharo was not easy because we invested a lot in Squeak (some of us wrote several books on Squeak and in particular Squeak By Example) and we like the Squeak community, but this is really important for us to open a new space. We want Pharo to be an excellent Smalltalk concerned with software engineering practices. We also want Pharo to be agile and be able to evolve. We hope you will like it and help make it better.').
-
-	aPage add: (PDFFormattedTextElement new from: 15mm @ 144 mm; textColor: titleColor; font: subtitleFont; text: 'A word about changes').	
-	aPage add: (PDFParagraphElement 	new from: 15 mm @ 151 mm; wh: 180 mm @ 50 mm; text: 'There is an important aspect behind Pharo: we want to make sure that Pharo is not a copy of the past but really a reinvention of Smalltalk. Now big-bang approaches rarely succeed. We will really favor evolutionary and incremental changes. We want to be able to experiment with important new features or libraries. For example, we need a new file library but that''s unlikely to happen in a day. Evolution means that we accept mistakes, we are not aiming for the next perfect solution in one big step -- even if we would love it. We will favor small incremental changes but a multitude of them. We will pay attention to your submissions to improve the system.').		
+				wh: 160 mm @ 80 mm).
+	layout := PDFVerticalLayout
+		on:
+			{(PDFFormattedTextElement new
+				font: titleFont;
+				textColor: titleColor;
+				text: 'About Pharo').
+			(PDFFormattedTextElement new
+				textColor: titleColor;
+				font: subtitleFont;
+				text: 'Mission').
+			(PDFParagraphElement new
+				wh: 180 mm @ 50 mm;
+				text:
+						'Pharo''s goal is to deliver a clean, innovative, free open-source Smalltalk environment. By providing a stable and small core system, excellent developer tools, and maintained releases, Pharo is an attractive platform to build and deploy mission critical Smalltalk applications. Pharo is MIT licensed and is steered by a board of benevolent dictators. The board makes final decisions if no consensus can be reached within the community. Pharo fosters a healthy ecosystem of both private and commercial contributors who advance and maintain the core system and its external packages.').
+			(PDFFormattedTextElement new
+				textColor: titleColor;
+				font: subtitleFont;
+				text: 'Why Pharo?').
+			(PDFParagraphElement new
+				wh: 180 mm @ 50 mm;
+				text:
+						'Pharo is a fork from the Squeak open-source Smalltalk. We decided to start Pharo because as active Squeakers, and responsible for Squeak 3.9, we felt the need to reconsider choices made. We want to create a better Smalltalk and be free to enhance it without fear of backwards compatibility to Squeak. Deciding to start Pharo was not easy because we invested a lot in Squeak (some of us wrote several books on Squeak and in particular Squeak By Example) and we like the Squeak community, but this is really important for us to open a new space. We want Pharo to be an excellent Smalltalk concerned with software engineering practices. We also want Pharo to be agile and be able to evolve. We hope you will like it and help make it better.').
+			(PDFFormattedTextElement new
+				textColor: titleColor;
+				font: subtitleFont;
+				text: 'A word about changes').
+			(PDFParagraphElement new
+				wh: 180 mm @ 50 mm;
+				text:
+						'There is an important aspect behind Pharo: we want to make sure that Pharo is not a copy of the past but really a reinvention of Smalltalk. Now big-bang approaches rarely succeed. We will really favor evolutionary and incremental changes. We want to be able to experiment with important new features or libraries. For example, we need a new file library but that''s unlikely to happen in a day. Evolution means that we accept mistakes, we are not aiming for the next perfect solution in one big step -- even if we would love it. We will favor small incremental changes but a multitude of them. We will pay attention to your submissions to improve the system.')}.
+	layout from: 15 mm @ 80 mm.
+	aPage add: layout.
 	pdfdoc add: aPage.
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'brochure.pdf')
 ]
@@ -1093,7 +1117,7 @@ PDFDemos class >> polygonsTest [
 		drawColor: (PDFColor new setColor: #(0 0 255))
 	).
 	
-	aPage add: (PDFFilledPolygonElement new 
+	aPage add: (PDFPolygonElement new 
 		from: 10 mm @ 55 mm; 
 		to: { 60 mm @  60 mm  . 50 mm @ 100  mm . 30 mm @ 110 mm . 15 mm @ 105  mm };
 		drawColor: (PDFColor new setColor: #(0 0 255));
@@ -1143,7 +1167,7 @@ PDFDemos class >> rectsTest [
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
 
-	| pdfdoc myFont myBigFont aPage myFontInMilliMeters |
+	| pdfdoc myFont aPage myFontInMilliMeters |
 	pdfdoc := PDFDocument new.
 	myFont := PDFTimesFont new fontSize: 24 pt.
 	myFontInMilliMeters := PDFTimesFont new fontSize: 5 mm.
@@ -1173,16 +1197,16 @@ PDFDemos class >> textTest [
 				(PDFTextElement new
 						textColor: (PDFColor new setColor: #(0 128 255));
 						font: myFontInMilliMeters;
-						from: 10 mm @ 90 mm;
+						from: 10 mm @ 85 mm;
 						text: 'A text with font expressed in mm (5)');
 		add:
 				(PDFLineElement new
-						from: 10 mm @ 90 mm;
-						to: 160 mm @ 90 mm);
+						from: 10 mm @ 85 mm;
+						to: 160 mm @ 85 mm);
 		add:
 				(PDFLineElement new
-						from: 10 mm @ 85 mm;
-						to: 160 mm @ 85 mm).
+						from: 10 mm @ 90 mm;
+						to: 160 mm @ 90 mm).
 	pdfdoc add: aPage.
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'textTest.pdf')
 ]
