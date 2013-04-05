@@ -10,10 +10,22 @@ Class {
 	#instVars : [
 		'stream',
 		'positions',
-		'size'
+		'size',
+		'streamContent',
+		'compression'
 	],
 	#category : #'Artefact-Generator'
 }
+
+{ #category : #accessing }
+PDFStreamPrinter >> compression [
+	^compression
+]
+
+{ #category : #accessing }
+PDFStreamPrinter >> compression: aBoolean [
+	compression := aBoolean
+]
 
 { #category : #conversion }
 PDFStreamPrinter >> convertToPoints: aUnitValue [ 
@@ -23,10 +35,26 @@ PDFStreamPrinter >> convertToPoints: aUnitValue [
 
 { #category : #util }
 PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
-	| dotted thickness styleSheet |
+	| dotted thickness styleSheet angle |
 	styleSheet := anElementCodeSegment styleSheet.
 	^ String
 		streamContents: [ :code | 
+			"insert rotation configuration"
+			angle := (styleSheet get: #rotation) * (Float pi / 180).
+			code
+				nextPutAll: 'q'; space;
+				nextPutAll: (angle cos asString); space;
+				nextPutAll: (angle sin asString); space;
+				nextPutAll: ((-1 * angle sin) asString); space;
+				nextPutAll: (angle cos asString); space;
+				nextPutAll: (self convertToPoints: (anElementCodeSegment fromElement from x)) asString; space;
+				nextPutAll: (self convertToPoints: (anElementCodeSegment fromElement from y)) asString; space;
+				nextPutAll: 'cm 1 0 0 1'; space;
+				nextPutAll: (self convertToPoints: ((-1 * anElementCodeSegment fromElement from x))) asString; space;
+				nextPutAll: (self convertToPoints: ((-1 * anElementCodeSegment fromElement from y))) asString; space;
+				nextPutAll: 'cm';
+				nextPutAll: String lf.
+			"-------------------------------------------"
 			thickness := styleSheet get: #thickness.
 			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	"Set line cap style to square"
 			code
@@ -95,12 +123,14 @@ PDFStreamPrinter >> printCompositeCodeSegment: aCompositeCodeSegment [
 
 { #category : #print }
 PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
-	stream nextPutAll: (self generateStyleCodeForElement: anElementCodeSegment).
-	stream nextPutAll: anElementCodeSegment code; lf
+
+	self streamContent nextPutAll: (self generateStyleCodeForElement: anElementCodeSegment).
+	self streamContent nextPutAll: anElementCodeSegment code; lf.
 ]
 
 { #category : #print }
-PDFStreamPrinter >> printModel: aPDFCompleteModel on: aStream [
+PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed on: aStream [ 
+	self compression: mustBeCompressed.
 	stream := aStream.
 	stream nextPutAll: '%PDF-1.3'; lf.
 	aPDFCompleteModel acceptVisitor: self.
@@ -144,13 +174,30 @@ PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 
 { #category : #print }
 PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
-	| endPosition startPosition |
-	stream nextPutAll: 'stream'; lf.
+	| endPosition startPosition streamData |
+	stream
+		nextPutAll: 'stream';
+		lf.
 	startPosition := stream position.
+	
+	self streamContent: (WriteStream on: String new).
 	aPDFDataStream codeSegment printWith: self.
+	streamData := self streamContent contents.
+	
+	(self compression) ifTrue: [ 
+		| writer |
+		writer := ZLibWriteStream on: String new.
+		Transcript show: streamData.
+		writer nextPutAll: streamData.
+		writer close.
+		streamData := writer encodedStream contents 
+	].
+	stream
+		nextPutAll: streamData;
+		lf.
 	endPosition := stream position.
 	self size at: aPDFDataStream put: endPosition - startPosition.
-	stream nextPutAll: 'endstream'.
+	stream nextPutAll: 'endstream'
 ]
 
 { #category : #print }
@@ -174,6 +221,16 @@ PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 { #category : #accessing }
 PDFStreamPrinter >> size [
 	^ size
+]
+
+{ #category : #accessing }
+PDFStreamPrinter >> streamContent [
+	^streamContent
+]
+
+{ #category : #accessing }
+PDFStreamPrinter >> streamContent: aString [
+	streamContent := aString
 ]
 
 { #category : #visit }

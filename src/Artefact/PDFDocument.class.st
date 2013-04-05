@@ -66,7 +66,8 @@ Class {
 		'styleSheet',
 		'displayMode',
 		'displayLayout',
-		'version'
+		'version',
+		'compression'
 	],
 	#category : #Artefact
 }
@@ -86,6 +87,16 @@ PDFDocument >> add: aPage [
 	
 	
 
+]
+
+{ #category : #accessing }
+PDFDocument >> compression [
+	^compression
+]
+
+{ #category : #accessing }
+PDFDocument >> compression: aBoolean [ 	
+	compression := aBoolean
 ]
 
 { #category : #displayLayout }
@@ -132,7 +143,10 @@ PDFDocument >> displayMode: anObject [
 PDFDocument >> exportTo: aStream [
 	"generate a PDFDataObject from document"
 
-	^ PDFStreamPrinter new printModel: (PDFGenerator new generatePDFCompleteModelFrom: self) on: aStream
+	^ PDFStreamPrinter new
+		printModel: (PDFGenerator new generatePDFCompleteModelFrom: self)
+		compression: self compression
+		on: aStream
 ]
 
 { #category : #accessing }
@@ -179,6 +193,7 @@ PDFDocument >> initialize [
 	self setFormat: self defaultFormat.
 	self styleSheet: (PDFStyleSheet defaultForDocument: self).
 	self metaData: PDFMetaData new.
+	self compression: false.
 	
 ]
 
@@ -240,6 +255,11 @@ PDFDocument >> styleSheet: anObject [
 { #category : #displayLayout }
 PDFDocument >> twoPages [
 	self displayLayout twoPages
+]
+
+{ #category : #configuration }
+PDFDocument >> useCompression [
+	self compression: true
 ]
 
 { #category : #accessing }

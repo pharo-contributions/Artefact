@@ -15,10 +15,21 @@ Class {
 		'currentPage',
 		'currentFontId',
 		'usedImages',
-		'currentImageId'
+		'currentImageId',
+		'compression'
 	],
 	#category : #'Artefact-Generator'
 }
+
+{ #category : #accessing }
+PDFGenerator >> compression [
+	^compression
+]
+
+{ #category : #accessing }
+PDFGenerator >> compression: aBoolean [
+	compression := aBoolean
+]
 
 { #category : #conversion }
 PDFGenerator >> convertToPoints: aUnitValue [ 
@@ -139,12 +150,21 @@ PDFGenerator >> generateContentsFor: aPage [
 	| contents associativeArray stream lengthObject |
 	contents := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
-	stream := self createPDFDataStreamFrom: aPage.
-	
+	stream := self createPDFDataStreamFrom: aPage.	
+
 	lengthObject := self createNewPDFDataObject.
 	lengthObject addContent: (PDFDataStreamRefSize stream: stream).
+	
 	associativeArray
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Length') value: (PDFDataReference reference: lengthObject)).
+	
+	"compression support ?"	
+	(self compression) ifTrue: [ 
+		associativeArray
+			"add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'LZWDecode')).	"
+			 add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataArray from: {  (PDFDataSymbol symbol: 'ASCIIHexDecode') . (PDFDataSymbol symbol: 'FlateDecode')  })).
+		 ].
+		
 	contents
 		addContent: associativeArray;
 		addContent: stream.
@@ -193,6 +213,9 @@ PDFGenerator >> generateListOfImages [
 
 { #category : #action }
 PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
+	
+	self compression: aPDFDocument compression.
+	
 	document := self generatePDFDocument: aPDFDocument.
 	^ PDFDataTrailer new
 		addContent:

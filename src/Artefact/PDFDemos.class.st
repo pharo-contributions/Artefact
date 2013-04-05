@@ -352,6 +352,42 @@ PDFDemos class >> colorTest [
 
 ]
 
+{ #category : #experimental }
+PDFDemos class >> compression [
+	"Artefact use compression"
+
+	"self compression"
+
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new useCompression.
+	aPage := PDFPage new.
+	aPage
+		add:
+			((PDFJpegElement
+				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+				from: 5 mm @ 0 mm;
+				wh: 160 mm  @ 90 mm).
+		aPage
+		add:
+			((PDFJpegElement
+				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+				from: 40 mm @ 100 mm;
+				wh: 40 mm  @ 40 mm;
+				rotation: 10
+				).
+	aPage
+		add:
+			((PDFJpegElement
+				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+				from: 40 mm @ 180 mm;
+				wh: 40 mm  @ 40 mm;
+				rotation: 30
+				).
+								
+	pdfdoc add: aPage.
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'compression.pdf')
+]
+
 { #category : #composite }
 PDFDemos class >> datatableCustomizedElementTest [
 	"generate a customized datatable"
@@ -873,13 +909,21 @@ PDFDemos class >> imageJPG [
 				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
 				from: 5 mm @ 0 mm;
 				wh: 160 mm  @ 90 mm).
-	aPage
+		aPage
 		add:
 			((PDFJpegElement
 				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
 				from: 40 mm @ 100 mm;
 				wh: 40 mm  @ 40 mm;
-				rotation: 75
+				rotation: 10
+				).
+	aPage
+		add:
+			((PDFJpegElement
+				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
+				from: 40 mm @ 180 mm;
+				wh: 40 mm  @ 40 mm;
+				rotation: 30
 				).
 								
 	pdfdoc add: aPage.

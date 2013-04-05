@@ -49,6 +49,12 @@ PDFElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
 ]
 
 { #category : #accessing }
+PDFElement >> rotation: anAngle [
+	self styleSheet rotation: anAngle 
+ 
+]
+
+{ #category : #accessing }
 PDFElement >> styleSheet [
 	^ styleSheet
 ]

@@ -17,6 +17,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		setAttribute: #thickness value: 1 pt;
 		setAttribute: #dotted value: nil;
 		setAttribute: #font value: PDFHelveticaFont new;
+		setAttribute: #rotation value: 0;
 		yourself
 ]
 

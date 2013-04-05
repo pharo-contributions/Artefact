@@ -17,10 +17,21 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'styleSheet',
-		'isDrawElement'
+		'isDrawElement',
+		'fromElement'
 	],
 	#category : #'Artefact-CodeSegment'
 }
+
+{ #category : #accessing }
+PDFCodeSegment >> fromElement [
+	^ fromElement
+]
+
+{ #category : #accessing }
+PDFCodeSegment >> fromElement: anPDFElement [
+	fromElement := anPDFElement
+]
 
 { #category : #accessing }
 PDFCodeSegment >> isDrawElement [

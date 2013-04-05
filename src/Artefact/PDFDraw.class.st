@@ -67,7 +67,6 @@ PDFDraw >> fillmode [
 PDFDraw >> initialize [
 	super initialize. 
 	self filled: false.
-	self styleSheet: PDFStyleSheet new
 ]
 
 { #category : #accessing }

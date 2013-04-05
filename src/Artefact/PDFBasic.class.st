@@ -7,9 +7,6 @@ Instance Variables
 Class {
 	#name : #PDFBasic,
 	#superclass : #PDFElement,
-	#instVars : [
-		'rotation'
-	],
 	#category : #'Artefact-Elements'
 }
 
@@ -36,6 +33,7 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 		styleSheet: mixedStyleSheet
 		isDrawElement: self isDrawElement
 		fontId: ([(aPDFGenerator getFontIdFor: mixedStyleSheet font)] on: KeyNotFound do: [nil])
+		fromElement: self
 ]
 
 { #category : #action }
@@ -46,16 +44,6 @@ PDFBasic >> isDrawElement [
 { #category : #render }
 PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	self subclassResponsibility 
-]
-
-{ #category : #accessing }
-PDFBasic >> rotation [	
-	^rotation
-]
-
-{ #category : #accessing }
-PDFBasic >> rotation: aAngle [
-	rotation := aAngle
 ]
 
 { #category : #action }

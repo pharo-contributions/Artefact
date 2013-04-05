@@ -23,8 +23,14 @@ Class {
 }
 
 { #category : #'initialize-release' }
-PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean fontId: aFontId [
-	^ self new code: aCode; styleSheet: aStyleSheet; isDrawElement: aBoolean; fontId: aFontId; yourself 
+PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean fontId: aFontId fromElement: aElement [
+	^ self new
+		code: aCode;
+		styleSheet: aStyleSheet;
+		isDrawElement: aBoolean;
+		fontId: aFontId;
+		fromElement: aElement;
+		yourself
 ]
 
 { #category : #accessing }
