@@ -34,27 +34,45 @@ PDFStreamPrinter >> convertToPoints: aUnitValue [
 ]
 
 { #category : #util }
+PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet [
+	"insert rotation configuration"
+
+	| angle |
+	angle := (styleSheet get: #rotation) * (Float pi / 180).
+	^ String
+		streamContents: [ :code | 
+			code
+				nextPutAll: 'q';
+				space;
+				nextPutAll: angle cos asString;
+				space;
+				nextPutAll: angle sin asString;
+				space;
+				nextPutAll: (-1 * angle sin) asString;
+				space;
+				nextPutAll: angle cos asString;
+				space;
+				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from x) asString;
+				space;
+				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from y) asString;
+				space;
+				nextPutAll: 'cm 1 0 0 1';
+				space;
+				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from x) asString;
+				space;
+				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from y) asString;
+				space;
+				nextPutAll: 'cm';
+				nextPutAll: String lf ]
+]
+
+{ #category : #util }
 PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
-	| dotted thickness styleSheet angle |
+	| dotted thickness styleSheet |
 	styleSheet := anElementCodeSegment styleSheet.
 	^ String
 		streamContents: [ :code | 
-			"insert rotation configuration"
-			angle := (styleSheet get: #rotation) * (Float pi / 180).
-			code
-				nextPutAll: 'q'; space;
-				nextPutAll: (angle cos asString); space;
-				nextPutAll: (angle sin asString); space;
-				nextPutAll: ((-1 * angle sin) asString); space;
-				nextPutAll: (angle cos asString); space;
-				nextPutAll: (self convertToPoints: (anElementCodeSegment fromElement from x)) asString; space;
-				nextPutAll: (self convertToPoints: (anElementCodeSegment fromElement from y)) asString; space;
-				nextPutAll: 'cm 1 0 0 1'; space;
-				nextPutAll: (self convertToPoints: ((-1 * anElementCodeSegment fromElement from x))) asString; space;
-				nextPutAll: (self convertToPoints: ((-1 * anElementCodeSegment fromElement from y))) asString; space;
-				nextPutAll: 'cm';
-				nextPutAll: String lf.
-			"-------------------------------------------"
+			code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet).
 			thickness := styleSheet get: #thickness.
 			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	"Set line cap style to square"
 			code
@@ -187,14 +205,12 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	(self compression) ifTrue: [ 
 		| writer |
 		writer := ZLibWriteStream on: String new.
-		Transcript show: streamData.
 		writer nextPutAll: streamData.
 		writer close.
 		streamData := writer encodedStream contents 
 	].
 	stream
-		nextPutAll: streamData;
-		lf.
+		nextPutAll: streamData.
 	endPosition := stream position.
 	self size at: aPDFDataStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'
@@ -362,6 +378,6 @@ PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 			1 to: 10 - positionString size do: [ :i | stream nextPut: $0 ].
 			stream
 				nextPutAll: positionString;
-				nextPutAll: ' 00000 n';
+				nextPutAll: ' 00000 n ';
 				lf ]
 ]

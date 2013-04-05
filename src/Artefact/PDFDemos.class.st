@@ -577,7 +577,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/olivier/Desktop/Projet Artefact/'
+	^'/Users/larcheveque/pdf/'
 ]
 
 { #category : #document }
