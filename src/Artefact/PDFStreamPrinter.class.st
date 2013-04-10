@@ -74,10 +74,10 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 		streamContents: [ :code | 
 			code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet).
 			thickness := styleSheet get: #thickness.
-			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	"Set line cap style to square"
-			code
-				nextPutAll: '2 ' , PDFByteCode lineCapStyle;
-				nextPutAll: String lf.	"Set the colors or grey levels"
+			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	
+			"Set line cap style to square"
+			code nextPutAll: (self setLineCapStyleFor: anElementCodeSegment stylesheet: styleSheet).
+			"Set the colors or grey levels"
 			code
 				nextPutAll: (self initColors: styleSheet useDrawColor: anElementCodeSegment isDrawElement);
 				nextPutAll: String lf.	"Set the dotted propertie"
@@ -232,6 +232,21 @@ PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	stream lf.
 	self size at: aPDFDataXObjectStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'.
+]
+
+{ #category : #util }
+PDFStreamPrinter >> setLineCapStyleFor: anElementCodeSegment stylesheet: styleSheet [
+	"insert line cap configuration"
+
+	^ String
+		streamContents: [ :code | 
+			(styleSheet get: #roundCap)
+				ifTrue: [ code nextPutAll: PDFByteCode  lineRoundCapStyle ]
+				ifFalse: [  code nextPutAll: PDFByteCode  lineSquareCapStyle ].
+			code nextPutAll: String lf.
+		 ]
+
+
 ]
 
 { #category : #accessing }

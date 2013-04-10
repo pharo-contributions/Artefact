@@ -32,7 +32,7 @@ PDFImage class >> fromStream: aStream [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFImage >> isDrawElement [ 
 	^ false
 ]

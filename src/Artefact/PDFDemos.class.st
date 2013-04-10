@@ -186,6 +186,36 @@ PDFDemos class >> brochure [
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'brochure.pdf')
 ]
 
+{ #category : #draw }
+PDFDemos class >> capLineTest [
+	"drawing simple lines with round cap"
+
+	"self capLineTest"
+
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.
+	aPage := PDFPage new.
+	aPage
+		add:
+			(PDFLineElement new
+				from: 20 mm @ 20 mm;
+				to: 100 mm @ 60 mm;
+				thickness:  5 mm;
+				drawColor: (PDFColor new setColor: #(100 25 100)) ;
+				roundCap: true).
+	aPage
+		add:
+			(PDFLineElement new
+				from: 30 mm @ 40 mm;
+				to: 110 mm @ 80 mm;
+				drawColor: (PDFColor new setColor: #(240 80 100)) ;
+				thickness:  5 mm).
+				
+	pdfdoc add: aPage.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'capLineTest.pdf')
+]
+
 { #category : #composite }
 PDFDemos class >> cellTest [
 	"self cellTest"
@@ -601,7 +631,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/larcheveque/pdf/'
+	^'/Users/Olivier/'
 ]
 
 { #category : #document }

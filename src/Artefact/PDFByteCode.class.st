@@ -60,8 +60,13 @@ PDFByteCode class >> line [
 ]
 
 { #category : #style }
-PDFByteCode class >> lineCapStyle [
-	^'J'
+PDFByteCode class >> lineRoundCapStyle [
+	^'1 J'
+]
+
+{ #category : #style }
+PDFByteCode class >> lineSquareCapStyle [
+	^'2 J'
 ]
 
 { #category : #draw }

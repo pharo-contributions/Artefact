@@ -16,6 +16,7 @@ PDFStyleSheet class >> defaultForDocument: aDocument [
 		setAttribute: #drawColor value: (PDFColor new setColor:#(0 0 0)); 
 		setAttribute: #thickness value: 1 pt;
 		setAttribute: #dotted value: nil;
+		setAttribute: #roundCap value: false;
 		setAttribute: #font value: PDFHelveticaFont new;
 		setAttribute: #rotation value: 0;
 		yourself
@@ -88,6 +89,11 @@ PDFStyleSheet >> postCopy [
 { #category : #attributes }
 PDFStyleSheet >> rotation: anAngle [
 	self setAttribute: #rotation value: anAngle
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> roundCap: aBoolean [
+	self setAttribute: #roundCap value: aBoolean 
 ]
 
 { #category : #private }

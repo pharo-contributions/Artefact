@@ -93,6 +93,11 @@ PDFDraw >> moveTo: aPosition with: aGenerator [
 ]
 
 { #category : #accessing }
+PDFDraw >> roundCap: aBoolean [
+	self styleSheet roundCap: aBoolean
+]
+
+{ #category : #accessing }
 PDFDraw >> thickness: anObject [
 	self styleSheet thickness: anObject
 ]
