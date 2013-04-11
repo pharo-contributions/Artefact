@@ -161,8 +161,7 @@ PDFGenerator >> generateContentsFor: aPage [
 	"compression support ?"	
 	(self compression) ifTrue: [ 
 		associativeArray
-			"add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'LZWDecode')).	"
-			 add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataArray from: {  (PDFDataSymbol symbol: 'ASCIIHexDecode') . (PDFDataSymbol symbol: 'FlateDecode')  })).
+			add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'FlateDecode')).	
 		 ].
 		
 	contents

@@ -204,7 +204,7 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	
 	(self compression) ifTrue: [ 
 		| writer |
-		writer := ZLibWriteStream on: String new.
+		writer := GZipWriteStream on: String new.
 		writer nextPutAll: streamData.
 		writer close.
 		streamData := writer encodedStream contents 
