@@ -17,6 +17,41 @@ Class {
 	#category : #'Artefact-Generator'
 }
 
+{ #category : #compression }
+PDFStreamPrinter >> compressWithGZip: aString [
+	"format GZip data for use with PDF"
+	|  data tA tB tA1 tA2 tB1 tB2 |
+	
+	data := self getGZipData: aString.
+	
+	tA := 1.
+	tB := 0.
+
+	aString do: [  :byte |
+		tA := tA + (byte asInteger).
+		(tA > 65521) ifTrue: [ tA := tA - 65521  ].
+		tB := tB + tA.
+		(tB > 65521) ifTrue: [ tB := tB - 65521  ].
+	].
+
+	tA1 := ((tA bitAnd: 65280) / 256) asCharacter.
+	tA2 := (tA bitAnd: 255) asCharacter.
+	tB1 := ((tB bitAnd: 65280) / 256) asCharacter.
+	tB2 := (tB bitAnd: 255) asCharacter.
+	
+	data at: 1 put: (120 asCharacter).
+	data at: 2 put: (156 asCharacter).
+
+	data := data copyReplaceFrom: 3 to: 10 with: ''.
+	 
+	data at: ((data size) - 7) put: tB1.
+	data at: ((data size) - 6) put: tB2.
+	data at: ((data size) - 5) put: tA1.
+	data at: ((data size) - 4) put: tA2.
+		
+	^data copyReplaceFrom: (data size - 3) to: (data size) with: ''.
+]
+
 { #category : #accessing }
 PDFStreamPrinter >> compression [
 	^compression
@@ -94,6 +129,17 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 			code
 				nextPutAll: 'BT /' , anElementCodeSegment fontId , ' ' , styleSheet font fontSizeAsPoints asString , ' Tf ET';
 				nextPutAll: String lf ]
+]
+
+{ #category : #compression }
+PDFStreamPrinter >> getGZipData: aString [ 
+	| writer |
+	writer := GZipWriteStream on: String new.
+	writer nextPutAll: aString.
+	writer close.
+ 	^writer encodedStream contents
+
+
 ]
 
 { #category : #util }
@@ -201,16 +247,11 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	self streamContent: (WriteStream on: String new).
 	aPDFDataStream codeSegment printWith: self.
 	streamData := self streamContent contents.
+
+	(self compression) ifTrue: [ streamData := (self compressWithGZip: streamData) ].
 	
-	(self compression) ifTrue: [ 
-		| writer |
-		writer := GZipWriteStream on: String new.
-		writer nextPutAll: streamData.
-		writer close.
-		streamData := writer encodedStream contents 
-	].
 	stream
-		nextPutAll: streamData.
+		nextPutAll: streamData; lf.
 	endPosition := stream position.
 	self size at: aPDFDataStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'
