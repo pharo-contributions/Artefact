@@ -418,7 +418,7 @@ PDFDemos class >> compression [
 	aPage
 		add:
 			(PDFLineElement new
-				from: 0 mm @ 297 mm;
+				from: 0 mm @ 0 mm;
 				to: 210 mm @ 297 mm).
 						
 	pdfdoc add: aPage.

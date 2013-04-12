@@ -244,14 +244,14 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 		lf.
 	startPosition := stream position.
 	
-	self streamContent: (WriteStream on: String new).
+	self streamContent: (WriteStream on:  String new).
 	aPDFDataStream codeSegment printWith: self.
 	streamData := self streamContent contents.
+	(self compression) ifTrue: [ streamData := (self compressWithGZip: streamData) asByteArray  ].
 
-	(self compression) ifTrue: [ streamData := (self compressWithGZip: streamData) ].
-	
 	stream
 		nextPutAll: streamData; lf.
+
 	endPosition := stream position.
 	self size at: aPDFDataStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'
