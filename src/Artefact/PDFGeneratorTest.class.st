@@ -15,10 +15,10 @@ PDFGeneratorTest >> setUp [
 { #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGenerateEmptyPage [
 	| page pageDataType contentDataType document |
-	document := PDFDocument new.
+	document := PDFDocument new noCompression.
 	page := PDFPage new format: PDFA4Format new.
 	document add: page.
-	generator := PDFGenerator new.
+	generator := PDFGenerator new compression: false.
 	generator generatePDFDocument: PDFDocument new.
 	pageDataType := generator generatePDFPage: page.
 	self assert: pageDataType class equals: PDFDataObject.
@@ -42,7 +42,7 @@ PDFGeneratorTest >> testGenerateFontID [
 PDFGeneratorTest >> testGeneratePDFDocument [
 	
 	| pdfObject |
-	pdfObject := PDFDocument new format: PDFA3Format new; generate.
+	pdfObject := PDFDocument new noCompression; format: PDFA3Format new; generate.
 	self assert: pdfObject asString withUnixLineEndings equals: '1 0 obj
 <<
 /Type /Pages

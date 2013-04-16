@@ -413,7 +413,7 @@ PDFDemos class >> compression [
 	"self compression"
 
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new useCompression.
+	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
 	aPage
 		add:
@@ -614,7 +614,7 @@ PDFDemos class >> demo [
 
 { #category : #accessing }
 PDFDemos class >> demoPath [
-	^'/Users/Olivier/'
+	^'/Users/Olivier/Desktop/'
 ]
 
 { #category : #document }
@@ -664,6 +664,84 @@ PDFDemos class >> displayModeTest [
 
 	
 	"
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentDisplayLayoutTest [
+	"Configuration of display layout: singlePage, twoPages or continuousPages"
+
+	"self documentDisplaylayoutTest"
+
+	| pdfdoc aPage1 aPage2 |
+	pdfdoc := PDFDocument new noCompression; twoPages.
+	aPage1  := PDFPage new.
+	aPage1
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'First page').						
+	pdfdoc add: aPage1.
+	aPage2  := PDFPage new.
+	aPage2
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'Second page').						
+	pdfdoc add: aPage2.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentDisplaylayoutTest.pdf')
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentDisplayModeTest [
+	"Configuration of display mode: fullPage, fullWidth or real"
+
+	"self documentDisplayModeTest"
+
+	| pdfdoc aPage1 aPage2 |
+	pdfdoc := PDFDocument new noCompression; fullPage.
+	aPage1  := PDFPage new.
+	aPage1
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'First page').						
+	pdfdoc add: aPage1.
+	aPage2  := PDFPage new.
+	aPage2
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'Second page').						
+	pdfdoc add: aPage2.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentDisplayModeTest.pdf')
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentZoomTest [
+	"Configuration of zoom"
+
+	"self documentZoomTest"
+
+	| pdfdoc aPage1 aPage2 |
+	pdfdoc := PDFDocument new noCompression; zoom: 400. "set the zoom at 400%"
+	aPage1  := PDFPage new.
+	aPage1
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'First page').						
+	pdfdoc add: aPage1.
+	aPage2  := PDFPage new.
+	aPage2
+		add:
+			(PDFTextElement new
+				from: 10 mm @ 10 mm;
+				text: 'Second page').						
+	pdfdoc add: aPage2.
+
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentZoomTest.pdf')
 ]
 
 { #category : #draw }

@@ -64,6 +64,7 @@ Class {
 		'orientation',
 		'format',
 		'styleSheet',
+		'zoom',
 		'displayMode',
 		'displayLayout',
 		'version',
@@ -101,17 +102,18 @@ PDFDocument >> compression: aBoolean [
 
 { #category : #displayLayout }
 PDFDocument >> continuousPages [
-	self displayLayout continuousPages
+	self displayLayout: #continuousPages
 ]
 
 { #category : #displayLayout }
 PDFDocument >> defaultDisplayLayout [
-	self displayLayout defaultDisplayLayout
+	self displayLayout: #defaultDisplayLayout
 ]
 
 { #category : #displayMode }
 PDFDocument >> defaultDisplayMode [
-	self displayMode default
+	self displayMode: #defaultDisplayMode.
+	self zoom: nil
 ]
 
 { #category : #configuration }
@@ -161,12 +163,14 @@ PDFDocument >> format: aValue [
 
 { #category : #displayMode }
 PDFDocument >> fullPage [
-	self displayMode fullPage
+	self displayMode: #fullPage.
+	self zoom: nil
 ]
 
 { #category : #displayMode }
 PDFDocument >> fullWidth [
-	self displayMode fullWidth
+	self displayMode: #fullWidth.
+	self zoom: nil
 ]
 
 { #category : #generate }
@@ -193,8 +197,9 @@ PDFDocument >> initialize [
 	self setFormat: self defaultFormat.
 	self styleSheet: (PDFStyleSheet defaultForDocument: self).
 	self metaData: PDFMetaData new.
-	self compression: false.
-	
+	self compression: true.
+	self defaultDisplayLayout.
+	self defaultDisplayMode.
 ]
 
 { #category : #accessing }
@@ -205,6 +210,11 @@ PDFDocument >> metaData [
 { #category : #accessing }
 PDFDocument >> metaData: anObject [
 	metaData := anObject
+]
+
+{ #category : #configuration }
+PDFDocument >> noCompression [
+	self compression: false
 ]
 
 { #category : #accessing }
@@ -229,7 +239,8 @@ PDFDocument >> pages: aListOfPDFPage [
 
 { #category : #displayMode }
 PDFDocument >> real [
-	self displayMode real
+	self displayMode: #real.
+	self zoom: nil
 ]
 
 { #category : #'page setup' }
@@ -239,7 +250,7 @@ PDFDocument >> setFormat: aFormat [
 
 { #category : #displayLayout }
 PDFDocument >> singlePage [
-	self displayLayout singlePage
+	self displayLayout: #singlePage
 ]
 
 { #category : #accessing }
@@ -254,12 +265,7 @@ PDFDocument >> styleSheet: anObject [
 
 { #category : #displayLayout }
 PDFDocument >> twoPages [
-	self displayLayout twoPages
-]
-
-{ #category : #configuration }
-PDFDocument >> useCompression [
-	self compression: true
+	self displayLayout: #twoPages
 ]
 
 { #category : #accessing }
@@ -267,7 +273,12 @@ PDFDocument >> width [
 	^(self format size x)
 ]
 
-{ #category : #displayMode }
-PDFDocument >> zoom: aPercentage [
-	self displayMode zoomMode: aPercentage
+{ #category : #accessing }
+PDFDocument >> zoom [
+	^zoom
+]
+
+{ #category : #accessing }
+PDFDocument >> zoom: anIntegerValue [
+	zoom := anIntegerValue
 ]

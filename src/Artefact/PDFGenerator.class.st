@@ -16,7 +16,11 @@ Class {
 		'currentFontId',
 		'usedImages',
 		'currentImageId',
-		'compression'
+		'compression',
+		'firstPage',
+		'displayLayout',
+		'displayMode',
+		'zoom'
 	],
 	#category : #'Artefact-Generator'
 }
@@ -119,15 +123,32 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 
 { #category : #section }
 PDFGenerator >> createRootObject [
-	| rootObject |
+	| rootObject content |
 	rootObject := self createNewPDFDataObject.
-	rootObject
-		addContent:
-			(PDFDataAssociativeArray new
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
-				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: document));
-				yourself).
-	^ rootObject
+	content := PDFDataAssociativeArray new 
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: document)).
+		
+		(self zoom ~= nil)
+			ifTrue: [  
+				"We use the zoom value" 
+				content add: (self generateZoom).
+			]
+			ifFalse: [  
+				"we use the selected display mode"
+				(self displayMode ~= #defaultDisplayMode) ifTrue: [ content add: (self generateDisplayMode) ]
+			].	
+		"add: (PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from: { 
+			(PDFDataReference reference: self firstPage).
+			(PDFDataSymbol symbol: 'Fit')
+		}));"
+				
+		 (self displayLayout ~= #defaultDisplayLayout) ifTrue: [ 
+			content add: (PDFDataCouple key: (PDFDataSymbol symbol: 'PageLayout') value: (self generateDisplayLayout)).
+		].
+			
+	^ rootObject addContent: content.
+	
 ]
 
 { #category : #accessing }
@@ -143,6 +164,36 @@ PDFGenerator >> currentPage: anObject [
 { #category : #conversion }
 PDFGenerator >> determinePositionOnCurrentPage: aPosition [ 
 	^ (self convertToPoints: (aPosition x)) @ (self convertToPoints: (self currentPage format size y - aPosition y) )
+]
+
+{ #category : #accessing }
+PDFGenerator >> displayLayout [
+	^displayLayout 
+]
+
+{ #category : #accessing }
+PDFGenerator >> displayLayout: aSymbol [
+	displayLayout :=  aSymbol
+]
+
+{ #category : #accessing }
+PDFGenerator >> displayMode [
+	^displayMode
+]
+
+{ #category : #accessing }
+PDFGenerator >> displayMode: aSymbol [
+	displayMode :=  aSymbol
+]
+
+{ #category : #accessing }
+PDFGenerator >> firstPage [
+	^firstPage
+]
+
+{ #category : #accessing }
+PDFGenerator >> firstPage: anObject [
+	firstPage := anObject
 ]
 
 { #category : #action }
@@ -168,6 +219,39 @@ PDFGenerator >> generateContentsFor: aPage [
 		addContent: associativeArray;
 		addContent: stream.
 	^ contents
+]
+
+{ #category : #action }
+PDFGenerator >> generateDisplayLayout [
+	"Answer the PDF symbol for the selected display layout"
+	
+	^PDFDataSymbol symbol: ({ #singlePage->'SinglePage' . #continuousPages->'OneColumn' . #twoPages->'TwoColumnLeft' } asDictionary at: self displayLayout).
+
+]
+
+{ #category : #action }
+PDFGenerator >> generateDisplayMode [
+	| value |
+	value := PDFDataArray from:  { (PDFDataReference reference: self firstPage) }.
+	
+	(self displayMode = #fullPage)
+		ifTrue: [  value addElement: (PDFDataSymbol symbol: 'Fit') ]
+		ifFalse: [ 
+			(self displayMode = #fullWidth)
+				ifTrue: [  value addElement: (PDFDataSymbol symbol: 'FitH'); addElement: (PDFDataValue value: 'null'); yourself ]
+				ifFalse: [ 
+					(self displayMode = #real)
+						ifTrue: [  
+							value addElement: (PDFDataSymbol symbol: 'XYZ'); 
+								addElement: (PDFDataValue value: 'null'); 
+								addElement: (PDFDataValue value: 'null'); 
+								addElement: (PDFDataValue value: 1); 
+								yourself.
+						]
+				]
+		 ].
+	
+	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: value.
 ]
 
 { #category : #font }
@@ -214,8 +298,12 @@ PDFGenerator >> generateListOfImages [
 PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 	
 	self compression: aPDFDocument compression.
+	self displayLayout: aPDFDocument displayLayout.
+	self displayMode: aPDFDocument displayMode.
+	self zoom: aPDFDocument zoom.
 	
 	document := self generatePDFDocument: aPDFDocument.
+
 	^ PDFDataTrailer new
 		addContent:
 				(PDFDataAssociativeArray new
@@ -280,6 +368,8 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 	| page associativeArray |
 	currentPage := aPDFPage.
 	page := self createNewPDFDataObject.
+	(self firstPage = nil) ifTrue: [ self firstPage: page ].
+
 	associativeArray := PDFDataAssociativeArray
 		new
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Page'));
@@ -300,6 +390,18 @@ PDFGenerator >> generatePDFVersion: aPDFVersion [
 		
 ]
 
+{ #category : #action }
+PDFGenerator >> generateZoom [
+	"answer the PDF code to set the user's zoom"
+	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from:  { 
+		(PDFDataReference reference: self firstPage).
+		(PDFDataSymbol symbol: 'XYZ').
+		(PDFDataValue value: 'null').
+		(PDFDataValue value: 'null').
+		(PDFDataValue value: ((self zoom / 100) asFloat))
+	 })
+]
+
 { #category : #font }
 PDFGenerator >> getFontIdFor: aPDFFont [
 	^ usedFonts at: aPDFFont fontName ifAbsentPut: [ self generateFontId ]
@@ -312,10 +414,21 @@ PDFGenerator >> getImageIdFor: aPDFImage [
 
 { #category : #'initialize-release' }
 PDFGenerator >> initialize [
+	firstPage := nil.
 	currentObjectNumber := 0.
 	currentFontId := 0.
 	currentImageId := 0.
 	usedFonts := Dictionary new.
 	usedImages := Dictionary new.
 	xref := PDFDataXRef new
+]
+
+{ #category : #accessing }
+PDFGenerator >> zoom [
+	^zoom
+]
+
+{ #category : #accessing }
+PDFGenerator >> zoom: anInteger [
+	zoom := anInteger
 ]
