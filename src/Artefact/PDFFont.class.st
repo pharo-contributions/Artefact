@@ -157,7 +157,8 @@ PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
 PDFFont >> getStringWidth: aString [
 	"answer the width of the string using this font"
 	
-	^ aString sum: [ :char | self getCharWidthOf: char]
+	^ aString inject: 0 pt 
+		into: [:sum :char | sum + (self getCharWidthOf: char)]
 ]
 
 { #category : #accessing }
