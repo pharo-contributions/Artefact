@@ -1191,6 +1191,48 @@ PDFDemos class >> paragraphTest [
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'paragraphTest.pdf').
 ]
 
+{ #category : #composite }
+PDFDemos class >> paragraphWithSpacingTest [
+	"Use of paragraphs"
+	
+	"self paragraphWithSpacingTest"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.	
+	
+	aPage := PDFPage new.
+
+	aPage add: (PDFParagraphElement new 
+		from: 90 mm @ 40 mm;
+		wh: 100 mm @ 20 mm; 
+		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
+
+	aPage add: (PDFParagraphElement new 
+		from: 20 mm @ 40 mm;
+		wh: 60 mm @ 60 mm; 
+		spacing: 0.5mm;
+		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
+
+	aPage add: (PDFParagraphElement new 
+		from: 100 mm @ 80 mm;
+		wh: 60 mm @ 70 mm; 
+		spacing: 1mm;
+		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
+		center).
+		
+	aPage add: (PDFParagraphElement new 
+		from: 10 mm @ 120 mm;
+		wh: 60 mm @ 80 mm; 
+		spacing: 3 mm;
+		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
+		right
+		).
+		
+	pdfdoc add: aPage.
+	
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'paragraphWithSpacingTest.pdf').
+]
+
 { #category : #draw }
 PDFDemos class >> polygonsTest [
 	"drawing polygons"

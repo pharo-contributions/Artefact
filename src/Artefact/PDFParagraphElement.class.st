@@ -1,6 +1,9 @@
 Class {
 	#name : #PDFParagraphElement,
 	#superclass : #PDFCompositeText,
+	#instVars : [
+		'spacing'
+	],
 	#category : #'Artefact-Elements-Composites'
 }
 
@@ -12,8 +15,24 @@ PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet
 	decalage := aStyleSheet font fontSize.
 	currentXY := self from.
 	^ lines collect: [:aLine | current := PDFFormattedTextElement new styleSheet: aStyleSheet; alignment: self alignment; from: currentXY; wh: self wh; text: aLine.
-			currentXY := currentXY + (0@decalage).
+			currentXY := currentXY + (0@decalage) + (0@self spacing).
 			current ].
+]
+
+{ #category : #'initialize-release' }
+PDFParagraphElement >> initialize [
+	super initialize.
+	self spacing: 0 mm.
+]
+
+{ #category : #accessing }
+PDFParagraphElement >> spacing [
+	^spacing
+]
+
+{ #category : #accessing }
+PDFParagraphElement >> spacing: aValue [ 	
+	spacing := aValue
 ]
 
 { #category : #action }
