@@ -10,6 +10,17 @@ Class {
 	#category : #'Artefact-Demos'
 }
 
+{ #category : #experimental }
+PDFDemos class >> CDTemplateTest [
+
+	"PDFDemos CDTemplateTest"
+
+	| pdfdoc |
+	pdfdoc := PDFDocument new.
+	pdfdoc add: (PDFCompactDiscTemplate new format: (PDFA4Format new setLandscape)).
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'CDTemplateTest.pdf')
+]
+
 { #category : #text }
 PDFDemos class >> alignmentsTest [
 	"a simple demonstration of Artefact"
