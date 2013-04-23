@@ -10,7 +10,7 @@ Class {
 	#category : #'Artefact-Demos'
 }
 
-{ #category : #experimental }
+{ #category : #templates }
 PDFDemos class >> CDTemplateTest [
 
 	"PDFDemos CDTemplateTest"
@@ -19,6 +19,17 @@ PDFDemos class >> CDTemplateTest [
 	pdfdoc := PDFDocument new.
 	pdfdoc add: (PDFCompactDiscTemplate new format: (PDFA4Format new setLandscape)).
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'CDTemplateTest.pdf')
+]
+
+{ #category : #templates }
+PDFDemos class >> DVDTemplateTest [
+
+	"PDFDemos DVDTemplateTest"
+
+	| pdfdoc |
+	pdfdoc := PDFDocument new.
+	pdfdoc add: (PDFDVDCoverTemplate new format: (PDFA4Format new setLandscape)).
+	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'DVDCoverTemplateTest.pdf')
 ]
 
 { #category : #text }
