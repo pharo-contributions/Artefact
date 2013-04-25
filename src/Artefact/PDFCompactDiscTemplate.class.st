@@ -8,6 +8,11 @@ Class {
 	#category : #'Artefact-Templates'
 }
 
+{ #category : #'as yet unclassified' }
+PDFCompactDiscTemplate class >> recommendedPageFormat [
+	^(PDFA4Format new setLandscape)
+]
+
 { #category : #action }
 PDFCompactDiscTemplate >> drawTemplate [
 	self add: (PDFRectElement new

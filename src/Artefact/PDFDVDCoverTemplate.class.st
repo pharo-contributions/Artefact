@@ -8,6 +8,11 @@ Class {
 	#category : #'Artefact-Templates'
 }
 
+{ #category : #'as yet unclassified' }
+PDFDVDCoverTemplate class >> recommendedPageFormat [
+	^(PDFA4Format new setLandscape)
+]
+
 { #category : #action }
 PDFDVDCoverTemplate >> drawTemplate [
 	self add: (PDFRectElement new

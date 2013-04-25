@@ -7,6 +7,11 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #'as yet unclassified' }
+PDFTemplate class >> recommendedDocumentFormat [
+	self subclassResponsibility 
+]
+
 { #category : #accessing }
 PDFTemplate >> dotted [
 	^dotted

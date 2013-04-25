@@ -17,7 +17,7 @@ PDFDemos class >> CDTemplateTest [
 
 	| pdfdoc |
 	pdfdoc := PDFDocument new.
-	pdfdoc add: (PDFCompactDiscTemplate new format: (PDFA4Format new setLandscape)).
+	pdfdoc add: (PDFCompactDiscTemplate new format: (PDFCompactDiscTemplate recommendedPageFormat)).
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'CDTemplateTest.pdf')
 ]
 
@@ -28,7 +28,7 @@ PDFDemos class >> DVDTemplateTest [
 
 	| pdfdoc |
 	pdfdoc := PDFDocument new.
-	pdfdoc add: (PDFDVDCoverTemplate new format: (PDFA4Format new setLandscape)).
+	pdfdoc add: (PDFDVDCoverTemplate new format: (PDFCompactDiscTemplate recommendedPageFormat)).
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'DVDCoverTemplateTest.pdf')
 ]
 
@@ -428,25 +428,6 @@ PDFDemos class >> colorTest [
 
 ]
 
-{ #category : #experimental }
-PDFDemos class >> compression [
-	"Artefact use compression"
-
-	"self compression"
-
-	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.
-	aPage := PDFPage new.
-	aPage
-		add:
-			(PDFLineElement new
-				from: 0 mm @ 0 mm;
-				to: 210 mm @ 297 mm).
-						
-	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'compression.pdf')
-]
-
 { #category : #composite }
 PDFDemos class >> datatableCustomizedElementTest [
 	"generate a customized datatable"
@@ -588,50 +569,6 @@ PDFDemos class >> datatableWithCaptionsTest [
 
 	
 	
-]
-
-{ #category : #'as yet unclassified' }
-PDFDemos class >> demo [
-	"a simple demonstration of Artefact"
-	
-	"PDFDemos demo"
-	
-	| pdfdoc myFont myBigFont aPage |
-	pdfdoc := PDFDocument new.	
-
-	myBigFont := PDFCourierFont new fontSize: 36 pt; bold: true.
-	myFont := PDFHelveticaFont new fontSize: 16 pt.
-	
-	aPage := PDFPage new.
-
-	aPage add: (PDFCellElement new 
-		font: myBigFont; 
-		from: 10mm@ 10mm;
-		wh: 100 mm @ 60 mm; 
-		textColor: (PDFColor new setColor: #(0 255 0));
-		text: 'Première ligne').
-		
-	aPage add: (PDFCellElement new 
-		font: myBigFont;
-		from: 10mm@ 80mm;
-		wh: 100 mm @ 24 mm; 
-		textColor: (PDFColor new setColor: #(128 128 0)); 
-		text: 'Artefact').
-	
-	aPage add: (PDFCellElement new 
-		font: myFont; 
-		from: 10mm@ 110mm;
-		wh: 100 mm @ 10 mm; 
-		textColor: (PDFColor new setColor: #(0 0 0));
-		text: 'PDF Framework for Pharo').
-			
-	aPage add: (PDFLineElement new from: 10 mm @ 10 mm; to: 20 mm @ 10 mm; drawColor: (PDFColor new setColor: #(255 0 0))).
-	aPage add: (PDFLineElement new from: 10 mm @ 10 mm; to: 10 mm @ 20 mm; drawColor:(PDFColor new setColor: #(255 0 0))).
-
-	
-	pdfdoc add: aPage.
-	
-	pdfdoc exportTo: (StandardFileStream fileNamed: self demoPath , 'demo.pdf').
 ]
 
 { #category : #accessing }
@@ -892,41 +829,6 @@ PDFDemos class >> greyLevelTest [
 
 ]
 
-{ #category : #experimental }
-PDFDemos class >> headerFooterTest [
-	"generate a sample document with a header and a footer"
-
-	"self headerFooterTest"
-	
-	| pdfdoc aPage secondPage myFont |
-
-	myFont := PDFCourierFont new fontSize: 32 pt.
-
-	pdfdoc := PDFDocument new.
-	
-	aPage := PDFPage new.
-	aPage add: (PDFCellElement new 
-		from: 10mm @ 10 mm;
-		font: myFont;
-		text: 'Header and Footer test').
-
-	pdfdoc add: aPage.
-
-	secondPage := PDFPage new.
-	secondPage add: (PDFCellElement new 
-		from: 10mm @ 10 mm;
-		font: myFont;
-		text: 'Header and Footer test').	
-			
-	"secondPage header: false; footer: false."
-	pdfdoc add: secondPage.		
-			
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'headerFooterTest.pdf').
-
-	
-	
-]
-
 { #category : #layout }
 PDFDemos class >> horizontalLayoutTest [
 	"self horizontalLayoutTest"
@@ -1031,7 +933,7 @@ PDFDemos class >> horizontalLayoutTest [
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'horizontalLayoutTest.pdf')
 ]
 
-{ #category : #experimental }
+{ #category : #image }
 PDFDemos class >> imageJPG [
 	"Artefact use an JPG file"
 
@@ -1530,33 +1432,25 @@ PDFDemos class >> verticalLayoutTest [
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'verticalLayoutTest.pdf')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #misc }
 PDFDemos class >> widthTest [
 	"generate a sample document for testing the width of fonts"
 
 	"PDFDemos widthTest"
 	
-	| pdfdoc aPage myFont myBigFont width text size |
+	| pdfdoc aPage myFont width text |
 
 	pdfdoc := PDFDocument new.	
 			
 	myFont := PDFTimesFont new fontSize: 16 pt.
-	myBigFont := PDFTimesFont new fontSize: 1 pt.
 	text := 'Hello World !'.
 
-	"myBigFont fontSize: (myBigFont getIdealFontSizeForTheString: text width: 100 into: pdfdoc).	"
-
 	aPage := PDFPage new.
-	"aPage add: (PDFCellStyle new wh: 100@32; border: true; linefeed: true; text: 'Une première ligne')."
 	
 	width := myFont getStringWidth: text.
 	
 	aPage add: (PDFCellElement new from: 5mm@10mm; font: myFont; wh: width@10mm; text: text).
 
-	"aPage add: (PDFCellStyle new font: myBigFont; wh: 100@10; border: true; linefeed: true; text: text)."
-	
-	"Transcript show: pdfdoc margins asString."
-	aPage add: (PDFLineElement new from: 10 mm @ 60 mm; to: 110 mm @ 60 mm).
 	pdfdoc add: aPage.
 	
 	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'widthTest.pdf').

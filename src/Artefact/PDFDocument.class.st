@@ -1,12 +1,7 @@
 "
 ! Introduction
 
-.  _____          __          _____               __   
-  /  _  \________/  |_  _____/ ____\____    _____/  |_ 
- /  /_\  \_  __ \   __\/ __ \   __\\__  \ _/ ___\   __\
-/    |    \  | \/|  | \  ___/|  |   / __ \\  \___|  |  
-\____|__  /__|   |__|  \___  >__|  (____  /\___  >__|  
-        \/                 \/           \/     \/      
+ARTEFACT   
 
 Artefact is a framework to generate PDF documents. There is fully written in Smalltalk and external libraries are not needed. There is light, platform independant and it's a tool with a high level of abstraction to easily creating PDF documents.  
 
@@ -20,7 +15,7 @@ Artefact is a framework to generate PDF documents. There is fully written in Sma
 
 Authors: Olivier Auverlot and Guillaume Larcheveque
 
-! How to creating my first PDF document ?
+! How to create my first PDF document ?
 ! Configuration of a PDF document
 !! PDF metadata
 !! Units of measurement
@@ -31,6 +26,7 @@ Authors: Olivier Auverlot and Guillaume Larcheveque
 !! Creating and adding a page into a document
 !! Setting the page format
 !! Choosing the orientation
+!! Using page templates
 ! The PDF elements
 !! Apparences of PDF elements
 !!! Playing with fonts
