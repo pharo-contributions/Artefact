@@ -16,6 +16,14 @@ Artefact is a framework to generate PDF documents. There is fully written in Sma
 Authors: Olivier Auverlot and Guillaume Larcheveque
 
 ! How to create my first PDF document ?
+The best way to start with Artefact is to look at Artefact-Demos package and to run each PDFDemos class methods.
+
+By default each generation result is written in the default pharo directory but you can define your own in the demoPath method 
+
+example: 
+
+demoPath
+	^ '/Users/pharo/pdf/'
 ! Configuration of a PDF document
 !! PDF metadata
 !! Units of measurement

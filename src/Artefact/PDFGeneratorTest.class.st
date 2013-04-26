@@ -39,28 +39,6 @@ PDFGeneratorTest >> testGenerateFontID [
 ]
 
 { #category : #'as yet unclassified' }
-PDFGeneratorTest >> testGeneratePDFDocument [
-	
-	| pdfObject |
-	pdfObject := PDFDocument new noCompression; format: PDFA3Format new; generate.
-	self assert: pdfObject asString withUnixLineEndings equals: '1 0 obj
-<<
-/Type /Pages
-/Kids [ ]
-/Count 0
-/MediaBox [ 0 0 841.89 1190.55 ]
-/Resources <<
-/ProcSet [ /PDF /Text /ImageC ]
-/Font <<
->>
-/XObject <<
->>
->>
->>
-endobj' withUnixLineEndings
-]
-
-{ #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGeneratePDFFormat [
 	| dataType format elements |
 	format := PDFA3Format new setLandscape.
@@ -70,10 +48,10 @@ PDFGeneratorTest >> testGeneratePDFFormat [
 	self assert: dataType key symbol equals: 'MediaBox'.
 	self assert: dataType value class equals: PDFDataArray.
 	elements := dataType value elements.
-	self assert: (elements first closeTo: 0).
-	self assert: (elements second closeTo: 0).
-	self assert: (elements third closeTo: format width).
-	self assert: (elements fourth closeTo: format height)
+	self assert: (elements first value closeTo: 0).
+	self assert: (elements second value closeTo: 0).
+	self assert: (elements third value pt closeTo: format width).
+	self assert: (elements fourth value pt closeTo: format height)
 ]
 
 { #category : #'as yet unclassified' }

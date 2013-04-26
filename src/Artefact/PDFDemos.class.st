@@ -1,5 +1,10 @@
 "
-A PDFDemos is the class containing all demos for Artefact framework.
+A PDFDemos is the class containing all demos for Artefact framework. By default each generation result is written in the default pharo directory but you can define your own in the demoPath method 
+
+example: 
+
+demoPath
+	^ '/Users/pharo/pdf/'
 
 Instance Variables
 
@@ -12,28 +17,256 @@ Class {
 
 { #category : #templates }
 PDFDemos class >> CDTemplateTest [
+	"PDFDemos CDTemplateTest"
+	self new CDTemplateTest: (self streamNamed: 'CDTemplateTest.pdf')
+]
+
+{ #category : #templates }
+PDFDemos class >> DVDTemplateTest [
+	"PDFDemos DVDTemplateTest"
+	self new DVDTemplateTest: (self streamNamed: 'DVDTemplateTest.pdf')
+]
+
+{ #category : #text }
+PDFDemos class >> alignmentsTest [
+	"PDFDemos alignmentsTest"
+	self new alignmentsTest: (self streamNamed: 'alignmentsTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> arrowTest [
+	"PDFDemos arrowTest"
+	self new arrowTest: (self streamNamed: 'arrowTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> bezierTest [
+	"PDFDemos bezierTest"
+	self new bezierTest: (self streamNamed: 'bezierTest.pdf')
+]
+
+{ #category : #experimental }
+PDFDemos class >> brochure [
+	"PDFDemos brochure"
+	self new brochure: (self streamNamed: 'brochure.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> capLineTest [
+	"PDFDemos capLineTest"
+	self new capLineTest: (self streamNamed: 'capLineTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> cellTest [
+	"PDFDemos cellTest"
+	self new cellTest: (self streamNamed: 'cellTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> circlesTest [
+	"PDFDemos circlesTest"
+	self new circlesTest: (self streamNamed: 'circlesTest.pdf')
+]
+
+{ #category : #color }
+PDFDemos class >> colorTest [
+	"PDFDemos colorTest"
+	self new colorTest: (self streamNamed: 'colorTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> datatableCustomizedElementTest [
+	"PDFDemos datatableCustomizedElementTest"
+	self new datatableCustomizedElementTest: (self streamNamed: 'datatableCustomizedElementTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> datatableTest [
+	"PDFDemos datatableTest"
+	self new datatableTest: (self streamNamed: 'datatableTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> datatableWithCaptionsTest [
+	"PDFDemos datatableWithCaptionsTest"
+	self new datatableWithCaptionsTest: (self streamNamed: 'datatableWithCaptionsTest.pdf')
+]
+
+{ #category : #tool }
+PDFDemos class >> demoPath [
+	^ '/Users/larcheveque/pdf/'
+]
+
+{ #category : #document }
+PDFDemos class >> displayModeTest [
+	"PDFDemos displayModeTest"
+	self new displayModeTest: (self streamNamed: 'displayModeTest.pdf')
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentDisplayLayoutTest [
+	"PDFDemos documentDisplayLayoutTest"
+	self new documentDisplayLayoutTest: (self streamNamed: 'documentDisplayLayoutTest.pdf')
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentDisplayModeTest [
+	"PDFDemos documentDisplayModeTest"
+	self new documentDisplayModeTest: (self streamNamed: 'documentDisplayModeTest.pdf')
+]
+
+{ #category : #'display setup' }
+PDFDemos class >> documentZoomTest [
+	"PDFDemos documentZoomTest"
+	self new documentZoomTest: (self streamNamed: 'documentZoomTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> dottedTest [
+	"PDFDemos dottedTest"
+	self new dottedTest: (self streamNamed: 'dottedTest.pdf')
+]
+
+{ #category : #color }
+PDFDemos class >> drawStyleSheetTest [
+	"PDFDemos drawStyleSheetTest"
+	self new drawStyleSheetTest: (self streamNamed: 'drawStyleSheetTest.pdf')
+]
+
+{ #category : #text }
+PDFDemos class >> euroTest [
+	"PDFDemos euroTest"
+	self new euroTest: (self streamNamed: 'euroTest.pdf')
+]
+
+{ #category : #color }
+PDFDemos class >> greyLevelTest [
+	"PDFDemos greyLevelTest"
+	self new greyLevelTest: (self streamNamed: 'greyLevelTest.pdf')
+]
+
+{ #category : #layout }
+PDFDemos class >> horizontalLayoutTest [
+	"PDFDemos horizontalLayoutTest"
+	self new horizontalLayoutTest: (self streamNamed: 'horizontalLayoutTest.pdf')
+]
+
+{ #category : #image }
+PDFDemos class >> imageJPG [
+	"PDFDemos imageJPG"
+	self new imageJPG: (self streamNamed: 'imageJPG.pdf')
+]
+
+{ #category : #document }
+PDFDemos class >> infosTest [
+	"PDFDemos infosTest"
+	self new infosTest: (self streamNamed: 'infosTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> lineTest [
+	"PDFDemos lineTest"
+	self new lineTest: (self streamNamed: 'lineTest.pdf')
+]
+
+{ #category : #document }
+PDFDemos class >> multiOrientationsTest [
+	"PDFDemos multiOrientationsTest"
+	self new multiOrientationsTest: (self streamNamed: 'multiOrientationsTest.pdf')
+]
+
+{ #category : #cool }
+PDFDemos class >> oneLineTest [
+	"PDFDemos oneLineTest"
+	self new oneLineTest: (self streamNamed: 'oneLineTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> paragraphTest [
+	"PDFDemos paragraphTest"
+	self new paragraphTest: (self streamNamed: 'paragraphTest.pdf')
+]
+
+{ #category : #composite }
+PDFDemos class >> paragraphWithSpacingTest [
+	"PDFDemos paragraphWithSpacingTest"
+	self new paragraphWithSpacingTest: (self streamNamed: 'paragraphWithSpacingTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> polygonsTest [
+	"PDFDemos polygonsTest"
+	self new polygonsTest: (self streamNamed: 'polygonsTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> rectsTest [
+	"PDFDemos rectsTest"
+	self new rectsTest: (self streamNamed: 'rectsTest.pdf')
+]
+
+{ #category : #tool }
+PDFDemos class >> streamNamed: aName [
+	^ FileStream fileNamed: self demoPath , aName
+]
+
+{ #category : #text }
+PDFDemos class >> textTest [
+	"PDFDemos textTest"
+	self new textTest: (self streamNamed: 'textTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> thicknessTest [
+	"PDFDemos thicknessTest"
+	self new thicknessTest: (self streamNamed: 'thicknessTest.pdf')
+]
+
+{ #category : #draw }
+PDFDemos class >> twoColoredRectsTest [
+	"PDFDemos twoColoredRectsTest"
+	self new twoColoredRectsTest: (self streamNamed: 'twoColoredRectsTest.pdf')
+]
+
+{ #category : #layout }
+PDFDemos class >> verticalLayoutTest [
+	"PDFDemos verticalLayoutTest"
+	self new verticalLayoutTest: (self streamNamed: 'verticalLayoutTest.pdf')
+]
+
+{ #category : #misc }
+PDFDemos class >> widthTest [
+	"PDFDemos widthTest"
+	self new widthTest: (self streamNamed: 'widthTest.pdf')
+]
+
+{ #category : #templates }
+PDFDemos >> CDTemplateTest: aStream [
 
 	"PDFDemos CDTemplateTest"
 
 	| pdfdoc |
 	pdfdoc := PDFDocument new.
 	pdfdoc add: (PDFCompactDiscTemplate new format: (PDFCompactDiscTemplate recommendedPageFormat)).
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'CDTemplateTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #templates }
-PDFDemos class >> DVDTemplateTest [
+PDFDemos >> DVDTemplateTest: aStream [
 
 	"PDFDemos DVDTemplateTest"
 
 	| pdfdoc |
 	pdfdoc := PDFDocument new.
 	pdfdoc add: (PDFDVDCoverTemplate new format: (PDFCompactDiscTemplate recommendedPageFormat)).
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'DVDCoverTemplateTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #text }
-PDFDemos class >> alignmentsTest [
+PDFDemos >> alignmentsTest: aStream [
 	"a simple demonstration of Artefact"
 
 	"PDFDemos alignmentsTest"
@@ -66,11 +299,12 @@ PDFDemos class >> alignmentsTest [
 				text: 'At right';
 				right).
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'alignmentsTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #composite }
-PDFDemos class >> arrowTest [
+PDFDemos >> arrowTest: aStream [
 	"drawing arrows"
 	
 	"self arrowTest"
@@ -126,11 +360,12 @@ PDFDemos class >> arrowTest [
 			
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'arrowTest.pdf').
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> bezierTest [
+PDFDemos >> bezierTest: aStream [
 	"drawing bezier curves"
 	
 	"self bezierTest"
@@ -148,11 +383,12 @@ PDFDemos class >> bezierTest [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'bezierTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #experimental }
-PDFDemos class >> brochure [
+PDFDemos >> brochure: aStream [
 	"Artefact use an JPG file"
 
 	"self brochure"
@@ -205,11 +441,12 @@ PDFDemos class >> brochure [
 	layout from: 15 mm @ 80 mm.
 	aPage add: layout.
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'brochure.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> capLineTest [
+PDFDemos >> capLineTest: aStream [
 	"drawing simple lines with round cap"
 
 	"self capLineTest"
@@ -235,11 +472,12 @@ PDFDemos class >> capLineTest [
 				
 	pdfdoc add: aPage.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'capLineTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #composite }
-PDFDemos class >> cellTest [
+PDFDemos >> cellTest: aStream [
 	"self cellTest"
 	
 	"Demonstration of PDFCellElement"
@@ -365,11 +603,12 @@ PDFDemos class >> cellTest [
 
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'cellTest.pdf').
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> circlesTest [
+PDFDemos >> circlesTest: aStream [
 	"drawing circles"
 	
 	"self circlesTest"
@@ -393,11 +632,12 @@ PDFDemos class >> circlesTest [
 	
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'circlesTest.pdf').
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #color }
-PDFDemos class >> colorTest [
+PDFDemos >> colorTest: aStream [
 	"generate a sample document with colors"
 
 	"self colorTest"
@@ -424,12 +664,12 @@ PDFDemos class >> colorTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'colorTest.pdf').
+pdfdoc exportTo: aStream
 
 ]
 
 { #category : #composite }
-PDFDemos class >> datatableCustomizedElementTest [
+PDFDemos >> datatableCustomizedElementTest: aStream [
 	"generate a customized datatable"
 
 	"self datatableCustomizedElementTest"
@@ -474,14 +714,12 @@ PDFDemos class >> datatableCustomizedElementTest [
 	). 
 	
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableCustomizedStyleTest.pdf').		
+																																																																																																										pdfdoc exportTo: aStream
 
-	
-	
 ]
 
 { #category : #composite }
-PDFDemos class >> datatableTest [
+PDFDemos >> datatableTest: aStream [
 	"generate a datatable"
 
 	"self datatableTest"
@@ -518,15 +756,13 @@ PDFDemos class >> datatableTest [
 	).
 	
 	pdfdoc add: aPage.
-		
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableTest.pdf').
+	
+																																																									pdfdoc exportTo: aStream
 
-	
-	
 ]
 
 { #category : #composite }
-PDFDemos class >> datatableWithCaptionsTest [
+PDFDemos >> datatableWithCaptionsTest: aStream [
 	"generate a datatable with captions"
 
 	"self datatableWithCaptionsTest"
@@ -565,68 +801,13 @@ PDFDemos class >> datatableWithCaptionsTest [
 	
 	pdfdoc add: aPage.
 		
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'datatableWithCaptions.pdf').
-
 	
-	
-]
+pdfdoc exportTo: aStream
 
-{ #category : #accessing }
-PDFDemos class >> demoPath [
-	^'/Users/Olivier/Desktop/'
-]
-
-{ #category : #document }
-PDFDemos class >> displayLayoutTest [
-	"generate documents with zooms"
-
-	"self displayLayoutTest"
-
-	"PDFDocument new continuousPages;
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'continuousPages Page 2'));
-		exportTo: (FileStream fileNamed: self demoPath , 'continuousPagesTest.pdf').
-
-	PDFDocument new singlePage; 
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'singlePage Page 2'));
-		exportTo: (FileStream fileNamed: self demoPath , 'singlePage.pdf').
-	
-	PDFDocument new twoPages; 
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 1'));
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'twoPages Page 2'));
-		exportTo: (FileStream fileNamed: self demoPath , 'twoPages.pdf')."
-
-	
-	
-]
-
-{ #category : #document }
-PDFDemos class >> displayModeTest [
-	"generate documents with zooms"
-
-	"self displayModeTest"
-
-	| doc |
-	
-"	doc := PDFDocument new fullPage.
-	doc add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'Fullpage document')).
-	doc exportTo: (FileStream fileNamed: self demoPath , 'fullPageTest.pdf').
-
-	doc := PDFDocument new zoom: 300; 
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'zoom'));
-		exportTo: (FileStream fileNamed: self demoPath , 'zoomPageTest.pdf').
-	
-	doc := PDFDocument new fullWidth; 
-		add: (PDFPage new add: (PDFTextElement new from: 5 mm @ 5 mm; text: 'full width'));
-		exportTo: (FileStream fileNamed: self demoPath , 'fullWidthTest.pdf').
-
-	
-	"
 ]
 
 { #category : #'display setup' }
-PDFDemos class >> documentDisplayLayoutTest [
+PDFDemos >> documentDisplayLayoutTest: aStream [
 	"Configuration of display layout: singlePage, twoPages or continuousPages"
 
 	"self documentDisplaylayoutTest"
@@ -648,11 +829,12 @@ PDFDemos class >> documentDisplayLayoutTest [
 				text: 'Second page').						
 	pdfdoc add: aPage2.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentDisplaylayoutTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #'display setup' }
-PDFDemos class >> documentDisplayModeTest [
+PDFDemos >> documentDisplayModeTest: aStream [
 	"Configuration of display mode: fullPage, fullWidth or real"
 
 	"self documentDisplayModeTest"
@@ -674,11 +856,12 @@ PDFDemos class >> documentDisplayModeTest [
 				text: 'Second page').						
 	pdfdoc add: aPage2.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentDisplayModeTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #'display setup' }
-PDFDemos class >> documentZoomTest [
+PDFDemos >> documentZoomTest: aStream [
 	"Configuration of zoom"
 
 	"self documentZoomTest"
@@ -700,55 +883,12 @@ PDFDemos class >> documentZoomTest [
 				text: 'Second page').						
 	pdfdoc add: aPage2.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'documentZoomTest.pdf')
-]
+pdfdoc exportTo: aStream
 
-{ #category : #draw }
-PDFDemos class >> dottedTest [
-	"drawing with dotted"
-	
-	"self dottedTest"
-	
-	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
-	aPage := PDFPage new.
-	
-	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 30 mm@ 0 mm).
-	aPage add: (PDFLineElement new from: 0 mm @ 0 mm; to: 0 mm @ 30 mm).
-	aPage add: (PDFLineElement new from: 0 mm @ 5 mm; to: 150 mm @ 5 mm).
-	
-	aPage add: (PDFLineElement new
-		from: 10 mm @ 10 mm;
-		to: 100 mm @ 30 mm;
-		dotted: (PDFDotted new length: 2 mm; space: 3 mm)
-	).
-	
-	aPage add: (PDFLineElement new
-		from: 30 mm @ 30 mm;
-		to: 80 mm @ 50 mm;
-		dotted: (PDFDotted new)
-	).
-
-	aPage add: (PDFLineElement new
-		from: 10 mm @ 10 mm ;
-		to: 10 mm @ 50 mm
-	 ).
-	
-	aPage add: (PDFRectElement new
-		from: 80 mm @ 80 mm;
-		wh: 100 mm @ 30 mm; 
-		dotted: (PDFDotted new length: 5 mm; space: 3 mm);
-		thickness:  2 mm
-		).
-			
-	pdfdoc add: aPage.
-	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'dottedTest.pdf')
 ]
 
 { #category : #color }
-PDFDemos class >> drawStyleSheetTest [
+PDFDemos >> drawStyleSheetTest: aStream [
 	"generate a sample document with colors"
 
 	"self drawStyleSheetTest"
@@ -772,12 +912,12 @@ PDFDemos class >> drawStyleSheetTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'drawStyleSheetTest.pdf').
+pdfdoc exportTo: aStream
 
 ]
 
 { #category : #text }
-PDFDemos class >> euroTest [
+PDFDemos >> euroTest: aStream [
 	"a PDF document with the euro sign"
 
 	"PDFDemos euroTest"
@@ -794,11 +934,12 @@ PDFDemos class >> euroTest [
 
 	pdfdoc add: aPage.
 	
-      pdfdoc exportTo: (StandardFileStream fileNamed: self demoPath , 'euroTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #color }
-PDFDemos class >> greyLevelTest [
+PDFDemos >> greyLevelTest: aStream [
 	"generate a sample document with grey levels"
 
 	"self greyLevelTest"
@@ -825,12 +966,12 @@ PDFDemos class >> greyLevelTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'greyLevelTest.pdf').
+pdfdoc exportTo: aStream
 
 ]
 
 { #category : #layout }
-PDFDemos class >> horizontalLayoutTest [
+PDFDemos >> horizontalLayoutTest: aStream [
 	"self horizontalLayoutTest"
 
 	"Demonstration of PDFCellElement"
@@ -930,11 +1071,12 @@ PDFDemos class >> horizontalLayoutTest [
 								wh: 50 mm @ 10 mm;
 								text: 'A cell without xy')).
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'horizontalLayoutTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #image }
-PDFDemos class >> imageJPG [
+PDFDemos >> imageJPG: aStream [
 	"Artefact use an JPG file"
 
 	"self imageJPG"
@@ -966,16 +1108,17 @@ PDFDemos class >> imageJPG [
 				).
 								
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'imageJPG.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #document }
-PDFDemos class >> infosTest [
+PDFDemos >> infosTest: aStream [
 	"generate a sample document with informations"
 
 	"self infosTest"
 	
-	| pdfdoc aPage aSecondPage |
+	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
 	pdfdoc metaData title: 'Le titre du document'; 
@@ -987,14 +1130,13 @@ PDFDemos class >> infosTest [
 	aPage := PDFPage new.
 	
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'infoTest.pdf')
+		
+pdfdoc exportTo: aStream
 
-	
-	
 ]
 
 { #category : #draw }
-PDFDemos class >> lineTest [
+PDFDemos >> lineTest: aStream [
 	"drawing with simple lines around the page"
 
 	"self lineTest"
@@ -1034,11 +1176,12 @@ PDFDemos class >> lineTest [
 				to: 0 mm @ 297 mm).
 	pdfdoc add: aPage.
 	pdfdoc styleSheet drawColor: (PDFColor new setColor: #(200 25 25)).
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'lineTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #document }
-PDFDemos class >> multiOrientationsTest [
+PDFDemos >> multiOrientationsTest: aStream [
 	"Create a document with two pages and two different orientations"
 	
 	"self multiOrientationsTest"
@@ -1068,16 +1211,18 @@ PDFDemos class >> multiOrientationsTest [
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'multiOrientationsTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #cool }
-PDFDemos class >> oneLineTest [
-	PDFDocument new add: (PDFPage new add: (PDFTextElement new text: 'Hello'; from: 10mm@10mm)); exportTo: (FileStream fileNamed: 'oneLine.pdf')
+PDFDemos >> oneLineTest: aStream [
+	PDFDocument new add: (PDFPage new add: (PDFTextElement new text: 'Hello'; from: 10mm@10mm)); exportTo: aStream
+
 ]
 
 { #category : #composite }
-PDFDemos class >> paragraphTest [
+PDFDemos >> paragraphTest: aStream [
 	"Use of paragraphs"
 	
 	"self paragraphTest"
@@ -1112,11 +1257,12 @@ PDFDemos class >> paragraphTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'paragraphTest.pdf').
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #composite }
-PDFDemos class >> paragraphWithSpacingTest [
+PDFDemos >> paragraphWithSpacingTest: aStream [
 	"Use of paragraphs"
 	
 	"self paragraphWithSpacingTest"
@@ -1154,11 +1300,12 @@ PDFDemos class >> paragraphWithSpacingTest [
 		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'paragraphWithSpacingTest.pdf').
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> polygonsTest [
+PDFDemos >> polygonsTest: aStream [
 	"drawing polygons"
 	
 	"self polygonsTest"
@@ -1184,11 +1331,12 @@ PDFDemos class >> polygonsTest [
 	pdfdoc add: aPage.
 	
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'polygonsTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> rectsTest [
+PDFDemos >> rectsTest: aStream [
 	"intersecting rects"
 	
 	"self rectsTest"
@@ -1217,11 +1365,12 @@ PDFDemos class >> rectsTest [
 		).
 	pdfdoc add: aPage.
 
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'rectsTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #text }
-PDFDemos class >> textTest [
+PDFDemos >> textTest: aStream [
 	"PDFDemos textTest"
 
 	| pdfdoc myFont aPage myFontInMilliMeters |
@@ -1265,20 +1414,20 @@ PDFDemos class >> textTest [
 						from: 10 mm @ 90 mm;
 						to: 160 mm @ 90 mm).
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'textTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #draw }
-PDFDemos class >> thicknessTest [
+PDFDemos >> thicknessTest: aStream [
 	"generate a sample document for testing the draw objects"
 
 	"self thicknessTest"
 	
-	| pdfdoc aPage width xy1 xy2 |
+	| pdfdoc aPage xy1 xy2 |
 
 	pdfdoc := PDFDocument new.	
 	aPage := PDFPage new.
-	width := 1 mm.
 	xy1 := 10 mm @ 20 mm.
 	xy2 := 100 mm@ 20 mm.
 	
@@ -1295,15 +1444,13 @@ PDFDemos class >> thicknessTest [
 		).
 	
 	pdfdoc add: aPage.
-	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'thicknesTest.pdf')
+		
+	pdfdoc exportTo: aStream
 
-	
-	
 ]
 
 { #category : #draw }
-PDFDemos class >> twoColoredRectsTest [
+PDFDemos >> twoColoredRectsTest: aStream [
 	"intersecting rects"
 	
 	"self twoColoredRectsTest"
@@ -1325,11 +1472,12 @@ PDFDemos class >> twoColoredRectsTest [
 		drawColor: (PDFColor new setColor: #(0 255 0))).		
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'twoColoredRectsTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #layout }
-PDFDemos class >> verticalLayoutTest [
+PDFDemos >> verticalLayoutTest: aStream [
 	"self verticalLayoutTest"
 
 	"Demonstration of PDFCellElement"
@@ -1429,11 +1577,12 @@ PDFDemos class >> verticalLayoutTest [
 								wh: 50 mm @ 10 mm;
 								text: 'A cell without xy')).
 	pdfdoc add: aPage.
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'verticalLayoutTest.pdf')
+pdfdoc exportTo: aStream
+
 ]
 
 { #category : #misc }
-PDFDemos class >> widthTest [
+PDFDemos >> widthTest: aStream [
 	"generate a sample document for testing the width of fonts"
 
 	"PDFDemos widthTest"
@@ -1453,8 +1602,7 @@ PDFDemos class >> widthTest [
 
 	pdfdoc add: aPage.
 	
-	pdfdoc exportTo: (FileStream fileNamed: self demoPath , 'widthTest.pdf').
+		
+pdfdoc exportTo: aStream
 
-	
-	
 ]

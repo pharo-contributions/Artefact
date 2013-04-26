@@ -67,7 +67,7 @@ PDFDataTypeTest >> testDataAssociativeArray [
 	dataAssociativeArray add:( PDFDataCouple key:  (PDFDataSymbol symbol: 'Kids') value: dataArray).
 	dataAssociativeArray add:( PDFDataCouple key:  (PDFDataSymbol symbol: 'Count') value: (PDFDataValue value: 3)).
 	
-	self assert: dataAssociativeArray print: '<<',String crlf, '/Type /Pages',String crlf, '/Kids [ 2 0 R 5 0 R 8 0 R ]',String crlf, '/Count 3',String crlf, '>>'
+	self assert: dataAssociativeArray print: '<<',String lf, '/Type /Pages',String lf, '/Kids [ 2 0 R 5 0 R 8 0 R ]',String lf, '/Count 3',String lf, '>>'
 ]
 
 { #category : #'as yet unclassified' }

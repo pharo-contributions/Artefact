@@ -38,6 +38,11 @@ PDFDataValue >> printOn: aStream [
 ]
 
 { #category : #accessing }
+PDFDataValue >> value [
+	^ value
+]
+
+{ #category : #accessing }
 PDFDataValue >> value: anObject [
 	value := anObject
 ]
