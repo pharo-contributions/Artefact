@@ -1,3 +1,25 @@
+"
+A PDFCompositeText is the superclass for each text.
+
+Instance Variables
+	alignment:		<Object>
+	margin:		<Object>
+	text:		<Object>
+	verticalAlignment:		<Object>
+
+alignment
+	- xxxxx
+
+margin
+	- xxxxx
+
+text
+	- xxxxx
+
+verticalAlignment
+	- xxxxx
+
+"
 Class {
 	#name : #PDFCompositeText,
 	#superclass : #PDFComposite,

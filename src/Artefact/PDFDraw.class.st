@@ -30,6 +30,11 @@ PDFDraw class >> from: aPosition wh: aDimension [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFDraw >> defaultStyle [ 
+	^#draw
+]
+
 { #category : #accessing }
 PDFDraw >> dotted: anObject [
 	self styleSheet dotted: anObject

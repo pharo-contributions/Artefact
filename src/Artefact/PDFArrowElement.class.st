@@ -1,3 +1,10 @@
+"
+A PDFArrowElement is the element to draw a simple arrow (with one head at the end).
+
+Styles hierarchy:
+#arrow
+#arrow > #head
+"
 Class {
 	#name : #PDFArrowElement,
 	#superclass : #PDFArrow,
@@ -5,9 +12,9 @@ Class {
 }
 
 { #category : #render }
-PDFArrowElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
+PDFArrowElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [ 
 	"answer the style description"
 	
-	^ {(PDFLineElement new styleSheet: (self styleSheet); from: self from; to: self to)}, (self headAt: self to angle: self angle)
+	^ {(PDFLineElement new from: self from; to: self to)}, (self headAt: self to angle: self angle)
 
 ]

@@ -1,3 +1,7 @@
+"
+A PDFArrow is the superclass for arrows (not directly usable).
+
+"
 Class {
 	#name : #PDFArrow,
 	#superclass : #PDFCompositeDraw,
@@ -7,6 +11,11 @@ Class {
 { #category : #action }
 PDFArrow >> angle [
 	^ ((to y - from y) convertTo: Unit point) value arcTan: ((to x - from x) convertTo: Unit point) value
+]
+
+{ #category : #'initialize-release' }
+PDFArrow >> defaultStyle [
+	^ #arrow
 ]
 
 { #category : #action }
@@ -20,16 +29,16 @@ PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 PDFArrow >> headAt: aPosition angle: anAngle [
 	^ {(PDFLineElement new
-		styleSheet: self styleSheet;
 		from: aPosition;
-		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition)).
+		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition);
+		style: #head).
 	(PDFLineElement new
-		styleSheet: self styleSheet;
 		from: aPosition;
-		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition))}
+		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition);
+		style: #head)}
 ]
 
 { #category : #accessing }

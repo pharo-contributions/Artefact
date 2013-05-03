@@ -17,6 +17,11 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFText >> defaultStyle [
+	^ #text
+]
+
 { #category : #accessing }
 PDFText >> escape: aString [
 	"answer a clean string at PDF format"
@@ -34,7 +39,7 @@ PDFText >> font: aFont [
 	self styleSheet font: aFont
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFText >> isDrawElement [
 	^ false
 ]

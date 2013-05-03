@@ -1,3 +1,12 @@
+"
+A PDFDoubleArrowElement is the element to draw a double arrow (with one head at each extremity).
+
+Styles hierarchy:
+#arrow
+#arrow > #head
+
+
+"
 Class {
 	#name : #PDFDoubleArrowElement,
 	#superclass : #PDFArrow,
@@ -9,7 +18,6 @@ PDFDoubleArrowElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleShe
 	"answer the style description"
 
 	^ {(PDFLineElement new
-		styleSheet: self styleSheet;
 		from: self from;
 		to: self to)} , (self headAt: self to angle: self angle) , (self headAt: self from angle: self angle - Float pi)
 ]

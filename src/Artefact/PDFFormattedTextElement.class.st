@@ -1,8 +1,20 @@
+"
+A PDFFormattedTextElement is an element to represent a text contained in a virtual box. the text can be positionned with differents alignments (left, middle, right) but will be displayed on one line (no carriage return).
+
+Styles hierarchy:
+#text
+
+"
 Class {
 	#name : #PDFFormattedTextElement,
 	#superclass : #PDFCompositeText,
 	#category : #'Artefact-Elements-Composites'
 }
+
+{ #category : #'as yet unclassified' }
+PDFFormattedTextElement >> defaultStyle [
+	^ #text
+]
 
 { #category : #action }
 PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement margin: aMargin with: aFont [
@@ -31,7 +43,7 @@ PDFFormattedTextElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleS
 	height := font fontSize.
 	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
 
-	^ {PDFTextElement new styleSheet: (self styleSheet); text: (self text); from: (decx + self from x)@(self from y + height)}
+	^ {PDFTextElement new text: (self text); from: (decx + self from x)@(self from y + height)}
 ]
 
 { #category : #'initialize-release' }

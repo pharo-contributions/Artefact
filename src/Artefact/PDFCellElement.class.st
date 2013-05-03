@@ -1,3 +1,12 @@
+"
+A PDFCellElement is a formatted text element drawed in a rectangle.
+
+Styles hierarchy:
+#cell
+#cell > #text
+#cell > #border
+
+"
 Class {
 	#name : #PDFCellElement,
 	#superclass : #PDFFormattedTextElement,
@@ -12,6 +21,11 @@ PDFCellElement >> alignment [
 { #category : #style }
 PDFCellElement >> defaultMargin [
 	^ 1 point
+]
+
+{ #category : #'initialize-release' }
+PDFCellElement >> defaultStyle [
+	^ #cell
 ]
 
 { #category : #action }
@@ -40,12 +54,11 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	decx := self determineDecxForTextStyle: self text margin: self margin with: font.
 	decy := self determineDecyForTextStyleWith: font.
 	^ {(PDFRectElement new
-		styleSheet: aStyleSheet;
 		filled: self filled;
 		from: self from;
-		wh: dimensions).
+		wh: dimensions;
+		style: #border).
 	(PDFTextElement new
-		styleSheet: aStyleSheet;
 		text: self text;
 		from: (decx + self from x) @ (self from y + decy))}
 ]

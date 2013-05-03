@@ -58,10 +58,3 @@ PDFParagraphTest >> setUp [
 { #category : #'as yet unclassified' }
 PDFParagraphTest >> tearDown [ 
 ]
-
-{ #category : #'as yet unclassified' }
-PDFParagraphTest >> testParagraphSplitOn [
-
-	self assert: (self paragraph getNumberOfLines = 4).
-
-]

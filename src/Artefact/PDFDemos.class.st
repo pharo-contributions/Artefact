@@ -176,6 +176,12 @@ PDFDemos class >> multiOrientationsTest [
 	self new multiOrientationsTest: (self streamNamed: 'multiOrientationsTest.pdf')
 ]
 
+{ #category : #style }
+PDFDemos class >> multiStyleArrowsTest [
+	"PDFDemos multiStyleArrowsTest"
+	self new multiStyleArrowsTest: (self streamNamed: 'multiStyleArrowsTest.pdf')
+]
+
 { #category : #cool }
 PDFDemos class >> oneLineTest [
 	"PDFDemos oneLineTest"
@@ -310,7 +316,7 @@ PDFDemos >> arrowTest: aStream [
 	"self arrowTest"
 	
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new uncompressed.	
 	
 	aPage := PDFPage new.
 	
@@ -764,13 +770,11 @@ PDFDemos >> datatableTest: aStream [
 { #category : #composite }
 PDFDemos >> datatableWithCaptionsTest: aStream [
 	"generate a datatable with captions"
-
-	"self datatableWithCaptionsTest"
 	
 	| pdfdoc aPage |
 		
 	pdfdoc := PDFDocument new.
-	pdfdoc styleSheet setAttribute: #captionColor value: (PDFColor new setColor: { 158 . 158 .79 }).
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #fillColor put: (PDFColor new setColor: { 158 . 158 .79 }).
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	
@@ -785,7 +789,8 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 		);
 		from: 10 mm @ 20 mm;
 		wh: 40 mm @ 5 mm;
-		captionColor: (PDFColor new setGreyLevel: 192)
+		style: #dataTableWithColoredCaption;
+		yourself																																
 	).	
 
 	aPage add: (PDFDataTableWithRowsCaptionElement new
@@ -813,7 +818,7 @@ PDFDemos >> documentDisplayLayoutTest: aStream [
 	"self documentDisplaylayoutTest"
 
 	| pdfdoc aPage1 aPage2 |
-	pdfdoc := PDFDocument new noCompression; twoPages.
+	pdfdoc := PDFDocument new uncompressed; twoPages.
 	aPage1  := PDFPage new.
 	aPage1
 		add:
@@ -840,7 +845,7 @@ PDFDemos >> documentDisplayModeTest: aStream [
 	"self documentDisplayModeTest"
 
 	| pdfdoc aPage1 aPage2 |
-	pdfdoc := PDFDocument new noCompression; fullPage.
+	pdfdoc := PDFDocument new uncompressed; fullPage.
 	aPage1  := PDFPage new.
 	aPage1
 		add:
@@ -867,7 +872,7 @@ PDFDemos >> documentZoomTest: aStream [
 	"self documentZoomTest"
 
 	| pdfdoc aPage1 aPage2 |
-	pdfdoc := PDFDocument new noCompression; zoom: 400. "set the zoom at 400%"
+	pdfdoc := PDFDocument new uncompressed; zoom: 400. "set the zoom at 400%"
 	aPage1  := PDFPage new.
 	aPage1
 		add:
@@ -1211,6 +1216,41 @@ PDFDemos >> multiOrientationsTest: aStream [
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
 
+pdfdoc exportTo: aStream
+
+]
+
+{ #category : #style }
+PDFDemos >> multiStyleArrowsTest: aStream [
+	"drawing arrows with differents styles"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new uncompressed.	
+	pdfdoc styleSheet > #redArrow at: #drawColor put: (PDFColor new setColor: #(243 24 24)).
+	pdfdoc styleSheet	at: #drawColor put: (PDFColor new setColor: #(24 24 180)).
+	pdfdoc styleSheet > #greenArrow at: #drawColor put: (PDFColor new setColor: #(24 180 24)).
+	pdfdoc styleSheet > #greenArrow > #head at: #drawColor put: (PDFColor new setColor: #(255 0 0)).
+	aPage := PDFPage new.
+	
+	aPage add: (PDFArrowElement new
+		from: 10 mm @ 10 mm;
+		to: 100 mm @30 mm;
+		style: #redArrow
+	).
+
+	aPage add: (PDFArrowElement new
+		from: 10 mm @20 mm;
+		to: 30 mm @30 mm
+	).
+
+	aPage add: (PDFArrowElement new
+		from: 10 mm @ 15 mm;
+		to: 70 mm @30 mm;
+		style: #greenArrow
+	).
+			
+	pdfdoc add: aPage.
+	
 pdfdoc exportTo: aStream
 
 ]

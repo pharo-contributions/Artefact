@@ -1,5 +1,5 @@
 Class {
-	#name : #PDFDataTable,
+	#name : #PDFDataTableOld,
 	#superclass : #PDFComposite,
 	#instVars : [
 		'elements',
@@ -10,38 +10,42 @@ Class {
 }
 
 { #category : #action }
-PDFDataTable >> buildValue: aValue [
+PDFDataTableOld >> buildValue: aValue [
 	"answer a PDFCellStyle instance for a value datatable cell"
 
-	^PDFCellElement new
-		styleSheet: (self styleSheet copy);
+	^ PDFCellElement new
 		wh: (self wh);
 		text: (aValue);
 		margin: (self margin)
 ]
 
 { #category : #accessing }
-PDFDataTable >> data [
+PDFDataTableOld >> data [
 	^data
 ]
 
 { #category : #accessing }
-PDFDataTable >> data: anArray [
+PDFDataTableOld >> data: anArray [
 	data := anArray
 ]
 
 { #category : #'initialize-release' }
-PDFDataTable >> initialize [
+PDFDataTableOld >> defaultStyle [
+	^ #datatable
+]
+
+{ #category : #'initialize-release' }
+PDFDataTableOld >> initialize [
 	super initialize.
 	elements := OrderedCollection new.
 ]
 
 { #category : #accessing }
-PDFDataTable >> margin [
+PDFDataTableOld >> margin [
 	^margin ifNil: [ margin := 1 point ]
 ]
 
 { #category : #accessing }
-PDFDataTable >> margin: aMargin [
+PDFDataTableOld >> margin: aMargin [
 	margin := aMargin
 ]

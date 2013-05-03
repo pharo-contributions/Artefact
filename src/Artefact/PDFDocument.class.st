@@ -199,7 +199,7 @@ PDFDocument >> initialize [
 	super initialize.
 
 	self setFormat: self defaultFormat.
-	self styleSheet: (PDFStyleSheet defaultForDocument: self).
+	self styleSheet: (PDFStyleSheet default).
 	self metaData: PDFMetaData new.
 	self compression: true.
 	self defaultDisplayLayout.
@@ -214,11 +214,6 @@ PDFDocument >> metaData [
 { #category : #accessing }
 PDFDocument >> metaData: anObject [
 	metaData := anObject
-]
-
-{ #category : #configuration }
-PDFDocument >> noCompression [
-	self compression: false
 ]
 
 { #category : #accessing }
@@ -270,6 +265,11 @@ PDFDocument >> styleSheet: anObject [
 { #category : #displayLayout }
 PDFDocument >> twoPages [
 	self displayLayout: #twoPages
+]
+
+{ #category : #configuration }
+PDFDocument >> uncompressed [
+	self compression: false
 ]
 
 { #category : #accessing }

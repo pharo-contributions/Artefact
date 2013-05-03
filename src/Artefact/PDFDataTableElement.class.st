@@ -1,11 +1,14 @@
+"
+A PDFDataTableElement is a basic datatable without caption. All cells are identicals.
+"
 Class {
 	#name : #PDFDataTableElement,
-	#superclass : #PDFDataTable,
+	#superclass : #PDFDataTableOld,
 	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #render }
-PDFDataTableElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
+PDFDataTableElement >> getSubElementsWith: anObject styleSheet: aStyleSheet [ 
 	"answer a model of a datatable"
 	
 	self data do: [ :aLine |
@@ -13,7 +16,6 @@ PDFDataTableElement >> getSubElementsWith: anObject styleSheet: anObject1 [
 	].
 	
 	^{ PDFDataTableCustomizedElement new
-		styleSheet: (self styleSheet);
 		from: (self from);
 		wh: (self wh);
 		data: elements }

@@ -1,6 +1,8 @@
 "
 A PDFElement is the abstract class for each element that can be included in a PDFPage.
 
+Each PDFElement have the possibility to define which style will be applyed on it instead of the default one.
+
 Instance Variables
 	styleSheet:		<Object>
 
@@ -14,10 +16,22 @@ Class {
 	#instVars : [
 		'styleSheet',
 		'wh',
-		'from'
+		'from',
+		'style'
 	],
 	#category : #'Artefact-Elements'
 }
+
+{ #category : #style }
+PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
+	"realise the addition (ordered from less priority to higher) of differents styleSheet. The first one come from the upper elements. The second one is the context specific to the element. The third one is defined by the user only for this element and so is prioritary"
+	^  aStyleSheet + (aStyleSheet substyles at: self style ifAbsent: [ PDFStyleSheet new ]) + self styleSheet.
+]
+
+{ #category : #style }
+PDFElement >> defaultStyle [
+	^ self subclassResponsibility 
+]
 
 { #category : #accessing }
 PDFElement >> from [
@@ -30,19 +44,19 @@ PDFElement >> from: anObject [
 ]
 
 { #category : #render }
-PDFElement >> generateCodeSegmentWith: aPage styleSheet: aStyleSheet [
+PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #render }
+{ #category : #'initialize-release' }
 PDFElement >> initialize [ 
 	super initialize.
 
 	self styleSheet: PDFStyleSheet new.
-	
+	self style: self defaultStyle
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
 	"Return the minimum wh for layout, by default its the one defined by the user"
 	^ self wh
@@ -52,6 +66,16 @@ PDFElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
 PDFElement >> rotation: anAngle [
 	self styleSheet rotation: anAngle 
  
+]
+
+{ #category : #accessing }
+PDFElement >> style [
+	^ style
+]
+
+{ #category : #accessing }
+PDFElement >> style: anObject [
+	style := anObject
 ]
 
 { #category : #accessing }

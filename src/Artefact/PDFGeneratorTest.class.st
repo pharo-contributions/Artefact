@@ -15,7 +15,7 @@ PDFGeneratorTest >> setUp [
 { #category : #'as yet unclassified' }
 PDFGeneratorTest >> testGenerateEmptyPage [
 	| page pageDataType contentDataType document |
-	document := PDFDocument new noCompression.
+	document := PDFDocument new uncompressed.
 	page := PDFPage new format: PDFA4Format new.
 	document add: page.
 	generator := PDFGenerator new compression: false.

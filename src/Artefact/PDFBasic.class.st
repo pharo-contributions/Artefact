@@ -27,7 +27,7 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 	"generate a CodeSegment based on the addition of the received stylesheet and the element styleSheet (prioritary)"
 
 	| mixedStyleSheet |
-	mixedStyleSheet := aStyleSheet + self styleSheet.
+	mixedStyleSheet := self buildCompositeStyleSheetFrom: aStyleSheet.
 	^ self codeSegmentClass
 		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet)
 		styleSheet: mixedStyleSheet

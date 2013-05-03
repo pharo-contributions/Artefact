@@ -1,6 +1,9 @@
+"
+A PDFDataTableWithCaptions is a datatable where the user defines captions on the first row or on the first column.
+"
 Class {
 	#name : #PDFDataTableWithCaptions,
-	#superclass : #PDFDataTable,
+	#superclass : #PDFDataTableOld,
 	#instVars : [
 		'captions'
 	],
@@ -11,31 +14,12 @@ Class {
 PDFDataTableWithCaptions >> buildCaption: aString styleSheet: aStyleSheet [
 	"answer a PDFCellStyle instance for a caption datatable cell"
 
-	|ink captionElement |
-
-	captionElement := PDFCellElement new 
-		styleSheet: aStyleSheet; 
+	^ PDFCellElement new 
 		wh: self wh; 
 		text: aString;
-		margin: self margin.
+		margin: self margin;
+		style: #caption.
 		
-	"The fill color is remplaced by the caption color"
-	captionElement fillColor: (aStyleSheet get: #captionColor). 
-	
-	^captionElement
-		
-]
-
-{ #category : #accessing }
-PDFDataTableWithCaptions >> captionColor [
-	"Answer the color for the background of a caption. "
-	
-	^ self styleSheet get: #captionColor
-]
-
-{ #category : #accessing }
-PDFDataTableWithCaptions >> captionColor: aPDFColor [
-	self styleSheet setAttribute: #captionColor value: aPDFColor
 ]
 
 { #category : #accessing }

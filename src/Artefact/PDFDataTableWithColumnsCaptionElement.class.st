@@ -12,13 +12,12 @@ PDFDataTableWithColumnsCaptionElement >> getSubElementsWith: aPDFGenerator style
 	^ OrderedCollection new
 		add:
 				(PDFDataTableCustomizedElement new
-						styleSheet: aStyleSheet;
 						from: self from;
 						wh: self wh;
-						data: {elements});
+						data: {elements};
+						style: #caption);
 		add:
 				(PDFDataTableElement new
-						styleSheet: aStyleSheet;
 						from: self from + (0 @ self wh y);
 						wh: self wh;
 						data: self data);

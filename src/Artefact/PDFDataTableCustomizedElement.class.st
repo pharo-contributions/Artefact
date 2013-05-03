@@ -1,11 +1,15 @@
+"
+A PDFDataTableCustomizedElement is a datatable where each cell could receive it own style.
+
+"
 Class {
 	#name : #PDFDataTableCustomizedElement,
-	#superclass : #PDFDataTable,
+	#superclass : #PDFDataTableOld,
 	#category : #'Artefact-Elements-Composites'
 }
 
 { #category : #render }
-PDFDataTableCustomizedElement >> getSubElementsWith: anObject styleSheet: anObject1 [ 
+PDFDataTableCustomizedElement >> getSubElementsWith: anObject styleSheet: aStyleSheet [ 
 	"answer a view of a datatable"
 	
 	| position |
