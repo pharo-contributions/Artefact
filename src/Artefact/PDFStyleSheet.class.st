@@ -95,8 +95,13 @@ PDFStyleSheet >> get: anAttribute [
 PDFStyleSheet >> initialize [
 	super initialize.
 	attributes := Dictionary new.
+	self initializeSubstyles.
+]
+
+{ #category : #'initialize-release' }
+PDFStyleSheet >> initializeSubstyles [
 	substyles := Dictionary new.
-	substyles at: #default put: self.
+	substyles at: #default put: self
 ]
 
 { #category : #attributes }
@@ -134,4 +139,9 @@ PDFStyleSheet >> textColor: aColor [
 { #category : #attributes }
 PDFStyleSheet >> thickness: aThickness [
 	self at: #thickness put: aThickness 
+]
+
+{ #category : #'as yet unclassified' }
+PDFStyleSheet >> withoutSubstyles [
+	^ self copy initializeSubstyles
 ]

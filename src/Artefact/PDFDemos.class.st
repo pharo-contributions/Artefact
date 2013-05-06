@@ -744,7 +744,7 @@ PDFDemos >> datatableTest: aStream [
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
 		from: 10 mm @ 10 mm;
-		wh: 60 mm @ 5 mm
+		wh: 190 mm @ 50 mm
 	).
 
 	aPage add: (PDFDataTableElement new
@@ -757,8 +757,8 @@ PDFDemos >> datatableTest: aStream [
 		fillColor: (PDFColor new setGreyLevel: 230);
 		font: (PDFTimesFont new fontSize: 6 pt);
 		dotted: (PDFDotted new length: 0.2mm; space: 0.2mm);
-		from: 10 mm @ 30 mm;
-		wh: 30 mm @ 5 mm
+		from: 10 mm @ 60 mm;
+		wh: 190 mm @ 50 mm
 	).
 	
 	pdfdoc add: aPage.
@@ -773,8 +773,9 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 	
 	| pdfdoc aPage |
 		
-	pdfdoc := PDFDocument new.
+	pdfdoc := PDFDocument new uncompressed.
 	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #fillColor put: (PDFColor new setColor: { 158 . 158 .79 }).
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #drawColor put: (PDFColor new setColor: { 158 . 158 .79 }).
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	
@@ -788,7 +789,7 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
 		from: 10 mm @ 20 mm;
-		wh: 40 mm @ 5 mm;
+		wh: 190 mm @ 60 mm;
 		style: #dataTableWithColoredCaption;
 		yourself																																
 	).	
@@ -800,8 +801,8 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 			#('Peter' 'Mickael' 'robert')
 			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
 		);
-		from: 10 mm @ 50 mm;
-		wh: 40 mm @ 5 mm
+		from: 10 mm @ 90 mm;
+		wh: 190 mm @ 60 mm
 	).
 	
 	pdfdoc add: aPage.

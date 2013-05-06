@@ -25,7 +25,11 @@ Class {
 { #category : #style }
 PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 	"realise the addition (ordered from less priority to higher) of differents styleSheet. The first one come from the upper elements. The second one is the context specific to the element. The third one is defined by the user only for this element and so is prioritary"
-	^  aStyleSheet + (aStyleSheet substyles at: self style ifAbsent: [ PDFStyleSheet new ]) + self styleSheet.
+
+	^ (aStyleSheet substyles
+		at: self style
+		ifPresent: [ :subStyle | aStyleSheet withoutSubstyles + subStyle ]
+		ifAbsent: [ aStyleSheet ]) + self styleSheet
 ]
 
 { #category : #style }
