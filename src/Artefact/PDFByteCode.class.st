@@ -1,7 +1,13 @@
+"
+A PDFByteCode is the list of codes used in PDF.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFByteCode,
 	#superclass : #Object,
-	#category : #Artefact
+	#category : #'Artefact-CodeSegment'
 }
 
 { #category : #text }

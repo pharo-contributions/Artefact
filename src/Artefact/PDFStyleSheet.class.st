@@ -1,3 +1,21 @@
+"
+A PDFStyleSheet define style for PDFElements to separate presentation from contents. A styleSheet can have substyles to define properties specifics to a context
+
+Instance Variables
+	attributes:		<Object>
+	document:		<Object>
+	substyles:		<Object>
+
+attributes
+	- xxxxx
+
+document
+	- xxxxx
+
+substyles
+	- xxxxx
+
+"
 Class {
 	#name : #PDFStyleSheet,
 	#superclass : #Object,

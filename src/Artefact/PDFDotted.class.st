@@ -1,3 +1,17 @@
+"
+A PDFDotted is a style of dotted line defined by the length of the segment and space between two of these.
+
+Instance Variables
+	length:		<Object>
+	space:		<Object>
+
+length
+	- xxxxx
+
+space
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDotted,
 	#superclass : #Object,

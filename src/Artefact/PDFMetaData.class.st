@@ -1,3 +1,37 @@
+"
+A PDFMetaData is a description of the document (author, title...).
+
+You can read it with a pdf viewer.
+
+By default, a PDFDocument have one that you can access with #metadata method.
+
+Instance Variables
+	author:		<Object>
+	creator:		<Object>
+	keywords:		<Object>
+	producer:		<Object>
+	subject:		<Object>
+	title:		<Object>
+
+author
+	- xxxxx
+
+creator
+	- xxxxx
+
+keywords
+	- xxxxx
+
+producer
+	- xxxxx
+
+subject
+	- xxxxx
+
+title
+	- xxxxx
+
+"
 Class {
 	#name : #PDFMetaData,
 	#superclass : #Object,

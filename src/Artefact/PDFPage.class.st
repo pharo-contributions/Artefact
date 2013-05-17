@@ -1,3 +1,25 @@
+"
+A PDFPage is a page of a PDFDocument. A page is composed by a collection of PDFElements.
+
+Instance Variables
+	document:		<Object>
+	elements:		<Object>
+	format:		<Object>
+	margins:		<Object>
+
+document
+	- xxxxx
+
+elements
+	- xxxxx
+
+format
+	- xxxxx
+
+margins
+	- xxxxx
+
+"
 Class {
 	#name : #PDFPage,
 	#superclass : #Object,

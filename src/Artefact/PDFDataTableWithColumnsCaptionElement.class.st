@@ -1,3 +1,9 @@
+"
+A PDFDataTableWithColumnsCaptionElement is the specific dataTable for columns caption.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFDataTableWithColumnsCaptionElement,
 	#superclass : #PDFDataTableWithCaptions,

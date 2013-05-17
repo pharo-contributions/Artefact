@@ -1,3 +1,13 @@
+"
+A PDFDataTableWithCaptions is an abstract class for dataTable with a specific context for caption.
+
+Instance Variables
+	captions:		<Object>
+
+captions
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataTableWithCaptions,
 	#superclass : #PDFDataTableElement,

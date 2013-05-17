@@ -1,3 +1,17 @@
+"
+A PDFDataTableElement is a basic table. You just have to fill it with a two dimensions array and the composite will create every cells.
+
+Instance Variables
+	data:		<Object>
+	margin:		<Object>
+
+data
+	- xxxxx
+
+margin
+	- xxxxx
+
+"
 Class {
 	#name : #PDFDataTableElement,
 	#superclass : #PDFComposite,

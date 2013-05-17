@@ -1,3 +1,13 @@
+"
+A PDFSpacedLayout is the abstract class for each layout with space between contained elements.
+
+Instance Variables
+	spacing:		<Object>
+
+spacing
+	- xxxxx
+
+"
 Class {
 	#name : #PDFSpacedLayout,
 	#superclass : #PDFLayout,

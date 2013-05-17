@@ -1,3 +1,25 @@
+"
+A PDFColor represent a color or a grey level in PDF.
+
+Instance Variables
+	blue:		<Object>
+	green:		<Object>
+	greyLevel:		<Object>
+	red:		<Object>
+
+blue
+	- xxxxx
+
+green
+	- xxxxx
+
+greyLevel
+	- xxxxx
+
+red
+	- xxxxx
+
+"
 Class {
 	#name : #PDFColor,
 	#superclass : #Object,

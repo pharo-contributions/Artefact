@@ -1,3 +1,13 @@
+"
+A PDFTemplate is a kind of page containing pre-defined elements.
+
+Instance Variables
+	dotted:		<Object>
+
+dotted
+	- xxxxx
+
+"
 Class {
 	#name : #PDFTemplate,
 	#superclass : #PDFPage,

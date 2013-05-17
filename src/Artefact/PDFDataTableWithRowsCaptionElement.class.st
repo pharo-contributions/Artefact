@@ -1,3 +1,9 @@
+"
+A PDFDataTableWithRowsCaptionElement is the specific dataTable for rows caption.
+
+Instance Variables
+
+"
 Class {
 	#name : #PDFDataTableWithRowsCaptionElement,
 	#superclass : #PDFDataTableWithCaptions,
