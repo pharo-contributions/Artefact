@@ -173,7 +173,7 @@ ConfigurationOfArtefact >> project [
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '0.9'.
+	spec for: #'common' version: '1.0'.
 
 ]
 
