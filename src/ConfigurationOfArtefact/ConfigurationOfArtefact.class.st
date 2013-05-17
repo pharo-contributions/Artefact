@@ -134,6 +134,21 @@ ConfigurationOfArtefact >> baseline09: spec [
 ]
 
 { #category : #accessing }
+ConfigurationOfArtefact >> baseline10: spec [
+	<version: '1.0-baseline'>
+	spec
+		for: #common
+		do: [ 
+			spec blessing: #baseline.
+			spec repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main'.
+			spec
+				package: 'Units' with: 'Units-espin.36'.
+			spec repository: 'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
+			spec
+				package: 'Artefact']
+]
+
+{ #category : #accessing }
 ConfigurationOfArtefact >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes"
@@ -173,5 +188,19 @@ ConfigurationOfArtefact >> version09: spec [
 			description: 'configuration for artefact'.
 		spec
 			package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.194'.
+	]
+]
+
+{ #category : #accessing }
+ConfigurationOfArtefact >> version10: spec [
+	<version: '1.0' imports: #('1.0-baseline')>
+	
+	spec for: #common do: [
+		spec
+			blessing: #stable;
+			author: 'Olivier Auverlot and Guillaume Larcheveque';
+			description: 'configuration for artefact'.
+		spec
+			package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.224'.
 	]
 ]
