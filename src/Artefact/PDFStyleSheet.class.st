@@ -15,6 +15,7 @@ PDFStyleSheet class >> default [
 	default:= self new 
 		at: #textColor put: (PDFColor new setColor:#(0 0 0)); 
 		at: #fillColor put: (PDFColor new setColor: #(255 255 255)); 
+		at: #filled put: true;
 		at: #drawColor put: (PDFColor new setColor:#(0 0 0)); 
 		at: #thickness put: 1 pt;
 		at: #dotted put: nil;
@@ -74,6 +75,16 @@ PDFStyleSheet >> drawColor: aPDFColor [
 { #category : #attributes }
 PDFStyleSheet >> fillColor: aPDFColor [
 	self at: #fillColor put: aPDFColor 
+]
+
+{ #category : #private }
+PDFStyleSheet >> filled [
+	^ self get: #filled
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> filled: aBoolean [
+	self at: #filled put: aBoolean 
 ]
 
 { #category : #private }

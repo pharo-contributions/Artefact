@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #render }
-PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
+PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a line from xy to destination"
 	
 	| origin r |
@@ -41,7 +41,7 @@ PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObje
 		print: ((0.552 * r) + origin x); space; print: (origin y - r); space;
 		print: (origin x + r); space; print: ((-0.552 * r) + origin y); space;
 		print: (origin x + r); space; print: origin y; nextPutAll: ' c h ';
-		nextPutAll: (self fillmode)
+		nextPutAll:( self fillMode: (aStyleSheet filled))
 	]).
  	
 ]

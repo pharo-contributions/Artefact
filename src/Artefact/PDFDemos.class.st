@@ -399,7 +399,7 @@ PDFDemos >> brochure: aStream [
 
 	"self brochure"
 
-	| pdfdoc aPage titleFont subtitleFont titleColor |
+	| pdfdoc aPage titleFont subtitleFont titleColor layout |
 	pdfdoc := PDFDocument new.
 	titleColor := PDFColor new setColor: #(13 100 175).
 	titleFont := PDFHelveticaFont new

@@ -27,7 +27,7 @@ PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSh
 		space;
 		nextPutAll: PDFByteCode rectangle;
 		space;
-		nextPutAll: (self fillmode)
+		nextPutAll:( self fillMode: (aStyleSheet filled))
 	 ]).	
 		
 ]

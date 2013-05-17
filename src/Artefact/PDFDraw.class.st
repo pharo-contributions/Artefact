@@ -16,8 +16,7 @@ Class {
 	#name : #PDFDraw,
 	#superclass : #PDFBasic,
 	#instVars : [
-		'to',
-		'filled'
+		'to'
 	],
 	#category : #'Artefact-Elements-Basic'
 }
@@ -47,23 +46,12 @@ PDFDraw >> drawColor: aPDFColor [
 
 { #category : #accessing }
 PDFDraw >> fillColor: aPDFColor [
-	self filled: true.
 	self styleSheet fillColor: aPDFColor 
 ]
 
 { #category : #accessing }
-PDFDraw >> filled [
+PDFDraw >> fillMode: filled [
 	^ filled
-]
-
-{ #category : #accessing }
-PDFDraw >> filled: anObject [
-	filled := anObject
-]
-
-{ #category : #accessing }
-PDFDraw >> fillmode [
-	^ self filled
 		ifTrue: [ PDFByteCode filling ]
 		ifFalse: [ PDFByteCode noFilling ]
 ]
@@ -71,7 +59,6 @@ PDFDraw >> fillmode [
 { #category : #accessing }
 PDFDraw >> initialize [
 	super initialize. 
-	self filled: false.
 ]
 
 { #category : #accessing }

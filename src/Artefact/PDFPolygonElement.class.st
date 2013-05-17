@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #render }
-PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
+PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a polygon from xy to destination (a array of positions)"
 	
 	| points |
@@ -31,6 +31,6 @@ PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObj
 			nextPutAll: PDFByteCode line;
 			space
 		].
-		s nextPutAll: (self fillmode)
+		s nextPutAll:( self fillMode: (aStyleSheet filled))
 	]).
 ]

@@ -54,7 +54,6 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	decx := self determineDecxForTextStyle: self text margin: self margin with: font.
 	decy := self determineDecyForTextStyleWith: font.
 	^ {(PDFRectElement new
-		filled: self filled;
 		from: self from;
 		wh: dimensions;
 		style: #border).

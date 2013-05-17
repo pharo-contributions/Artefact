@@ -48,6 +48,11 @@ PDFLayout >> createOriginalPositionDictionary [
 	^ positions
 ]
 
+{ #category : #'as yet unclassified' }
+PDFLayout >> defaultStyle [
+	^ #default
+]
+
 { #category : #render }
 PDFLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	anElement wh: (anElement minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet)

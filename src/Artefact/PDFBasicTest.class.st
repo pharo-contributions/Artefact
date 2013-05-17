@@ -19,7 +19,7 @@ PDFBasicTest >> element: anObject [
 
 { #category : #'as yet unclassified' }
 PDFBasicTest >> setUp [
-	self element: PDFBasic new.
+	self element: PDFDummyBasic new.
 ]
 
 { #category : #'as yet unclassified' }
