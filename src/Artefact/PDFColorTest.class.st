@@ -6,10 +6,10 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFColorTest >> testEqual [
-	self assert: (PDFColor new setColor: #(12 48 79)) equals: (PDFColor new setColor: #(12 48 79))
+	self assert: (PDFColor r: 12 g: 48 b: 79) equals: (PDFColor r: 12 g: 48 b: 79)
 ]
 
 { #category : #'as yet unclassified' }
 PDFColorTest >> testEqualDifferents [
-	self deny: (PDFColor new setColor: #(54 98 12)) = (PDFColor new setColor: #(12 48 79))
+	self deny: (PDFColor r: 54 g: 98 b: 12) = (PDFColor r: 12 g: 48 b: 79)
 ]

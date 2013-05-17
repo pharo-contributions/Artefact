@@ -76,12 +76,6 @@ PDFDemos class >> colorTest [
 ]
 
 { #category : #composite }
-PDFDemos class >> datatableCustomizedElementTest [
-	"PDFDemos datatableCustomizedElementTest"
-	self new datatableCustomizedElementTest: (self streamNamed: 'datatableCustomizedElementTest.pdf')
-]
-
-{ #category : #composite }
 PDFDemos class >> datatableTest [
 	"PDFDemos datatableTest"
 	self new datatableTest: (self streamNamed: 'datatableTest.pdf')
@@ -323,7 +317,7 @@ PDFDemos >> arrowTest: aStream [
 	aPage add: (PDFArrowElement new
 		from: 10 mm @ 10 mm;
 		to: 100 mm @30 mm;
-		drawColor: (PDFColor new setColor: #(255 0 0))
+		drawColor: (PDFColor r: 255 g: 0 b: 0)
 	).
 
 	aPage add: (PDFArrowElement new
@@ -334,33 +328,33 @@ PDFDemos >> arrowTest: aStream [
 	aPage add: (PDFArrowElement new
 		from: 120 mm @10 mm;
 		to: 120 mm @ 40 mm;
-		drawColor: (PDFColor new setColor: #(0 0 255))
+		drawColor: (PDFColor r: 0 g: 0 b: 255)
 	).
 
 	aPage add: (PDFArrowElement new
 		from: 125 mm @ 40 mm;
 		to: 140 mm @ 40 mm;
-		drawColor: (PDFColor new setColor: #(0 0 255))
+		drawColor: (PDFColor r: 0 g: 0 b: 255)
 	).
 
 	aPage add: (PDFArrowElement new
 		from: 125 mm @ 40 mm;
 		to: 100 mm @ 80 mm;
-		drawColor: (PDFColor new setColor: #(0 255 0));
+		drawColor: (PDFColor r: 0 g: 255 b: 0);
 		dotted: (PDFDotted new length: 2mm; space: 3mm)
 	).	
 
 	aPage add: (PDFArrowElement new
 		from: 40 mm @ 50 mm;
 		to: 80 mm @ 90 mm;
-		drawColor: (PDFColor new setColor: #(192 255 0));
+		drawColor: (PDFColor r: 192 g: 255 b: 0);
 		thickness:  2 mm
 	 ).		
 	
 	aPage add: (PDFDoubleArrowElement new
 		from: 10 mm @ 80 mm;
 		to: 100 mm @ 150 mm;
-		drawColor: (PDFColor new setColor: #(0 128 0));
+		drawColor: (PDFColor r: 0 g: 128 b: 0);
 		dotted: (PDFDotted new length: 2 mm; space: 2 mm)
 	).
 			
@@ -401,7 +395,7 @@ PDFDemos >> brochure: aStream [
 
 	| pdfdoc aPage titleFont subtitleFont titleColor layout |
 	pdfdoc := PDFDocument new.
-	titleColor := PDFColor new setColor: #(13 100 175).
+	titleColor := PDFColor r: 13 g: 100 b: 175.
 	titleFont := PDFHelveticaFont new
 		fontSize: 22 pt;
 		bold: true.
@@ -466,14 +460,14 @@ PDFDemos >> capLineTest: aStream [
 				from: 20 mm @ 20 mm;
 				to: 100 mm @ 60 mm;
 				thickness:  5 mm;
-				drawColor: (PDFColor new setColor: #(100 25 100)) ;
+				drawColor: (PDFColor r: 100 g: 25 b: 100) ;
 				roundCap: true).
 	aPage
 		add:
 			(PDFLineElement new
 				from: 30 mm @ 40 mm;
 				to: 110 mm @ 80 mm;
-				drawColor: (PDFColor new setColor: #(240 80 100)) ;
+				drawColor: (PDFColor r: 240 g: 80 b: 100) ;
 				thickness:  5 mm).
 				
 	pdfdoc add: aPage.
@@ -488,7 +482,7 @@ PDFDemos >> cellTest: aStream [
 	
 	"Demonstration of PDFCellElement"
 	
-	| pdfdoc myFont myTitleFont aPage |
+	| pdfdoc myTitleFont aPage |
 	pdfdoc := PDFDocument new.	
 
 	myTitleFont := PDFTimesFont new fontSize: 24 pt; bold: true.
@@ -554,8 +548,8 @@ PDFDemos >> cellTest: aStream [
 	aPage add: (PDFCellElement new  
 		from: 10 mm @ 60 mm ;
 		wh: 50 mm @ 10 mm;
-		textColor: (PDFColor new setColor: #(0 0 255));
-		drawColor: (PDFColor new setColor: #(255 0 0));
+		textColor: (PDFColor r: 0 g: 0 b: 255);
+		drawColor: (PDFColor r: 255 g: 0 b: 0);
 		text: 'text: blue border: red';
 		center;
 		middle
@@ -564,8 +558,8 @@ PDFDemos >> cellTest: aStream [
 	aPage add: (PDFCellElement new  
 		from: 80 mm @ 60 mm;
 		wh: 50 mm @ 10 mm;
-		textColor: (PDFColor new setColor: #(0 0 255));
-		fillColor: (PDFColor new setColor: #(0 255 0));
+		textColor: (PDFColor r: 0 g: 0 b: 255);
+		fillColor: (PDFColor r: 0 g: 255 b: 0);
 		text: 'background: green';
 		center;
 		middle
@@ -632,8 +626,8 @@ PDFDemos >> circlesTest: aStream [
 	aPage add: (PDFCircleElement new 
 		from: 120 mm @ 50 mm;
 		radius: 30 mm;
-		fillColor: (PDFColor new setColor: #(0 255 0));
-		drawColor: (PDFColor new setColor: #(255 0 0))
+		fillColor: (PDFColor r: 0 g: 255 b: 0);
+		drawColor: (PDFColor r: 255 g: 0 b: 0)
 	).
 	
 	pdfdoc add: aPage.
@@ -648,7 +642,7 @@ PDFDemos >> colorTest: aStream [
 
 	"self colorTest"
 	
-	| pdfdoc aPage myFont |
+	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
 	aPage := PDFPage new.
@@ -657,70 +651,20 @@ PDFDemos >> colorTest: aStream [
 		from: 10mm@10mm;
 		wh: 100 mm @ 20 mm; 
 		text: 'Hello World!';
-		textColor: (PDFColor new setColor: #(255 0 0) );
-		fillColor: (PDFColor new setColor: #(0 255 0))
+		textColor: (PDFColor r: 255 g: 0 b: 0);
+		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
 	aPage add: (PDFRectElement new 
 		from: 10 mm @ 50 mm;
 		wh: 50 mm @ 50 mm; 
 		thickness: 5pt;
-		drawColor: (PDFColor new setColor: #(0 0 255));
-		fillColor: (PDFColor new setColor: #(0 255 0))
+		drawColor: (PDFColor r: 0 g: 0 b: 255);
+		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
 		
 	pdfdoc add: aPage.
 	
 pdfdoc exportTo: aStream
-
-]
-
-{ #category : #composite }
-PDFDemos >> datatableCustomizedElementTest: aStream [
-	"generate a customized datatable"
-
-	"self datatableCustomizedElementTest"
-	
-	| pdfdoc aPage |
-		
-	pdfdoc := PDFDocument new.
-	pdfdoc setFormat: PDFA4Format new.
-	pdfdoc metaData title: 'Users report'.
-	
-	aPage := PDFPage new.
-	aPage add: (PDFDataTableCustomizedElement new
-		data: {
-			{
-			"Column captions"
-			PDFCellElement new text: 'Name'; fillColor: (PDFColor new setGreyLevel: 230).
-			PDFCellElement new text: 'Surname'; fillColor: (PDFColor new setGreyLevel: 230).
-			PDFCellElement new text: 'Email'; fillColor: (PDFColor new setGreyLevel: 230).
-			}.		
-			{
-			"first line"
-			PDFCellElement new text: 'Smith'.
-			PDFCellElement new text: 'Peter'.
-			PDFCellElement new text: 'peter.smith@mail.org'.
-			}.
-			{
-			"second line"
-			"the email is in a red cell... probably a bad email address :-)"
-			PDFCellElement new text: 'Jones'.
-			PDFCellElement new text: 'Mickael'.
-			PDFCellElement new text: 'mickael.jones@epr.com'; fillColor: (PDFColor new setColor: #(255 0 0)).
-			}.
-			{
-			"third line Unmatched"
-			PDFCellElement new text: 'washington'.
-			PDFCellElement new text: 'robert'.
-			PDFCellElement new text: 'robert.washington@blif.com'.
-			}.
-		};
-		from: 10 mm @ 20 mm;
-		wh: 40 mm @ 5  mm
-	). 
-	
-	pdfdoc add: aPage.
-																																																																																																										pdfdoc exportTo: aStream
 
 ]
 
@@ -753,7 +697,7 @@ PDFDemos >> datatableTest: aStream [
 			#('Jones' 'Mickael' 'mickael.jones@epr.com')
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
-		textColor:(PDFColor new setColor: #(0 0 255));
+		textColor:(PDFColor r: 0 g: 0 b: 255);
 		fillColor: (PDFColor new setGreyLevel: 230);
 		font: (PDFTimesFont new fontSize: 6 pt);
 		dotted: (PDFDotted new length: 0.2mm; space: 0.2mm);
@@ -774,8 +718,8 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 	| pdfdoc aPage |
 		
 	pdfdoc := PDFDocument new uncompressed.
-	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #fillColor put: (PDFColor new setColor: { 158 . 158 .79 }).
-	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #drawColor put: (PDFColor new setColor: { 158 . 158 .79 }).
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #fillColor put: (PDFColor r: 158 g: 158 b: 79).
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #drawColor put: (PDFColor r: 158 g: 158 b: 79).
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	
@@ -899,7 +843,7 @@ PDFDemos >> drawStyleSheetTest: aStream [
 
 	"self drawStyleSheetTest"
 	
-	| pdfdoc aPage myFont |
+	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
 	aPage := PDFPage new.
@@ -908,8 +852,8 @@ PDFDemos >> drawStyleSheetTest: aStream [
 		from: 10 mm @ 50 mm;
 		wh: 50 mm @ 50 mm; 
 		thickness: 5 mm;
-		drawColor: (PDFColor new setColor: #(0 0 255));
-		fillColor: (PDFColor new setColor: #(0 255 0))
+		drawColor: (PDFColor r: 0 g: 0 b: 255);
+		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
 		
 	aPage add: (PDFRectElement new 
@@ -1040,8 +984,8 @@ PDFDemos >> horizontalLayoutTest: aStream [
 						(PDFCellElement new
 								from: 10 mm @ 60 mm;
 								wh: 50 mm @ 10 mm;
-								textColor: (PDFColor new setColor: #(0 0 255));
-								drawColor: (PDFColor new setColor: #(255 0 0));
+								textColor: (PDFColor r: 0 g: 0 b: 255);
+								drawColor: (PDFColor r: 255 g: 0 b: 0);
 								text: 'text: blue border: red';
 								center;
 								middle);
@@ -1049,8 +993,8 @@ PDFDemos >> horizontalLayoutTest: aStream [
 						(PDFCellElement new
 								from: 80 mm @ 60 mm;
 								wh: 50 mm @ 10 mm;
-								textColor: (PDFColor new setColor: #(0 0 255));
-								fillColor: (PDFColor new setColor: #(0 255 0));
+								textColor: (PDFColor r: 0 g: 0 b: 255);
+								fillColor: (PDFColor r: 0 g: 255 b: 0);
 								text: 'background: green';
 								center;
 								middle);
@@ -1181,7 +1125,7 @@ PDFDemos >> lineTest: aStream [
 				from: 210 mm @ 0 mm;
 				to: 0 mm @ 297 mm).
 	pdfdoc add: aPage.
-	pdfdoc styleSheet drawColor: (PDFColor new setColor: #(200 25 25)).
+	pdfdoc styleSheet drawColor: (PDFColor r: 200 g: 25 b: 25).
 pdfdoc exportTo: aStream
 
 ]
@@ -1227,10 +1171,10 @@ PDFDemos >> multiStyleArrowsTest: aStream [
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new uncompressed.	
-	pdfdoc styleSheet > #redArrow at: #drawColor put: (PDFColor new setColor: #(243 24 24)).
-	pdfdoc styleSheet	at: #drawColor put: (PDFColor new setColor: #(24 24 180)).
-	pdfdoc styleSheet > #greenArrow at: #drawColor put: (PDFColor new setColor: #(24 180 24)).
-	pdfdoc styleSheet > #greenArrow > #head at: #drawColor put: (PDFColor new setColor: #(255 0 0)).
+	pdfdoc styleSheet > #redArrow at: #drawColor put: (PDFColor r: 243 g: 24 b: 24).
+	pdfdoc styleSheet	at: #drawColor put: (PDFColor r: 24 g: 24 b: 180).
+	pdfdoc styleSheet > #greenArrow at: #drawColor put: (PDFColor r: 24 g: 180 b: 24).
+	pdfdoc styleSheet > #greenArrow > #head at: #drawColor put: (PDFColor r: 255 g: 0 b: 0).
 	aPage := PDFPage new.
 	
 	aPage add: (PDFArrowElement new
@@ -1359,14 +1303,14 @@ PDFDemos >> polygonsTest: aStream [
 	aPage add: (PDFPolygonElement new 
 		from: 10 mm @ 10 mm ; 
 		to: { 60  mm @ 20 mm . 50 mm @ 40 mm . 30 mm @ 50 mm . 15 mm@ 45 mm };
-		drawColor: (PDFColor new setColor: #(0 0 255))
+		drawColor: (PDFColor r: 0 g: 0 b: 255)
 	).
 	
 	aPage add: (PDFPolygonElement new 
 		from: 10 mm @ 55 mm; 
 		to: { 60 mm @  60 mm  . 50 mm @ 100  mm . 30 mm @ 110 mm . 15 mm @ 105  mm };
-		drawColor: (PDFColor new setColor: #(0 0 255));
-		fillColor: (PDFColor new setColor: #(255 0 0));
+		drawColor: (PDFColor r: 0 g: 0 b: 255);
+		fillColor: (PDFColor r: 255 g: 0 b: 0);
 		thickness: 5 mm	
 	).
 	pdfdoc add: aPage.
@@ -1397,12 +1341,12 @@ PDFDemos >> rectsTest: aStream [
 	aPage add: (PDFRectElement new
 		from: 15 mm @ 15 mm;
 		wh: 100 mm @ 30 mm;
-		fillColor: (PDFColor new setColor: #(142 24 78))
+		fillColor: (PDFColor r: 142 g: 24 b: 78)
 		).		
 	aPage add: (PDFRectElement new
 		from: 20 mm @ 20 mm;
 		wh: 100 mm @ 30 mm;
-		drawColor: (PDFColor new setColor: #(0 255 0)) 
+		drawColor: (PDFColor r: 0 g: 255 b: 0) 
 		).
 	pdfdoc add: aPage.
 
@@ -1431,18 +1375,18 @@ PDFDemos >> textTest: aStream [
 						text: 'A very simple text with specified font');
 		add:
 				(PDFTextElement new
-						textColor: (PDFColor new setColor: #(255 0 0));
+						textColor: (PDFColor r: 255 g: 0 b: 0);
 						from: 10 mm @ 50 mm;
 						text: 'A very simple text with specified color');
 		add:
 				(PDFTextElement new
-						textColor: (PDFColor new setColor: #(0 0 255));
+						textColor: (PDFColor r: 0 g: 0 b: 255);
 						font: myFont;
 						from: 10 mm @ 70 mm;
 						text: 'A very simple text with specified color and font');
 		add:
 				(PDFTextElement new
-						textColor: (PDFColor new setColor: #(0 128 255));
+						textColor: (PDFColor r: 0 g: 128 b: 255);
 						font: myFontInMilliMeters;
 						from: 10 mm @ 85 mm;
 						text: 'A text with font expressed in mm (5)');
@@ -1504,13 +1448,13 @@ PDFDemos >> twoColoredRectsTest: aStream [
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		wh: 100 mm @ 30 mm;
-		fillColor: (PDFColor new setColor: #(142 24 78));
-		drawColor: (PDFColor new setColor: #(255 0 0))).
+		fillColor: (PDFColor r: 142 g: 24 b: 78);
+		drawColor: (PDFColor r: 255 g: 0 b: 0)).
 	aPage add: (PDFRectElement new
 		from: 15 mm @ 15 mm;
 		wh: 100 mm @30 mm;
-		fillColor: (PDFColor new setColor: #(24 57 205));
-		drawColor: (PDFColor new setColor: #(0 255 0))).		
+		fillColor: (PDFColor r: 24 g: 57 b: 205);
+		drawColor: (PDFColor r: 0 g: 255 b: 0)).		
 	pdfdoc add: aPage.
 	
 pdfdoc exportTo: aStream
@@ -1581,8 +1525,8 @@ PDFDemos >> verticalLayoutTest: aStream [
 						(PDFCellElement new
 								from: 10 mm @ 60 mm;
 								wh: 50 mm @ 10 mm;
-								textColor: (PDFColor new setColor: #(0 0 255));
-								drawColor: (PDFColor new setColor: #(255 0 0));
+								textColor: (PDFColor r: 0 g: 0 b: 255);
+								drawColor: (PDFColor r: 255 g: 0 b: 0);
 								text: 'text: blue border: red';
 								center;
 								middle);
@@ -1590,8 +1534,8 @@ PDFDemos >> verticalLayoutTest: aStream [
 						(PDFCellElement new
 								from: 80 mm @ 60 mm;
 								wh: 50 mm @ 10 mm;
-								textColor: (PDFColor new setColor: #(0 0 255));
-								fillColor: (PDFColor new setColor: #(0 255 0));
+								textColor: (PDFColor r: 0 g: 0 b: 255);
+								fillColor: (PDFColor r: 0 g: 255 b: 0);
 								text: 'background: green';
 								center;
 								middle);

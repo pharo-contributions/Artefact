@@ -13,10 +13,10 @@ Class {
 PDFStyleSheet class >> default [
 	| default |
 	default:= self new 
-		at: #textColor put: (PDFColor new setColor:#(0 0 0)); 
-		at: #fillColor put: (PDFColor new setColor: #(255 255 255)); 
+		at: #textColor put: (PDFColor r: 0 g: 0 b: 0); 
+		at: #fillColor put: (PDFColor r: 255 g: 255 b: 255); 
 		at: #filled put: true;
-		at: #drawColor put: (PDFColor new setColor:#(0 0 0)); 
+		at: #drawColor put: (PDFColor r: 0 g: 0 b: 0);
 		at: #thickness put: 1 pt;
 		at: #dotted put: nil;
 		at: #roundCap put: false;
