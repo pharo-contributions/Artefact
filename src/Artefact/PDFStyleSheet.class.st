@@ -37,11 +37,15 @@ PDFStyleSheet class >> default [
 		at: #drawColor put: (PDFColor r: 0 g: 0 b: 0);
 		at: #thickness put: 1 pt;
 		at: #dotted put: nil;
+		at: #margin put: 0 pt;
 		at: #roundCap put: false;
 		at: #font put: PDFHelveticaFont new;
 		at: #rotation put: 0;
+		at: #alignment put: PDFAlignment left middle;
 		yourself.
 	default > #caption at: #fillColor put: (PDFColor new setGreyLevel: 192).
+	default > #datatable at: #alignment put: PDFAlignment center middle.
+	default > #cell at: #margin put: 1 pt.
 	^ default
 ]
 
@@ -58,6 +62,16 @@ PDFStyleSheet >> + aStyleSheet [
 { #category : #'as yet unclassified' }
 PDFStyleSheet >> > aSymbol [
 	^ self substyles at: aSymbol ifAbsentPut: [ PDFStyleSheet new ]
+]
+
+{ #category : #private }
+PDFStyleSheet >> alignment [
+	^ self get: #alignment
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> alignment: aPDFAlignment [
+	self at: #alignment put: aPDFAlignment 
 ]
 
 { #category : #private }
@@ -131,6 +145,16 @@ PDFStyleSheet >> initialize [
 PDFStyleSheet >> initializeSubstyles [
 	substyles := Dictionary new.
 	substyles at: #default put: self
+]
+
+{ #category : #private }
+PDFStyleSheet >> margin [
+	^ self get: #margin
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> margin: aMargin [
+	self at: #margin put: aMargin 
 ]
 
 { #category : #attributes }

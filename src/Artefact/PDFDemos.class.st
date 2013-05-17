@@ -92,12 +92,6 @@ PDFDemos class >> demoPath [
 	^ '/Users/larcheveque/pdf/'
 ]
 
-{ #category : #document }
-PDFDemos class >> displayModeTest [
-	"PDFDemos displayModeTest"
-	self new displayModeTest: (self streamNamed: 'displayModeTest.pdf')
-]
-
 { #category : #'display setup' }
 PDFDemos class >> documentDisplayLayoutTest [
 	"PDFDemos documentDisplayLayoutTest"
@@ -114,12 +108,6 @@ PDFDemos class >> documentDisplayModeTest [
 PDFDemos class >> documentZoomTest [
 	"PDFDemos documentZoomTest"
 	self new documentZoomTest: (self streamNamed: 'documentZoomTest.pdf')
-]
-
-{ #category : #draw }
-PDFDemos class >> dottedTest [
-	"PDFDemos dottedTest"
-	self new dottedTest: (self streamNamed: 'dottedTest.pdf')
 ]
 
 { #category : #color }
@@ -206,6 +194,12 @@ PDFDemos class >> rectsTest [
 	self new rectsTest: (self streamNamed: 'rectsTest.pdf')
 ]
 
+{ #category : #runAllDemos }
+PDFDemos class >> runAllDemos [
+	"self runAllDemos"
+	PDFDemos class methods select: [:m | m selector endsWith: 'Test' ] thenDo: [ :m | PDFDemos perform: m selector ]
+]
+
 { #category : #tool }
 PDFDemos class >> streamNamed: aName [
 	^ FileStream fileNamed: self demoPath , aName
@@ -282,86 +276,89 @@ PDFDemos >> alignmentsTest: aStream [
 				wh: 210 mm @ 10 mm;
 				from: 0 mm @ 0 mm;
 				text: 'At left').
-	aPage
+
+		aPage
 		add:
 			(PDFFormattedTextElement new
 				font: myFont;
 				wh: 210 mm @ 10 mm;
 				from: 0 mm @ 20 mm;
 				text: 'Center';
-				center).
-	aPage
+				alignment: (PDFAlignment center)).
+					aPage
 		add:
 			(PDFFormattedTextElement new
 				font: myFont;
 				wh: 210 mm @ 10 mm;
 				from: 0 mm @ 30 mm;
 				text: 'At right';
-				right).
+				alignment: (PDFAlignment right)).
 	pdfdoc add: aPage.
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream 
 ]
 
 { #category : #composite }
 PDFDemos >> arrowTest: aStream [
 	"drawing arrows"
-	
+
 	"self arrowTest"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new uncompressed.	
-	
+	pdfdoc := PDFDocument new uncompressed.
 	aPage := PDFPage new.
-	
-	aPage add: (PDFArrowElement new
-		from: 10 mm @ 10 mm;
-		to: 100 mm @30 mm;
-		drawColor: (PDFColor r: 255 g: 0 b: 0)
-	).
-
-	aPage add: (PDFArrowElement new
-		from: 10 mm @20 mm;
-		to: 30 mm @30 mm
-	).
-
-	aPage add: (PDFArrowElement new
-		from: 120 mm @10 mm;
-		to: 120 mm @ 40 mm;
-		drawColor: (PDFColor r: 0 g: 0 b: 255)
-	).
-
-	aPage add: (PDFArrowElement new
-		from: 125 mm @ 40 mm;
-		to: 140 mm @ 40 mm;
-		drawColor: (PDFColor r: 0 g: 0 b: 255)
-	).
-
-	aPage add: (PDFArrowElement new
-		from: 125 mm @ 40 mm;
-		to: 100 mm @ 80 mm;
-		drawColor: (PDFColor r: 0 g: 255 b: 0);
-		dotted: (PDFDotted new length: 2mm; space: 3mm)
-	).	
-
-	aPage add: (PDFArrowElement new
-		from: 40 mm @ 50 mm;
-		to: 80 mm @ 90 mm;
-		drawColor: (PDFColor r: 192 g: 255 b: 0);
-		thickness:  2 mm
-	 ).		
-	
-	aPage add: (PDFDoubleArrowElement new
-		from: 10 mm @ 80 mm;
-		to: 100 mm @ 150 mm;
-		drawColor: (PDFColor r: 0 g: 128 b: 0);
-		dotted: (PDFDotted new length: 2 mm; space: 2 mm)
-	).
-			
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 10 mm @ 10 mm;
+				to: 100 mm @ 30 mm;
+				drawColor: (PDFColor r: 255 g: 0 b: 0)).
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 10 mm @ 20 mm;
+				to: 30 mm @ 30 mm).
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 120 mm @ 10 mm;
+				to: 120 mm @ 40 mm;
+				drawColor: (PDFColor r: 0 g: 0 b: 255)).
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 125 mm @ 40 mm;
+				to: 140 mm @ 40 mm;
+				drawColor: (PDFColor r: 0 g: 0 b: 255)).
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 125 mm @ 40 mm;
+				to: 100 mm @ 80 mm;
+				drawColor: (PDFColor r: 0 g: 255 b: 0);
+				dotted:
+						(PDFDotted new
+								length: 2 mm;
+								space: 3 mm)).
+	aPage
+		add:
+			(PDFArrowElement new
+				from: 40 mm @ 50 mm;
+				to: 80 mm @ 90 mm;
+				drawColor: (PDFColor r: 192 g: 255 b: 0);
+				thickness: 2 mm;
+				roundCap: true).
+	aPage
+		add:
+			(PDFDoubleArrowElement new
+				from: 10 mm @ 80 mm;
+				to: 100 mm @ 150 mm;
+				drawColor: (PDFColor r: 0 g: 128 b: 0);
+				dotted:
+						(PDFDotted new
+								length: 2 mm;
+								space: 2 mm)).
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -493,9 +490,9 @@ PDFDemos >> cellTest: aStream [
 		from: 10 mm @ 5 mm;
 		wh: 190 mm @ 10 mm;
 		fillColor: (PDFColor new setGreyLevel: 224);
-		text: 'Demonstration of PDFCellStyle';
+		text: 'Demonstration of PDFCellElement';
 		font: myTitleFont;
-		center
+		alignment: PDFAlignment center
 	).
 	
 	"horizontal alignment"
@@ -503,7 +500,7 @@ PDFDemos >> cellTest: aStream [
 		from: 10 mm @ 20 mm;
 		wh: 50 mm @ 10 mm;
 		text: 'alignment: left';
-		left
+		alignment: PDFAlignment left
 	).
 	
 	aPage add: (PDFCellElement new  
@@ -516,7 +513,7 @@ PDFDemos >> cellTest: aStream [
 		from: 150 mm @ 20 mm;
 		wh: 50 mm @ 10 mm;
 		text: 'alignment: right';
-		right
+		alignment: PDFAlignment right
 	).
 
 	"vertical alignment"
@@ -524,24 +521,21 @@ PDFDemos >> cellTest: aStream [
 		from: 10 mm @ 40 mm;
 		wh: 50 mm @ 10 mm;
 		text: 'vertical: top';
-		left;
-		top
+		alignment: PDFAlignment top left
 	).
 	
 	aPage add: (PDFCellElement new  
 		from: 80 mm @ 40 mm;
 		wh: 50 mm @ 10 mm;
 		text: 'vertical: middle';
-		center;
-		middle
+		alignment: PDFAlignment center middle
 	).
 	
 	aPage add: (PDFCellElement new  
 		from: 150 mm @ 40 mm;
 		wh: 50 mm @ 10 mm;
 		text: 'vertical: bottom';
-		right;
-		bottom
+		alignment: PDFAlignment right bottom
 	).
 
 	"colors"
@@ -551,8 +545,7 @@ PDFDemos >> cellTest: aStream [
 		textColor: (PDFColor r: 0 g: 0 b: 255);
 		drawColor: (PDFColor r: 255 g: 0 b: 0);
 		text: 'text: blue border: red';
-		center;
-		middle
+		alignment: PDFAlignment center middle
 	).
 	
 	aPage add: (PDFCellElement new  
@@ -561,8 +554,7 @@ PDFDemos >> cellTest: aStream [
 		textColor: (PDFColor r: 0 g: 0 b: 255);
 		fillColor: (PDFColor r: 0 g: 255 b: 0);
 		text: 'background: green';
-		center;
-		middle
+		alignment: PDFAlignment center middle
 	).
 	
 	aPage add: (PDFCellElement new  
@@ -573,8 +565,7 @@ PDFDemos >> cellTest: aStream [
 		dotted: (PDFDotted new length: 1 mm; space: 1 mm);
 		text: 'grey level & dotted border';
 		thickness: 0.2 mm;
-		center;
-		middle
+		alignment: PDFAlignment center middle
 	).
 	
 	aPage add: (PDFCellElement new  
@@ -714,46 +705,36 @@ PDFDemos >> datatableTest: aStream [
 { #category : #composite }
 PDFDemos >> datatableWithCaptionsTest: aStream [
 	"generate a datatable with captions"
-	
+
 	| pdfdoc aPage |
-		
 	pdfdoc := PDFDocument new uncompressed.
-	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #fillColor put: (PDFColor r: 158 g: 158 b: 79).
-	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption at: #drawColor put: (PDFColor r: 158 g: 158 b: 79).
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #caption
+		fillColor: (PDFColor r: 158 g: 158 b: 79);
+		drawColor: (PDFColor r: 158 g: 158 b: 79).
+	pdfdoc styleSheet > #dataTableWithColoredCaption margin: 4 pt.
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
-	
 	aPage := PDFPage new.
-	
-	aPage add: (PDFDataTableWithColumnsCaptionElement new
-		captions: #( 'Name' 'Surname' 'email');
-		data: #(
-			#('Smith' 'Peter' 'peter.smith@mail.org')
-			#('Jones' 'Mickael' 'mickael.jones@epr.com')
-			#('washington' 'robert' 'robert.washington@blif.com')
-		);
-		from: 10 mm @ 20 mm;
-		wh: 190 mm @ 60 mm;
-		style: #dataTableWithColoredCaption;
-		yourself																																
-	).	
-
-	aPage add: (PDFDataTableWithRowsCaptionElement new
-		captions: #( 'Name' 'Surname' 'email');
-		data: #(
-			#('Smith' 'Jones' 'washington')
-			#('Peter' 'Mickael' 'robert')
-			#('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com')
-		);
-		from: 10 mm @ 90 mm;
-		wh: 190 mm @ 60 mm
-	).
-	
+	aPage
+		add:
+			(PDFDataTableWithColumnsCaptionElement new
+				captions: #('Name' 'Surname' 'email');
+				data:
+						#(#('Smith' 'Peter' 'peter.smith@mail.org') #('Jones' 'Mickael' 'mickael.jones@epr.com') #('washington' 'robert' 'robert.washington@blif.com'));
+				from: 10 mm @ 20 mm;
+				wh: 190 mm @ 60 mm;
+				style: #dataTableWithColoredCaption;
+				yourself).
+	aPage
+		add:
+			(PDFDataTableWithRowsCaptionElement new
+				captions: #('Name' 'Surname' 'email');
+				data:
+						#(#('Smith' 'Jones' 'washington') #('Peter' 'Mickael' 'robert') #('peter.smith@mail.org' 'mickael.jones@epr.com' 'robert.washington@blif.com'));
+				from: 10 mm @ 90 mm;
+				wh: 190 mm @ 60 mm).
 	pdfdoc add: aPage.
-		
-	
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #'display setup' }
@@ -939,15 +920,15 @@ PDFDemos >> horizontalLayoutTest: aStream [
 								from: 10 mm @ 5 mm;
 								wh: 190 mm @ 10 mm;
 								fillColor: (PDFColor new setGreyLevel: 224);
-								text: 'Demonstration of PDFCellStyle';
+								text: 'Horizontal Layout';
 								font: myTitleFont;
-								center);
+								alignment: PDFAlignment center);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 20 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'alignment: left';
-								left);
+								alignment: PDFAlignment left);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 20 mm;
@@ -958,28 +939,25 @@ PDFDemos >> horizontalLayoutTest: aStream [
 								from: 150 mm @ 20 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'alignment: right';
-								right);
+								alignment: PDFAlignment right);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: top';
-								left;
-								top);
+								alignment: PDFAlignment left top);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: middle';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 150 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: bottom';
-								right;
-								bottom);
+								alignment: PDFAlignment right bottom);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 60 mm;
@@ -987,8 +965,7 @@ PDFDemos >> horizontalLayoutTest: aStream [
 								textColor: (PDFColor r: 0 g: 0 b: 255);
 								drawColor: (PDFColor r: 255 g: 0 b: 0);
 								text: 'text: blue border: red';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 60 mm;
@@ -996,8 +973,7 @@ PDFDemos >> horizontalLayoutTest: aStream [
 								textColor: (PDFColor r: 0 g: 0 b: 255);
 								fillColor: (PDFColor r: 0 g: 255 b: 0);
 								text: 'background: green';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 150 mm @ 60 mm;
@@ -1010,8 +986,7 @@ PDFDemos >> horizontalLayoutTest: aStream [
 												space: 1 mm);
 								text: 'grey level & dotted border';
 								thickness: 0.2 mm;
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 80 mm;
@@ -1231,13 +1206,13 @@ PDFDemos >> paragraphTest: aStream [
 		from: 100 mm @ 80 mm;
 		wh: 60 mm @ 70 mm; 
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
-		center).
+		alignment: PDFAlignment center).
 		
 	aPage add: (PDFParagraphElement new 
 		from: 10 mm @ 120 mm;
 		wh: 60 mm @ 80 mm; 
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
-		right
+		alignment: PDFAlignment right
 		).
 		
 	pdfdoc add: aPage.
@@ -1273,14 +1248,14 @@ PDFDemos >> paragraphWithSpacingTest: aStream [
 		wh: 60 mm @ 70 mm; 
 		spacing: 1mm;
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
-		center).
+		alignment: PDFAlignment center).
 		
 	aPage add: (PDFParagraphElement new 
 		from: 10 mm @ 120 mm;
 		wh: 60 mm @ 80 mm; 
 		spacing: 3 mm;
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
-		right
+		alignment: PDFAlignment right
 		).
 		
 	pdfdoc add: aPage.
@@ -1292,32 +1267,37 @@ pdfdoc exportTo: aStream
 { #category : #draw }
 PDFDemos >> polygonsTest: aStream [
 	"drawing polygons"
-	
+
 	"self polygonsTest"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-
-	aPage add: (PDFPolygonElement new 
-		from: 10 mm @ 10 mm ; 
-		to: { 60  mm @ 20 mm . 50 mm @ 40 mm . 30 mm @ 50 mm . 15 mm@ 45 mm };
-		drawColor: (PDFColor r: 0 g: 0 b: 255)
-	).
-	
-	aPage add: (PDFPolygonElement new 
-		from: 10 mm @ 55 mm; 
-		to: { 60 mm @  60 mm  . 50 mm @ 100  mm . 30 mm @ 110 mm . 15 mm @ 105  mm };
-		drawColor: (PDFColor r: 0 g: 0 b: 255);
-		fillColor: (PDFColor r: 255 g: 0 b: 0);
-		thickness: 5 mm	
-	).
+	aPage
+		add:
+			(PDFPolygonElement new
+				from: 10 mm @ 10 mm;
+				to:
+						{(60 mm @ 20 mm).
+						(50 mm @ 40 mm).
+						(30 mm @ 50 mm).
+						(15 mm @ 45 mm)};
+				drawColor: (PDFColor r: 0 g: 0 b: 255)).
+	aPage
+		add:
+			(PDFPolygonElement new
+				from: 10 mm @ 55 mm;
+				to:
+						{(60 mm @ 60 mm).
+						(50 mm @ 100 mm).
+						(30 mm @ 110 mm).
+						(15 mm @ 105 mm)};
+				drawColor: (PDFColor r: 0 g: 0 b: 255);
+				fillColor: (PDFColor r: 255 g: 0 b: 0);
+				thickness: 5 mm;
+				roundCap: true).
 	pdfdoc add: aPage.
-	
-
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -1482,13 +1462,13 @@ PDFDemos >> verticalLayoutTest: aStream [
 								fillColor: (PDFColor new setGreyLevel: 224);
 								text: 'Demonstration of PDFCellStyle';
 								font: myTitleFont;
-								center);
+								alignment: PDFAlignment center);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 20 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'alignment: left';
-								left);
+								alignment: PDFAlignment left);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 20 mm;
@@ -1499,28 +1479,25 @@ PDFDemos >> verticalLayoutTest: aStream [
 								from: 150 mm @ 20 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'alignment: right';
-								right);
+								alignment: PDFAlignment right);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: top';
-								left;
-								top);
+								alignment: PDFAlignment left top);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: middle';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 150 mm @ 40 mm;
 								wh: 50 mm @ 10 mm;
 								text: 'vertical: bottom';
-								right;
-								bottom);
+								alignment: PDFAlignment right bottom);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 60 mm;
@@ -1528,8 +1505,7 @@ PDFDemos >> verticalLayoutTest: aStream [
 								textColor: (PDFColor r: 0 g: 0 b: 255);
 								drawColor: (PDFColor r: 255 g: 0 b: 0);
 								text: 'text: blue border: red';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 80 mm @ 60 mm;
@@ -1537,8 +1513,7 @@ PDFDemos >> verticalLayoutTest: aStream [
 								textColor: (PDFColor r: 0 g: 0 b: 255);
 								fillColor: (PDFColor r: 0 g: 255 b: 0);
 								text: 'background: green';
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 150 mm @ 60 mm;
@@ -1551,8 +1526,7 @@ PDFDemos >> verticalLayoutTest: aStream [
 												space: 1 mm);
 								text: 'grey level & dotted border';
 								thickness: 0.2 mm;
-								center;
-								middle);
+								alignment: PDFAlignment center middle);
 				add:
 						(PDFCellElement new
 								from: 10 mm @ 80 mm;

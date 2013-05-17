@@ -12,7 +12,7 @@ Class {
 
 { #category : #render }
 PDFTextElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
-	^ ((aStyleSheet font getStringWidth: self text) + (2 * self margin)) @ (aStyleSheet font fontSize + (2 * self margin))
+	^ ((aStyleSheet font getStringWidth: self text) + (2 * aStyleSheet margin)) @ (aStyleSheet font fontSize + (2 * aStyleSheet margin))
 ]
 
 { #category : #render }

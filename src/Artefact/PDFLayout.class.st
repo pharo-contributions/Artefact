@@ -80,7 +80,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
 	codeSegments := self elements
 		collect: [ :anElement | 
-			compositeStyleSheet := aStyleSheet + anElement styleSheet.
+			compositeStyleSheet := anElement buildCompositeStyleSheetFrom: aStyleSheet.
 			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ].

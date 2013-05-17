@@ -17,19 +17,19 @@ PDFFormattedTextElement >> defaultStyle [
 ]
 
 { #category : #action }
-PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement margin: aMargin with: aFont [
+PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement styleSheet: aStyleSheet [
 	"Set right x values for text"
 	| width decx |
 	
-	self wh ifNil: [ ^ self margin ].
+	self wh ifNil: [ ^ aStyleSheet margin ].
 	
-	width := aFont getStringWidth: aTextElement.
+	width := aStyleSheet font getStringWidth: aTextElement.
 	
 	"determining the horizontal offset"
-	(self alignment = #RIGHT) 
-			ifTrue: [ decx := self wh x - aMargin - width ] 
+	(aStyleSheet alignment isRight) 
+			ifTrue: [ decx := self wh x - aStyleSheet margin - width ] 
 			ifFalse: [ 
-				(self alignment = #CENTER) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := aMargin ] 
+				(aStyleSheet alignment isCenter) ifTrue: [ decx := ((self wh x - width) / 2) ] ifFalse: [ decx := aStyleSheet margin ] 
 			].
 	^decx
 ]
@@ -41,7 +41,7 @@ PDFFormattedTextElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleS
 
 	font := aStyleSheet font.
 	height := font fontSize.
-	decx := self determineDecxForTextStyle: (self text) margin: (self margin) with: font.
+	decx := self determineDecxForTextStyle: (self text) styleSheet: aStyleSheet.
 
 	^ {PDFTextElement new text: (self text); from: (decx + self from x)@(self from y + height)}
 ]

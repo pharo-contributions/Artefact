@@ -11,6 +11,11 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
+{ #category : #style }
+PDFCompositeDraw >> roundCap: aBoolean [
+	self styleSheet roundCap: aBoolean
+]
+
 { #category : #accessing }
 PDFCompositeDraw >> to [
 	^to

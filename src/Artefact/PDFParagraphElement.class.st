@@ -25,7 +25,7 @@ PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet
 	lines := self splitOn: (aPDFGenerator currentPage) using: aStyleSheet font.
 	decalage := aStyleSheet font fontSize.
 	currentXY := self from.
-	^ lines collect: [:aLine | current := PDFFormattedTextElement new  alignment: self alignment; from: currentXY; wh: self wh; text: aLine.
+	^ lines collect: [:aLine | current := PDFFormattedTextElement new from: currentXY; wh: self wh; text: aLine.
 			currentXY := currentXY + (0@decalage) + (0@self spacing).
 			current ].
 ]

@@ -13,33 +13,23 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #accessing }
-PDFCellElement >> alignment [
-	^ alignment ifNil: [ alignment := #CENTER ]
-]
-
-{ #category : #style }
-PDFCellElement >> defaultMargin [
-	^ 1 point
-]
-
 { #category : #'initialize-release' }
 PDFCellElement >> defaultStyle [
 	^ #cell
 ]
 
 { #category : #action }
-PDFCellElement >> determineDecyForTextStyleWith: aFont [
+PDFCellElement >> determineDecyForTextStyleWith: aStyleSheet [
 	"Set right xy values for text"
 
 	| decy |
-	self wh ifNil: [ ^ self margin ].	"determining the vertical offset"
-	self verticalAlignment = #BOTTOM
-		ifTrue: [ decy := self wh y - self margin - aFont fontSize ]
+	self wh ifNil: [ ^ aStyleSheet margin ].	"determining the vertical offset"
+	aStyleSheet alignment isBottom 
+		ifTrue: [ decy := self wh y - aStyleSheet margin - aStyleSheet font fontSize ]
 		ifFalse: [ 
-			self verticalAlignment = #MIDDLE
-				ifTrue: [ decy := (self wh y - aFont fontSize) / 2 ]
-				ifFalse: [ decy := self margin ] ].
+			aStyleSheet alignment isMiddle
+				ifTrue: [ decy := (self wh y - aStyleSheet font fontSize) / 2 ]
+				ifFalse: [ decy := aStyleSheet margin ] ].
 	^ decy
 ]
 
@@ -47,12 +37,11 @@ PDFCellElement >> determineDecyForTextStyleWith: aFont [
 PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	"get the current position in the page if xy is not defined"
 
-	| decx decy font dimensions |
+	| decx decy dimensions |
 	"set the position of the text element"
-	font := aStyleSheet font.
 	dimensions := self minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet.
-	decx := self determineDecxForTextStyle: self text margin: self margin with: font.
-	decy := self determineDecyForTextStyleWith: font.
+	decx := self determineDecxForTextStyle: self text styleSheet: aStyleSheet.
+	decy := self determineDecyForTextStyleWith: aStyleSheet.
 	^ {(PDFRectElement new
 		from: self from;
 		wh: dimensions;
@@ -60,9 +49,4 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	(PDFTextElement new
 		text: self text;
 		from: (decx + self from x) @ (self from y + decy))}
-]
-
-{ #category : #accessing }
-PDFCellElement >> verticalAlignment [
-	^ verticalAlignment ifNil: [ verticalAlignment := #MIDDLE ]
 ]
