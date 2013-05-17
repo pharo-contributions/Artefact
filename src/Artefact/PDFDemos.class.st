@@ -390,21 +390,44 @@ PDFDemos >> brochure: aStream [
 
 	"self brochure"
 
-	| pdfdoc aPage titleFont subtitleFont titleColor layout |
+	| pdfdoc aPage titleFont subtitleFont titleColor layout imageStream quoteFont |
+	imageStream := ByteArray new writeStream.
+	PluginBasedJPEGReadWriter
+		putForm: (PNGReadWriter on: (StandardFileStream fileNamed: 'Pharo.png')) nextImage
+		onStream: imageStream.
+	imageStream := ReadStream on: imageStream contents.
 	pdfdoc := PDFDocument new.
 	titleColor := PDFColor r: 13 g: 100 b: 175.
 	titleFont := PDFHelveticaFont new
 		fontSize: 22 pt;
 		bold: true.
+	quoteFont := PDFHelveticaFont new
+		fontSize: 16 pt;
+		bold: true;
+		italic: true.
 	subtitleFont := PDFHelveticaFont new
 		fontSize: 16 pt;
 		bold: true.
 	aPage := PDFPage new.
 	aPage
 		add:
-			((PDFJpegElement fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
-				from: 15 mm @ 0 mm;
-				wh: 160 mm @ 80 mm).
+				(PDFRectElement new
+						from: 0 mm @ 0 mm;
+						wh: 210 mm @ 80 mm;
+						fillColor: (PDFColor r: 0 g: 0 b: 0));
+		add:
+				(PDFCellElement new
+						text: 'The Live Programming Environment';
+						from: 100 mm @ 0 mm;
+						wh: 110 mm @ 80 mm;
+						alignment: PDFAlignment left;
+						textColor: (PDFColor r: 255 g: 255 b: 255);
+						fillColor: (PDFColor r: 0 g: 0 b: 0);
+						font: quoteFont);
+		add:
+				((PDFJpegElement fromStream: imageStream)
+						from: 15 mm @ 0 mm;
+						wh: 80 mm @ 80 mm).
 	layout := PDFVerticalLayout
 		on:
 			{(PDFFormattedTextElement new
@@ -416,7 +439,7 @@ PDFDemos >> brochure: aStream [
 				font: subtitleFont;
 				text: 'Mission').
 			(PDFParagraphElement new
-				wh: 180 mm @ 50 mm;
+				wh: 180 mm @ 35 mm;
 				text:
 						'Pharo''s goal is to deliver a clean, innovative, free open-source Smalltalk environment. By providing a stable and small core system, excellent developer tools, and maintained releases, Pharo is an attractive platform to build and deploy mission critical Smalltalk applications. Pharo is MIT licensed and is steered by a board of benevolent dictators. The board makes final decisions if no consensus can be reached within the community. Pharo fosters a healthy ecosystem of both private and commercial contributors who advance and maintain the core system and its external packages.').
 			(PDFFormattedTextElement new
@@ -424,7 +447,7 @@ PDFDemos >> brochure: aStream [
 				font: subtitleFont;
 				text: 'Why Pharo?').
 			(PDFParagraphElement new
-				wh: 180 mm @ 50 mm;
+				wh: 180 mm @ 35 mm;
 				text:
 						'Pharo is a fork from the Squeak open-source Smalltalk. We decided to start Pharo because as active Squeakers, and responsible for Squeak 3.9, we felt the need to reconsider choices made. We want to create a better Smalltalk and be free to enhance it without fear of backwards compatibility to Squeak. Deciding to start Pharo was not easy because we invested a lot in Squeak (some of us wrote several books on Squeak and in particular Squeak By Example) and we like the Squeak community, but this is really important for us to open a new space. We want Pharo to be an excellent Smalltalk concerned with software engineering practices. We also want Pharo to be agile and be able to evolve. We hope you will like it and help make it better.').
 			(PDFFormattedTextElement new
@@ -432,14 +455,14 @@ PDFDemos >> brochure: aStream [
 				font: subtitleFont;
 				text: 'A word about changes').
 			(PDFParagraphElement new
-				wh: 180 mm @ 50 mm;
+				wh: 180 mm @ 35 mm;
 				text:
 						'There is an important aspect behind Pharo: we want to make sure that Pharo is not a copy of the past but really a reinvention of Smalltalk. Now big-bang approaches rarely succeed. We will really favor evolutionary and incremental changes. We want to be able to experiment with important new features or libraries. For example, we need a new file library but that''s unlikely to happen in a day. Evolution means that we accept mistakes, we are not aiming for the next perfect solution in one big step -- even if we would love it. We will favor small incremental changes but a multitude of them. We will pay attention to your submissions to improve the system.')}.
 	layout from: 15 mm @ 80 mm.
+	layout spacing: 1 cm.
 	aPage add: layout.
 	pdfdoc add: aPage.
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
