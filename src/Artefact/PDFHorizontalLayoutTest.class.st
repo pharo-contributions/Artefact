@@ -15,8 +15,8 @@ PDFHorizontalLayoutTest >> setUp [
 { #category : #'as yet unclassified' }
 PDFHorizontalLayoutTest >> testPosition [
 	| rect line |
-	rect := PDFRectElement from: 10 mm @ 10 mm wh: 10 cm @ 3 cm.
-	line := PDFLineElement from: 50 mm @ 15 mm wh: 24 mm @ 56 mm.
+	rect := PDFRectElement from: 10 mm @ 10 mm dimension: 10 cm @ 3 cm.
+	line := PDFLineElement from: 50 mm @ 15 mm dimension: 24 mm @ 56 mm.
 	testLayout
 		from: 34 mm @ 78 mm;
 		add: rect;

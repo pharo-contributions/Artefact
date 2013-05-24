@@ -15,14 +15,14 @@ PDFCompactDiscTemplate class >> recommendedPageFormat [
 
 { #category : #action }
 PDFCompactDiscTemplate >> drawTemplate [
-	self add: (PDFRectElement new
-		from: 10 mm @ 10 mm;
-		wh: 240 mm @ 120 mm;
+	self add: ((PDFRectElement 
+		from: 10 mm @ 10 mm
+		dimension: 240 mm @ 120 mm)
 		dotted: self dotted
 	).
-	self add: (PDFLineElement new 
-		from: 130mm @ 10mm;
-		to: 130mm @ 130mm;
+	self add: ((PDFLineElement  
+		from: 130mm @ 10mm
+		to: 130mm @ 130mm)
 		dotted: self dotted
 	).
 ]

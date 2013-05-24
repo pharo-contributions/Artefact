@@ -10,17 +10,9 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
-{ #category : #'as yet unclassified' }
-PDFRectElement class >> from: aPosition wh: aDimension [
-	^ self new
-		from: aPosition;
-		wh: aDimension;
-		yourself
-]
-
 { #category : #render }
 PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
-	"Draw a rectangle from xy with a specified size wh"
+	"Draw a rectangle from xy with a specified dimension"
 	
 	| position |
 	
@@ -29,9 +21,9 @@ PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSh
 	^(String streamContents: [ :s |
 		s nextPutAll: (self splitCoordinates: position);
 		space;
-		print: (aPDFGenerator convertToPoints: self wh x);
+		print: (aPDFGenerator convertToPoints: self dimension x);
 		space;
-		print: ((aPDFGenerator convertToPoints: self wh y) * -1);
+		print: ((aPDFGenerator convertToPoints: self dimension y) * -1);
 		space;
 		nextPutAll: PDFByteCode rectangle;
 		space;

@@ -10,22 +10,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
-{ #category : #'as yet unclassified' }
-PDFLineElement class >> from: aPosition to:  anotherPosition [
-	^self new 
-		from: aPosition;
-		to: anotherPosition;
-		yourself
-]
-
 { #category : #render }
 PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	| dest |
 	
-	dest := aPDFGenerator determinePositionOnCurrentPage: self to.
+	dest := aPDFGenerator determinePositionOnCurrentPage: self orientedTo .
 	 			
 	^  (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self from with: aPDFGenerator);
+		s nextPutAll: (self moveTo: self orientedFrom with: aPDFGenerator);
 		nextPutAll: (self splitCoordinates: dest);
 		space;
 		nextPutAll: PDFByteCode line;

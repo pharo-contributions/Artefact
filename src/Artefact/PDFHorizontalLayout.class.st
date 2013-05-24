@@ -19,5 +19,5 @@ PDFHorizontalLayout >> defineElementPosition: anElement with: aPDFGenerator styl
 				ifTrue: [ self from ]
 				ifFalse: [ 
 					previousElement := self elements before: anElement.
-					previousElement from + ((previousElement wh x + self spacing) @ 0 pt) ])
+					previousElement from + ((previousElement dimension x + self spacing) @ 0 pt) ])
 ]

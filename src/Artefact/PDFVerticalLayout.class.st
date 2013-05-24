@@ -19,5 +19,5 @@ PDFVerticalLayout >> defineElementPosition: anElement with: aPDFGenerator styleS
 				ifTrue: [ self from ]
 				ifFalse: [ 
 					previousElement := self elements before: anElement.
-					previousElement from + (0 pt @ (previousElement wh y + self spacing)) ])
+					previousElement from + (0 pt @ (previousElement dimension y + self spacing)) ])
 ]

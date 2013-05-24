@@ -12,7 +12,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFDummyLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
-	anElement wh: 10pt @ 10pt
+	anElement dimension: 10pt @ 10pt
 ]
 
 { #category : #'as yet unclassified' }

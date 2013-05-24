@@ -46,7 +46,7 @@ PDFParagraphTest >> setUp [
 	
 	self paragraph: (PDFParagraphElement new 
 		from: 10mm@10mm;
-		wh: 160mm@60mm; 
+		dimension: 160mm@60mm; 
 		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 		
 	self page add: self paragraph.

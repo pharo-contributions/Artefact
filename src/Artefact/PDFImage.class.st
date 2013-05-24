@@ -29,7 +29,7 @@ Class {
 PDFImage class >> from: aPosition wh: aDimension fromStream: aStream [
 	^ self new
 		from: aPosition;
-		wh: aDimension;
+		dimension: aDimension;
 		stream: aStream;
 		yourself
 ]

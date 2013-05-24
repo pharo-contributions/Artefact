@@ -15,6 +15,6 @@ Class {
 PDFArrowElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [ 
 	"answer the style description"
 	
-	^ {(PDFLineElement new from: self from; to: self to)}, (self headAt: self to angle: self angle)
+	^ {(PDFLineElement from: self orientedFrom to: self orientedTo)}, (self headAt: self orientedTo angle: self angle)
 
 ]

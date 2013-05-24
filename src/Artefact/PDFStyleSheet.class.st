@@ -46,6 +46,7 @@ PDFStyleSheet class >> default [
 	default > #caption at: #fillColor put: (PDFColor new setGreyLevel: 192).
 	default > #datatable at: #alignment put: PDFAlignment center middle.
 	default > #cell at: #margin put: 1 pt.
+	default > #cell at: #alignment put: PDFAlignment center middle.
 	^ default
 ]
 

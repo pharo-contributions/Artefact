@@ -15,19 +15,8 @@ to
 Class {
 	#name : #PDFDraw,
 	#superclass : #PDFBasic,
-	#instVars : [
-		'to'
-	],
 	#category : #'Artefact-Elements-Basic'
 }
-
-{ #category : #'as yet unclassified' }
-PDFDraw class >> from: aPosition wh: aDimension [
-	^ self new
-		from: aPosition;
-		wh: aDimension;
-		yourself
-]
 
 { #category : #'as yet unclassified' }
 PDFDraw >> defaultStyle [ 
@@ -92,14 +81,4 @@ PDFDraw >> roundCap: aBoolean [
 { #category : #accessing }
 PDFDraw >> thickness: anObject [
 	self styleSheet thickness: anObject
-]
-
-{ #category : #accessing }
-PDFDraw >> to [
-	^ to
-]
-
-{ #category : #accessing }
-PDFDraw >> to: anObject [
-	to := anObject
 ]

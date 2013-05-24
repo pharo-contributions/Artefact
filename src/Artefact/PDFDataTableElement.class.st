@@ -24,7 +24,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFDataTableElement >> cellDimensions [
-	^ (self wh x / self cellsData first size) @ (self wh y / self cellsData size)
+	^ (self dimension x / self cellsData first size) @ (self dimension y / self cellsData size)
 ]
 
 { #category : #'as yet unclassified' }
@@ -59,11 +59,7 @@ PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 			result := collection , (anArray
 				collect: [ :aData | 
 					| cell |
-					cell := PDFCellElement new
-						text: aData asString;
-						wh: aCellDimension;
-						from: currentFrom;
-						yourself.
+					cell := PDFCellElement from: currentFrom dimension: aCellDimension text: aData asString.	
 					currentFrom := currentFrom + (aCellDimension x @ 0pt).
 					cell ]).
 			currentFrom := self from x @ (currentFrom y + aCellDimension y).

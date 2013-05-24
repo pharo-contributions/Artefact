@@ -15,12 +15,33 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'styleSheet',
-		'wh',
 		'from',
-		'style'
+		'style',
+		'dimension',
+		'orientation'
 	],
 	#category : #'Artefact-Elements'
 }
+
+{ #category : #'as yet unclassified' }
+PDFElement class >> determineOrientation: aPoint [
+	^ ((aPoint y < 0 ifTrue: [ 'top' ] ifFalse: [ 'bottom' ]) , (aPoint x < 0 ifTrue: [ 'Left' ] ifFalse: [ 'Right' ])) asSymbol
+]
+
+{ #category : #'as yet unclassified' }
+PDFElement class >> from: aPosition [
+	^ self new from: aPosition
+]
+
+{ #category : #'as yet unclassified' }
+PDFElement class >> from: aPosition dimension: aDimension [
+	^ (self from: aPosition) dimension: aDimension
+]
+
+{ #category : #'as yet unclassified' }
+PDFElement class >> from: aPosition to: anotherPosition [
+	^ (self from: (aPosition min: anotherPosition) dimension: (anotherPosition - aPosition) abs ) orientation: (self determineOrientation: anotherPosition - aPosition)
+]
 
 { #category : #style }
 PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
@@ -35,6 +56,16 @@ PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 { #category : #style }
 PDFElement >> defaultStyle [
 	^ self subclassResponsibility 
+]
+
+{ #category : #accessing }
+PDFElement >> dimension [
+	^ dimension
+]
+
+{ #category : #accessing }
+PDFElement >> dimension: aDimension [
+	dimension:= aDimension 
 ]
 
 { #category : #accessing }
@@ -55,15 +86,41 @@ PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet [
 { #category : #'initialize-release' }
 PDFElement >> initialize [ 
 	super initialize.
-
+	self orientation: #bottomRight.
 	self styleSheet: PDFStyleSheet new.
 	self style: self defaultStyle
 ]
 
 { #category : #render }
 PDFElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
-	"Return the minimum wh for layout, by default its the one defined by the user"
-	^ self wh
+	"Return the minimum dimension for layout, by default its the one defined by the user"
+	^ self dimension
+]
+
+{ #category : #accessing }
+PDFElement >> orientation [
+	^ orientation
+]
+
+{ #category : #accessing }
+PDFElement >> orientation: anObject [
+	orientation := anObject
+]
+
+{ #category : #accessing }
+PDFElement >> orientedFrom [
+	^ ({(#bottomRight -> [ self from ]).
+	(#bottomLeft -> [ self to x @ self from y ]).
+	(#topRight -> [ self from x @ self to y ]).
+	(#topLeft -> [ self to x @ self to y ])} asDictionary at: self orientation) value
+]
+
+{ #category : #accessing }
+PDFElement >> orientedTo [
+	^ ({(#bottomRight -> [ self to ]).
+	(#bottomLeft -> [ self from x @ self to y ]).
+	(#topRight -> [ self to x @ self from y ]).
+	(#topLeft -> [ self from x @ self from y ])} asDictionary at: self orientation) value
 ]
 
 { #category : #accessing }
@@ -93,11 +150,6 @@ PDFElement >> styleSheet: anObject [
 ]
 
 { #category : #accessing }
-PDFElement >> wh [
-	^ wh
-]
-
-{ #category : #accessing }
-PDFElement >> wh: anObject [
-	wh := anObject
+PDFElement >> to [
+	^ self from + self dimension
 ]

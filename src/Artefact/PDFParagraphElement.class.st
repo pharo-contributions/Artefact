@@ -25,7 +25,7 @@ PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet
 	lines := self splitOn: (aPDFGenerator currentPage) using: aStyleSheet font.
 	decalage := aStyleSheet font fontSize.
 	currentXY := self from.
-	^ lines collect: [:aLine | current := PDFFormattedTextElement new from: currentXY; wh: self wh; text: aLine.
+	^ lines collect: [:aLine | current := PDFFormattedTextElement new from: currentXY; dimension: self dimension; text: aLine.
 			currentXY := currentXY + (0@decalage) + (0@self spacing).
 			current ].
 ]
@@ -58,12 +58,12 @@ PDFParagraphElement >> splitOn: aPage using: aFont [
 		do: [ :aWord | 
 			| word |
 			word := aWord , ' '.
-			widthOfLine + (widthOfWord := aFont getStringWidth: word) <= self wh x
+			widthOfLine + (widthOfWord := aFont getStringWidth: word) <= self dimension x
 				ifTrue: [ 
 					line nextPutAll: word.
 					widthOfLine := widthOfLine + widthOfWord ]
 				ifFalse: [ 
-					widthOfWord > self wh x
+					widthOfWord > self dimension x
 						ifTrue: [ 
 							ArtefactOverSizedContent new
 								content: aWord;

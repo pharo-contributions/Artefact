@@ -3,15 +3,19 @@
 
 ARTEFACT   
 
-Artefact is a framework to generate PDF documents. There is fully written in Smalltalk and external libraries are not needed. There is light, platform independant and it's a tool with a high level of abstraction to easily creating PDF documents.  
+Artefact is a framework to generate PDF documents. It is fully written in Smalltalk and doesn't require any native library. Artefact is light, platform independant and offer to users a high level of abstraction in order to easily creating PDF documents.  
 
- * written in Smalltalk (and only Smalltalk),
- * multi format document,
- * pages creation order could be totally different of the pages order in the PDF document,
- * ability to create multiple versions of a document,
+ * completely written in Smalltalk (and only Smalltalk),
+ * complete freedom about the order of creation for pages, elements... (no need to follow the document order)
+ * multi format and orientation for pages
  * page composition based on reusables PDF elements,
- * ability to define PDF code segments for inserting PDF instructions directly in the document (low level code),
- * PDF code optimization to produce compact files
+ * extensibility by offering a composition standard to create your own high level elements
+ * styleSheet that can be reused in many documents and avoid wasting time and place with duplication
+ * image support with the JPEG format
+ * pre-defined high level elements like datagrid
+ * support PDF compression to produce compact files
+
+ 
 
 Authors: Olivier Auverlot and Guillaume Larcheveque
 

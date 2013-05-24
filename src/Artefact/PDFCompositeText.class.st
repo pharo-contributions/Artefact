@@ -41,7 +41,7 @@ PDFCompositeText >> margin: aMargin [
 
 { #category : #render }
 PDFCompositeText >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
-	^ self wh
+	^ self dimension
 		ifNil: [ ((aStyleSheet font getStringWidth: self text) + (2 * aStyleSheet margin)) @ (aStyleSheet font fontSize + (2 * aStyleSheet margin)) ]
 	
 ]

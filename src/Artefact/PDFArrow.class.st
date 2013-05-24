@@ -10,7 +10,7 @@ Class {
 
 { #category : #action }
 PDFArrow >> angle [
-	^ ((to y - from y) convertTo: Unit point) value arcTan: ((to x - from x) convertTo: Unit point) value
+	^ ((self orientedTo  y - self orientedFrom y) convertTo: Unit point) value arcTan: ((self orientedTo x - self orientedFrom x) convertTo: Unit point) value
 ]
 
 { #category : #'initialize-release' }
@@ -31,13 +31,13 @@ PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
 
 { #category : #action }
 PDFArrow >> headAt: aPosition angle: anAngle [
-	^ {(PDFLineElement new
-		from: aPosition;
-		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition);
+	^ {((PDFLineElement 
+		from: aPosition
+		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition))
 		style: #head).
-	(PDFLineElement new
-		from: aPosition;
-		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition);
+	((PDFLineElement 
+		from: aPosition
+		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition))
 		style: #head)}
 ]
 

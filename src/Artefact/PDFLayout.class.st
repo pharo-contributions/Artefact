@@ -36,7 +36,7 @@ PDFLayout >> add: aPDFElement [
 PDFLayout >> createOriginalDimensionDictionary [
 	| dimensions |
 	dimensions := Dictionary new. 
-	self elements do: [ :anElement | dimensions at: anElement put: anElement wh ].
+	self elements do: [ :anElement | dimensions at: anElement put: anElement dimension ].
 	^ dimensions
 ]
 
@@ -55,7 +55,7 @@ PDFLayout >> defaultStyle [
 
 { #category : #render }
 PDFLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
-	anElement wh: (anElement minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet)
+	anElement dimension: (anElement minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet)
 ]
 
 { #category : #render }
@@ -85,7 +85,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet ].
 	elementsOriginalPosition keysAndValuesDo: [ :anElement :aPosition | anElement from: aPosition ].
-	elementsOriginalDimension keysAndValuesDo: [ :anElement :aDimension | anElement wh: aDimension ].
+	elementsOriginalDimension keysAndValuesDo: [ :anElement :aDimension | anElement dimension: aDimension ].
 	^ codeSegments
 ]
 

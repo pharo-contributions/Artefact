@@ -7,38 +7,43 @@ Instance Variables
 Class {
 	#name : #PDFPolygonElement,
 	#superclass : #PDFDraw,
+	#instVars : [
+		'points'
+	],
 	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #'as yet unclassified' }
-PDFPolygonElement class >> from: aPosition to: aArrayOfPositions [ 
-	^self new 
-		from: aPosition;
-		to: aArrayOfPositions;
-		yourself
+PDFPolygonElement class >> from: aPosition points: anArrayOfPoints [
+	^(self from: aPosition) points: anArrayOfPoints 
+]
+
+{ #category : #accessing }
+PDFPolygonElement >> points [
+	^ points
+]
+
+{ #category : #accessing }
+PDFPolygonElement >> points: anObject [
+	points := anObject
 ]
 
 { #category : #render }
 PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a polygon from xy to destination (a array of positions)"
-	
-	| points |
-	
-	points := OrderedCollection new 
-		addAll: (self to collect: [ :position |
-			aPDFGenerator determinePositionOnCurrentPage: position
-		]);
-		add: (aPDFGenerator determinePositionOnCurrentPage: self from);
-		yourself.
-	
-	^ (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: self from with: aPDFGenerator ).
-		points do: [ :pos | 
-			s nextPutAll: (self splitCoordinates: pos);
-			space;
-			nextPutAll: PDFByteCode line;
-			space
-		].
-		s nextPutAll:( self fillMode: (aStyleSheet filled))
-	]).
+
+	^ String
+		streamContents: [ :s | 
+			s nextPutAll: (self moveTo: self from with: aPDFGenerator).
+			self points , {self points first}
+				do: [ :p | 
+					s
+						nextPutAll: (self splitCoordinates: (aPDFGenerator determinePositionOnCurrentPage: self from + p));
+						space.
+					s
+						nextPutAll: PDFByteCode line;
+						space ].
+			s
+				nextPutAll: (self fillMode: aStyleSheet filled);
+				space ]
 ]

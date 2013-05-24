@@ -11,18 +11,19 @@ radius
 Class {
 	#name : #PDFCircleElement,
 	#superclass : #PDFDraw,
-	#instVars : [
-		'radius'
-	],
 	#category : #'Artefact-Elements-Basic'
 }
 
 { #category : #'as yet unclassified' }
-PDFCircleElement class >> from: aPosition radius: aRadius [ 
-	^self new 
-		from: aPosition;
-		radius: aRadius;
-		yourself
+PDFCircleElement class >> center: aPoint radius: aRadius [
+	^ self from: aPoint - (aRadius @ aRadius) to: aPoint + (aRadius @ aRadius)
+]
+
+{ #category : #accessing }
+PDFCircleElement >> center [
+	| box |
+	box :=  self to - self from.
+	^ self from + (box / 2)
 ]
 
 { #category : #render }
@@ -31,12 +32,12 @@ PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyle
 	
 	| origin r |
 	
-	origin := aPDFGenerator determinePositionOnCurrentPage: self from.
+	origin := aPDFGenerator determinePositionOnCurrentPage: self center.
 	 	
 	r := aPDFGenerator convertToPoints: self radius.
 	
 	^ (String streamContents: [ :s |
-		s nextPutAll: (self moveTo: ((self from x + self radius) @ (self from y)) with: aPDFGenerator); 
+		s nextPutAll: (self moveTo: ((self center x + self radius) @ (self center y)) with: aPDFGenerator); 
 		print: (origin x + r); space; print: ((r * 0.552) + origin y); space;
 		print: ((r * 0.552) + origin x); space; print: (origin y + r); space;
 		print: origin x; space; print: (origin y + r); nextPutAll: ' c ';
@@ -56,10 +57,7 @@ PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyle
 
 { #category : #accessing }
 PDFCircleElement >> radius [
-	^radius
-]
-
-{ #category : #accessing }
-PDFCircleElement >> radius: aValue [
-	radius := aValue
+	| box |
+	box :=  self to - self from.
+	^ (box x max: box y) / 2
 ]
