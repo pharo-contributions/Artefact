@@ -18,6 +18,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFText class >> from: aPosition text: aText [
+	^ self new
+		from: aPosition;
+		text: aText;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
 PDFText >> defaultStyle [
 	^ #text
 ]

@@ -10,6 +10,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFRectElement class >> from: aPosition wh: aDimension [
+	^ self new
+		from: aPosition;
+		wh: aDimension;
+		yourself
+]
+
 { #category : #render }
 PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a rectangle from xy with a specified size wh"

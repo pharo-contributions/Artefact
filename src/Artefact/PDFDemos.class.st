@@ -89,7 +89,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 
 { #category : #tool }
 PDFDemos class >> demoPath [
-	^ '/Users/larcheveque/pdf/'
+	^ '/Users/olivier/Desktop/pdf/'
 ]
 
 { #category : #'display setup' }
@@ -364,24 +364,25 @@ PDFDemos >> arrowTest: aStream [
 { #category : #draw }
 PDFDemos >> bezierTest: aStream [
 	"drawing bezier curves"
-	
+
 	"self bezierTest"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
-	aPage := PDFPage new.
-
-	aPage add: (PDFBezierCurveElement new 
-		from: 10mm@50mm;
-		to: { 100mm@10mm . 140mm@100mm . 200mm@30mm };
-		thickness: 5 mm
-	).
-	
+	pdfdoc := PDFDocument new.
+	aPage := PDFPage new.	
+			
+	aPage
+		add:
+				((PDFBezierCurveElement
+						from: 10 mm @ 50 mm
+						to:
+							{(100 mm @ 10 mm).
+							(140 mm @ 100 mm).
+							(200 mm @ 30 mm)})
+		thickness: 5 mm).
+		
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
-
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #experimental }
@@ -631,11 +632,8 @@ PDFDemos >> circlesTest: aStream [
 	pdfdoc := PDFDocument new.	
 	
 	aPage := PDFPage new.
-
-	aPage add: (PDFCircleElement new 
-		from: 50 mm @ 50 mm;
-		radius: 30 mm
-	).
+	
+	aPage add: (PDFCircleElement from: 50mm@50mm radius: 30mm).
 
 	aPage add: (PDFCircleElement new 
 		from: 120 mm @ 50 mm;
@@ -1032,13 +1030,8 @@ PDFDemos >> imageJPG: aStream [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
+	aPage add: (PDFJpegElement from: 5 mm@0mm wh: 160mm@90mm fromStream: (StandardFileStream fileNamed: 'Pharo.jpg')).
 	aPage
-		add:
-			((PDFJpegElement
-				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
-				from: 5 mm @ 0 mm;
-				wh: 160 mm  @ 90 mm).
-		aPage
 		add:
 			((PDFJpegElement
 				fromStream: (StandardFileStream fileNamed: 'Pharo.jpg'))
@@ -1092,6 +1085,7 @@ PDFDemos >> lineTest: aStream [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
+	
 	aPage
 		add:
 			(PDFLineElement new
@@ -1112,16 +1106,10 @@ PDFDemos >> lineTest: aStream [
 			(PDFLineElement new
 				from: 0 mm @ 0 mm;
 				to: 210 mm @ 297 mm).
-	aPage
-		add:
-			(PDFLineElement new
-				from: 210 mm @ 297 mm;
-				to: 210 mm @ 0 mm).
-	aPage
-		add:
-			(PDFLineElement new
-				from: 210 mm @ 0 mm;
-				to: 0 mm @ 297 mm).
+
+	aPage add: (PDFLineElement from: 210mm@297mm to: 210mm@0mm).
+	aPage add: (PDFLineElement from: 210mm@0mm to: 0mm@297mm).
+
 	pdfdoc add: aPage.
 	pdfdoc styleSheet drawColor: (PDFColor r: 200 g: 25 b: 25).
 pdfdoc exportTo: aStream
@@ -1296,16 +1284,12 @@ PDFDemos >> polygonsTest: aStream [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-	aPage
-		add:
-			(PDFPolygonElement new
-				from: 10 mm @ 10 mm;
-				to:
-						{(60 mm @ 20 mm).
+	
+	aPage add: ((PDFPolygonElement from: 10mm@10mm to: {(60 mm @ 20 mm).
 						(50 mm @ 40 mm).
 						(30 mm @ 50 mm).
-						(15 mm @ 45 mm)};
-				drawColor: (PDFColor r: 0 g: 0 b: 255)).
+						(15 mm @ 45 mm)})
+						drawColor: (PDFColor r: 0 g: 0 b: 255)).
 	aPage
 		add:
 			(PDFPolygonElement new
@@ -1334,10 +1318,8 @@ PDFDemos >> rectsTest: aStream [
 	
 	aPage := PDFPage new.
 	
-	aPage add: (PDFRectElement new
-		from: 0 mm @ 0 mm;
-		wh: 210 mm @ 297 mm
-	).
+	aPage add: (PDFRectElement from: 0 mm @ 0 mm wh: 210 mm @ 297 mm).
+	
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		wh: 100 mm @ 30 mm).
@@ -1368,9 +1350,7 @@ PDFDemos >> textTest: aStream [
 	aPage := PDFPage new.
 	aPage
 		add:
-				(PDFTextElement new
-						from: 10 mm @ 10 mm;
-						text: 'A very simple text');
+				(PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text');
 		add:
 				(PDFTextElement new
 						font: myFont;

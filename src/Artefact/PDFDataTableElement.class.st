@@ -47,7 +47,7 @@ PDFDataTableElement >> defaultStyle [
 	^ #datatable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 	| currentFrom aCellDimension |
 	currentFrom := self from.

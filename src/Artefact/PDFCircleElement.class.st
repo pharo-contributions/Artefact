@@ -17,6 +17,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFCircleElement class >> from: aPosition radius: aRadius [ 
+	^self new 
+		from: aPosition;
+		radius: aRadius;
+		yourself
+]
+
 { #category : #render }
 PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a line from xy to destination"

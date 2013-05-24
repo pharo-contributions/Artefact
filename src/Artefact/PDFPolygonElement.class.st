@@ -10,6 +10,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFPolygonElement class >> from: aPosition to: aArrayOfPositions [ 
+	^self new 
+		from: aPosition;
+		to: aArrayOfPositions;
+		yourself
+]
+
 { #category : #render }
 PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a polygon from xy to destination (a array of positions)"

@@ -10,6 +10,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFLineElement class >> from: aPosition to:  anotherPosition [
+	^self new 
+		from: aPosition;
+		to: anotherPosition;
+		yourself
+]
+
 { #category : #render }
 PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	| dest |

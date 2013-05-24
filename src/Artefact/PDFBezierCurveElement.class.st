@@ -10,6 +10,14 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
+{ #category : #'as yet unclassified' }
+PDFBezierCurveElement class >> from: aPosition to: aArrayOfPositions [ 
+	^self new 
+		from: aPosition;
+		to: aArrayOfPositions;
+		yourself
+]
+
 { #category : #render }
 PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	"Draw a Bezier curve from xy to destination (3 control points)"

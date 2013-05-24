@@ -26,6 +26,15 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PDFImage class >> from: aPosition wh: aDimension fromStream: aStream [
+	^ self new
+		from: aPosition;
+		wh: aDimension;
+		stream: aStream;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
 PDFImage class >> fromStream: aStream [
 	^ self new
 		stream: aStream;
