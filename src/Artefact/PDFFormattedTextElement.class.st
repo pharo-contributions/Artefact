@@ -11,7 +11,7 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #style }
 PDFFormattedTextElement >> defaultStyle [
 	^ #text
 ]

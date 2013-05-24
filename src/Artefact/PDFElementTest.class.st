@@ -28,3 +28,13 @@ PDFElementTest >> testOrientationTopLeft [
 PDFElementTest >> testOrientationTopRight [
 	self assert: (PDFElement determineOrientation: 20 mm @ -10mm) equals: #topRight
 ]
+
+{ #category : #orientation }
+PDFElementTest >> testRequiredAttributesIsFilled [
+	self shouldnt: [(PDFDummyLayout new from: 10mm@5mm; dimension: 5cm@12cm) checkAttributes] raise: ArtefactUndefinedAttribute 
+]
+
+{ #category : #orientation }
+PDFElementTest >> testRequiredAttributesIsNotFilled [
+	self should: [PDFDummyLayout new checkAttributes] raise: ArtefactUndefinedAttribute 
+]

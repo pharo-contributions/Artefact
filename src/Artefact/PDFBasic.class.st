@@ -24,15 +24,11 @@ PDFBasic >> determinePosition: aPosition on: aPage [
 
 { #category : #render }
 PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
-	"generate a CodeSegment based on the addition of the received stylesheet and the element styleSheet (prioritary)"
-
-	| mixedStyleSheet |
-	mixedStyleSheet := self buildCompositeStyleSheetFrom: aStyleSheet.
 	^ self codeSegmentClass
-		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: mixedStyleSheet)
-		styleSheet: mixedStyleSheet
+		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet)
+		styleSheet: aStyleSheet
 		isDrawElement: self isDrawElement
-		fontId: ([(aPDFGenerator getFontIdFor: mixedStyleSheet font)] on: KeyNotFound do: [nil])
+		fontId: ([(aPDFGenerator getFontIdFor: aStyleSheet font)] on: KeyNotFound do: [nil])
 		fromElement: self
 ]
 

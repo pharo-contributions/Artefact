@@ -46,6 +46,11 @@ PDFCompositeText >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet 
 	
 ]
 
+{ #category : #checking }
+PDFCompositeText >> requiredAttributes [
+	^ #( from text )
+]
+
 { #category : #accessing }
 PDFCompositeText >> text [
 	^text

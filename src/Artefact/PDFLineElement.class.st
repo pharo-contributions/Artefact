@@ -25,3 +25,8 @@ PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 		nextPutAll: PDFByteCode noFilling
 	]).
 ]
+
+{ #category : #'as yet unclassified' }
+PDFLineElement >> requiredAttributes [
+	^ #( from to orientation )
+]

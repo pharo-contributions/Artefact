@@ -16,18 +16,17 @@ Class {
 	#name : #PDFDataTableElement,
 	#superclass : #PDFComposite,
 	#instVars : [
-		'data',
-		'margin'
+		'data'
 	],
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableElement >> cellDimensions [
 	^ (self dimension x / self cellsData first size) @ (self dimension y / self cellsData size)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableElement >> cellsData [
 	^ self data
 ]
@@ -68,11 +67,11 @@ PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 ]
 
 { #category : #accessing }
-PDFDataTableElement >> margin [
-	^margin ifNil: [ margin := 1 point ]
+PDFDataTableElement >> margin: aMargin [
+	self styleSheet margin: aMargin
 ]
 
-{ #category : #accessing }
-PDFDataTableElement >> margin: aMargin [
-	margin := aMargin
+{ #category : #checking }
+PDFDataTableElement >> requiredAttributes [
+	^ #( from data dimension )
 ]

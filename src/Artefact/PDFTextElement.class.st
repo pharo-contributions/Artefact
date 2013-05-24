@@ -36,3 +36,8 @@ PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet
 				space;
 				nextPutAll: PDFByteCode endOfText ]
 ]
+
+{ #category : #'as yet unclassified' }
+PDFTextElement >> requiredAttributes [
+	^ #( from text )
+]

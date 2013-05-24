@@ -53,6 +53,12 @@ PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 		ifAbsent: [ aStyleSheet ]) + self styleSheet
 ]
 
+{ #category : #checking }
+PDFElement >> checkAttributes [
+	self requiredAttributes
+		do: [ :anAttribute | (self perform: anAttribute) ifNil: [ ArtefactUndefinedAttribute signalMissingAttribute: anAttribute for: self ] ]
+]
+
 { #category : #style }
 PDFElement >> defaultStyle [
 	^ self subclassResponsibility 
@@ -81,6 +87,13 @@ PDFElement >> from: anObject [
 { #category : #render }
 PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet [
 	^ self subclassResponsibility 
+]
+
+{ #category : #render }
+PDFElement >> generateWith: aGenerator styleSheet: aStyleSheet [
+	"this method is the main one to generate this PDFElement"
+	self checkAttributes.
+	^ self generateCodeSegmentWith: aGenerator styleSheet: (self buildCompositeStyleSheetFrom: aStyleSheet)
 ]
 
 { #category : #'initialize-release' }
@@ -121,6 +134,11 @@ PDFElement >> orientedTo [
 	(#bottomLeft -> [ self from x @ self to y ]).
 	(#topRight -> [ self to x @ self from y ]).
 	(#topLeft -> [ self from x @ self from y ])} asDictionary at: self orientation) value
+]
+
+{ #category : #checking }
+PDFElement >> requiredAttributes [
+	^ #( from dimension )
 ]
 
 { #category : #accessing }

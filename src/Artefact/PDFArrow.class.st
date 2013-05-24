@@ -46,3 +46,8 @@ PDFArrow >> headLength [
 	"answer the length of the head of the arrow"
 	^3 pt
 ]
+
+{ #category : #checking }
+PDFArrow >> requiredAttributes [
+	^ #( from to orientation )
+]

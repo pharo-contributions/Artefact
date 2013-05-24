@@ -48,7 +48,7 @@ PDFLayout >> createOriginalPositionDictionary [
 	^ positions
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #style }
 PDFLayout >> defaultStyle [
 	^ #default
 ]
@@ -89,7 +89,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 	^ codeSegments
 ]
 
-{ #category : #accessing }
+{ #category : #'initialize-release' }
 PDFLayout >> initialize [ 
 	super initialize.
 	elements:= OrderedCollection new.

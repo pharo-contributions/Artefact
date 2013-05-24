@@ -52,11 +52,9 @@ PDFComposite >> font: aFont [
 
 { #category : #render }
 PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
-	| compositeStyleSheet |
-	compositeStyleSheet := self buildCompositeStyleSheetFrom: aStyleSheet.
 	^ PDFCompositeCodeSegment
-		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet)
-		styleSheet: compositeStyleSheet
+		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet)
+		styleSheet: aStyleSheet
 ]
 
 { #category : #render }
@@ -75,7 +73,7 @@ PDFComposite >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFComposite >> initialize [ 
 	super initialize.
 	self filled: false

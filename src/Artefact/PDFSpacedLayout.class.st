@@ -17,16 +17,21 @@ Class {
 	#category : #'Artefact-Elements-Layouts'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFSpacedLayout >> defaultSpacing [
 
 	^ 5 pt
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFSpacedLayout >> initialize [ 
 	super initialize.
 	spacing := self defaultSpacing.
+]
+
+{ #category : #checking }
+PDFSpacedLayout >> requiredAttributes [
+	^ #( from spacing )
 ]
 
 { #category : #accessing }

@@ -36,6 +36,11 @@ PDFParagraphElement >> initialize [
 	self spacing: 0 mm.
 ]
 
+{ #category : #checking }
+PDFParagraphElement >> requiredAttributes [
+	^ #( from text dimension )
+]
+
 { #category : #accessing }
 PDFParagraphElement >> spacing [
 	^spacing

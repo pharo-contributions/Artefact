@@ -10,7 +10,7 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFDataTableWithRowsCaptionElement >> cellsData [ 
 	| current |
 	current := 0.

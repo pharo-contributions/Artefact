@@ -47,3 +47,8 @@ PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyl
 				nextPutAll: (self fillMode: aStyleSheet filled);
 				space ]
 ]
+
+{ #category : #checking }
+PDFPolygonElement >> requiredAttributes [
+	^ #( from points )
+]
