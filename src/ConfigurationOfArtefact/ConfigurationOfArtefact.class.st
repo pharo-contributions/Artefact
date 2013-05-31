@@ -201,6 +201,6 @@ ConfigurationOfArtefact >> version10: spec [
 			author: 'Olivier Auverlot and Guillaume Larcheveque';
 			description: 'configuration for artefact'.
 		spec
-			package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.228'.
+			package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.230'.
 	]
 ]
