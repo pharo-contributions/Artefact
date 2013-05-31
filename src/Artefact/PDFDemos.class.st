@@ -89,7 +89,8 @@ PDFDemos class >> datatableWithCaptionsTest [
 
 { #category : #tool }
 PDFDemos class >> demoPath [
-	^ '/Users/larcheveque/pdf/'
+	^ '/Users/olivier/Desktop/pdf/'
+
 ]
 
 { #category : #'display setup' }
@@ -256,8 +257,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> alignmentsTest: aStream [
 	"a simple demonstration of Artefact"
 
-	"PDFDemos alignmentsTest"
-
 	| pdfdoc myFont aPage |
 	pdfdoc := PDFDocument new.
 	myFont := PDFHelveticaFont new fontSize: 16 pt.
@@ -293,8 +292,6 @@ PDFDemos >> alignmentsTest: aStream [
 { #category : #composite }
 PDFDemos >> arrowTest: aStream [
 	"drawing arrows"
-
-	"self arrowTest"
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
@@ -375,8 +372,6 @@ PDFDemos >> bezierTest: aStream [
 PDFDemos >> brochure: aStream [
 	"Artefact use an JPG file"
 
-	"self brochure"
-
 	| pdfdoc aPage titleFont subtitleFont titleColor layout imageStream quoteFont |
 	imageStream := ByteArray new writeStream.
 	PluginBasedJPEGReadWriter
@@ -456,8 +451,6 @@ PDFDemos >> brochure: aStream [
 PDFDemos >> capLineTest: aStream [
 	"drawing simple lines with round cap"
 
-	"self capLineTest"
-
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
@@ -485,8 +478,6 @@ pdfdoc exportTo: aStream
 
 { #category : #composite }
 PDFDemos >> cellTest: aStream [
-	"self cellTest"
-	
 	"Demonstration of PDFCellElement"
 	
 	| pdfdoc myTitleFont aPage |
@@ -628,8 +619,6 @@ PDFDemos >> circlesTest: aStream [
 PDFDemos >> colorTest: aStream [
 	"generate a sample document with colors"
 
-	"self colorTest"
-	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
@@ -660,8 +649,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> datatableTest: aStream [
 	"generate a datatable"
 
-	"self datatableTest"
-	
 	| pdfdoc aPage |
 		
 	pdfdoc := PDFDocument new.
@@ -738,8 +725,6 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 PDFDemos >> documentDisplayLayoutTest: aStream [
 	"Configuration of display layout: singlePage, twoPages or continuousPages"
 
-	"self documentDisplaylayoutTest"
-
 	| pdfdoc aPage1 aPage2 |
 	pdfdoc := PDFDocument new twoPages.
 	aPage1  := PDFPage new.
@@ -764,8 +749,6 @@ pdfdoc exportTo: aStream
 { #category : #'display setup' }
 PDFDemos >> documentDisplayModeTest: aStream [
 	"Configuration of display mode: fullPage, fullWidth or real"
-
-	"self documentDisplayModeTest"
 
 	| pdfdoc aPage1 aPage2 |
 	pdfdoc := PDFDocument new fullPage.
@@ -792,8 +775,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> documentZoomTest: aStream [
 	"Configuration of zoom"
 
-	"self documentZoomTest"
-
 	| pdfdoc aPage1 aPage2 |
 	pdfdoc := PDFDocument new zoom: 400. "set the zoom at 400%"
 	aPage1  := PDFPage new.
@@ -819,8 +800,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> drawStyleSheetTest: aStream [
 	"generate a sample document with colors"
 
-	"self drawStyleSheetTest"
-	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
@@ -848,7 +827,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> euroTest: aStream [
 	"a PDF document with the euro sign"
 
-	"PDFDemos euroTest"
 	| pdfdoc aPage theText|
 
        pdfdoc := PDFDocument new.
@@ -870,9 +848,7 @@ pdfdoc exportTo: aStream
 PDFDemos >> greyLevelTest: aStream [
 	"generate a sample document with grey levels"
 
-	"self greyLevelTest"
-	
-	| pdfdoc aPage myFont |
+	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
 	aPage := PDFPage new.
@@ -1035,8 +1011,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> infosTest: aStream [
 	"generate a sample document with informations"
 
-	"self infosTest"
-	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
@@ -1057,8 +1031,6 @@ pdfdoc exportTo: aStream
 { #category : #draw }
 PDFDemos >> lineTest: aStream [
 	"drawing with simple lines around the page"
-
-	"self lineTest"
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
@@ -1097,8 +1069,6 @@ pdfdoc exportTo: aStream
 { #category : #document }
 PDFDemos >> multiOrientationsTest: aStream [
 	"Create a document with two pages and two different orientations"
-	
-	"self multiOrientationsTest"
 	
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
 	pdfdoc := PDFDocument new.	
@@ -1174,8 +1144,6 @@ PDFDemos >> oneLineTest: aStream [
 PDFDemos >> paragraphTest: aStream [
 	"Use of paragraphs"
 	
-	"self paragraphTest"
-	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
 	
@@ -1213,8 +1181,6 @@ pdfdoc exportTo: aStream
 { #category : #composite }
 PDFDemos >> paragraphWithSpacingTest: aStream [
 	"Use of paragraphs"
-	
-	"self paragraphWithSpacingTest"
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
@@ -1290,8 +1256,6 @@ PDFDemos >> polygonsTest: aStream [
 { #category : #draw }
 PDFDemos >> rectsTest: aStream [
 	"intersecting rects"
-	
-	"self rectsTest"
 	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
@@ -1370,8 +1334,6 @@ pdfdoc exportTo: aStream
 PDFDemos >> thicknessTest: aStream [
 	"generate a sample document for testing the draw objects"
 
-	"self thicknessTest"
-	
 	| pdfdoc aPage xy1 xy2 |
 
 	pdfdoc := PDFDocument new.	
@@ -1401,8 +1363,6 @@ PDFDemos >> thicknessTest: aStream [
 PDFDemos >> twoColoredRectsTest: aStream [
 	"intersecting rects"
 	
-	"self twoColoredRectsTest"
-	
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.	
 	
@@ -1427,8 +1387,6 @@ pdfdoc exportTo: aStream
 { #category : #layout }
 PDFDemos >> verticalLayoutTest: aStream [
 	"self verticalLayoutTest"
-
-	"Demonstration of PDFCellElement"
 
 	| pdfdoc myTitleFont aPage |
 	pdfdoc := PDFDocument new.
@@ -1527,9 +1485,7 @@ pdfdoc exportTo: aStream
 PDFDemos >> widthTest: aStream [
 	"generate a sample document for testing the width of fonts"
 
-	"PDFDemos widthTest"
-	
-	| pdfdoc aPage myFont width text |
+	| pdfdoc aPage myFont myOtherFont width text |
 
 	pdfdoc := PDFDocument new.	
 			
@@ -1539,12 +1495,14 @@ PDFDemos >> widthTest: aStream [
 	aPage := PDFPage new.
 	
 	width := myFont getStringWidth: text.
-	
 	aPage add: (PDFCellElement new from: 5mm@10mm; font: myFont; dimension: width@10mm; text: text).
 
-	pdfdoc add: aPage.
+	myOtherFont := PDFTimesFont new.
+	myOtherFont fontSize: (myOtherFont getIdealFontSizeForTheString: text width: 10mm).
+	aPage add: (PDFCellElement new from: 5mm@20mm; font: myOtherFont; dimension: 10mm@2mm; text: text).
 	
+	pdfdoc add: aPage.
 		
-pdfdoc exportTo: aStream
+	pdfdoc exportTo: aStream
 
 ]

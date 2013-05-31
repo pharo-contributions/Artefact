@@ -132,23 +132,22 @@ PDFFont >> getCharWidthOf: aChar [
 ]
 
 { #category : #action }
-PDFFont >> getIdealFontSizeForTheString: aString width: aWidth into: aDocument [
+PDFFont >> getIdealFontSizeForTheString: aString width: aWidth [
 	"answer the ideal font size for the specified width. The size of the font is not modified"
 	
-	| fsize width originalFontSize |
-	self flag: 'to adapt'.
+	| fsize originalFontSize |
 
-	fsize := 0.
-	width := 0.
-	
+	"we preserve the original size"
 	originalFontSize := self fontSize.
-	[ width >=  aWidth ] whileFalse: [
-		fsize := fsize + 1. 
-		self fontSize: fsize.
-		width := self getStringWidth: aString.
-	].
+	
+	"width for 1pt height"
+	self fontSize: 1pt.
+	
+	fsize := ((aWidth convertTo: Unit points) / (self getStringWidth: aString)) asInteger pt.
+	
+	"the original font size will be restored"
 	self fontSize: originalFontSize.
-	^(fsize - 1)
+	^fsize
 	
 	
 ]
