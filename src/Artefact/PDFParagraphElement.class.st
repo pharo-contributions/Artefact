@@ -20,14 +20,18 @@ PDFParagraphElement >> defaultStyle [
 
 { #category : #accessing }
 PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
-
 	| lines decalage currentXY current |
-	lines := self splitOn: (aPDFGenerator currentPage) using: aStyleSheet font.
+	lines := self splitOn: aPDFGenerator currentPage using: aStyleSheet font.
 	decalage := aStyleSheet font fontSize.
 	currentXY := self from.
-	^ lines collect: [:aLine | current := PDFFormattedTextElement new from: currentXY; dimension: self dimension; text: aLine.
-			currentXY := currentXY + (0@decalage) + (0@self spacing).
-			current ].
+	^ lines
+		collect: [ :aLine | 
+			current := PDFFormattedTextElement new
+				from: currentXY;
+				dimension: self dimension;
+				text: aLine.
+			currentXY := currentXY + (0 @ decalage) + (0 @ self spacing).
+			current ]
 ]
 
 { #category : #'initialize-release' }

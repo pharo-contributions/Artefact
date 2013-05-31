@@ -46,8 +46,8 @@ PDFDemos class >> bezierTest [
 ]
 
 { #category : #experimental }
-PDFDemos class >> brochure [
-	"PDFDemos brochure"
+PDFDemos class >> brochureTest [
+	"PDFDemos brochureTest"
 	self new brochure: (self streamNamed: 'brochure.pdf')
 ]
 
@@ -89,7 +89,7 @@ PDFDemos class >> datatableWithCaptionsTest [
 
 { #category : #tool }
 PDFDemos class >> demoPath [
-	^ '/Users/olivier/Desktop/pdf/'
+	^ 'pdf/'
 
 ]
 
@@ -203,6 +203,9 @@ PDFDemos class >> runAllDemos [
 
 { #category : #tool }
 PDFDemos class >> streamNamed: aName [
+	| path |
+	path := self demoPath asFileReference.
+	path exists ifFalse: [ path createDirectory ]. 
 	^ FileStream fileNamed: self demoPath , aName
 ]
 
@@ -372,11 +375,12 @@ PDFDemos >> bezierTest: aStream [
 PDFDemos >> brochure: aStream [
 	"Artefact use an JPG file"
 
-	| pdfdoc aPage titleFont subtitleFont titleColor layout imageStream quoteFont |
+	| pdfdoc aPage titleFont subtitleFont titleColor layout imageStream quoteFont pharoLogo |
 	imageStream := ByteArray new writeStream.
-	PluginBasedJPEGReadWriter
-		putForm: (PNGReadWriter on: (StandardFileStream fileNamed: 'Pharo.png')) nextImage
-		onStream: imageStream.
+	pharoLogo := ZnClient new
+		url: 'http://www.pharo-project.org/images/pharo.png';
+		get.	"Downloading PNG file from internet with Zinc"
+	PluginBasedJPEGReadWriter putForm: (PNGReadWriter on: pharoLogo readStream) nextImage onStream: imageStream.	"Then convert it to JPG because Artefact only support JPG"
 	imageStream := ReadStream on: imageStream contents.
 	pdfdoc := PDFDocument new.
 	titleColor := PDFColor r: 13 g: 100 b: 175.
@@ -408,8 +412,8 @@ PDFDemos >> brochure: aStream [
 						font: quoteFont);
 		add:
 				((PDFJpegElement fromStream: imageStream)
-						from: 15 mm @ 0 mm;
-						dimension: 80 mm @ 80 mm).
+						from: 15 mm @ 20 mm;
+						dimension: 80 mm @ 40 mm).
 	layout := PDFVerticalLayout
 		on:
 			{(PDFFormattedTextElement new
@@ -483,7 +487,7 @@ PDFDemos >> cellTest: aStream [
 	| pdfdoc myTitleFont aPage |
 	pdfdoc := PDFDocument new.	
 
-	myTitleFont := PDFTimesFont new fontSize: 24 pt; bold: true.
+	myTitleFont := (PDFTimesFont size: 24 pt) bold: true.
 	
 	aPage := PDFPage new.
 
@@ -1014,10 +1018,10 @@ PDFDemos >> infosTest: aStream [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	
-	pdfdoc metaData title: 'Le titre du document'; 
-		subject: 'test de la zone d''information'; 
-		author: 'Olivier Auverlot'; 
-		keywords: 'test zone infos';
+	pdfdoc metaData title: 'Document title'; 
+		subject: 'subject of the document'; 
+		author: 'The Pasta Team'; 
+		keywords: 'cool rock best';
 		creator: 'Artefact - Pharo'.
 	
 	aPage := PDFPage new.
@@ -1289,8 +1293,8 @@ PDFDemos >> textTest: aStream [
 
 	| pdfdoc myFont aPage myFontInMilliMeters |
 	pdfdoc := PDFDocument new.
-	myFont := PDFTimesFont new fontSize: 24 pt.
-	myFontInMilliMeters := PDFTimesFont new fontSize: 5 mm.
+	myFont := PDFTimesFont size: 24 pt.
+	myFontInMilliMeters := PDFTimesFont size: 5 mm.
 	aPage := PDFPage new.
 	aPage
 		add:

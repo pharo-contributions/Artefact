@@ -1,5 +1,5 @@
 "
-A PDFDoubleArrowElement is the element to draw a double arrow (with one head at each extremity).
+A PDFDoubleArrowElement is the element to draw a double arrow (with one head at each extremity). An arrow MUST be created with the from:to: method on class side (to determine orientation)
 
 Styles hierarchy:
 #arrow

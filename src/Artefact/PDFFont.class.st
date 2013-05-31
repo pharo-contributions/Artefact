@@ -32,6 +32,11 @@ Class {
 	#category : #'Artefact-Fonts'
 }
 
+{ #category : #'as yet unclassified' }
+PDFFont class >> size: aFontSize [
+	^ self new fontSize: aFontSize
+]
+
 { #category : #accessing }
 PDFFont >> bold [
 	^ bold ifNil: [ bold = false ]

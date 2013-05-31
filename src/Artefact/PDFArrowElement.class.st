@@ -1,5 +1,5 @@
 "
-A PDFArrowElement is the element to draw a simple arrow (with one head at the end).
+A PDFArrowElement is the element to draw a simple arrow (with one head at the end). An arrow MUST be created with the from:to: method on class side (to determine orientation).
 
 Styles hierarchy:
 #arrow
