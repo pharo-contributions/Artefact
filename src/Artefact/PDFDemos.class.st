@@ -649,7 +649,7 @@ pdfdoc exportTo: aStream
 
 ]
 
-{ #category : #composite }
+{ #category : #datatable }
 PDFDemos >> datatableTest: aStream [
 	"generate a datatable"
 
@@ -658,6 +658,7 @@ PDFDemos >> datatableTest: aStream [
 	pdfdoc := PDFDocument new.
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
+	pdfdoc styleSheet > #datatable > #even fillColor: (PDFColor r: 75 g: 75 b: 230).
 	
 	aPage := PDFPage new.
 	aPage add: (PDFDataTableElement new
@@ -667,7 +668,8 @@ PDFDemos >> datatableTest: aStream [
 			#('washington' 'robert' 'robert.washington@blif.com')
 		);
 		from: 10 mm @ 10 mm;
-		dimension: 190 mm @ 50 mm
+		dimension: 190 mm @ 50 mm;
+		customizationBlock: [ :cell :x :y :data | x even ifTrue: [cell style: #even] ]
 	).
 
 	aPage add: (PDFDataTableElement new
@@ -690,7 +692,7 @@ PDFDemos >> datatableTest: aStream [
 
 ]
 
-{ #category : #composite }
+{ #category : #datatable }
 PDFDemos >> datatableWithCaptionsTest: aStream [
 	"generate a datatable with captions"
 
@@ -700,6 +702,7 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 		fillColor: (PDFColor r: 158 g: 158 b: 79);
 		drawColor: (PDFColor r: 158 g: 158 b: 79).
 	pdfdoc styleSheet > #dataTableWithColoredCaption margin: 4 pt.
+	pdfdoc styleSheet > #dataTableWithColoredCaption > #cell alignment: PDFAlignment right.
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	aPage := PDFPage new.

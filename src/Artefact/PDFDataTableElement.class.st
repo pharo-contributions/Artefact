@@ -16,7 +16,8 @@ Class {
 	#name : #PDFDataTableElement,
 	#superclass : #PDFComposite,
 	#instVars : [
-		'data'
+		'data',
+		'customizationBlock'
 	],
 	#category : #'Artefact-Elements-Composites'
 }
@@ -29,6 +30,16 @@ PDFDataTableElement >> cellDimensions [
 { #category : #render }
 PDFDataTableElement >> cellsData [
 	^ self data
+]
+
+{ #category : #accessing }
+PDFDataTableElement >> customizationBlock [
+	^ customizationBlock
+]
+
+{ #category : #accessing }
+PDFDataTableElement >> customizationBlock: anObject [
+	customizationBlock := anObject
 ]
 
 { #category : #accessing }
@@ -48,22 +59,32 @@ PDFDataTableElement >> defaultStyle [
 
 { #category : #render }
 PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
-	| currentFrom aCellDimension |
+	| currentFrom aCellDimension x y |
+	y := 1.
 	currentFrom := self from.
 	aCellDimension := self cellDimensions.
 	^ self cellsData
 		inject: OrderedCollection new
 		into: [ :collection :anArray | 
 			| result |
+			x := 1.
 			result := collection , (anArray
 				collect: [ :aData | 
 					| cell |
-					cell := PDFCellElement from: currentFrom dimension: aCellDimension text: aData asString.	
+					cell := PDFCellElement from: currentFrom dimension: aCellDimension text: aData asString.
+					self customizationBlock value: cell value: x value: y value: aData.
 					currentFrom := currentFrom + (aCellDimension x @ 0pt).
+					x := x + 1.
 					cell ]).
 			currentFrom := self from x @ (currentFrom y + aCellDimension y).
-
+			y := y + 1.
 			result ]
+]
+
+{ #category : #'as yet unclassified' }
+PDFDataTableElement >> initialize [ 
+	super initialize.
+	self customizationBlock: [ :cell :x :y :cellData | ].
 ]
 
 { #category : #accessing }
