@@ -32,6 +32,12 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #'*Artefact-Nautilus' }
+PDFPage class >> nautilusIcon [
+
+	^ self nautilusIconClass iconNamed: #pdfIcon
+]
+
 { #category : #action }
 PDFPage >> add: anElement [
 	"Use this to add a new element to this page"
