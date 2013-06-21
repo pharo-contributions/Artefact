@@ -17,12 +17,12 @@ PDFBasicTest >> element: anObject [
 	element := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFBasicTest >> setUp [
 	self element: PDFDummyBasic new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFBasicTest >> testSplitCoordinates [
 	self assert: (self element splitCoordinates: 20@30) = '20 30'.
 ]

@@ -27,7 +27,7 @@ ArtefactOverSizedContent >> content: anObject [
 	content := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 ArtefactOverSizedContent >> printOn: aStream [
 	super printOn: aStream.
 	aStream space.

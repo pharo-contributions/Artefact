@@ -8,7 +8,7 @@ Class {
 	#category : #'Artefact-Templates'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFDVDCoverTemplate class >> recommendedPageFormat [
 	^(PDFA4Format new setLandscape)
 ]

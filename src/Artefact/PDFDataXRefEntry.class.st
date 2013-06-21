@@ -24,7 +24,7 @@ PDFDataXRefEntry class >> referencedObject: aPDFDataTypeObject [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataXRefEntry >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataXRefEntry: self
 ]

@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFA9Format >> defaultSize [
 	^ 104.88 point @ 147.4 point
 ]

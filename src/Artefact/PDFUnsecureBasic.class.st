@@ -14,7 +14,7 @@ Class {
 	#category : #'Artefact-Elements'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFUnsecureBasic >> codeSegmentClass [
 	^ PDFUnsecureElementCodeSegment 
 ]

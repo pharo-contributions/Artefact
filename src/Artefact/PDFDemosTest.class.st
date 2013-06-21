@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFDemosTest >> testAllDemos [
 	| demos |
 	demos := PDFDemos new.

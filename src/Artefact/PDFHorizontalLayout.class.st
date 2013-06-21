@@ -10,7 +10,7 @@ Class {
 	#category : #'Artefact-Elements-Layouts'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #layouting }
 PDFHorizontalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	| previousElement |
 	anElement

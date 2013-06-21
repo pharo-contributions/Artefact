@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFA6Format >> defaultSize [
 	^ 297.65 point @ 419.54 point
 ]

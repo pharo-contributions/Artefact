@@ -41,7 +41,7 @@ PDFImage class >> fromStream: aStream [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFImage >> defaultStyle [ 
 	^ #image
 ]

@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFStyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	| first second result |
 	first := PDFStyleSheet new.
@@ -17,7 +17,7 @@ PDFStyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	self assert: (result get: #textColor) equals: (PDFColor r: 0 g: 12 b: 24)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFStyleSheetTest >> testSubstyleAttributes [
 	| base |
 	base := PDFStyleSheet new.
@@ -29,7 +29,7 @@ PDFStyleSheetTest >> testSubstyleAttributes [
 	self assert:( base > #sub > #subsub get: #textColor ) equals: (PDFColor r: 0 g: 0 b: 255).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFStyleSheetTest >> testSubstyleCreation [
 	| base sub |
 	base := PDFStyleSheet new.

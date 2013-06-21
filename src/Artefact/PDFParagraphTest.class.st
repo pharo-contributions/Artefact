@@ -39,7 +39,7 @@ PDFParagraphTest >> paragraph: anObject [
 	paragraph := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFParagraphTest >> setUp [
 	self doc: PDFDocument new.
 	self page: PDFPage new.
@@ -55,6 +55,6 @@ PDFParagraphTest >> setUp [
 	self doc generate.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFParagraphTest >> tearDown [ 
 ]

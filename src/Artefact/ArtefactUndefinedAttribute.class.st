@@ -22,7 +22,7 @@ Class {
 	#category : #'Artefact-Exception'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #signaling }
 ArtefactUndefinedAttribute class >> signalMissingAttribute: anAttribute for: aPDFElement [
 	self new
 		attribute: anAttribute;
@@ -50,7 +50,7 @@ ArtefactUndefinedAttribute >> element: anObject [
 	element := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ArtefactUndefinedAttribute >> messageText [
 	^ String
 		streamContents: [ :aStream | 
@@ -59,7 +59,7 @@ ArtefactUndefinedAttribute >> messageText [
 			self attribute printOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 ArtefactUndefinedAttribute >> printOn: aStream [
 	super printOn: aStream.
 	aStream space.

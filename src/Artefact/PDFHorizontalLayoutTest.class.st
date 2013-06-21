@@ -7,12 +7,12 @@ Class {
 	#category : #'Artefact-Elements-Layouts-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFHorizontalLayoutTest >> setUp [ 
 	testLayout := PDFHorizontalLayout new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFHorizontalLayoutTest >> testPosition [
 	| rect line |
 	rect := PDFRectElement from: 10 mm @ 10 mm dimension: 10 cm @ 3 cm.

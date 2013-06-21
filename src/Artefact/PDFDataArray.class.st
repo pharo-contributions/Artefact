@@ -26,12 +26,12 @@ PDFDataArray class >> from: aCollection [
 	^ dataArray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataArray >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataArray: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFDataArray >> addElement: anElement [
 	elements addLast: anElement 
 ]
@@ -51,7 +51,7 @@ PDFDataArray >> initialize [
 	elements := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataArray >> isPrintable [
 	"Because it will never contain an unprintable dataType"
 	^ true

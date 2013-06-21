@@ -22,7 +22,7 @@ PDFDataString class >> text: aText [
 	^ self new text: aText; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataString >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataString: self
 ]
@@ -39,7 +39,7 @@ PDFDataString >> escape: aString [
 	^str
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataString >> isPrintable [
 	^ true
 ]

@@ -22,12 +22,12 @@ PDFDataReference class >> reference: aPDFDataObject [
 	^ self new referencedObject: aPDFDataObject; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataReference >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataReference: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataReference >> isPrintable [
 	^ true
 ]

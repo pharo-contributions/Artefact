@@ -15,7 +15,7 @@ PDFDataComment class >> text: aTextComment [
 	^ self new comment: aTextComment
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataComment >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataComment: self
 ]

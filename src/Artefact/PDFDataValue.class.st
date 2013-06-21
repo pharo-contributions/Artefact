@@ -22,12 +22,12 @@ PDFDataValue class >> value: aValue [
 	^ self new value: aValue; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataValue >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataValue: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataValue >> isPrintable [
 	^ true
 ]

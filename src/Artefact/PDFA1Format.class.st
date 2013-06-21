@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFA1Format >> defaultSize [
 	^ 1683.84 point @ 2384.03 point
 ]

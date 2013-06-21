@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFA8Format >> defaultSize [
 	^ 147.4 point @ 209.77 point
 ]

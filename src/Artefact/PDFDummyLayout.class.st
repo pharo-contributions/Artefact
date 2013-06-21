@@ -10,12 +10,12 @@ Class {
 	#category : #'Artefact-Elements-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #layouting }
 PDFDummyLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	anElement dimension: 10pt @ 10pt
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #layouting }
 PDFDummyLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
 	anElement from: 10pt @ 10pt
 ]

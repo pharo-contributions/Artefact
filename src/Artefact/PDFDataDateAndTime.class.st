@@ -27,7 +27,7 @@ PDFDataDateAndTime class >> date: aDate time: aTime [
 	^ self new date: aDate; time: aTime; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataDateAndTime >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataDateAndTime: self
 ]
@@ -42,7 +42,7 @@ PDFDataDateAndTime >> date: anObject [
 	date := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
 	
@@ -66,12 +66,12 @@ PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	^((aDate yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , timeStr)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataDateAndTime >> isPrintable [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataDateAndTime >> printOn: aStream [
 	aStream nextPutAll: '(D:'; nextPutAll: (self formatDate: (self date) time: (self time)); nextPut: $)
 ]

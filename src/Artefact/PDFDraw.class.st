@@ -18,7 +18,7 @@ Class {
 	#category : #'Artefact-Elements-Basic'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFDraw >> defaultStyle [ 
 	^#draw
 ]

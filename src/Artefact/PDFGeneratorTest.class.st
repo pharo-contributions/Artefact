@@ -7,12 +7,12 @@ Class {
 	#category : #'Artefact-Generator-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFGeneratorTest >> setUp [
 	generator := PDFGenerator new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFGeneratorTest >> testGenerateEmptyPage [
 	| page pageDataType contentDataType document |
 	document := PDFDocument new uncompressed.
@@ -31,14 +31,14 @@ PDFGeneratorTest >> testGenerateEmptyPage [
 	self assert: contentDataType referencedObject revision equals: 0
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFGeneratorTest >> testGenerateFontID [
 	self assert: generator generateFontId equals: 'F1'.
 	self assert: generator generateFontId equals: 'F2'.
 	self assert: generator generateFontId equals: 'F3'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFGeneratorTest >> testGeneratePDFFormat [
 	| dataType format elements |
 	format := PDFA3Format new setLandscape.
@@ -54,7 +54,7 @@ PDFGeneratorTest >> testGeneratePDFFormat [
 	self assert: (elements fourth value pt closeTo: format height)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFGeneratorTest >> testGeneratePDFVersion [
 	| dataType version |
 	version := '1.3'.

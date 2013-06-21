@@ -17,12 +17,12 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataTrailer >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataTrailer: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFDataTrailer >> addContent: aContent [
 	contents addLast: aContent
 ]
@@ -37,12 +37,12 @@ PDFDataTrailer >> contents: anObject [
 	contents := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFDataTrailer >> initialize [ 
 	contents := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PDFDataTrailer >> printOn: aStream [
 	aStream nextPutAll: 'trailer'; lf.
 	contents do: [:aContent | aContent printOn: aStream. aStream lf].

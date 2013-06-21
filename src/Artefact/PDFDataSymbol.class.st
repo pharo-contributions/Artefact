@@ -22,12 +22,12 @@ PDFDataSymbol class >> symbol: aSymbol [
 	^ self new symbol: aSymbol; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataSymbol >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataSymbol: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataSymbol >> isPrintable [
 	^ true
 ]

@@ -81,7 +81,7 @@ PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 			result ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 PDFDataTableElement >> initialize [ 
 	super initialize.
 	self customizationBlock: [ :cell :x :y :cellData | ].

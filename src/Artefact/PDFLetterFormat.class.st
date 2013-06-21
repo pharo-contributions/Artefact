@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFLetterFormat >> defaultSize [
 	^ 612 point @ 1008 point
 ]

@@ -10,7 +10,7 @@ Class {
 	#category : #'Artefact-Elements-Test'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFLayoutTest >> setUp [ 
 	testLayout := PDFDummyLayout new.
 	generator := PDFGenerator new.
@@ -20,7 +20,7 @@ PDFLayoutTest >> setUp [
 	generator currentPage: page.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PDFLayoutTest >> testLayoutDoNotLoseOriginalDimensionOfElements [
 	| rect rect2 |
 	rect := PDFRectElement from: 10 mm @ 10 mm dimension: 10 cm @ 3 cm.

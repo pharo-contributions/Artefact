@@ -28,12 +28,12 @@ PDFFontTest >> page: anObject [
 	page := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFFontTest >> setUp [
 	self doc: PDFDocument new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PDFFontTest >> tearDown [ 
 ]
 

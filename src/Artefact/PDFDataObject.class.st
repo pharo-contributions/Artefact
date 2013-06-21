@@ -27,12 +27,12 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataObject >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataObject: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFDataObject >> addContent: aContent [
 	contents addLast: aContent
 ]

@@ -91,7 +91,7 @@ PDFMetaData >> currentDateAndTimeInPDFFormat [
 	^((Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time)
 ]
 
-{ #category : #accessing }
+{ #category : #'initialize-release' }
 PDFMetaData >> initialize [
 	self author: ''.
 	self creator: ''.

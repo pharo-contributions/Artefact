@@ -4,7 +4,7 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PDFEbookFormat >> defaultSize [
 	^ 324 point @ 431.9 point
 ]

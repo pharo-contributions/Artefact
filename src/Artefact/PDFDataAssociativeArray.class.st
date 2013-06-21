@@ -17,7 +17,7 @@ Class {
 	#category : #'Artefact-DataType'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataAssociativeArray >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataAssociativeArray: self
 ]
@@ -42,7 +42,7 @@ PDFDataAssociativeArray >> initialize [
 	associativeArray := OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataAssociativeArray >> isPrintable [
 	^ self associativeArray allSatisfy: [ :anElement | anElement isPrintable ]
 ]

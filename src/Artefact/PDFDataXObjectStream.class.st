@@ -24,12 +24,12 @@ PDFDataXObjectStream class >> stream: aStream [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #visit }
 PDFDataXObjectStream >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataXObjectStream: self
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataXObjectStream >> printWith: aPDFPrinter [
 	aPDFPrinter printPDFDataXObjectStream: self
 ]

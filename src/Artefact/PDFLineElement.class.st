@@ -26,7 +26,7 @@ PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 	]).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFLineElement >> requiredAttributes [
 	^ #( from to orientation )
 ]

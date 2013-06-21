@@ -49,7 +49,7 @@ PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: a
 				nextPutAll: PDFByteCode noFilling ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFBezierCurveElement >> requiredAttributes [
 	^ #( from points )
 ]

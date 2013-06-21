@@ -13,7 +13,7 @@ Class {
 	#category : #'Artefact-Elements-Composites'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFCellElement class >> from: aPoint dimension: aDimension text: aText [ 	
 	^ (self from: aPoint dimension: aDimension) text: aText 
 ]

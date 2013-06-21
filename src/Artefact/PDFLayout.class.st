@@ -22,7 +22,7 @@ Class {
 	#category : #'Artefact-Elements'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFLayout class >> on: aCollection [
 	^ self new elements: aCollection
 ]

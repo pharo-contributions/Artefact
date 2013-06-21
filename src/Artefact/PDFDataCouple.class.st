@@ -27,12 +27,12 @@ PDFDataCouple class >> key: aKey value: aValue [
 	^ self new key: aKey; value: aValue; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #visit }
 PDFDataCouple >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataCouple: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFDataCouple >> isPrintable [
 	"Because it will never contain an unprintable dataType"
 	^ key isPrintable and: [ value isPrintable ]
@@ -48,7 +48,7 @@ PDFDataCouple >> key: anObject [
 	key := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PDFDataCouple >> printOn: aStream [
 	key printOn: aStream. 
 	aStream space. 
