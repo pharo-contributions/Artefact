@@ -53,6 +53,11 @@ PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 		ifAbsent: [ aStyleSheet ]) + self styleSheet
 ]
 
+{ #category : #accessing }
+PDFElement >> center [
+	^ (self from + self to) / 2
+]
+
 { #category : #checking }
 PDFElement >> checkAttributes [
 	self requiredAttributes

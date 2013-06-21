@@ -95,6 +95,73 @@ There are two kinds of PDFElement:
 
 Each PDFElement have a set of properties that define its appearance (text color, font, dots…). Those properties are grouped in a stylesheet owned by each element. Every element controls its own appearance and doesn't affect other (in opposition as many PDF framework that use a flow logic). This behavior allow you to move or even use in multiple pages or document the same element.
 
+!!Composite Elements (just tape a bunch of cats together to create a horse)
+
+The power of artefact is to avoid redefining each combination by creating high-level elements (datatable, charts, barcode...).
+
+Instead of creating methods, Artefact offers you a way to define your composition with a standard mechanism. This context allow you to benefit from every cool stuff in artefact like stylesheet, layout, isolation and reusability.
+
+!!!Theory
+When you create a composite element inherit from PDFComposite or PDFCompositeText if your element will be based around a String.
+
+!!!Tutorial
+
+In this tutorial, we will create a clock, which is basically a circle and two arrows. This element will be drawed depending on the provided time and properties (size, colors, thickness).
+
+First create the class of your element:
+	PDFComposite subclass: #PDFClockElement
+		instanceVariableNames: 'time'
+		classVariableNames: ''
+		poolDictionaries: ''
+		category: 'Artefact-Tutorial'
+
+Don't forget to comment your class ;-).
+
+As you can see, we create an instance variable that will contain the time to display.
+
+Then, create or generate accessors methods to this variable.
+
+The only two required method by Artefact is:
+	getSubElementsWith: aGenerator styleSheet: aStyleSheet 
+
+This method must return a collection of PDFElements (basics or composites).
+
+	defaultStyle
+
+This method must return a symbol that associate the composite element with a style definition. However it's not necessary to define this style in your document, Artefact will use the default style instead.
+
+Define the default style:
+	defaultStyle
+		^ #clock
+
+Then define the method that will draw the clock.
+At the beginning, this method will just return the circle:
+	getSubElementsWith: aGenerator styleSheet: aStyleSheet
+		^ { PDFCircleElement from: self from to: self to }
+
+The circle will be drawed depending on this composite position and size. We are using from: to: for the circle instead of center: radius: because it's easier for us to create a clock using the boundary box of the circle.
+
+Now we will create the clock hands with two PDFArrowElements and a filled little circle in the middle:
+	getSubElementsWith: aGenerator styleSheet: aStyleSheet
+		| hourAngle minuteAngle |
+		hourAngle := Float pi / 2 - (time hour12 * 2 * Float pi / 12).
+		minuteAngle := Float pi / 2 - (time minute * 2 * Float pi / 60).
+
+		^ {(PDFCircleElement from: self from to: self to).
+		(PDFCircleElement center: self center radius: self dimension x * 0.05).
+		(PDFArrowElement from: self center angle: hourAngle length: dimension x * 0.25).
+		(PDFArrowElement from: self center angle: minuteAngle length: dimension x * 0.45)}
+
+Don't be afraid about the two angle calculus, it's just to convert hours and minutes to radian angles.
+
+At this time, your PDFClockElement is already usable and fully integrated into Artefact.
+
+We can insert it into a PDF document and export it:
+	PDFDocument new
+		add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current));
+		exportTo: 'clockTutorial.pdf' asFileReference writeStream
+
+
 !Stylesheet, turn a frog into a prince without kissing
 
 A PDFStyleSheet is a dictionary that map rendering properties. A default stylesheet is defined at the document level when this one is created. Consequently, you don't have to specify every values if you want a generic rendering. 
