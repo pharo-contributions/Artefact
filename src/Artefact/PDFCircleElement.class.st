@@ -19,6 +19,13 @@ PDFCircleElement class >> center: aPoint radius: aRadius [
 	^ self from: aPoint - (aRadius @ aRadius) to: aPoint + (aRadius @ aRadius)
 ]
 
+{ #category : #accessing }
+PDFCircleElement >> center [
+	| box |
+	box :=  self to - self from.
+	^ self from + (box / 2)
+]
+
 { #category : #render }
 PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a line from xy to destination"

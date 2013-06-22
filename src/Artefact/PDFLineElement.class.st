@@ -7,8 +7,6 @@ Instance Variables
 Class {
 	#name : #PDFLineElement,
 	#superclass : #PDFDraw,
-	#traits : 'PDFAngleDirected',
-	#classTraits : 'PDFAngleDirected classTrait',
 	#category : #'Artefact-Elements-Basic'
 }
 
