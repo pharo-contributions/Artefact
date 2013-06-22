@@ -79,6 +79,11 @@ PDFComposite >> initialize [
 	self filled: false
 ]
 
+{ #category : #'as yet unclassified' }
+PDFComposite >> roundCap: aBoolean [
+	self styleSheet roundCap: aBoolean
+]
+
 { #category : #accessing }
 PDFComposite >> textColor: aColor [
 	self styleSheet textColor: aColor

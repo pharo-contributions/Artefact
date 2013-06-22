@@ -4,9 +4,16 @@ A PDFArrow is the superclass for arrows (not directly usable).
 "
 Class {
 	#name : #PDFArrow,
-	#superclass : #PDFCompositeDraw,
+	#superclass : #PDFComposite,
+	#traits : 'PDFAngleDirected',
+	#classTraits : 'PDFAngleDirected classTrait',
 	#category : #'Artefact-Elements-Composites'
 }
+
+{ #category : #'as yet unclassified' }
+PDFArrow class >> from: from angle: angle length: aLength [
+	^ self from: from to: from + ((angle cos * aLength) @ ((angle sin * aLength) negated))
+]
 
 { #category : #action }
 PDFArrow >> angle [
