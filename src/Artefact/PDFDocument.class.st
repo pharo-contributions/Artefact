@@ -51,7 +51,7 @@ Coordinates start from the upper left corner (0mm@0mm). As you can expect the x 
 
 As you probably noticed, Artefact use units like mm, pt... Every positions and size must be expressed with a unit and every unit can be used for anything (you can express font size with km if you want… but it's probably not a good idea! ). Thanks to the Units framework and its authors: http://smalltalkhub.com/#!/~MarcusDenker/Units
 
-!Document, the world on top of four elephants
+!Document: the world on top of four elephants
 
 A PDFDocument is an ordered collection of pages. A document defines default values for pages and elements. By default, a document contains A4 portrait pages. You can change it with the format: method.
 
@@ -75,7 +75,7 @@ By default Artefact generate compressed document but you can disable and generat
 
 	PDFDocument new uncompressed
 
-!Pages, no paper no trees (but lots of dead unicorns)
+!Pages: no paper no trees (but lots of dead unicorns)
 
 A page is included in a document (or more if you want to use it in many documents). By default, a page is in an A4 portrait format. You can change the format in the same way you does with document:
 
@@ -85,7 +85,7 @@ You can mix multiple formats and orientations in the same document.
 
 Like painters and poets, an empty surface is just a base to expression. From this point of view, the most useful method of the PDFPage object is probably add: that allow you to write, draw or paint.
 
-!Elements, a quill of ice and fire
+!Elements: a quill of ice and fire
 
 A PDFElement is a reusable component that represent a text, an image, a geometric shape or even a complex graph or table.
 
@@ -95,18 +95,76 @@ There are two kinds of PDFElement:
 
 Each PDFElement have a set of properties that define its appearance (text color, font, dots…). Those properties are grouped in a stylesheet owned by each element. Every element controls its own appearance and doesn't affect other (in opposition as many PDF framework that use a flow logic). This behavior allow you to move or even use in multiple pages or document the same element.
 
+!!Basic Elements (Small is beautiful)
+
+ * PDFBezierCurveElement
+ * PDFCircleElement
+ * PDFLineElement
+ * PDFPolygonElement
+ * PDFRectElement
+ * PDFJpegElement
+ * PDFTextElement
+
 !!Composite Elements (just tape a bunch of cats together to create a horse)
 
 The power of artefact is to avoid redefining each combination by creating high-level elements (datatable, charts, barcode...).
 
 Instead of creating methods, Artefact offers you a way to define your composition with a standard mechanism. This context allow you to benefit from every cool stuff in artefact like stylesheet, layout, isolation and reusability.
 
-!!!Theory
+!!!Composites provided by Artefact
+
+ * PDFFormattedTextElement
+ * PDFParagraphElement
+ * PDFArrowElement
+ * PDFDoubleArrowElement
+ * PDFCellElement
+ * PDFDataTableElement
+ * PDFDataTableWithColumnsCaptionElement
+ * PDFDataTableWithRowsCaptionElement
+
+!!!Creating your own composite element
+
+The spirit of Artefact is to reduce the complexity of pdf generation. When you have to create a document, a good idea is to avoid wasting time to reinvent the wheel.
+
 When you create a composite element inherit from PDFComposite or PDFCompositeText if your element will be based around a String.
 
-!!!Tutorial
+!Stylesheet, turn a frog into a prince without kissing
+
+A PDFStyleSheet is a dictionary that map rendering properties. A default stylesheet is defined at the document level when this one is created. Consequently, you don't have to specify every values if you want a generic rendering. 
+Following the hierarchy logic, a stylesheet defined at a lower level will surcharge properties. For example, if you define a textColor in the document stylesheet, every text will be written in that color except elements where textColor is define in their stylesheet. Like pages and elements, the same stylesheet can be used with different elements or documents.
+
+Artefact introduce a style context. Every PDFElement can be associated to a specific style:
+
+	PDFText from: 10mm@15mm text: 'My title' style: #title
+
+Then, at any upper level (document, page…), you can express the specific title style context:
+
+	myDocument stylesheet > #title at: #font put: PDFCourierFont size: 32 pt
+
+!!Fonts
+	
+Artefact support integrated PDF fonts (PDFCourierFont, PDFHelveticaFont, PDFSymbolFont, PDFTimesFont and PDFZapfdingbatsFont). These fonts are available in any PDF viewer.
+A PDFFont object supports the basic style: bold and italic.
+
+	PDFText from: 10mm@15mm text: 'My title' font: ((PDFTimesFont size: 24 pt) bold: true).
+
+!!Dots
+
+All the geometric shapes can use a dotted style. It is defined by a PDFDotted object that specify the length of each segment and the space between them.
+
+	((PDFArrowElement from: 125 mm @ 40 mm to:  100 mm @ 80 mm)
+				drawColor: (PDFColor r: 0 g: 255 b: 0);
+				dotted:
+						(PDFDotted new
+								length: 2 mm;
+								space: 3 mm)).
+
+!Tutorial: learn how to hunt a white rabbit
 
 In this tutorial, we will create a clock, which is basically a circle and two arrows. This element will be drawed depending on the provided time and properties (size, colors, thickness).
+
+
+!!Create the clock
 
 First create the class of your element:
 	PDFComposite subclass: #PDFClockElement
@@ -159,40 +217,81 @@ At this time, your PDFClockElement is already usable and fully integrated into A
 We can insert it into a PDF document and export it:
 	PDFDocument new
 		add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current));
-		exportTo: 'clockTutorial.pdf' asFileReference writeStream
+		exportTo: 'clockTutorialStep1.pdf' asFileReference writeStream
+
+!! Make the clock personnalizable
 
 
-!Stylesheet, turn a frog into a prince without kissing
+Your clock is already personnalizable independently of other elements because you previously define its style as #clock.
 
-A PDFStyleSheet is a dictionary that map rendering properties. A default stylesheet is defined at the document level when this one is created. Consequently, you don't have to specify every values if you want a generic rendering. 
-Following the hierarchy logic, a stylesheet defined at a lower level will surcharge properties. For example, if you define a textColor in the document stylesheet, every text will be written in that color except elements where textColor is define in their stylesheet. Like pages and elements, the same stylesheet can be used with different elements or documents.
+	| doc |
+	doc := PDFDocument new.
+		doc add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current)).
+		doc styleSheet > #clock drawColor: (PDFColor r:180 g: 24 b:24); fillColor: (PDFColor r:230 g: 230 b:10).
+		doc exportTo: 'clockTutorialStep2.pdf' asFileReference writeStream
 
-Artefact introduce a style context. Every PDFElement can be associated to a specific style:
+You can also personnalize the subelements of your clock by their own default style.
 
-	PDFText from: 10mm@15mm text: 'My title' style: #title
+	| doc |
+	doc := PDFDocument new.
+		doc add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current)).
+		doc styleSheet > #clock drawColor: (PDFColor r:180 g: 24 b:24); fillColor: (PDFColor r:230 g: 230 b:10).
+		doc styleSheet > #clock > #arrow drawColor: (PDFColor r:0 g: 45 b:200).
+		doc exportTo: 'clockTutorialStep3.pdf' asFileReference writeStream
 
-Then, at any upper level (document, page…), you can express the specific title style context:
+At this time, you don't have defined specific styles for sub elements of your clock. Consequently, you will not be able to personnalize each element with different styles (so you cannot have hands of differents colors for example).
 
-	myDocument stylesheet > #title at: #font put: PDFCourierFont size: 32 pt
+To increase personnalization possibilities, you should define specific styles for sub elements you reuse.
 
-!!Fonts
-	
-Artefact support integrated PDF fonts (PDFCourierFont, PDFHelveticaFont, PDFSymbolFont, PDFTimesFont and PDFZapfdingbatsFont). These fonts are available in any PDF viewer.
-A PDFFont object supports the basic style: bold and italic.
+	getSubElementsWith: aGenerator styleSheet: aStyleSheet
+		| hourAngle minuteAngle |
+		hourAngle := Float pi / 2 - (time hour12 * 2 * Float pi / 12).
+		minuteAngle := Float pi / 2 - (time minute * 2 * Float pi / 60).
+		^ {(PDFCircleElement from: self from to: self to).
+		(PDFCircleElement center: self center radius: self dimension min * 0.05).
+		((PDFArrowElement from: self center angle: hourAngle length: dimension min * 0.25) style: #hourHand).
+		((PDFArrowElement from: self center angle: minuteAngle length: dimension min * 0.45) style: #minuteHand)}
 
-	PDFText from: 10mm@15mm text: 'My title' font: ((PDFTimesFont size: 24 pt) bold: true).
 
-!!Dots
+As you can see, we just send #style: on each subelement that we want to define a specific style.
 
-All the geometric shapes can use a dotted style. It is defined by a PDFDotted object that specify the length of each segment and the space between them.
+Now, we can personnalize each hand like that:
 
-	((PDFArrowElement from: 125 mm @ 40 mm to:  100 mm @ 80 mm)
-				drawColor: (PDFColor r: 0 g: 255 b: 0);
-				dotted:
-						(PDFDotted new
-								length: 2 mm;
-								space: 3 mm)).
+	| doc |
+	doc := PDFDocument new.
+		doc add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current)).
+		doc styleSheet > #clock drawColor: (PDFColor r:180 g: 24 b:24); fillColor: (PDFColor r:230 g: 230 b:10).
+		doc styleSheet > #clock > #hourHand drawColor: (PDFColor r:0 g: 45 b:200).
+		doc styleSheet > #clock > #minuteHand drawColor: (PDFColor r:0 g: 200 b:45).
+		doc exportTo: 'clockTutorialStep4.pdf' asFileReference writeStream
 
+As you can see, the clock hands have different colors.
+
+Moreover, like any element in Artefact, you can specify a style on an instance of a PDFClockElement that allow you to reuse and adapt each clock:
+
+	| doc |
+	doc := PDFDocument new.
+	doc add:
+		(PDFPage new
+			add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current);
+			add: ((PDFClockElement from: 12 cm @ 2 cm to: 20 cm @ 10 cm)
+					time: Time current;
+					style: #apocalypseClock)).
+	doc styleSheet > #clock
+		drawColor: (PDFColor r: 180 g: 24 b: 24);
+		fillColor: (PDFColor r: 230 g: 230 b: 10).
+	doc styleSheet > #clock > #hourHand drawColor: (PDFColor r: 0 g: 45 b: 200).
+	doc styleSheet > #clock > #minuteHand drawColor: (PDFColor r: 0 g: 200 b: 45).
+	doc styleSheet > #apocalypseClock
+		fillColor: (PDFColor r: 244 g: 221 b: 25);
+		thickness: 2 mm;
+		roundCap: true.
+	doc styleSheet > #apocalypseClock > #minuteHand
+		drawColor: (PDFColor r: 240 g: 6 b: 7);
+		thickness: 1 mm.
+	doc exportTo: 'clockTutorialStep5.pdf' asFileReference writeStream
+
+That's all Folks!!!
 "
 Class {
 	#name : #PDFDocument,

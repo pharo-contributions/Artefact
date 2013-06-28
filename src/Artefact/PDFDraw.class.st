@@ -46,11 +46,6 @@ PDFDraw >> fillMode: filled [
 ]
 
 { #category : #accessing }
-PDFDraw >> initialize [
-	super initialize. 
-]
-
-{ #category : #accessing }
 PDFDraw >> isDrawElement [
 	^ true
 ]
