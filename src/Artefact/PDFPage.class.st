@@ -35,7 +35,7 @@ Class {
 { #category : #'*Artefact-Nautilus' }
 PDFPage class >> nautilusIcon [
 
-	^ self nautilusIconClass iconNamed: #pdfIcon
+	^ Smalltalk ui icons iconNamed: #pdfIcon
 ]
 
 { #category : #action }

@@ -7,9 +7,6 @@ Instance Variables
 Class {
 	#name : #PDFJpegElement,
 	#superclass : #PDFImage,
-	#instVars : [
-		'stream'
-	],
 	#category : #'Artefact-Elements-Basic'
 }
 
