@@ -17,7 +17,7 @@ Class {
 	#category : #'Artefact-Tutorial'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #steps }
 PDFClockElement class >> clockTutorialStep1 [
 	"PDFClockElement clockTutorialStep1"
 
@@ -27,7 +27,7 @@ PDFClockElement class >> clockTutorialStep1 [
 		doc exportTo: 'clockTutorialStep1.pdf' asFileReference writeStream
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #steps }
 PDFClockElement class >> clockTutorialStep2 [
 	"PDFClockElement clockTutorialStep2"
 
@@ -38,7 +38,7 @@ PDFClockElement class >> clockTutorialStep2 [
 		doc exportTo: 'clockTutorialStep2.pdf' asFileReference writeStream
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #steps }
 PDFClockElement class >> clockTutorialStep3 [
 	"PDFClockElement clockTutorialStep3"
 
@@ -50,7 +50,7 @@ PDFClockElement class >> clockTutorialStep3 [
 		doc exportTo: 'clockTutorialStep3.pdf' asFileReference writeStream
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #steps }
 PDFClockElement class >> clockTutorialStep4 [
 	"PDFClockElement clockTutorialStep4"
 
@@ -63,7 +63,7 @@ PDFClockElement class >> clockTutorialStep4 [
 		doc exportTo: 'clockTutorialStep4.pdf' asFileReference writeStream
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #steps }
 PDFClockElement class >> clockTutorialStep5 [
 	"PDFClockElement clockTutorialStep5"
 
