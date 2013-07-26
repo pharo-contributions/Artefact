@@ -30,16 +30,12 @@ PDFBarcodeDemos class >> streamNamed: aName [
 PDFBarcodeDemos >> ean13Test: aStream [
 	"drawing an EAN13"
 
-	| pdfdoc aPage barcode sequence |
-	barcode := BarcodeEAN13 value: '2109876543210'.
-	sequence := barcode binarySequence.
+	| pdfdoc aPage barcode1 barcode2 |
+	barcode1 := (BarCodeElement from: 2cm@2cm to: 10cm@4cm) ean13; value: '0332960073452'.
+	barcode2 := (BarCodeElement from: 2cm@6cm to: 5cm@8cm) ean13; value: '0332960073452'.
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-	sequence withIndexDo: [:each :index |
-		each = $1 ifTrue: [
-			aPage add: (PDFLineElement 
-				from: (20+index) pt @ 50 pt 
-				to: (20+index) pt @ 20 pt). ] ].
+	aPage add: barcode1; add: barcode2.
 	pdfdoc add: aPage.
 	pdfdoc styleSheet drawColor: (PDFColor r: 0 g: 0 b: 0).
 pdfdoc exportTo: aStream
