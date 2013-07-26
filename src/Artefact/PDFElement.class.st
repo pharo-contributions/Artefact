@@ -101,6 +101,11 @@ PDFElement >> generateWith: aGenerator styleSheet: aStyleSheet [
 	^ self generateCodeSegmentWith: aGenerator styleSheet: (self buildCompositeStyleSheetFrom: aStyleSheet)
 ]
 
+{ #category : #size }
+PDFElement >> height [
+	^ self dimension y
+]
+
 { #category : #'initialize-release' }
 PDFElement >> initialize [ 
 	super initialize.
@@ -175,4 +180,9 @@ PDFElement >> styleSheet: anObject [
 { #category : #accessing }
 PDFElement >> to [
 	^ self from + self dimension
+]
+
+{ #category : #size }
+PDFElement >> width [
+	^ self dimension x
 ]
