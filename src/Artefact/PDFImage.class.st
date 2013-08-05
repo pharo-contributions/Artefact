@@ -20,7 +20,8 @@ Class {
 	#name : #PDFImage,
 	#superclass : #PDFBasic,
 	#instVars : [
-		'stream'
+		'stream',
+		'originalImageDimensions'
 	],
 	#category : #'Artefact-Elements-Basic'
 }
@@ -46,9 +47,19 @@ PDFImage >> defaultStyle [
 	^ #image
 ]
 
+{ #category : #'as yet unclassified' }
+PDFImage >> height: aHeight [
+	self dimension: (aHeight / self originalImageDimensions y * self originalImageDimensions x) @ aHeight
+]
+
 { #category : #accessing }
 PDFImage >> isDrawElement [ 
 	^ false
+]
+
+{ #category : #accessing }
+PDFImage >> originalImageDimensions [
+	^ originalImageDimensions
 ]
 
 { #category : #accessing }
@@ -57,6 +68,12 @@ PDFImage >> stream [
 ]
 
 { #category : #accessing }
-PDFImage >> stream: anObject [
-	stream := anObject
+PDFImage >> stream: anImageStream [
+	stream := anImageStream.
+	
+]
+
+{ #category : #'as yet unclassified' }
+PDFImage >> width: aWidth [
+	self dimension: aWidth @ (aWidth / self originalImageDimensions x * self originalImageDimensions y) 
 ]

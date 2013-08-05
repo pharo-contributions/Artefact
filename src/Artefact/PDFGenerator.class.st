@@ -423,6 +423,16 @@ PDFGenerator >> initialize [
 	xref := PDFDataXRef new
 ]
 
+{ #category : #'as yet unclassified' }
+PDFGenerator >> splitPages: aCollectionOfPages [
+	^ self
+		inject: OrderedCollection new
+		into: [ :result :aPage | 
+			aPage extensible
+				ifTrue: [ result addAll: (self splitPage: aPage) ]
+				ifFalse: [ result add: aPage ] ]
+]
+
 { #category : #accessing }
 PDFGenerator >> zoom [
 	^zoom

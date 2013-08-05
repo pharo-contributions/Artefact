@@ -32,10 +32,17 @@ Class {
 	#category : #Artefact
 }
 
+{ #category : #accessing }
+PDFPage class >> elements: aCollectionOfElements [
+	^ self new
+		elements: aCollectionOfElements;
+		yourself
+]
+
 { #category : #'*Artefact-Nautilus' }
 PDFPage class >> nautilusIcon [
 
-	^ Smalltalk ui icons iconNamed: #pdfIcon
+	^ [Smalltalk ui icons iconNamed: #pdfIcon] on: MessageNotUnderstood do: [ nil ]
 ]
 
 { #category : #action }
