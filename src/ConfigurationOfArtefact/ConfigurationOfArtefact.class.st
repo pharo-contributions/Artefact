@@ -1,11 +1,14 @@
 "
-A ConfigurationOfArtefact is the configuration for Artefact.
+(ConfigurationOfArtefact project version: #stable) load
 
-Instance Variables
-	project:		<Object>
 
-project
-	- xxxxx
+!! 2013-08-10 cleaning the configuration
+
+(ConfigurationOfArtefact project version: '1.1') load
+
+
+!! Version 1.0 release
+(ConfigurationOfArtefact project version: '1.0') load
 
 "
 Class {
@@ -149,6 +152,23 @@ ConfigurationOfArtefact >> baseline10: spec [
 ]
 
 { #category : #accessing }
+ConfigurationOfArtefact >> baseline11: spec [
+	<version: '1.1-baseline'>
+	spec
+		for: #common
+		do: [ 
+			spec blessing: #baseline.
+			spec author: 'Olivier Auverlot and Guillaume Larcheveque'.
+			spec timestamp: '10/08/2013'.
+			spec repository: self repositoryUrlString.
+			
+			spec package: 'Artefact' with: [ spec requires: 'Units' ].
+			spec
+				package: 'Units'
+				with: [ spec repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main'] ]
+]
+
+{ #category : #accessing }
 ConfigurationOfArtefact >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes"
@@ -170,10 +190,15 @@ ConfigurationOfArtefact >> project [
 ]
 
 { #category : #accessing }
+ConfigurationOfArtefact >> repositoryUrlString [
+	^ 'http://smalltalkhub.com/mc/RMoD/Artefact/main'
+]
+
+{ #category : #accessing }
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.0'.
+	spec for: #'common' version: '1.1'.
 
 ]
 
@@ -202,5 +227,19 @@ ConfigurationOfArtefact >> version10: spec [
 			description: 'configuration for artefact'.
 		spec
 			package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.230'.
+	]
+]
+
+{ #category : #accessing }
+ConfigurationOfArtefact >> version11: spec [
+	<version: '1.1' imports: #('1.1-baseline')>
+	
+	spec for: #common do: [
+		spec
+			blessing: #stable;
+			author: 'Olivier Auverlot and Guillaume Larcheveque';
+			description: 'Configuration for artefact'.
+		spec package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.230'.
+		spec package: 'Units' with: 'Units-espin.36'
 	]
 ]
