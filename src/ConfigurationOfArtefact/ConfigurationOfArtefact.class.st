@@ -42,6 +42,45 @@ ConfigurationOfArtefact class >> baseConfigurationClassIfAbsent: aBlock [
 
 ]
 
+{ #category : #catalog }
+ConfigurationOfArtefact class >> catalogChangeLog [
+
+	^ '- Version: 1.1 2013-08-10 cleaning the configuration
+[[[	
+	(ConfigurationOfArtefact project version: ''1.1'') load
+]]]
+- Version 1.0 release of Artefact
+[[[ 
+	(ConfigurationOfArtefact project version: ''1.0'') load
+]]]
+'
+]
+
+{ #category : #catalog }
+ConfigurationOfArtefact class >> catalogDescription [
+
+	^ 'Artefact is a library to generate PDF documents. It provides a document model and support the generation of PDF'
+]
+
+{ #category : #catalog }
+ConfigurationOfArtefact class >> catalogKeyClassesAndExample [
+
+^ '
+	==PDFDocument== is a central class that represents a document. 
+	
+	==PDFDemos== is a class containing many examples. You can execute them all by ==PDFDemos runAllDemos==. It generates all the examples in a folder.
+	
+	==PDFTemplate== represents the page template. Its subclasses represent some predefined pages format.
+	
+'
+]
+
+{ #category : #catalog }
+ConfigurationOfArtefact class >> catalogKeywords [
+
+	^ #(PDF layout document)
+]
+
 { #category : #private }
 ConfigurationOfArtefact class >> ensureMetacello [
 
@@ -160,7 +199,7 @@ ConfigurationOfArtefact >> baseline11: spec [
 			spec blessing: #baseline.
 			spec author: 'Olivier Auverlot and Guillaume Larcheveque'.
 			spec timestamp: '10/08/2013'.
-			spec repository: self repositoryUrlString.
+			spec repository:  'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
 			
 			spec package: 'Artefact' with: [ spec requires: 'Units' ].
 			spec
@@ -174,6 +213,14 @@ ConfigurationOfArtefact >> customProjectAttributes [
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes"
 
 	^ #().
+]
+
+{ #category : #accessing }
+ConfigurationOfArtefact >> development: spec [
+	<symbolicVersion: #'development'>
+
+	spec for: #'common' version: '1.1-baseline'.
+
 ]
 
 { #category : #accessing }
