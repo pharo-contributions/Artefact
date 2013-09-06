@@ -199,12 +199,16 @@ ConfigurationOfArtefact >> baseline11: spec [
 			spec blessing: #baseline.
 			spec author: 'Olivier Auverlot and Guillaume Larcheveque'.
 			spec timestamp: '10/08/2013'.
-			spec repository:  'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
-			
+			spec repository: 'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
 			spec package: 'Artefact' with: [ spec requires: 'Units' ].
 			spec
-				package: 'Units'
-				with: [ spec repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main'] ]
+				project: 'Units'
+				with: [ 
+					spec
+						className: 'ConfigurationOfUnits';
+						file: 'ConfigurationOfUnits';
+						version: '1.0';
+						repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main' ] ]
 ]
 
 { #category : #accessing }
@@ -286,7 +290,6 @@ ConfigurationOfArtefact >> version11: spec [
 			blessing: #stable;
 			author: 'Olivier Auverlot and Guillaume Larcheveque';
 			description: 'Configuration for artefact'.
-		spec package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.230'.
-		spec package: 'Units' with: 'Units-espin.36'
+		spec package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.241'.
 	]
 ]
