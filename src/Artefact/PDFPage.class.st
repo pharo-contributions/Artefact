@@ -39,12 +39,6 @@ PDFPage class >> elements: aCollectionOfElements [
 		yourself
 ]
 
-{ #category : #'*Artefact-Nautilus' }
-PDFPage class >> nautilusIcon [
-
-	^ [Smalltalk ui icons iconNamed: #pdfIcon] on: MessageNotUnderstood do: [ nil ]
-]
-
 { #category : #action }
 PDFPage >> add: anElement [
 	"Use this to add a new element to this page"

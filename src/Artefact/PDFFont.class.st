@@ -26,8 +26,7 @@ Class {
 	#instVars : [
 		'bold',
 		'italic',
-		'fontSize',
-		'pdfDocument'
+		'fontSize'
 	],
 	#category : #'Artefact-Fonts'
 }
@@ -39,7 +38,7 @@ PDFFont class >> size: aFontSize [
 
 { #category : #accessing }
 PDFFont >> bold [
-	^ bold ifNil: [ bold = false ]
+	self bold: true
 ]
 
 { #category : #accessing }
@@ -71,13 +70,13 @@ PDFFont >> boldWidths [
 PDFFont >> charWidths [
 	"Answer a collection of the width of each caracter"
 
-	^ self bold
+	^ self isBold
 		ifTrue: [ 
-			self italic
+			self isItalic
 				ifTrue: [ self boldAndItalicWidths ]
 				ifFalse: [ self boldWidths ] ]
 		ifFalse: [ 
-			self italic
+			self isItalic
 				ifTrue: [ self italicWidths ]
 				ifFalse: [ self classicWidths ] ]
 ]
@@ -101,13 +100,13 @@ PDFFont >> family [
 { #category : #name }
 PDFFont >> fontName [
 
-	^ self bold
+	^ self isBold
 		ifTrue: [ 
-			self italic
+			self isItalic
 				ifTrue: [ self boldAndItalicName ]
 				ifFalse: [ self boldName ] ]
 		ifFalse: [ 
-			self italic
+			self isItalic
 				ifTrue: [ self italicName ]
 				ifFalse: [ self classicName ] ]
 ]
@@ -165,9 +164,26 @@ PDFFont >> getStringWidth: aString [
 		into: [:sum :char | sum + (self getCharWidthOf: char)]
 ]
 
+{ #category : #initialization }
+PDFFont >> initialize [
+	super initialize.
+	bold := false.
+	italic := false.
+]
+
+{ #category : #accessing }
+PDFFont >> isBold [
+	^ bold
+]
+
+{ #category : #accessing }
+PDFFont >> isItalic [
+	^ italic
+]
+
 { #category : #accessing }
 PDFFont >> italic [
-	^ italic ifNil: [ italic := false ]
+	self italic: true
 ]
 
 { #category : #accessing }
@@ -183,14 +199,4 @@ PDFFont >> italicName [
 { #category : #widths }
 PDFFont >> italicWidths [
 	^ self subclassResponsibility
-]
-
-{ #category : #accessing }
-PDFFont >> pdfDocument [
-	^ pdfDocument
-]
-
-{ #category : #accessing }
-PDFFont >> pdfDocument: anObject [
-	pdfDocument := anObject
 ]

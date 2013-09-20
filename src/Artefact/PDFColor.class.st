@@ -40,6 +40,11 @@ PDFColor class >> formatRGB: aColor [
 ]
 
 { #category : #'as yet unclassified' }
+PDFColor class >> greyLevel: aGreyLevel [
+	^ self new setGreyLevel: aGreyLevel 
+]
+
+{ #category : #'as yet unclassified' }
 PDFColor class >> r:  r g: g b: b [
 	^ self new r:  r g: g b: b
 ]

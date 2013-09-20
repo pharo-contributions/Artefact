@@ -153,6 +153,12 @@ PDFDemos class >> lineTest [
 	self new lineTest: (self streamNamed: 'lineTest.pdf')
 ]
 
+{ #category : #color }
+PDFDemos class >> mosaiqueTest [
+	"PDFDemos mosaiqueTest"
+	self new mosaiqueTest: (self streamNamed: 'mosaiqueTest.pdf')
+]
+
 { #category : #document }
 PDFDemos class >> multiOrientationsTest [
 	"PDFDemos multiOrientationsTest"
@@ -1071,6 +1077,25 @@ PDFDemos >> lineTest: aStream [
 	pdfdoc styleSheet drawColor: (PDFColor r: 200 g: 25 b: 25).
 pdfdoc exportTo: aStream
 
+]
+
+{ #category : #color }
+PDFDemos >> mosaiqueTest: aStream [
+	"generate a sample document with colored squares"
+
+	| tileSize plage pdfdoc aPage |
+	pdfdoc := PDFDocument new.
+	tileSize:= 5mm@5mm.
+	plage := 0 to: 255.
+	aPage := PDFPage new.
+	pdfdoc add: aPage.
+	0 to: (aPage format width convertTo: tileSize x unit) / tileSize x do: [ :x | 
+		0 to: (aPage format height convertTo: tileSize y unit) / tileSize y do: [ :y | 
+			aPage
+				add:
+					((PDFRectElement from: (x * tileSize x) @ (y * tileSize y) dimension: tileSize)
+						fillColor: (PDFColor r: plage atRandom g: plage atRandom b: plage atRandom)) ] ].
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #document }
