@@ -20,7 +20,13 @@ Class {
 	#category : #'Artefact-Formats'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #defaults }
+PDFFormat >> defaultMargins [
+
+	^28.35 point @ 28.35 point
+]
+
+{ #category : #defaults }
 PDFFormat >> defaultSize [
 	^ self subclassResponsibility 
 ]
@@ -34,7 +40,7 @@ PDFFormat >> height [
 { #category : #'initialize-release' }
 PDFFormat >> initialize [
 	super initialize.
-	self margins: 28.35 point @ 28.35 point.
+	self margins: self defaultMargins.
 	self size: self defaultSize.
 	self setPortrait
 ]
