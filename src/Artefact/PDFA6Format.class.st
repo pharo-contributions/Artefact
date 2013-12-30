@@ -1,3 +1,6 @@
+"
+The A6 paper format
+"
 Class {
 	#name : #PDFA6Format,
 	#superclass : #PDFFormat,

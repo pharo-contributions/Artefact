@@ -1,3 +1,6 @@
+"
+The letter format
+"
 Class {
 	#name : #PDFLetterFormat,
 	#superclass : #PDFFormat,

@@ -1,3 +1,6 @@
+"
+The A9 paper format
+"
 Class {
 	#name : #PDFA9Format,
 	#superclass : #PDFFormat,

@@ -1,3 +1,6 @@
+"
+The EBook format
+"
 Class {
 	#name : #PDFEbookFormat,
 	#superclass : #PDFFormat,

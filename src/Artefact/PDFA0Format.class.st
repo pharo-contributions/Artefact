@@ -1,3 +1,6 @@
+"
+The A0 paper format
+"
 Class {
 	#name : #PDFA0Format,
 	#superclass : #PDFFormat,

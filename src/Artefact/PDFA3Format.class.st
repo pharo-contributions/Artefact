@@ -1,3 +1,6 @@
+"
+The A3 paper format
+"
 Class {
 	#name : #PDFA3Format,
 	#superclass : #PDFFormat,

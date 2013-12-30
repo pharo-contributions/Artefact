@@ -1,3 +1,6 @@
+"
+The A7 paper format
+"
 Class {
 	#name : #PDFA7Format,
 	#superclass : #PDFFormat,

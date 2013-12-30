@@ -1,3 +1,6 @@
+"
+The A8 paper format
+"
 Class {
 	#name : #PDFA8Format,
 	#superclass : #PDFFormat,

@@ -1,3 +1,6 @@
+"
+The A10 paper format
+"
 Class {
 	#name : #PDFA10Format,
 	#superclass : #PDFFormat,

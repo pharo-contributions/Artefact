@@ -1,3 +1,6 @@
+"
+The A2 paper format
+"
 Class {
 	#name : #PDFA2Format,
 	#superclass : #PDFFormat,
