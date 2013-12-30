@@ -291,7 +291,7 @@ ConfigurationOfArtefact >> version11: spec [
 			blessing: #stable;
 			author: 'Olivier Auverlot and Guillaume Larcheveque';
 			description: 'Configuration for artefact'.
-		spec package: 'Artefact' with: 'Artefact-GuillaumeLarcheveque.241'.
+		spec package: 'Artefact' with: 'Artefact-TorstenBergmann.245'.
 		spec project: 'Units' with: '1.1'
 	]
 ]
