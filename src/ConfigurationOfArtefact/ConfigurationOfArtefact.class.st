@@ -160,7 +160,7 @@ ConfigurationOfArtefact class >> validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
-{ #category : #accessing }
+{ #category : #baselines }
 ConfigurationOfArtefact >> baseline09: spec [
 	<version: '0.9-baseline'>
 	spec
@@ -175,7 +175,7 @@ ConfigurationOfArtefact >> baseline09: spec [
 				package: 'Artefact']
 ]
 
-{ #category : #accessing }
+{ #category : #baselines }
 ConfigurationOfArtefact >> baseline10: spec [
 	<version: '1.0-baseline'>
 	spec
@@ -190,7 +190,7 @@ ConfigurationOfArtefact >> baseline10: spec [
 				package: 'Artefact']
 ]
 
-{ #category : #accessing }
+{ #category : #baselines }
 ConfigurationOfArtefact >> baseline11: spec [
 	<version: '1.1-baseline'>
 	spec
@@ -212,6 +212,36 @@ ConfigurationOfArtefact >> baseline11: spec [
 						 repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main'] ]
 ]
 
+{ #category : #baselines }
+ConfigurationOfArtefact >> baseline12: spec [
+	<version: '1.2-baseline'>
+	spec
+		for: #common
+		do: [ 
+			spec blessing: #baseline.
+			spec author: 'Torsten Bergmann'.
+			spec timestamp: '10/01/2014'.
+			spec repository:  'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
+
+			spec project: 'Units'
+					with: [ spec
+								className: 'ConfigurationOfUnits';
+								file: 'ConfigurationOfUnits';
+								version: '1.1-baseline';
+						 		repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main']. 
+			
+			spec package: 'Artefact-Core' with: [ spec requires: 'Units' ].
+			spec package: 'Artefact-Tests' with: [ spec requires: 'Artefact-Core' ].
+			spec package: 'Artefact-Examples' with: [ spec requires: 'Artefact-Core' ].
+				
+			spec 
+				group: 'default'       with: #('core' 'tests' 'examples');
+				group: 'core'     	with:#('Artefact-Core');
+				group: 'tests'     	with:#('Artefact-Tests');
+				group: 'examples'   with:#('Artefact-Examples')	].
+		 
+]
+
 { #category : #accessing }
 ConfigurationOfArtefact >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -220,11 +250,11 @@ ConfigurationOfArtefact >> customProjectAttributes [
 	^ #().
 ]
 
-{ #category : #accessing }
+{ #category : #'symbolic versions' }
 ConfigurationOfArtefact >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '1.1-baseline'.
+	spec for: #'common' version: '1.2-baseline'.
 
 ]
 
@@ -246,15 +276,15 @@ ConfigurationOfArtefact >> repositoryUrlString [
 	^ 'http://smalltalkhub.com/mc/RMoD/Artefact/main'
 ]
 
-{ #category : #accessing }
+{ #category : #'symbolic versions' }
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.1'.
+	spec for: #'common' version: '1.2'.
 
 ]
 
-{ #category : #accessing }
+{ #category : #versions }
 ConfigurationOfArtefact >> version09: spec [
 	<version: '0.9' imports: #('0.9-baseline')>
 	
@@ -268,7 +298,7 @@ ConfigurationOfArtefact >> version09: spec [
 	]
 ]
 
-{ #category : #accessing }
+{ #category : #versions }
 ConfigurationOfArtefact >> version10: spec [
 	<version: '1.0' imports: #('1.0-baseline')>
 	
@@ -282,7 +312,7 @@ ConfigurationOfArtefact >> version10: spec [
 	]
 ]
 
-{ #category : #accessing }
+{ #category : #versions }
 ConfigurationOfArtefact >> version11: spec [
 	<version: '1.1' imports: #('1.1-baseline')>
 	
@@ -293,5 +323,23 @@ ConfigurationOfArtefact >> version11: spec [
 			description: 'Configuration for artefact'.
 		spec package: 'Artefact' with: 'Artefact-TorstenBergmann.245'.
 		spec project: 'Units' with: '1.1'
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfArtefact >> version12: spec [
+	<version: '1.2' imports: #('1.2-baseline')>
+	
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'Torsten Bergmann'.
+		spec timestamp: '10/01/2014'.
+		spec description: 'Split single package into core, tests and examples. Use latest units release and cleanup for upcoming Pharo 3.0'.
+			
+		spec project: 'Units' with: '1.2'.
+		
+		spec package: 'Artefact-Core' with: 'Artefact-Core-TorstenBergmann.247'.
+		spec package: 'Artefact-Tests' with: 'Artefact-Tests-TorstenBergmann.1'.
+		spec package: 'Artefact-Examples' with: 'Artefact-Examples-TorstenBergmann.1'.	
 	]
 ]
