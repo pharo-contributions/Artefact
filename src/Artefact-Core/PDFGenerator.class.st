@@ -16,6 +16,8 @@ Class {
 		'currentFontId',
 		'usedImages',
 		'currentImageId',
+		'currentOpacityId',
+		'usedOpacities',
 		'compression',
 		'firstPage',
 		'displayLayout',
@@ -109,6 +111,21 @@ PDFGenerator >> createNewPDFDataObject [
 		yourself.
 	xref AddReferenceTo: object.
 	^ object
+]
+
+{ #category : #opacity }
+PDFGenerator >> createOpacityObject: aOpacityObject [
+	| opacityObject |
+	opacityObject := self createNewPDFDataObject.
+	opacityObject
+		addContent:
+			(PDFDataAssociativeArray new
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'ExtGState'));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'ca ') value: (PDFDataValue value: aOpacityObject alpha));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'CA') value: (PDFDataValue value: aOpacityObject alpha));
+				add: (PDFDataCouple key: (PDFDataSymbol symbol: 'BM') value: (PDFDataSymbol symbol: (aOpacityObject blendMode)));
+				yourself).
+	^ opacityObject
 ]
 
 { #category : #action }
@@ -294,6 +311,28 @@ PDFGenerator >> generateListOfImages [
 	^ images
 ]
 
+{ #category : #opacity }
+PDFGenerator >> generateListOfOpacities [
+	| opacities |
+	
+	opacities := PDFDataAssociativeArray new.
+	
+	usedOpacities
+		keysAndValuesDo: [ :aOpacityObject :aOpacityId | 
+			opacities
+				add:
+					(PDFDataCouple
+						key: (PDFDataSymbol symbol: (aOpacityId asString))
+						value: (PDFDataReference reference: (self createOpacityObject: aOpacityObject))) ].
+	^ opacities
+]
+
+{ #category : #opacity }
+PDFGenerator >> generateOpacityId [
+	currentOpacityId := currentOpacityId + 1.
+	^ 'GS' , currentOpacityId asString
+]
+
 { #category : #action }
 PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 	
@@ -343,7 +382,8 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 									(PDFDataSymbol symbol: 'Text').
 									(PDFDataSymbol symbol: 'ImageC')}));
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Font') value: self generateListOfFonts);
-		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'XObject') value: self generateListOfImages).
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'XObject') value: self generateListOfImages);
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'ExtGState') value: self generateListOfOpacities).
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Resources') value: resources).
 	document addContent: associativeArray.
 	
@@ -374,6 +414,14 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 		new
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Page'));
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Parent') value: (PDFDataReference reference: document));
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Group') value: (PDFDataAssociativeArray new 
+			add: (PDFDataSymbol symbol: 'Type');
+			add: (PDFDataSymbol symbol: 'Group');
+			add: (PDFDataSymbol symbol: 'S');
+			add: (PDFDataSymbol symbol: 'Transparency');
+			add: (PDFDataSymbol symbol: 'CS');
+			add: (PDFDataSymbol symbol: 'DeviceRGB')
+		));
 		add: (self generatePDFFormat: (aPDFPage format ifNil: [ aPDFPage document format ]));
 		add:
 				(PDFDataCouple
@@ -382,6 +430,9 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 		yourself.
 	page addContent: associativeArray.
 	^ page
+	
+
+
 ]
 
 { #category : #section }
@@ -412,14 +463,23 @@ PDFGenerator >> getImageIdFor: aPDFImage [
 	^ usedImages at: (aPDFImage stream) ifAbsentPut: [ self generateImageId ]
 ]
 
+{ #category : #opacity }
+PDFGenerator >> getOpacityIdFor: aOpacityObject [
+
+	^ usedOpacities at: aOpacityObject ifAbsentPut: [ self generateOpacityId ]
+	
+]
+
 { #category : #'initialize-release' }
 PDFGenerator >> initialize [
 	firstPage := nil.
 	currentObjectNumber := 0.
 	currentFontId := 0.
 	currentImageId := 0.
+	currentOpacityId := 0.
 	usedFonts := Dictionary new.
 	usedImages := Dictionary new.
+	usedOpacities := Dictionary new.
 	xref := PDFDataXRef new
 ]
 

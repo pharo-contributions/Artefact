@@ -17,18 +17,20 @@ Class {
 	#superclass : #PDFCodeSegment,
 	#instVars : [
 		'code',
-		'fontId'
+		'fontId',
+		'opacityId'
 	],
 	#category : #'Artefact-Core-CodeSegment'
 }
 
 { #category : #'initialize-release' }
-PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean fontId: aFontId fromElement: aElement [
+PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet isDrawElement: aBoolean fontId: aFontId opacityId: aOpacityId fromElement: aElement [
 	^ self new
 		code: aCode;
 		styleSheet: aStyleSheet;
 		isDrawElement: aBoolean;
 		fontId: aFontId;
+		opacityId: aOpacityId;
 		fromElement: aElement;
 		yourself
 ]
@@ -51,6 +53,16 @@ PDFElementCodeSegment >> fontId [
 { #category : #accessing }
 PDFElementCodeSegment >> fontId: anObject [
 	fontId := anObject
+]
+
+{ #category : #accessing }
+PDFElementCodeSegment >> opacityId [
+	^ opacityId
+]
+
+{ #category : #accessing }
+PDFElementCodeSegment >> opacityId: anObject [
+	opacityId := anObject
 ]
 
 { #category : #accessing }

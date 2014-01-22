@@ -102,7 +102,7 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 	styleSheet := anElementCodeSegment styleSheet.
 	^ String
 		streamContents: [ :code | 
-			code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet).
+			"code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet)."
 			thickness := styleSheet get: #thickness.
 			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	
 			"Set line cap style to square"
@@ -123,7 +123,9 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 						nextPutAll: String lf ].	"Insert the font size in the PDF document"
 			code
 				nextPutAll: 'BT /' , anElementCodeSegment fontId , ' ' , styleSheet font fontSizeAsPoints asString , ' Tf ET';
-				nextPutAll: String lf ]
+				nextPutAll: String lf.
+			code nextPutAll: '/' , anElementCodeSegment opacityId , ' ' , PDFByteCode setOpacity , String lf.
+				 ]
 ]
 
 { #category : #compression }
@@ -191,7 +193,7 @@ PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
 PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed on: aStream [ 
 	self compression: mustBeCompressed.
 	stream := aStream.
-	stream nextPutAll: '%PDF-1.3'; lf.
+	stream nextPutAll: '%PDF-1.4'; lf.
 	aPDFCompleteModel acceptVisitor: self.
 	stream nextPutAll: '%%EOF'; lf.
 	

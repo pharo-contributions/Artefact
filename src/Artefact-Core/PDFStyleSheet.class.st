@@ -42,6 +42,7 @@ PDFStyleSheet class >> default [
 		at: #font put: PDFHelveticaFont new;
 		at: #rotation put: 0;
 		at: #alignment put: PDFAlignment left middle;
+		at: #opacity put: (PDFOpacityNormal alpha: 1);
 		yourself.
 	default > #caption at: #fillColor put: (PDFColor new setGreyLevel: 192).
 	default > #datatable at: #alignment put: PDFAlignment center middle.
@@ -50,7 +51,7 @@ PDFStyleSheet class >> default [
 	^ default
 ]
 
-{ #category : #Action }
+{ #category : #action }
 PDFStyleSheet >> + aStyleSheet [
 	| newStyleSheet |
 	newStyleSheet := self copy.
@@ -156,6 +157,16 @@ PDFStyleSheet >> margin [
 { #category : #attributes }
 PDFStyleSheet >> margin: aMargin [
 	self at: #margin put: aMargin 
+]
+
+{ #category : #private }
+PDFStyleSheet >> opacity [
+	^ self get: #opacity
+]
+
+{ #category : #attributes }
+PDFStyleSheet >> opacity: aOpacity [
+	self at: #opacity put: aOpacity
 ]
 
 { #category : #attributes }

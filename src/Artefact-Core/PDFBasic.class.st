@@ -29,12 +29,18 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet [
 		styleSheet: aStyleSheet
 		isDrawElement: self isDrawElement
 		fontId: ([(aPDFGenerator getFontIdFor: aStyleSheet font)] on: KeyNotFound do: [nil])
+		opacityId: ([(aPDFGenerator getOpacityIdFor: aStyleSheet opacity)] on: KeyNotFound do: [nil])
 		fromElement: self
 ]
 
 { #category : #action }
 PDFBasic >> isDrawElement [
 	^ self subclassResponsibility 
+]
+
+{ #category : #accessing }
+PDFBasic >> opacity: anOpacity [
+	self styleSheet opacity: anOpacity 
 ]
 
 { #category : #render }

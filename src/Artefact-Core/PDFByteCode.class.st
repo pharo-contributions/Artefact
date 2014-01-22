@@ -100,6 +100,11 @@ PDFByteCode class >> rectangle [
 	^'re'
 ]
 
+{ #category : #style }
+PDFByteCode class >> setOpacity [
+	^'gs'
+]
+
 { #category : #text }
 PDFByteCode class >> setTextPosition [
 	^'Td'
