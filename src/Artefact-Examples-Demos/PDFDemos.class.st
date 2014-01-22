@@ -228,6 +228,12 @@ PDFDemos class >> thicknessTest [
 ]
 
 { #category : #draw }
+PDFDemos class >> twoColoredRectsOpacityTest [
+	"PDFDemos twoColoredRectsOpacityTest"
+	self new twoColoredRectsOpacityTest: (self streamNamed: 'twoColoredRectsOpacityTest.pdf')
+]
+
+{ #category : #draw }
 PDFDemos class >> twoColoredRectsTest [
 	"PDFDemos twoColoredRectsTest"
 	self new twoColoredRectsTest: (self streamNamed: 'twoColoredRectsTest.pdf')
@@ -1388,6 +1394,34 @@ PDFDemos >> thicknessTest: aStream [
 	pdfdoc add: aPage.
 		
 	pdfdoc exportTo: aStream
+
+]
+
+{ #category : #draw }
+PDFDemos >> twoColoredRectsOpacityTest: aStream [
+	"intersecting rects with opacity control"
+	
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new uncompressed.	
+	
+	aPage := PDFPage new.
+	
+	aPage add: (PDFRectElement new
+		from: 10 mm @ 10 mm;
+		dimension: 100 mm @ 30 mm;
+		fillColor: (PDFColor r: 142 g: 24 b: 78);
+		drawColor: (PDFColor r: 255 g: 0 b: 0);
+		opacity: (PDFOpacityNormal alpha: 0.6)).
+	aPage add: ((PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text') opacity:  (PDFOpacityNormal alpha: 0.5)).
+	aPage add: (PDFRectElement new
+		from: 15 mm @ 15 mm;
+		dimension: 100 mm @30 mm;
+		fillColor: (PDFColor r: 24 g: 57 b: 205);
+		drawColor: (PDFColor r: 0 g: 255 b: 0);
+		opacity: (PDFOpacityColorBurn alpha: 0.3)).		
+	pdfdoc add: aPage.
+	
+pdfdoc exportTo: aStream
 
 ]
 
