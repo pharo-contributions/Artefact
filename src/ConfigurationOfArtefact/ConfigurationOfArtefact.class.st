@@ -242,6 +242,36 @@ ConfigurationOfArtefact >> baseline12: spec [
 		 
 ]
 
+{ #category : #baselines }
+ConfigurationOfArtefact >> baseline13: spec [
+	<version: '1.3-baseline'>
+	spec
+		for: #common
+		do: [ 
+			spec blessing: #baseline.
+			spec author: 'Olivier Auverlot'.
+			spec timestamp: '24/01/2014'.
+			spec repository:  'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
+
+			spec project: 'Units'
+					with: [ spec
+								className: 'ConfigurationOfUnits';
+								file: 'ConfigurationOfUnits';
+								version: '1.1-baseline';
+						 		repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main']. 
+			
+			spec package: 'Artefact-Core' with: [ spec requires: 'Units' ].
+			spec package: 'Artefact-Tests' with: [ spec requires: 'Artefact-Core' ].
+			spec package: 'Artefact-Examples' with: [ spec requires: 'Artefact-Core' ].
+				
+			spec 
+				group: 'default'       with: #('core' 'tests' 'examples');
+				group: 'core'     	with:#('Artefact-Core');
+				group: 'tests'     	with:#('Artefact-Tests');
+				group: 'examples'   with:#('Artefact-Examples')	].
+		 
+]
+
 { #category : #accessing }
 ConfigurationOfArtefact >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -254,7 +284,7 @@ ConfigurationOfArtefact >> customProjectAttributes [
 ConfigurationOfArtefact >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '1.2-baseline'.
+	spec for: #'common' version: '1.3-baseline'.
 
 ]
 
@@ -280,7 +310,7 @@ ConfigurationOfArtefact >> repositoryUrlString [
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.2'.
+	spec for: #'common' version: '1.3'.
 
 ]
 
@@ -341,5 +371,23 @@ ConfigurationOfArtefact >> version12: spec [
 		spec package: 'Artefact-Core' with: 'Artefact-Core-TorstenBergmann.247'.
 		spec package: 'Artefact-Tests' with: 'Artefact-Tests-TorstenBergmann.1'.
 		spec package: 'Artefact-Examples' with: 'Artefact-Examples-TorstenBergmann.1'.	
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfArtefact >> version13: spec [
+	<version: '1.3' imports: #('1.3-baseline')>
+	
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'Olivier Auverlot'.
+		spec timestamp: '24/01/2014'.
+		spec description: 'Support of opacity'.
+			
+		spec project: 'Units' with: '1.2'.
+		
+		spec package: 'Artefact-Core' with: 'Artefact-Core-OlivierAuverlot.249'.
+		spec package: 'Artefact-Tests' with: 'Artefact-Tests-OlivierAuverlot.2'.
+		spec package: 'Artefact-Examples' with: 'Artefact-Examples-OlivierAuverlot.2'.	
 	]
 ]
