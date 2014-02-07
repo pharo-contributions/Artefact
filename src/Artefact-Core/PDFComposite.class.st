@@ -79,7 +79,7 @@ PDFComposite >> initialize [
 	self filled: false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #styles }
 PDFComposite >> roundCap: aBoolean [
 	self styleSheet roundCap: aBoolean
 ]

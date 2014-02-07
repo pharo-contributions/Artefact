@@ -33,7 +33,7 @@ PDFJpegElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 	 ]).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFJpegElement >> stream: anImageStream [
 	| readWriter |
 	stream := anImageStream.	"Compute original dimensions for this image"
