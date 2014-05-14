@@ -90,15 +90,16 @@ PDFElement >> from: anObject [
 ]
 
 { #category : #render }
-PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet [
+PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet page: aPage [
 	^ self subclassResponsibility 
 ]
 
 { #category : #render }
-PDFElement >> generateWith: aGenerator styleSheet: aStyleSheet [
+PDFElement >> generateWith: aGenerator styleSheet: aStyleSheet page: aPage [
 	"this method is the main one to generate this PDFElement"
 	self checkAttributes.
-	^ self generateCodeSegmentWith: aGenerator styleSheet: (self buildCompositeStyleSheetFrom: aStyleSheet)
+
+	^ self generateCodeSegmentWith: aGenerator styleSheet: (self buildCompositeStyleSheetFrom: aStyleSheet) page: aPage
 ]
 
 { #category : #size }

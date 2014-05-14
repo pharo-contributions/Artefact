@@ -134,7 +134,7 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 		codeSegment:
 			(PDFCompositeCodeSegment
 				from:
-					(aPage elements collect: [ :anElement | anElement generateWith: self styleSheet: aPage styleSheet ])
+					(aPage elements collect: [ :anElement | anElement generateWith: self styleSheet: aPage styleSheet page: aPage ])
 				styleSheet: aPage styleSheet)
 ]
 
@@ -342,7 +342,7 @@ PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 	self zoom: aPDFDocument zoom.
 	
 	document := self generatePDFDocument: aPDFDocument.
-
+	
 	^ PDFDataTrailer new
 		addContent:
 				(PDFDataAssociativeArray new

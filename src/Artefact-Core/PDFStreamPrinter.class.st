@@ -68,7 +68,9 @@ PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: st
 	"insert rotation configuration"
 
 	| angle |
+
 	angle := (styleSheet get: #rotation) * (Float pi / 180).
+
 	^ String
 		streamContents: [ :code | 
 			code
@@ -84,13 +86,14 @@ PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: st
 				space;
 				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from x) asString;
 				space;
-				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from y) asString;
+				"il faut récupérer la hauteur de la page pour calculer la pos y ci dessous (h - y)"
+				nextPutAll: (self convertToPoints: anElementCodeSegment page format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString;
 				space;
 				nextPutAll: 'cm 1 0 0 1';
 				space;
 				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from x) asString;
 				space;
-				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from y) asString;
+				nextPutAll: ((self convertToPoints: anElementCodeSegment page format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString * -1) asString;
 				space;
 				nextPutAll: 'cm';
 				nextPutAll: String lf ]
@@ -102,7 +105,9 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 	styleSheet := anElementCodeSegment styleSheet.
 	^ String
 		streamContents: [ :code | 
-			"code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet)."
+			((styleSheet get: #rotation) ~= 0) ifTrue: [ 
+				code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet)
+			].
 			thickness := styleSheet get: #thickness.
 			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	
 			"Set line cap style to square"
@@ -125,7 +130,7 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 				nextPutAll: 'BT /' , anElementCodeSegment fontId , ' ' , styleSheet font fontSizeAsPoints asString , ' Tf ET';
 				nextPutAll: String lf.
 			code nextPutAll: '/' , anElementCodeSegment opacityId , ' ' , PDFByteCode setOpacity , String lf.
-				 ]
+		]
 ]
 
 { #category : #compression }
@@ -236,6 +241,7 @@ PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 { #category : #print }
 PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	| endPosition startPosition streamData |
+	
 	stream
 		nextPutAll: 'stream';
 		lf.
