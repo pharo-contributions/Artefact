@@ -67,33 +67,37 @@ PDFStreamPrinter >> convertToPoints: aUnitValue [
 PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet [
 	"insert rotation configuration"
 
-	| angle |
+	| angle cx cy |
 
 	angle := (styleSheet get: #rotation) * (Float pi / 180).
+	
+	cx := (self convertToPoints: anElementCodeSegment fromElement from x) round: 4.
+	cy := (self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) round: 4.
+
 
 	^ String
 		streamContents: [ :code | 
 			code
 				nextPutAll: 'q';
 				space;
-				nextPutAll: angle cos asString;
+				nextPutAll: (angle cos round: 4) asString;
 				space;
-				nextPutAll: angle sin asString;
+				nextPutAll: (angle sin round: 4) asString;
 				space;
-				nextPutAll: (-1 * angle sin) asString;
+				nextPutAll: (angle sin round: 4) negated asString;
 				space;
-				nextPutAll: angle cos asString;
+				nextPutAll: (angle cos round: 4) asString;
 				space;
-				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from x) asString;
+				nextPutAll: cx asString;
 				space;
 				"il faut récupérer la hauteur de la page pour calculer la pos y ci dessous (h - y)"
-				nextPutAll: (self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString;
+				nextPutAll: cy asString;
 				space;
 				nextPutAll: 'cm 1 0 0 1';
 				space;
-				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from x) asString;
+				nextPutAll: (cx negated) asString;
 				space;
-				nextPutAll: ((self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString * -1) asString;
+				nextPutAll: (cy  negated) asString;
 				space;
 				nextPutAll: 'cm';
 				nextPutAll: String lf ]
