@@ -1331,19 +1331,17 @@ pdfdoc exportTo: aStream
 PDFDemos >> rotationTest: aStream [
 	"PDFDemos rotationTest"
 
-	| pdfdoc aPage text |
+	| pdfdoc aPage  |
 	pdfdoc := PDFDocument new compression: false.
 	
-	text := PDFTextElement new 
-		from: 10 mm @ 30 mm;
-		rotation: 30;
-		text: 'Rotated text'.
-		
 	aPage := PDFPage new.
-	aPage
-		add: (PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text');
-		add: text;
-		add: (PDFTextElement from: 10 mm @ 50 mm text: 'A very simple text').
+	aPage add: (PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text').
+		
+	0 to: 35do: [ :a |
+		aPage add: (PDFTextElement new from: 50 mm @ 30 mm; text: 'Rotated text'; rotation: (a * 10)).
+	].
+		
+	aPage add: (PDFTextElement from: 10 mm @ 50 mm text: 'A very simple text').
 	pdfdoc  add: aPage.
 	pdfdoc exportTo: aStream
 
