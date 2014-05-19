@@ -1338,7 +1338,7 @@ PDFDemos >> rotationTest: aStream [
 	aPage add: (PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text').
 		
 	0 to: 35do: [ :a |
-		aPage add: (PDFTextElement new from: 50 mm @ 30 mm; text: 'Rotated text'; rotation: (a * 10)).
+		aPage add: (PDFTextElement new from: 50 mm @ 50 mm; text: ('Rotated text with ' , (a * 10) asString); rotation: (a * 10)).
 	].
 		
 	aPage add: (PDFTextElement from: 10 mm @ 50 mm text: 'A very simple text').
