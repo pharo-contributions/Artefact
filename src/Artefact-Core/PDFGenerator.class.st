@@ -134,7 +134,7 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 		codeSegment:
 			(PDFCompositeCodeSegment
 				from:
-					(aPage elements collect: [ :anElement | anElement generateWith: self styleSheet: aPage styleSheet page: aPage ])
+					(aPage elements collect: [ :anElement | anElement generateWith: self styleSheet: aPage styleSheet format: aPage format ])
 				styleSheet: aPage styleSheet)
 ]
 

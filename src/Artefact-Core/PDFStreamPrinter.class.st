@@ -87,13 +87,13 @@ PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: st
 				nextPutAll: (self convertToPoints: anElementCodeSegment fromElement from x) asString;
 				space;
 				"il faut récupérer la hauteur de la page pour calculer la pos y ci dessous (h - y)"
-				nextPutAll: (self convertToPoints: anElementCodeSegment page format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString;
+				nextPutAll: (self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString;
 				space;
 				nextPutAll: 'cm 1 0 0 1';
 				space;
 				nextPutAll: (self convertToPoints: -1 * anElementCodeSegment fromElement from x) asString;
 				space;
-				nextPutAll: ((self convertToPoints: anElementCodeSegment page format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString * -1) asString;
+				nextPutAll: ((self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) asString * -1) asString;
 				space;
 				nextPutAll: 'cm';
 				nextPutAll: String lf ]
@@ -191,7 +191,11 @@ PDFStreamPrinter >> printCompositeCodeSegment: aCompositeCodeSegment [
 PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
 
 	self streamContent nextPutAll: (self generateStyleCodeForElement: anElementCodeSegment).
-	self streamContent nextPutAll: anElementCodeSegment code; lf.
+	self streamContent nextPutAll: anElementCodeSegment code.
+	self resetRotation: (anElementCodeSegment styleSheet get: #rotation) into: self streamContent.
+	self streamContent nextPut: Character lf.
+
+
 ]
 
 { #category : #print }
@@ -276,6 +280,15 @@ PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	stream lf.
 	self size at: aPDFDataXObjectStream put: endPosition - startPosition.
 	stream nextPutAll: 'endstream'.
+]
+
+{ #category : #util }
+PDFStreamPrinter >> resetRotation: aRotation into: aStream [
+	(aRotation = 0) ifFalse: [ 
+		aStream
+			nextPut: Character lf;
+			nextPutAll: PDFByteCode restoreGraphicsState.
+	].
 ]
 
 { #category : #util }

@@ -100,6 +100,11 @@ PDFByteCode class >> rectangle [
 	^'re'
 ]
 
+{ #category : #text }
+PDFByteCode class >> restoreGraphicsState [
+	^ 'Q'
+]
+
 { #category : #style }
 PDFByteCode class >> setOpacity [
 	^'gs'

@@ -51,20 +51,20 @@ PDFComposite >> font: aFont [
 ]
 
 { #category : #render }
-PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet page: aPage [
+PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat [
 	^ PDFCompositeCodeSegment
-		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet page: aPage)
+		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat)
 		styleSheet: aStyleSheet
 ]
 
 { #category : #render }
-PDFComposite >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet page: aPage [
+PDFComposite >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet format: aFormat [
 	^ (self getSubElementsWith: aPDFGenerator styleSheet: compositeStyleSheet)
 		collect: [ :aSubElement | 
 			aSubElement
 				generateCodeSegmentWith: aPDFGenerator
 				styleSheet: (aSubElement buildCompositeStyleSheetFrom: compositeStyleSheet)
-				page: aPage ]
+				format: aFormat ]
 ]
 
 { #category : #render }

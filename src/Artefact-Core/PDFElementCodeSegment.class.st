@@ -16,7 +16,7 @@ Class {
 	#name : #PDFElementCodeSegment,
 	#superclass : #PDFCodeSegment,
 	#instVars : [
-		'page',
+		'format',
 		'code',
 		'fontId',
 		'opacityId'
@@ -25,9 +25,9 @@ Class {
 }
 
 { #category : #'initialize-release' }
-PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet page: aPage isDrawElement: aBoolean fontId: aFontId opacityId: aOpacityId fromElement: aElement [
+PDFElementCodeSegment class >> code: aCode styleSheet: aStyleSheet format: aFormat isDrawElement: aBoolean fontId: aFontId opacityId: aOpacityId fromElement: aElement [
 	^ self new
-		page: aPage;
+		format: aFormat;
 		code: aCode;
 		styleSheet: aStyleSheet;
 		isDrawElement: aBoolean;
@@ -58,6 +58,16 @@ PDFElementCodeSegment >> fontId: anObject [
 ]
 
 { #category : #accessing }
+PDFElementCodeSegment >> format [
+	^ format
+]
+
+{ #category : #accessing }
+PDFElementCodeSegment >> format: anObject [
+	format := anObject
+]
+
+{ #category : #accessing }
 PDFElementCodeSegment >> opacityId [
 	^ opacityId
 ]
@@ -65,16 +75,6 @@ PDFElementCodeSegment >> opacityId [
 { #category : #accessing }
 PDFElementCodeSegment >> opacityId: anObject [
 	opacityId := anObject
-]
-
-{ #category : #accessing }
-PDFElementCodeSegment >> page [
-	^ page
-]
-
-{ #category : #accessing }
-PDFElementCodeSegment >> page: anObject [
-	page := anObject
 ]
 
 { #category : #accessing }

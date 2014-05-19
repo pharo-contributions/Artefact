@@ -74,6 +74,22 @@ PDFLayout >> elements: anObject [
 ]
 
 { #category : #render }
+PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet  format: aFormat [
+	| elementsOriginalPosition codeSegments compositeStyleSheet elementsOriginalDimension |
+	elementsOriginalPosition := self createOriginalPositionDictionary.
+	elementsOriginalDimension := self createOriginalDimensionDictionary.
+	codeSegments := self elements
+		collect: [ :anElement | 
+			compositeStyleSheet := anElement buildCompositeStyleSheetFrom: aStyleSheet.
+			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
+			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
+			anElement generateCodeSegmentWith: aPDFGenerator styleSheet: compositeStyleSheet format: aFormat ].
+	elementsOriginalPosition keysAndValuesDo: [ :anElement :aPosition | anElement from: aPosition ].
+	elementsOriginalDimension keysAndValuesDo: [ :anElement :aDimension | anElement dimension: aDimension ].
+	^ codeSegments
+]
+
+{ #category : #render }
 PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet  page: aPage [
 	| elementsOriginalPosition codeSegments compositeStyleSheet elementsOriginalDimension |
 	elementsOriginalPosition := self createOriginalPositionDictionary.

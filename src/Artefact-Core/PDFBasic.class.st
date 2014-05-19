@@ -23,12 +23,12 @@ PDFBasic >> determinePosition: aPosition on: aPage [
 ]
 
 { #category : #render }
-PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet page: aPage [
+PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat [
 
 	^ self codeSegmentClass
 		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet)
 		styleSheet: aStyleSheet
-		page: aPage
+		format: aFormat
 		isDrawElement: self isDrawElement
 		fontId: ([(aPDFGenerator getFontIdFor: aStyleSheet font)] on: KeyNotFound do: [nil])
 		opacityId: ([(aPDFGenerator getOpacityIdFor: aStyleSheet opacity)] on: KeyNotFound do: [nil])
