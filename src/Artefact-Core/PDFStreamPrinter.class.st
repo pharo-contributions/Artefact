@@ -288,7 +288,7 @@ PDFStreamPrinter >> resetRotation: aRotation into: aStream [
 		aStream
 			nextPut: Character lf;
 			nextPutAll: PDFByteCode restoreGraphicsState.
-	].
+	]
 ]
 
 { #category : #util }
