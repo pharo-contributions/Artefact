@@ -1009,7 +1009,7 @@ PDFDemos >> imageJPG: aStream [
 		url: 'http://pharobyexample.org/pictures/pbe-title.jpg';
 		get).
 	aPage := PDFPage new.
-	aPage add: (PDFJpegElement from: 5 mm@0mm wh: 160mm@90mm fromStream: pharoByExampleLogo readStream).
+	aPage add: (PDFJpegElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoByExampleLogo readStream).
 	aPage
 		add:
 			((PDFJpegElement
