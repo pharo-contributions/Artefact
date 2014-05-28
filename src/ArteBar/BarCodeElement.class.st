@@ -52,7 +52,7 @@ BarCodeElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	""
 
 	| barcode sequence step result |
-	barcode := self encoder value: self value.
+	barcode := self encoder data: self value.
 	sequence := barcode binarySequence.
 	step := self width / sequence size.
 	result := OrderedCollection new.
