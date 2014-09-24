@@ -29,6 +29,11 @@ Class {
 	#category : #'Artefact-Core-Elements-Composites'
 }
 
+{ #category : #accessing }
+PDFCompositeText class >> text: aText [
+	^ self new text: aText; yourself
+]
+
 { #category : #private }
 PDFCompositeText >> alignment: aPDFAlignment [
 	self styleSheet alignment: aPDFAlignment
