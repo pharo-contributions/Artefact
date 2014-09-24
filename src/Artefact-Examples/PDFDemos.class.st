@@ -393,20 +393,17 @@ PDFDemos >> bezierTest: aStream [
 PDFDemos >> brochure: aStream [
 	"Artefact use an JPG file"
 
-	| pdfdoc aPage titleFont subtitleFont titleColor layout imageStream quoteFont pharoLogo |
-	imageStream := ByteArray new writeStream.
+	| pdfdoc aPage titleFont subtitleFont titleColor layout quoteFont pharoLogo |
 	pharoLogo := ZnClient new
-		url: 'http://www.pharo-project.org/images/pharo.png';
-		get.	"Downloading PNG file from internet with Zinc"
-	PluginBasedJPEGReadWriter putForm: (PNGReadWriter on: pharoLogo readStream) nextImage onStream: imageStream.	"Then convert it to JPG because Artefact only support JPG"
-	imageStream := ReadStream on: imageStream contents.
+		url: 'http://forum.world.st/attachment/4659694/0/pharo6.jpeg';
+		get.	"Downloading JPEG file from internet with Zinc"
 	pdfdoc := PDFDocument new.
 	titleColor := PDFColor r: 13 g: 100 b: 175.
 	titleFont := PDFHelveticaFont new
 		fontSize: 22 pt;
 		bold: true.
 	quoteFont := PDFHelveticaFont new
-		fontSize: 16 pt;
+		fontSize: 8mm;
 		bold: true;
 		italic: true.
 	subtitleFont := PDFHelveticaFont new
@@ -415,23 +412,15 @@ PDFDemos >> brochure: aStream [
 	aPage := PDFPage new.
 	aPage
 		add:
-				(PDFRectElement new
-						from: 0 mm @ 0 mm;
-						dimension: 210 mm @ 80 mm;
-						fillColor: (PDFColor r: 0 g: 0 b: 0));
-		add:
-				(PDFCellElement new
+				(PDFTextElement new
 						text: 'The Live Programming Environment';
-						from: 100 mm @ 0 mm;
+						from: 60 mm @ 26 mm;
 						dimension: 110 mm @ 80 mm;
-						alignment: PDFAlignment left;
-						textColor: (PDFColor r: 255 g: 255 b: 255);
-						fillColor: (PDFColor r: 0 g: 0 b: 0);
 						font: quoteFont);
 		add:
-				((PDFJpegElement fromStream: imageStream)
+				((PDFJpegElement fromStream: pharoLogo readStream)
 						from: 15 mm @ 20 mm;
-						dimension: 80 mm @ 40 mm).
+						dimension: 40 mm @ 40 mm).
 	layout := PDFVerticalLayout
 		on:
 			{(PDFFormattedTextElement new
