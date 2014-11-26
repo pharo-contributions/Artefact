@@ -25,6 +25,15 @@ PDFText class >> from: aPosition text: aText [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+PDFText class >> from: aPosition text: aText font: aFont [
+	^ self new
+		from: aPosition;
+		text: aText;
+		font: aFont;
+		yourself
+]
+
 { #category : #defaults }
 PDFText >> defaultStyle [
 	^ #text

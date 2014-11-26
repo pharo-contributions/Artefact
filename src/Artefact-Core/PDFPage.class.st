@@ -68,7 +68,7 @@ PDFPage >> elements: aCollectionOfPDFElements [
 
 { #category : #accessing }
 PDFPage >> format [
-	^ format ifNil: [ format := self document format ]
+	^ format ifNil: [ format := self document format copy ]
 ]
 
 { #category : #accessing }
