@@ -269,7 +269,14 @@ ConfigurationOfArtefact >> baseline13: spec [
 				group: 'core'     	with:#('Artefact-Core');
 				group: 'tests'     	with:#('Artefact-Tests');
 				group: 'examples'   with:#('Artefact-Examples')	].
-		 
+	spec
+		for: #'pharo2.x'
+		do: [ 
+			"added 2014-12-29 Stephan Eggermont"
+			spec package: 'Artefact-Pharo20'.
+			spec package: 'Artefact-Core' with: [ spec requires: #('Units' 'Artefact-Pharo20') ]].
+			
+
 ]
 
 { #category : #accessing }
@@ -310,7 +317,8 @@ ConfigurationOfArtefact >> repositoryUrlString [
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.3'.
+	spec for: #'common' version: '1.4'.
+
 
 ]
 
@@ -389,5 +397,24 @@ ConfigurationOfArtefact >> version13: spec [
 		spec package: 'Artefact-Core' with: 'Artefact-Core-OlivierAuverlot.249'.
 		spec package: 'Artefact-Tests' with: 'Artefact-Tests-OlivierAuverlot.2'.
 		spec package: 'Artefact-Examples' with: 'Artefact-Examples-OlivierAuverlot.2'.	
+	]
+]
+
+{ #category : #versions }
+ConfigurationOfArtefact >> version14: spec [
+	<version: '1.4' imports: #('1.3-baseline')>
+	
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'Stephan Eggermont'.
+		spec timestamp: '29/12/2014'.
+		spec description: 'Make it green'.
+			
+		spec project: 'Units' with: '1.2'.
+		
+		spec package: 'Artefact-Pharo20' with: 'Artefact-Pharo20-StephanEggermont.1'.
+		spec package: 'Artefact-Core' with: 'Artefact-Core-GuillaumeLarcheveque.257'.
+		spec package: 'Artefact-Tests' with: 'Artefact-Tests-OlivierAuverlot.4'.
+		spec package: 'Artefact-Examples' with: 'Artefact-Examples-GuillaumeLarcheveque.7'.	
 	]
 ]
