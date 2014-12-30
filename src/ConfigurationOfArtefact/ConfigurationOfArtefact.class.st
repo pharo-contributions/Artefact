@@ -279,6 +279,70 @@ ConfigurationOfArtefact >> baseline13: spec [
 
 ]
 
+{ #category : #baselines }
+ConfigurationOfArtefact >> baseline14: spec [
+	<version: '1.4-baseline'>
+	spec
+		for: #common
+		do: [ 
+			spec blessing: #baseline.
+			spec author: 'Olivier Auverlot'.
+			spec timestamp: '24/01/2014'.
+			spec repository:  'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
+
+			spec project: 'Units'
+					with: [ spec
+								className: 'ConfigurationOfUnits';
+								file: 'ConfigurationOfUnits';
+								version: '1.1-baseline';
+						 		repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main']. 
+			
+			spec package: 'Artefact-Core' with: [ spec requires: 'Units' ].
+			spec package: 'Artefact-Tests' with: [ spec requires: #('Artefact-Core' 'Artefact-Examples' ). ].
+			spec package: 'Artefact-Examples' with: [ spec requires: 'Artefact-Core' ].
+				
+			spec 
+				group: 'default'       with: #('core' 'tests' 'examples');
+				group: 'core'     	with:#('Artefact-Core');
+				group: 'tests'     	with:#('Artefact-Tests');
+				group: 'examples'   with:#('Artefact-Examples')	].
+	spec
+		for: #'pharo2.x'
+		do: [ 
+			"added 2014-12-29 Stephan Eggermont"
+			spec package: 'Artefact-Pharo20'.
+			spec package: 'Artefact-Core' with: [ spec requires: #('Units' 'Artefact-Pharo20') ]].
+			
+
+]
+
+{ #category : #baselines }
+ConfigurationOfArtefact >> baseline15: spec [
+	<version: '1.5-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
+		spec project: 'Units' with: [
+				spec
+					className: #ConfigurationOfUnits;
+					versionString: '1.1-baseline';
+					repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main' ].
+		spec 
+			package: 'Artefact-Core' with: [
+				spec requires: #('Units' ). ];
+			package: 'Artefact-Tests' with: [
+				spec requires: #('Artefact-Core' 'Artefact-Examples' ). ];
+			package: 'Artefact-Examples' with: [
+				spec requires: #('Artefact-Core' ). ].
+		spec 
+			group: 'default' with: #('core' 'tests' 'examples' );
+			group: 'core' with: #('Artefact-Core' );
+			group: 'tests' with: #('Artefact-Tests' );
+			group: 'examples' with: #('Artefact-Examples' ). ].
+
+]
+
 { #category : #accessing }
 ConfigurationOfArtefact >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -291,7 +355,7 @@ ConfigurationOfArtefact >> customProjectAttributes [
 ConfigurationOfArtefact >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '1.3-baseline'.
+	spec for: #'common' version: '1.5-baseline'.
 
 ]
 
@@ -402,7 +466,7 @@ ConfigurationOfArtefact >> version13: spec [
 
 { #category : #versions }
 ConfigurationOfArtefact >> version14: spec [
-	<version: '1.4' imports: #('1.3-baseline')>
+	<version: '1.4' imports: #('1.4-baseline')>
 	
 	spec for: #common do: [
 		spec blessing: #release.
