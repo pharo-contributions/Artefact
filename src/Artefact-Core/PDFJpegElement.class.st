@@ -1,7 +1,7 @@
 "
 A PDFJpegElement is the pdf representation of an image
 
-Instance Variables
+
 
 "
 Class {
@@ -10,35 +10,13 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #render }
-PDFJpegElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
-	| origin imageId |
-	
-	"Determine the vertical position of the image"
-	 origin := aPDFGenerator determinePositionOnCurrentPage: (self from + (0 @ self dimension y) ).
-
-	"Determine the id of the image"
-	imageId:= aPDFGenerator getImageIdFor: self.
-	 			
-	^  (String streamContents: [ :s |
-		s nextPutAll:  'q'; space;
-		nextPutAll: (aPDFGenerator convertToPoints: self dimension x) asString; space;
-		nextPutAll: '0 0'; space;
-		nextPutAll: (aPDFGenerator convertToPoints: self dimension y) asString; space;
-		nextPutAll: (origin x asString); space;
-		nextPutAll: (origin y asString); space;
-		nextPutAll: 'cm';space; 
-		nextPut: $/; nextPutAll: imageId; space;
-		nextPutAll: 'Do Q'
-	 ]).
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFJpegElement >> stream: anImageStream [
 	| readWriter |
 	stream := anImageStream.	"Compute original dimensions for this image"
 	readWriter := (JPEGReadWriter on: anImageStream)
 		nextImage;
 		yourself.
-	originalImageDimensions := readWriter width pt @ readWriter height pt
+	originalImageDimensions := readWriter width pt @ readWriter height pt.
+
 ]
