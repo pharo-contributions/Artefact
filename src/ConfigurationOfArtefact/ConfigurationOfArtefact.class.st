@@ -477,7 +477,7 @@ ConfigurationOfArtefact >> version14: spec [
 		spec project: 'Units' with: '1.2'.
 		
 		spec package: 'Artefact-Pharo20' with: 'Artefact-Pharo20-StephanEggermont.1'.
-		spec package: 'Artefact-Core' with: 'Artefact-Core-GuillaumeLarcheveque.257'.
+		spec package: 'Artefact-Core' with: 'Artefact-Core-OlivierAuverlot.259'.
 		spec package: 'Artefact-Tests' with: 'Artefact-Tests-OlivierAuverlot.4'.
 		spec package: 'Artefact-Examples' with: 'Artefact-Examples-GuillaumeLarcheveque.7'.	
 	]
