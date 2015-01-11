@@ -97,13 +97,14 @@ Each PDFElement have a set of properties that define its appearance (text color,
 
 !!Basic Elements (Small is beautiful)
 
- * PDFBezierCurveElement
- * PDFCircleElement
- * PDFLineElement
- * PDFPolygonElement
- * PDFRectElement
- * PDFJpegElement
- * PDFTextElement
+* PDFBezierCurveElement
+* PDFCircleElement
+* PDFLineElement
+* PDFPolygonElement
+* PDFRectElement
+* PDFJpegElement
+* PDFPngElement
+* PDFTextElement
 
 !!Composite Elements (just tape a bunch of cats together to create a horse)
 
