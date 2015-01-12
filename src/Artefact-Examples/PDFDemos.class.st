@@ -141,6 +141,12 @@ PDFDemos class >> imageJPG [
 	self new imageJPG: (self streamNamed: 'imageJPG.pdf')
 ]
 
+{ #category : #image }
+PDFDemos class >> imagePNG [
+	"PDFDemos imagePNG"
+	self new imagePNG: (self streamNamed: 'imagePNG.pdf')
+]
+
 { #category : #document }
 PDFDemos class >> infosTest [
 	"PDFDemos infosTest"
@@ -1015,6 +1021,24 @@ PDFDemos >> imageJPG: aStream [
 				dimension: 40 mm  @ 40 mm;
 				rotation: 30
 				).
+								
+	pdfdoc add: aPage.
+pdfdoc exportTo: aStream
+
+]
+
+{ #category : #image }
+PDFDemos >> imagePNG: aStream [
+	"How to use a PNG file with artefact"
+
+	| pdfdoc aPage pharoLogo |
+	pdfdoc := PDFDocument new.
+	"Downloading PNG file from internet with Zinc"
+	pharoLogo := (ZnClient new
+		url: 'http://pharo.org/files/pharo.png';
+		get).
+	aPage := PDFPage new.
+	aPage add: (PDFPngElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoLogo readStream).
 								
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
