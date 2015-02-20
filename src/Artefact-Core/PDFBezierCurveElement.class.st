@@ -15,7 +15,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFBezierCurveElement class >> from: aPosition points: anArrayOfPoints [
 	"Positions of points are relative to aPosition"
 	^ (self from: aPosition) points: anArrayOfPoints

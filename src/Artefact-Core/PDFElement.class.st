@@ -23,22 +23,22 @@ Class {
 	#category : #'Artefact-Core-Elements'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #orientation }
 PDFElement class >> determineOrientation: aPoint [
 	^ ((aPoint y < 0 ifTrue: [ 'top' ] ifFalse: [ 'bottom' ]) , (aPoint x < 0 ifTrue: [ 'Left' ] ifFalse: [ 'Right' ])) asSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFElement class >> from: aPosition [
 	^ self new from: aPosition
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFElement class >> from: aPosition dimension: aDimension [
 	^ (self from: aPosition) dimension: aDimension
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFElement class >> from: aPosition to: anotherPosition [
 	^ (self from: (aPosition min: anotherPosition) dimension: (anotherPosition - aPosition) abs ) orientation: (self determineOrientation: anotherPosition - aPosition)
 ]
