@@ -336,7 +336,7 @@ ConfigurationOfArtefact >> baseline15: spec [
 					repository: 'http://smalltalkhub.com/mc/RMoD/Stylesheet/main/' ].
 		spec 
 			package: 'Artefact-Core' with: [
-				spec requires: #('Units' ). ];
+				spec requires: #('Units' 'Stylesheet' ). ];
 			package: 'Artefact-Examples' with: [
 				spec requires: #('Artefact-Core' ). ];
 			package: 'Artefact-Tests' with: [
@@ -346,6 +346,14 @@ ConfigurationOfArtefact >> baseline15: spec [
 			group: 'core' with: #('Artefact-Core' );
 			group: 'tests' with: #('Artefact-Tests' );
 			group: 'examples' with: #('Artefact-Examples' ). ].
+
+]
+
+{ #category : #'symbolic versions' }
+ConfigurationOfArtefact >> bleedingEdge: spec [
+	 <symbolicVersion: #'bleedingEdge'>
+
+	spec for: #'common' version: '1.5-baseline'.
 
 ]
 
