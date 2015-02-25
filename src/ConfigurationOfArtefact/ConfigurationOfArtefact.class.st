@@ -323,18 +323,24 @@ ConfigurationOfArtefact >> baseline15: spec [
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
 		spec repository: 'http://smalltalkhub.com/mc/RMoD/Artefact/main'.
-		spec project: 'Units' with: [
+		spec 
+			project: 'Units' with: [
 				spec
 					className: #ConfigurationOfUnits;
 					versionString: '1.1-baseline';
-					repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main' ].
+					repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main' ];
+			project: 'Stylesheet' with: [
+				spec
+					className: #ConfigurationOfStylesheet;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/RMoD/Stylesheet/main/' ].
 		spec 
 			package: 'Artefact-Core' with: [
 				spec requires: #('Units' ). ];
-			package: 'Artefact-Tests' with: [
-				spec requires: #('Artefact-Core' 'Artefact-Examples' ). ];
 			package: 'Artefact-Examples' with: [
-				spec requires: #('Artefact-Core' ). ].
+				spec requires: #('Artefact-Core' ). ];
+			package: 'Artefact-Tests' with: [
+				spec requires: #('Artefact-Core' 'Artefact-Examples' ). ].
 		spec 
 			group: 'default' with: #('core' 'tests' 'examples' );
 			group: 'core' with: #('Artefact-Core' );
