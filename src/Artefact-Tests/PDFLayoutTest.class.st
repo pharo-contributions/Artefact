@@ -29,7 +29,7 @@ PDFLayoutTest >> testLayoutDoNotLoseOriginalDimensionOfElements [
 		from: 34 mm @ 78 mm;
 		add: rect;
 		add: rect2.
-	testLayout generateCodeSegmentsCollectionWith: generator styleSheet: PDFStyleSheet default format: (PDFA4Format new).
+	testLayout generateCodeSegmentsCollectionWith: generator styleSheet: StyleSheet default format: (PDFA4Format new).
 	self assert: rect dimension equals: 10 cm @ 3 cm.
 	self assert: rect2 dimension equals: 24 mm @ 56 mm
 ]
