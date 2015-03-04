@@ -1,86 +1,86 @@
-Extension { #name : #PDFStyleSheet }
+Extension { #name : #StyleSheet }
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> alignment [
+StyleSheet >> alignment [
 	^ self get: #alignment
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> alignment: aPDFAlignment [
+StyleSheet >> alignment: aPDFAlignment [
 	self at: #alignment put: aPDFAlignment 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> dotted: aPDFDotted [
+StyleSheet >> dotted: aPDFDotted [
 	self at: #dotted put: aPDFDotted 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> drawColor: aPDFColor [
+StyleSheet >> drawColor: aPDFColor [
 	self at: #drawColor put: aPDFColor 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> fillColor: aPDFColor [
+StyleSheet >> fillColor: aPDFColor [
 	self at: #fillColor put: aPDFColor 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> filled [
+StyleSheet >> filled [
 	^ self get: #filled
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> filled: aBoolean [
+StyleSheet >> filled: aBoolean [
 	self at: #filled put: aBoolean 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> font [
+StyleSheet >> font [
 	^ self get: #font
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> font: aFont [
+StyleSheet >> font: aFont [
 	self at: #font put: aFont 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> margin [
+StyleSheet >> margin [
 	^ self get: #margin
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> margin: aMargin [
+StyleSheet >> margin: aMargin [
 	self at: #margin put: aMargin 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> opacity [
+StyleSheet >> opacity [
 	^ self get: #opacity
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> opacity: aOpacity [
+StyleSheet >> opacity: aOpacity [
 	self at: #opacity put: aOpacity
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> rotation: anAngle [
+StyleSheet >> rotation: anAngle [
 	self at: #rotation put: anAngle
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> roundCap: aBoolean [
+StyleSheet >> roundCap: aBoolean [
 	self at: #roundCap put: aBoolean 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> textColor: aColor [
+StyleSheet >> textColor: aColor [
 	self at: #textColor put: aColor 
 ]
 
 { #category : #'*Artefact-Core' }
-PDFStyleSheet >> thickness: aThickness [
+StyleSheet >> thickness: aThickness [
 	self at: #thickness put: aThickness 
 ]

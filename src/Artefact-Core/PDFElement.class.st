@@ -111,7 +111,7 @@ PDFElement >> height [
 PDFElement >> initialize [ 
 	super initialize.
 	self orientation: #bottomRight.
-	self styleSheet: PDFStyleSheet new.
+	self styleSheet: StyleSheet new.
 	self style: self defaultStyle
 ]
 
