@@ -332,7 +332,7 @@ ConfigurationOfArtefact >> baseline15: spec [
 			project: 'Stylesheet' with: [
 				spec
 					className: #ConfigurationOfStylesheet;
-					versionString: #'stable';
+					versionString: #'development';
 					repository: 'http://smalltalkhub.com/mc/RMoD/Stylesheet/main/' ].
 		spec 
 			package: 'Artefact-Core' with: [
