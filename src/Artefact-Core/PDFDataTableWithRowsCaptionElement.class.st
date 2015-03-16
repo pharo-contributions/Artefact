@@ -23,6 +23,6 @@ PDFDataTableWithRowsCaptionElement >> getSubElementsWith: aPDFGenerator styleShe
 
 	| elements |
 	elements := super getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet.
-	1 to: elements size by: self data first size + 1 do: [ :anIndex | (elements at: anIndex) style: #caption ].
+	1 to: elements size by: self data first size + 1 do: [ :anIndex | (elements at: anIndex) addStyle: #caption ].
 	^ elements
 ]

@@ -21,6 +21,6 @@ PDFDataTableWithColumnsCaptionElement >> getSubElementsWith: aPDFGenerator style
 
 	| elements |
 	elements := super getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet.
-	1 to: captions size do: [ :anIndex | (elements at: anIndex) style: #caption ].
+	1 to: captions size do: [ :anIndex | (elements at: anIndex) addStyle: #caption ].
 	^ elements
 ]
