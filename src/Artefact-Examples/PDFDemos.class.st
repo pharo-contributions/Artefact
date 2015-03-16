@@ -177,6 +177,12 @@ PDFDemos class >> multiStyleArrowsTest [
 	self new multiStyleArrowsTest: (self streamNamed: 'multiStyleArrowsTest.pdf')
 ]
 
+{ #category : #composite }
+PDFDemos class >> niceDataTableTest [
+	"PDFDemos niceDataTable"
+	self new niceDataTable: (self streamNamed: 'niceDataTable.pdf')
+]
+
 { #category : #cool }
 PDFDemos class >> oneLineTest [
 	"PDFDemos oneLineTest"
@@ -682,7 +688,7 @@ PDFDemos >> datatableTest: aStream [
 		);
 		from: 10 mm @ 10 mm;
 		dimension: 190 mm @ 50 mm;
-		customizationBlock: [ :cell :x :y :data | x even ifTrue: [cell style: #even] ]
+		customizationBlock: [ :cell :x :y :data | y even ifTrue: [cell addStyle: #even] ]
 	).
 
 	aPage add: (PDFDataTableElement new
@@ -727,7 +733,7 @@ PDFDemos >> datatableWithCaptionsTest: aStream [
 						#(#('Smith' 'Peter' 'peter.smith@mail.org') #('Jones' 'Mickael' 'mickael.jones@epr.com') #('washington' 'robert' 'robert.washington@blif.com'));
 				from: 10 mm @ 20 mm;
 				dimension: 190 mm @ 60 mm;
-				style: #dataTableWithColoredCaption;
+				addStyle: #dataTableWithColoredCaption;
 				yourself).
 	aPage
 		add:
@@ -1159,36 +1165,45 @@ pdfdoc exportTo: aStream
 { #category : #style }
 PDFDemos >> multiStyleArrowsTest: aStream [
 	"drawing arrows with differents styles"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new.
 	pdfdoc styleSheet > #redArrow at: #drawColor put: (PDFColor r: 243 g: 24 b: 24).
-	pdfdoc styleSheet	at: #drawColor put: (PDFColor r: 24 g: 24 b: 180).
+	pdfdoc styleSheet at: #drawColor put: (PDFColor r: 24 g: 24 b: 180).
 	pdfdoc styleSheet > #greenArrow at: #drawColor put: (PDFColor r: 24 g: 180 b: 24).
 	pdfdoc styleSheet > #greenArrow > #head at: #drawColor put: (PDFColor r: 255 g: 0 b: 0).
 	aPage := PDFPage new.
-	
-	aPage add: ((PDFArrowElement 
-		from: 10 mm @ 10 mm
-		to: 100 mm @30 mm)
-		style: #redArrow
-	).
-
-	aPage add: (PDFArrowElement 
-		from: 10 mm @20 mm
-		to: 30 mm @30 mm
-	).
-
-	aPage add: ((PDFArrowElement 
-		from: 10 mm @ 15 mm
-		to: 70 mm @30 mm)
-		style: #greenArrow
-	).
-			
+	aPage add: (PDFArrowElement from: 10 mm @ 10 mm to: 100 mm @ 30 mm style: #redArrow).
+	aPage add: (PDFArrowElement from: 10 mm @ 20 mm to: 30 mm @ 30 mm).
+	aPage add: (PDFArrowElement from: 10 mm @ 15 mm to: 70 mm @ 30 mm style: #greenArrow).
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
+	pdfdoc exportTo: aStream
+]
 
+{ #category : #draw }
+PDFDemos >> niceDataTable: aStream [
+	"generate a datatable"
+
+	| pdfdoc aPage |
+	pdfdoc := PDFDocument new.
+	pdfdoc metaData title: 'Users report'.
+	pdfdoc styleSheet > #datatable > #even fillColor: (PDFColor greyLevel: 225).
+	pdfdoc styleSheet > #datatable > #border > #right thickness: 0 mm.
+	pdfdoc styleSheet > #datatable > #border > #left thickness: 0 mm.
+	
+	aPage := PDFPage new.
+	aPage
+		add:
+			(PDFDataTableElement new
+				data:
+						#(#(#Airi #Satou #Accountant #Tokyo 33 '2008/11/28' '$162,700') #(#Angelica #Ramos 'Chief Executive Officer (CEO)' #London 47 '2009/10/09' '$1,200,000') #(#Ashton #Cox 'Junior Technical Author' 'San Francisco' 66 '2009/01/12' '$86,000') #(#Bradley #Greer 'Software Engineer' #London 41 '2012/10/13' '$132,000') #(#Brenden #Wagner 'Software Engineer' 'San Francisco' 28 '2011/06/07' '$206,850') #(#Brielle #Williamson 'Integration Specialist' 'New York' 61 '2012/12/02' '$372,000') #(#Bruno #Nash 'Software Engineer' #London 38 '2011/05/03' '$163,500') #(#Caesar #Vance 'Pre-Sales Support' 'New York' 21 '2011/12/12' '$106,450') #(#Cara #Stevens 'Sales Assistant' 'New York' 46 '2011/12/06' '$145,600') #(#Cedric #Kelly 'Senior Javascript Developer' #Edinburgh 22 '2012/03/29' '$433,060'));
+				from: 10 mm @ 10 mm;
+				dimension: 190 mm @ 200 mm;
+				customizationBlock: [ :cell :x :y :data | 
+							y even
+								ifTrue: [ cell addStyle: #even ] ]).
+	pdfdoc add: aPage.
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #cool }
