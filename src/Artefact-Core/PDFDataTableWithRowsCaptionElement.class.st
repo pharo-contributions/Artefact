@@ -14,7 +14,7 @@ Class {
 PDFDataTableWithRowsCaptionElement >> cellsData [ 
 	| current |
 	current := 0.
-	^ self data collect: [ :aLine | current := current + 1. {captions at: current}, aLine ]
+	^ self data collect: [ :aLine | current := current + 1. {self captions at: current}, aLine ]
 ]
 
 { #category : #render }

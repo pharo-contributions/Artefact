@@ -27,7 +27,8 @@ Class {
 		'document',
 		'format',
 		'elements',
-		'margins'
+		'margins',
+		'styleSheet'
 	],
 	#category : #'Artefact-Core-Base'
 }
@@ -43,6 +44,11 @@ PDFPage class >> elements: aCollectionOfElements [
 PDFPage >> add: anElement [
 	"Use this to add a new element to this page"
 	self elements add: anElement.
+]
+
+{ #category : #'as yet unclassified' }
+PDFPage >> defaultFormat [
+	^PDFA4Format new
 ]
 
 { #category : #accessing }
@@ -68,7 +74,7 @@ PDFPage >> elements: aCollectionOfPDFElements [
 
 { #category : #accessing }
 PDFPage >> format [
-	^ format ifNil: [ format := self document format copy ]
+	^ format ifNil: [ format := self document ifNil: [ self defaultFormat ] ifNotNil: [self document format copy] ]
 ]
 
 { #category : #accessing }
@@ -94,5 +100,10 @@ PDFPage >> margins: theMargins [
 
 { #category : #accessing }
 PDFPage >> styleSheet [
-	^ self document styleSheet 
+	^ styleSheet ifNil: [self document styleSheet ]
+]
+
+{ #category : #accessing }
+PDFPage >> styleSheet: anObject [
+	styleSheet := anObject
 ]
