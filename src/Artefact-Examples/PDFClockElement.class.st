@@ -70,7 +70,7 @@ PDFClockElement class >> clockTutorialStep5 [
 	| doc |
 	doc := PDFDocument new.
 		doc add: (PDFPage new add: ((PDFClockElement from: 2 cm @ 2 cm to: 10 cm @ 10 cm) time: Time current);
-			 add: ((PDFClockElement from: 12 cm @ 2 cm to: 20 cm @ 10 cm) time: Time current; addStyle: #apocalypseClock)).
+			 add: ((PDFClockElement from: 12 cm @ 2 cm to: 20 cm @ 10 cm) time: Time current; style: #apocalypseClock)).
 		doc styleSheet > #clock drawColor: (PDFColor r:180 g: 24 b:24); fillColor: (PDFColor r:230 g: 230 b:10).
 		doc styleSheet > #clock > #hourHand drawColor: (PDFColor r:0 g: 45 b:200).
 		doc styleSheet > #clock > #minuteHand drawColor: (PDFColor r:0 g: 200 b:45).
@@ -91,8 +91,8 @@ PDFClockElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 	minuteAngle := Float pi / 2 - (time minute * 2 * Float pi / 60).
 	^ {(PDFCircleElement from: self from to: self to).
 	(PDFCircleElement center: self center radius: self dimension min * 0.05).
-	((PDFArrowElement from: self center angle: hourAngle length: dimension min * 0.25) addStyle: #hourHand).
-	((PDFArrowElement from: self center angle: minuteAngle length: dimension min * 0.45) addStyle: #minuteHand)}
+	((PDFArrowElement from: self center angle: hourAngle length: dimension min * 0.25) style: #hourHand).
+	((PDFArrowElement from: self center angle: minuteAngle length: dimension min * 0.45) style: #minuteHand)}
 ]
 
 { #category : #accessing }
