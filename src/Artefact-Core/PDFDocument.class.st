@@ -439,7 +439,7 @@ PDFDocument >> initialize [
 	super initialize.
 
 	self setFormat: self defaultFormat.
-	self styleSheet: (StyleSheet default).
+	self styleSheet: (PDFStyleSheet default).
 	self metaData: PDFMetaData new.
 	self compression: true.
 	self defaultDisplayLayout.

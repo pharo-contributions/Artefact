@@ -13,43 +13,44 @@ styleSheet
 Class {
 	#name : #PDFElement,
 	#superclass : #Object,
-	#traits : 'TStyledElement',
-	#classTraits : 'TStyledElement classTrait',
 	#instVars : [
 		'styleSheet',
 		'from',
-		'styles',
+		'style',
 		'dimension',
 		'orientation'
 	],
 	#category : #'Artefact-Core-Elements'
 }
 
-{ #category : #orientation }
+{ #category : #'as yet unclassified' }
 PDFElement class >> determineOrientation: aPoint [
 	^ ((aPoint y < 0 ifTrue: [ 'top' ] ifFalse: [ 'bottom' ]) , (aPoint x < 0 ifTrue: [ 'Left' ] ifFalse: [ 'Right' ])) asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 PDFElement class >> from: aPosition [
 	^ self new from: aPosition
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFElement class >> from: aPosition dimension: aDimension [
 	^ (self from: aPosition) dimension: aDimension
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFElement class >> from: aPosition to: anotherPosition [
 	^ (self from: (aPosition min: anotherPosition) dimension: (anotherPosition - aPosition) abs ) orientation: (self determineOrientation: anotherPosition - aPosition)
 ]
 
-{ #category : #'as yet unclassified' }
-PDFElement class >> from: aPosition to: anotherPosition style: aStyleSymbol [
-	^ (self from: aPosition to: anotherPosition)
-		addStyle: aStyleSymbol;
-		yourself
+{ #category : #style }
+PDFElement >> buildCompositeStyleSheetFrom: aStyleSheet [
+	"realise the addition (ordered from less priority to higher) of differents styleSheet. The first one come from the upper elements. The second one is the context specific to the element. The third one is defined by the user only for this element and so is prioritary"
+
+	^ (aStyleSheet substyles
+		at: self style
+		ifPresent: [ :subStyle | aStyleSheet withoutSubstyles + subStyle ]
+		ifAbsent: [ aStyleSheet ]) + self styleSheet
 ]
 
 { #category : #accessing }
@@ -61,6 +62,11 @@ PDFElement >> center [
 PDFElement >> checkAttributes [
 	self requiredAttributes
 		do: [ :anAttribute | (self perform: anAttribute) ifNil: [ ArtefactUndefinedAttribute signalMissingAttribute: anAttribute for: self ] ]
+]
+
+{ #category : #style }
+PDFElement >> defaultStyle [
+	^ self subclassResponsibility 
 ]
 
 { #category : #accessing }
@@ -105,7 +111,8 @@ PDFElement >> height [
 PDFElement >> initialize [ 
 	super initialize.
 	self orientation: #bottomRight.
-	self initializeStyle
+	self styleSheet: PDFStyleSheet new.
+	self style: self defaultStyle
 ]
 
 { #category : #render }
@@ -152,6 +159,16 @@ PDFElement >> rotation: anAngle [
 ]
 
 { #category : #accessing }
+PDFElement >> style [
+	^ style
+]
+
+{ #category : #accessing }
+PDFElement >> style: anObject [
+	style := anObject
+]
+
+{ #category : #accessing }
 PDFElement >> styleSheet [
 	^ styleSheet
 ]
@@ -159,16 +176,6 @@ PDFElement >> styleSheet [
 { #category : #accessing }
 PDFElement >> styleSheet: anObject [
 	styleSheet := anObject
-]
-
-{ #category : #style }
-PDFElement >> styles [
-	^ styles
-]
-
-{ #category : #style }
-PDFElement >> styles: anObject [
-	styles := anObject
 ]
 
 { #category : #accessing }

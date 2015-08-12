@@ -13,7 +13,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFPolygonElement class >> from: aPosition points: anArrayOfPoints [
 	^(self from: aPosition) points: anArrayOfPoints 
 ]

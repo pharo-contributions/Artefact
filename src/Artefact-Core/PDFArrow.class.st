@@ -38,11 +38,14 @@ PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
 
 { #category : #action }
 PDFArrow >> headAt: aPosition angle: anAngle [
-	^ {(PDFLineElement
+	^ {((PDFLineElement 
 		from: aPosition
-		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition)
+		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition))
 		style: #head).
-	(PDFLineElement from: aPosition to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition) style: #head)}
+	((PDFLineElement 
+		from: aPosition
+		to: (self destinationOfHeadItem: anAngle + (Float pi / 6) with: aPosition))
+		style: #head)}
 ]
 
 { #category : #accessing }

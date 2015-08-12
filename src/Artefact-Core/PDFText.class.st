@@ -17,7 +17,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFText class >> from: aPosition text: aText [
 	^ self new
 		from: aPosition;
@@ -25,7 +25,7 @@ PDFText class >> from: aPosition text: aText [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFText class >> from: aPosition text: aText font: aFont [
 	^ self new
 		from: aPosition;

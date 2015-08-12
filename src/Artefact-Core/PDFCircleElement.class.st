@@ -14,7 +14,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFCircleElement class >> center: aPoint radius: aRadius [
 	^ self from: aPoint - (aRadius @ aRadius) to: aPoint + (aRadius @ aRadius)
 ]

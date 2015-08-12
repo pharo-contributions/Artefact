@@ -26,7 +26,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFImage class >> from: aPosition dimension: aDimension fromStream: aStream [
 	^ self new
 		from: aPosition;
@@ -35,13 +35,7 @@ PDFImage class >> from: aPosition dimension: aDimension fromStream: aStream [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-PDFImage class >> fromMorph: aMorph [
-	self subclassResponsibility 
-
-]
-
-{ #category : #'instance creation' }
+{ #category : #'as yet unclassified' }
 PDFImage class >> fromStream: aStream [
 	^ self new
 		stream: aStream;

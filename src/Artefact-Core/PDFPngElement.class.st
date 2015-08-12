@@ -8,16 +8,6 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'instance creation' }
-PDFPngElement class >> fromMorph: aMorph [
-	| imgpng |
-	
-	imgpng := ReadWriteStream  on: (ByteArray new).
-	PNGReadWriter new on: imgpng; nextPutImage: (aMorph imageForm).
-	^ self fromStream: imgpng
-		
-]
-
 { #category : #accessing }
 PDFPngElement >> stream: anImageStream [
 	| readWriter |

@@ -14,7 +14,7 @@ Class {
 PDFDataTableWithRowsCaptionElement >> cellsData [ 
 	| current |
 	current := 0.
-	^ self data collect: [ :aLine | current := current + 1. {self captions at: current}, aLine ]
+	^ self data collect: [ :aLine | current := current + 1. {captions at: current}, aLine ]
 ]
 
 { #category : #render }
@@ -23,6 +23,6 @@ PDFDataTableWithRowsCaptionElement >> getSubElementsWith: aPDFGenerator styleShe
 
 	| elements |
 	elements := super getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet.
-	1 to: elements size by: self data first size + 1 do: [ :anIndex | (elements at: anIndex) addStyle: #caption ].
+	1 to: elements size by: self data first size + 1 do: [ :anIndex | (elements at: anIndex) style: #caption ].
 	^ elements
 ]
