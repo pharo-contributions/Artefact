@@ -12,7 +12,7 @@ PDFEllipseElement class >> center: aPoint radius: aRadius [
 	^ self from: aPoint - (aRadius @ aRadius) to: aPoint + (aRadius @ aRadius)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #render }
 PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	
 	| hw hh magic cx cy lx rx ty by |

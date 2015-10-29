@@ -12,7 +12,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFLineElement class >> from: from angle: angle length: aLength [
 	^ self from: from to: from + ((angle cos * aLength) @ (angle sin * aLength))
 ]

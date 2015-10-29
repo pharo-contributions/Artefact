@@ -47,10 +47,7 @@ PDFCellElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	dimensions := self minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet.
 	decx := self determineDecxForTextStyle: self text styleSheet: aStyleSheet.
 	decy := self determineDecyForTextStyleWith: aStyleSheet.
-	^ {((PDFRectElement 
-		from: self from
-		dimension: dimensions)
-		style: #border).
+	^ {(PDFBorderElement from: self from dimension: dimensions).
 	(PDFTextElement new
 		text: self text;
 		from: (decx + self from x) @ (self from y + decy))}
