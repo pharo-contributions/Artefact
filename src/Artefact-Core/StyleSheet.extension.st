@@ -11,6 +11,30 @@ StyleSheet >> alignment: aPDFAlignment [
 ]
 
 { #category : #'*Artefact-Core' }
+StyleSheet classSide >> default [
+	| default |
+	default:= self new 
+		at: #textColor put: (PDFColor r: 0 g: 0 b: 0); 
+		at: #fillColor put: (PDFColor r: 255 g: 255 b: 255); 
+		at: #filled put: true;
+		at: #drawColor put: (PDFColor r: 0 g: 0 b: 0);
+		at: #thickness put: 1 pt;
+		at: #dotted put: nil;
+		at: #margin put: 0 pt;
+		at: #roundCap put: false;
+		at: #font put: PDFHelveticaFont new;
+		at: #rotation put: 0;
+		at: #alignment put: PDFAlignment left middle;
+		at: #opacity put: (PDFOpacityNormal alpha: 1);
+		yourself.
+	default > #caption at: #fillColor put: (PDFColor new setGreyLevel: 192).
+	default > #datatable at: #alignment put: PDFAlignment center middle.
+	default > #cell at: #margin put: 1 pt.
+	default > #cell at: #alignment put: PDFAlignment center middle.
+	^ default
+]
+
+{ #category : #'*Artefact-Core' }
 StyleSheet >> dotted: aPDFDotted [
 	self at: #dotted put: aPDFDotted 
 ]
