@@ -90,6 +90,6 @@ PDFParagraphElement >> splitOn: aPage using: aFont [
 { #category : #private }
 PDFParagraphElement >> wordsList [
 	"answer the list of words in the text"
-	
-	^(self text subStrings: ' ')
+
+	^ self text substrings: ' '
 ]
