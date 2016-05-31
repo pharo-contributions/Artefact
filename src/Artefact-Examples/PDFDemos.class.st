@@ -18,72 +18,96 @@ Class {
 { #category : #templates }
 PDFDemos class >> CDTemplateTest [
 	"PDFDemos CDTemplateTest"
+
+	<script>
 	self new CDTemplateTest: (self streamNamed: 'CDTemplateTest.pdf')
 ]
 
 { #category : #templates }
 PDFDemos class >> DVDTemplateTest [
 	"PDFDemos DVDTemplateTest"
+
+	<script>
 	self new DVDTemplateTest: (self streamNamed: 'DVDTemplateTest.pdf')
 ]
 
 { #category : #text }
 PDFDemos class >> alignmentsTest [
 	"PDFDemos alignmentsTest"
+
+	<script>
 	self new alignmentsTest: (self streamNamed: 'alignmentsTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> arrowTest [
 	"PDFDemos arrowTest"
+
+	<script>
 	self new arrowTest: (self streamNamed: 'arrowTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> bezierTest [
 	"PDFDemos bezierTest"
+
+	<script>
 	self new bezierTest: (self streamNamed: 'bezierTest.pdf')
 ]
 
 { #category : #experimental }
 PDFDemos class >> brochureTest [
 	"PDFDemos brochureTest"
+
+	<script>
 	self new brochure: (self streamNamed: 'brochure.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> capLineTest [
 	"PDFDemos capLineTest"
+
+	<script>
 	self new capLineTest: (self streamNamed: 'capLineTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> cellTest [
 	"PDFDemos cellTest"
+
+	<script>
 	self new cellTest: (self streamNamed: 'cellTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> circlesTest [
 	"PDFDemos circlesTest"
+
+	<script>
 	self new circlesTest: (self streamNamed: 'circlesTest.pdf')
 ]
 
 { #category : #color }
 PDFDemos class >> colorTest [
 	"PDFDemos colorTest"
+
+	<script>
 	self new colorTest: (self streamNamed: 'colorTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> datatableTest [
 	"PDFDemos datatableTest"
+
+	<script>
 	self new datatableTest: (self streamNamed: 'datatableTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> datatableWithCaptionsTest [
 	"PDFDemos datatableWithCaptionsTest"
+
+	<script>
 	self new datatableWithCaptionsTest: (self streamNamed: 'datatableWithCaptionsTest.pdf')
 ]
 
@@ -96,132 +120,176 @@ PDFDemos class >> demoPath [
 { #category : #'display setup' }
 PDFDemos class >> documentDisplayLayoutTest [
 	"PDFDemos documentDisplayLayoutTest"
+
+	<script>
 	self new documentDisplayLayoutTest: (self streamNamed: 'documentDisplayLayoutTest.pdf')
 ]
 
 { #category : #'display setup' }
 PDFDemos class >> documentDisplayModeTest [
 	"PDFDemos documentDisplayModeTest"
+
+	<script>
 	self new documentDisplayModeTest: (self streamNamed: 'documentDisplayModeTest.pdf')
 ]
 
 { #category : #'display setup' }
 PDFDemos class >> documentZoomTest [
 	"PDFDemos documentZoomTest"
+
+	<script>
 	self new documentZoomTest: (self streamNamed: 'documentZoomTest.pdf')
 ]
 
 { #category : #color }
 PDFDemos class >> drawStyleSheetTest [
 	"PDFDemos drawStyleSheetTest"
+
+	<script>
 	self new drawStyleSheetTest: (self streamNamed: 'drawStyleSheetTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> ellipsesTest [
 	"PDFDemos ellipsesTest"
+
+	<script>
 	self new ellipsesTest: (self streamNamed: 'ellipsesTest.pdf')
 ]
 
 { #category : #text }
 PDFDemos class >> euroTest [
 	"PDFDemos euroTest"
+
+	<script>
 	self new euroTest: (self streamNamed: 'euroTest.pdf')
 ]
 
 { #category : #color }
 PDFDemos class >> greyLevelTest [
 	"PDFDemos greyLevelTest"
+
+	<script>
 	self new greyLevelTest: (self streamNamed: 'greyLevelTest.pdf')
 ]
 
 { #category : #layout }
 PDFDemos class >> horizontalLayoutTest [
 	"PDFDemos horizontalLayoutTest"
+
+	<script>
 	self new horizontalLayoutTest: (self streamNamed: 'horizontalLayoutTest.pdf')
 ]
 
 { #category : #image }
 PDFDemos class >> imageJPG [
 	"PDFDemos imageJPG"
+
+	<script>
 	self new imageJPG: (self streamNamed: 'imageJPG.pdf')
 ]
 
 { #category : #image }
 PDFDemos class >> imagePNG [
 	"PDFDemos imagePNG"
+
+	<script>
 	self new imagePNG: (self streamNamed: 'imagePNG.pdf')
 ]
 
 { #category : #document }
 PDFDemos class >> infosTest [
 	"PDFDemos infosTest"
+
+	<script>
 	self new infosTest: (self streamNamed: 'infosTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> lineTest [
 	"PDFDemos lineTest"
+
+	<script>
 	self new lineTest: (self streamNamed: 'lineTest.pdf')
 ]
 
 { #category : #color }
 PDFDemos class >> mosaiqueTest [
 	"PDFDemos mosaiqueTest"
+
+	<script>
 	self new mosaiqueTest: (self streamNamed: 'mosaiqueTest.pdf')
 ]
 
 { #category : #document }
 PDFDemos class >> multiOrientationsTest [
 	"PDFDemos multiOrientationsTest"
+
+	<script>
 	self new multiOrientationsTest: (self streamNamed: 'multiOrientationsTest.pdf')
 ]
 
 { #category : #style }
 PDFDemos class >> multiStyleArrowsTest [
 	"PDFDemos multiStyleArrowsTest"
+
+	<script>
 	self new multiStyleArrowsTest: (self streamNamed: 'multiStyleArrowsTest.pdf')
 ]
 
 { #category : #cool }
 PDFDemos class >> oneLineTest [
 	"PDFDemos oneLineTest"
+
+	<script>
 	self new oneLineTest: (self streamNamed: 'oneLineTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> paragraphTest [
 	"PDFDemos paragraphTest"
+
+	<script>
 	self new paragraphTest: (self streamNamed: 'paragraphTest.pdf')
 ]
 
 { #category : #composite }
 PDFDemos class >> paragraphWithSpacingTest [
 	"PDFDemos paragraphWithSpacingTest"
+
+	<script>
 	self new paragraphWithSpacingTest: (self streamNamed: 'paragraphWithSpacingTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> polygonsTest [
 	"PDFDemos polygonsTest"
+
+	<script>
 	self new polygonsTest: (self streamNamed: 'polygonsTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> rectsTest [
 	"PDFDemos rectsTest"
+
+	<script>
 	self new rectsTest: (self streamNamed: 'rectsTest.pdf')
 ]
 
 { #category : #experimental }
 PDFDemos class >> rotationTest [
 	"PDFDemos rotationTest"
+
+	<script>
 	self new rotationTest: (self streamNamed: 'rotation.pdf')
 ]
 
 { #category : #runAllDemos }
 PDFDemos class >> runAllDemos [
 	"self runAllDemos"
+
+	<script>
 	PDFDemos class methods select: [:m | m selector endsWith: 'Test' ] thenDo: [ :m | PDFDemos perform: m selector ]
 ]
 
@@ -236,36 +304,48 @@ PDFDemos class >> streamNamed: aName [
 { #category : #text }
 PDFDemos class >> textTest [
 	"PDFDemos textTest"
+
+	<script>
 	self new textTest: (self streamNamed: 'textTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> thicknessTest [
 	"PDFDemos thicknessTest"
+
+	<script>
 	self new thicknessTest: (self streamNamed: 'thicknessTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> twoColoredRectsOpacityTest [
 	"PDFDemos twoColoredRectsOpacityTest"
+
+	<script>
 	self new twoColoredRectsOpacityTest: (self streamNamed: 'twoColoredRectsOpacityTest.pdf')
 ]
 
 { #category : #draw }
 PDFDemos class >> twoColoredRectsTest [
 	"PDFDemos twoColoredRectsTest"
+
+	<script>
 	self new twoColoredRectsTest: (self streamNamed: 'twoColoredRectsTest.pdf')
 ]
 
 { #category : #layout }
 PDFDemos class >> verticalLayoutTest [
 	"PDFDemos verticalLayoutTest"
+
+	<script>
 	self new verticalLayoutTest: (self streamNamed: 'verticalLayoutTest.pdf')
 ]
 
 { #category : #misc }
 PDFDemos class >> widthTest [
 	"PDFDemos widthTest"
+
+	<script>
 	self new widthTest: (self streamNamed: 'widthTest.pdf')
 ]
 
