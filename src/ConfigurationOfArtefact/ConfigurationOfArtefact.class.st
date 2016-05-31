@@ -395,8 +395,7 @@ ConfigurationOfArtefact >> repositoryUrlString [
 ConfigurationOfArtefact >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.4'.
-
+	spec for: #'common' version: '1.5'.
 
 ]
 
@@ -495,4 +494,23 @@ ConfigurationOfArtefact >> version14: spec [
 		spec package: 'Artefact-Tests' with: 'Artefact-Tests-OlivierAuverlot.4'.
 		spec package: 'Artefact-Examples' with: 'Artefact-Examples-OlivierAuverlot.8'.	
 	]
+]
+
+{ #category : #versions }
+ConfigurationOfArtefact >> version15: spec [
+	<version: '1.5' imports: #('1.5-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 1.5'.
+		spec author: 'CyrilFerlicot'.
+		spec timestamp: '5/31/2016 16:19'.
+		spec 
+			project: 'Units' with: '1.1-baseline';
+			project: 'Stylesheet' with: '0.2-baseline'.
+		spec 
+			package: 'Artefact-Core' with: 'Artefact-Core-CyrilFerlicot.267';
+			package: 'Artefact-Examples' with: 'Artefact-Examples-CyrilFerlicot.10';
+			package: 'Artefact-Tests' with: 'Artefact-Tests-GuillaumeLarcheveque.6'. ].
+
 ]
