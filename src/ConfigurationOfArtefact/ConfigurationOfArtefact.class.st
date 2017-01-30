@@ -398,6 +398,7 @@ ConfigurationOfArtefact >> stable: spec [
 	spec for: #'common' version: '1.5'.
 	spec for: #'pharo4.x' version: '1.5'.
 	spec for: #'pharo5.x' version: '1.5'.
+	spec for: #'pharo6.x' version: '1.6'.
 
 ]
 
@@ -512,6 +513,25 @@ ConfigurationOfArtefact >> version15: spec [
 			project: 'Stylesheet' with: '0.2-baseline'.
 		spec 
 			package: 'Artefact-Core' with: 'Artefact-Core-CyrilFerlicot.267';
+			package: 'Artefact-Examples' with: 'Artefact-Examples-CyrilFerlicot.10';
+			package: 'Artefact-Tests' with: 'Artefact-Tests-GuillaumeLarcheveque.6'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfArtefact >> version16: spec [
+	<version: '1.6' imports: #('1.6-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 1.6'.
+		spec author: 'TorstenBergmann'.
+		spec timestamp: '1/30/2017 16:19'.
+		spec 
+			project: 'Units' with: '1.1-baseline';
+			project: 'Stylesheet' with: '0.2-baseline'.
+		spec 
+			package: 'Artefact-Core' with: 'Artefact-Core-TorstenBergmann.268';
 			package: 'Artefact-Examples' with: 'Artefact-Examples-CyrilFerlicot.10';
 			package: 'Artefact-Tests' with: 'Artefact-Tests-GuillaumeLarcheveque.6'. ].
 
