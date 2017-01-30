@@ -445,11 +445,10 @@ PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 	| positionString |
 	aPDFDataXRefEntry referencedObject
-		ifNil: [ 
-			stream
+		ifNil: [ stream
 				nextPutAll: '0000000000 65535 f ';
 				lf ]
-		ifNotNilDo: [ :aPDFDataObject | 
+		ifNotNil: [ :aPDFDataObject | 
 			positionString := (self positions at: aPDFDataObject) asString.
 			1 to: 10 - positionString size do: [ :i | stream nextPut: $0 ].
 			stream
