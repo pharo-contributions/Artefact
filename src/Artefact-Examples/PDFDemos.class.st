@@ -1103,7 +1103,7 @@ PDFDemos >> imageJPG: aStream [
 	pdfdoc := PDFDocument new.
 	"Downloading JPEG file from internet with Zinc"
 	pharoByExampleLogo := (ZnClient new
-		url: 'http://pharobyexample.org/pictures/pbe-title.jpg';
+		url: 'https://gforge.inria.fr/frs/download.php/file/22781/pharocard.jpg';
 		get).
 	aPage := PDFPage new.
 	aPage add: (PDFJpegElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoByExampleLogo readStream).
