@@ -52,12 +52,7 @@ BaselineOfArtefact >> projectClass [
 
 { #category : #dependencies }
 BaselineOfArtefact >> stylesheet: spec [
-	spec
-		project: 'Stylesheet'
-		with: [ spec
-				className: #ConfigurationOfStylesheet;
-				versionString: #development;
-				repository: 'http://smalltalkhub.com/mc/RMoD/Stylesheet/main/' ]
+	spec baseline: 'Stylesheet' with: [ spec repository: 'github://pharo-contributions/Stylesheet:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
