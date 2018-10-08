@@ -11,7 +11,7 @@ StyleSheet >> alignment: aPDFAlignment [
 ]
 
 { #category : #'*Artefact-Core' }
-StyleSheet classSide >> default [
+StyleSheet class >> default [
 	| default |
 	default:= self new 
 		at: #textColor put: (PDFColor r: 0 g: 0 b: 0); 
