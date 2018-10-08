@@ -15,7 +15,7 @@ BaselineOfArtefact >> baseline: spec [
 				heimdall: spec;
 				materialDesignLite: spec;
 				stylesheet: spec;
-				unit: spec.
+				units: spec.
 
 			"Packages"
 			spec
@@ -56,11 +56,6 @@ BaselineOfArtefact >> stylesheet: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfArtefact >> unit: spec [
-	spec
-		project: 'Units'
-		with: [ spec
-				className: #ConfigurationOfUnits;
-				versionString: '1.1-baseline';
-				repository: 'http://smalltalkhub.com/mc/MarcusDenker/Units/main' ]
+BaselineOfArtefact >> units: spec [
+	spec baseline: 'Units' with: [ spec repository: 'github://zweidenker/Units/src' ]
 ]
