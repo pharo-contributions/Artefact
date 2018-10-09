@@ -12,7 +12,8 @@ Class {
 		'positions',
 		'size',
 		'streamContent',
-		'compression'
+		'compression',
+		'characterStream'
 	],
 	#category : #'Artefact-Core-Generator'
 }
@@ -206,10 +207,11 @@ PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
 PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed on: aStream [ 
 	self compression: mustBeCompressed.
 	stream := aStream.
-	stream nextPutAll: '%PDF-1.4'; lf.
+
+	characterStream := ZnCharacterWriteStream on: aStream.
+	characterStream nextPutAll: '%PDF-1.4'; lf.
 	aPDFCompleteModel acceptVisitor: self.
-	stream nextPutAll: '%%EOF'; lf.
-	
+	characterStream nextPutAll: '%%EOF'; lf.
 ]
 
 { #category : #print }
@@ -239,7 +241,7 @@ PDFStreamPrinter >> printPDFDataCouple: aPDFDataCouple [
 
 { #category : #print }
 PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
-	stream
+	characterStream
 		nextPutAll: 'startxref';
 		lf;
 		nextPutAll: (self positions at: aPDFDataStartXref xref) asString;
@@ -250,7 +252,7 @@ PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	| endPosition startPosition streamData |
 	
-	stream
+	characterStream
 		nextPutAll: 'stream';
 		lf.
 	startPosition := stream position.
@@ -260,12 +262,12 @@ PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	streamData := self streamContent contents.
 	(self compression) ifTrue: [ streamData := (self compressWithGZip: streamData) asByteArray  ].
 
-	stream
-		nextPutAll: streamData; lf.
+	stream nextPutAll: streamData.
+	characterStream lf.
 
 	endPosition := stream position.
 	self size at: aPDFDataStream put: endPosition - startPosition.
-	stream nextPutAll: 'endstream'
+	characterStream nextPutAll: 'endstream'
 ]
 
 { #category : #print }
@@ -355,7 +357,7 @@ PDFStreamPrinter >> visitPDFDataDateAndTime: aPDFDataDateAndTime [
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 	self positions at: aPDFDataObject put: stream position.
-	stream
+	characterStream
 		nextPutAll: aPDFDataObject id asString;
 		space;
 		nextPutAll: aPDFDataObject revision asString;
@@ -365,10 +367,10 @@ PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 	aPDFDataObject contents
 		do: [ :aContent | 
 			aContent isPrintable
-				ifTrue: [ aContent printOn: stream ]
+				ifTrue: [ aContent printOn: characterStream ]
 				ifFalse: [ aContent printWith: self ].
-			stream lf ].
-	stream
+			characterStream lf ].
+	characterStream
 		nextPutAll: 'endobj';
 		lf.
 	aPDFDataObject contents do: [ :aContent | aContent acceptVisitor: self ]
@@ -407,15 +409,15 @@ PDFStreamPrinter >> visitPDFDataSymbol: aPDFDataSymbol [
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 	aPDFDataTrailer contents do: [ :aContent | aContent acceptVisitor: self ].
-	stream
+	characterStream
 		nextPutAll: 'trailer';
 		lf.
 	aPDFDataTrailer contents
 		do: [ :aContent | 
 			aContent isPrintable
-				ifTrue: [ aContent printOn: stream ]
+				ifTrue: [ aContent printOn: characterStream ]
 				ifFalse: [ aContent printWith: self ].
-			stream lf ]
+			characterStream lf ]
 ]
 
 { #category : #visit }
@@ -431,10 +433,10 @@ PDFStreamPrinter >> visitPDFDataXObjectStream: aPDFDataXObjectStream [
 { #category : #visit }
 PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 	self positions at: aPDFDataXRef put: stream position.
-	stream
+	characterStream
 		nextPutAll: 'xref';
 		lf.
-	stream
+	characterStream
 		nextPutAll: '0 ';
 		nextPutAll: aPDFDataXRef referencies size asString;
 		lf.
@@ -445,13 +447,14 @@ PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 	| positionString |
 	aPDFDataXRefEntry referencedObject
-		ifNil: [ stream
+		ifNil: [ 
+			characterStream
 				nextPutAll: '0000000000 65535 f ';
 				lf ]
 		ifNotNil: [ :aPDFDataObject | 
 			positionString := (self positions at: aPDFDataObject) asString.
-			1 to: 10 - positionString size do: [ :i | stream nextPut: $0 ].
-			stream
+			1 to: 10 - positionString size do: [ :i | characterStream nextPut: $0 ].
+			characterStream
 				nextPutAll: positionString;
 				nextPutAll: ' 00000 n ';
 				lf ]
