@@ -63,6 +63,8 @@ PDFGenerator >> createImageObject: anImageStream [
 	| imageObject imageStream readWriter |
 	self flag: 'Only works with JPEG'.
 	imageObject := self createNewPDFDataObject.
+	self flag: 'The next line is a hack because Pharo is currently under migration and we do not know yet what is the best way to manage this on Pharo 6 and 7'.
+	(anImageStream respondsTo: #reset) ifTrue: [ anImageStream reset ].
 	readWriter := (JPEGReadWriter on: anImageStream) nextImage; yourself.
 	imageStream := PDFDataXObjectStream stream: anImageStream.
 	imageObject
