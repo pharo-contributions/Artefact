@@ -182,7 +182,7 @@ PDFDemos class >> horizontalLayoutTest [
 ]
 
 { #category : #image }
-PDFDemos class >> imageJPG [
+PDFDemos class >> imageJPGTest [
 	"PDFDemos imageJPG"
 
 	<script>
@@ -190,7 +190,7 @@ PDFDemos class >> imageJPG [
 ]
 
 { #category : #image }
-PDFDemos class >> imagePNG [
+PDFDemos class >> imagePNGTest [
 	"PDFDemos imagePNG"
 
 	<script>
@@ -295,10 +295,17 @@ PDFDemos class >> runAllDemos [
 
 { #category : #tool }
 PDFDemos class >> streamNamed: aName [
-	| path |
-	path := self demoPath asFileReference.
-	path exists ifFalse: [ path createDirectory ]. 
-	^ FileStream fileNamed: self demoPath , aName
+	| file |
+	file := (self demoPath , aName) asFileReference.
+	file parent ensureCreateDirectory.
+	self flag: #todo.	"The next expression is a hack to correct a Pharo 6/7 compatibility.
+	We need a binary write stream to print on but the way to get one changed between Pharo 6 and 7. To improve the code we could add a Pharo^ compatibility package that would add #binaryWriteStream to Pharo 6, but I have not time for now, I just want to make demos work.
+	"
+	^ SystemVersion current major < 7
+		ifTrue: [ file writeStream
+				binary;
+				yourself ]
+		ifFalse: [ file binaryWriteStream ]
 ]
 
 { #category : #text }
