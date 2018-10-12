@@ -298,6 +298,7 @@ PDFDemos class >> streamNamed: aName [
 	| file |
 	file := (self demoPath , aName) asFileReference.
 	file parent ensureCreateDirectory.
+	file ensureDelete.
 	self flag: #todo.	"The next expression is a hack to correct a Pharo 6/7 compatibility.
 	We need a binary write stream to print on but the way to get one changed between Pharo 6 and 7. To improve the code we could add a Pharo^ compatibility package that would add #binaryWriteStream to Pharo 6, but I have not time for now, I just want to make demos work.
 	"

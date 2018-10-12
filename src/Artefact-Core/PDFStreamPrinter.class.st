@@ -212,6 +212,8 @@ PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed 
 	characterStream nextPutAll: '%PDF-1.4'; lf.
 	aPDFCompleteModel acceptVisitor: self.
 	characterStream nextPutAll: '%%EOF'; lf.
+	
+	aStream flush
 ]
 
 { #category : #print }
@@ -279,13 +281,15 @@ PDFStreamPrinter >> printPDFDataStreamRefSize: aPDFDataStreamRefSize [
 { #category : #visit }
 PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	| endPosition startPosition |
-	stream nextPutAll: 'stream'; lf.
+	characterStream
+		nextPutAll: 'stream';
+		lf.
 	startPosition := stream position.
-	stream nextPutAll: (aPDFDataXObjectStream stream reset contents).
+	stream nextPutAll: aPDFDataXObjectStream stream reset contents.
 	endPosition := stream position.
-	stream lf.
+	characterStream lf.
 	self size at: aPDFDataXObjectStream put: endPosition - startPosition.
-	stream nextPutAll: 'endstream'.
+	characterStream nextPutAll: 'endstream'
 ]
 
 { #category : #util }
