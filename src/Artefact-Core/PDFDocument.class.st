@@ -318,6 +318,18 @@ PDFDocument class >> FrameworkManual [
 	^ self comment
 ]
 
+{ #category : #'instance creation' }
+PDFDocument class >> element: anElement [
+	^ self elements: { anElement }
+]
+
+{ #category : #'instance creation' }
+PDFDocument class >> elements: aCollection [
+	^ self new
+		addAll: aCollection;
+		yourself
+]
+
 { #category : #action }
 PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
@@ -327,6 +339,11 @@ PDFDocument >> add: aPage [
 	
 	
 
+]
+
+{ #category : #action }
+PDFDocument >> addAll: aCollection [
+	aCollection do: [ :each | self add: each ]
 ]
 
 { #category : #configuration }

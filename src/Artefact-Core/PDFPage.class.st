@@ -33,7 +33,12 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
+PDFPage class >> element: anElement [
+	^ self elements: {anElement}
+]
+
+{ #category : #'instance creation' }
 PDFPage class >> elements: aCollectionOfElements [
 	^ self new
 		elements: aCollectionOfElements;
