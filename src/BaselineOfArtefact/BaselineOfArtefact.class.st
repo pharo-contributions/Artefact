@@ -40,7 +40,7 @@ BaselineOfArtefact >> heimdall: spec [
 
 { #category : #dependencies }
 BaselineOfArtefact >> materialDesignLite: spec [
-	spec baseline: 'MaterialDesignLite' with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v1.x.x/src' ]
+	spec baseline: 'MaterialDesignLite' with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v2.x.x/src' ]
 ]
 
 { #category : #accessing }
