@@ -130,7 +130,7 @@ PDFFont >> fontSizeAsPoints [
 PDFFont >> getCharWidthOf: aChar [
 	"If the char is not a ascii char, the method return a default width"
 
-	aChar asInteger > 255
+	aChar asInteger >= 255
 		ifTrue: [ ^ 0 pt ]
 		ifFalse: [ ^ (self charWidths at: aChar asInteger + 1) / 1000 * self fontSize ]
 ]
