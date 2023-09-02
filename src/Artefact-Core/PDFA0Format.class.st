@@ -9,5 +9,6 @@ Class {
 
 { #category : #'accessing - defaults' }
 PDFA0Format >> defaultSize [
+
 	^ 2384.03 point @ 3370.53 point
 ]

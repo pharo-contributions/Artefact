@@ -9,5 +9,6 @@ Class {
 
 { #category : #'accessing - defaults' }
 PDFA6Format >> defaultSize [
+
 	^ 297.65 point @ 419.54 point
 ]

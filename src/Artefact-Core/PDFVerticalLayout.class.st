@@ -12,6 +12,7 @@ Class {
 
 { #category : #layouting }
 PDFVerticalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+
 	| previousElement |
 	anElement
 		from:

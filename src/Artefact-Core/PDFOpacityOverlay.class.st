@@ -10,5 +10,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityOverlay >> blendMode [
-	 ^#Overlay
+
+	^ #Overlay
 ]

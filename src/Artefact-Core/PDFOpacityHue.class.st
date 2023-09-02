@@ -10,5 +10,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityHue >> blendMode [
-	 ^#Hue
+
+	^ #Hue
 ]

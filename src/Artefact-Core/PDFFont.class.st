@@ -37,9 +37,12 @@ PDFFont class >> isAbstract [
 	^ self == PDFFont
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFFont class >> size: aFontSize [
-	^ self new fontSize: aFontSize
+
+	^ self new
+		fontSize: aFontSize;
+		yourself
 ]
 
 { #category : #accessing }

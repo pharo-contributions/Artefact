@@ -26,16 +26,19 @@ PDFOpacity class >> isAbstract [
 
 { #category : #accessing }
 PDFOpacity >> alpha [
+
 	^ alpha
 ]
 
 { #category : #accessing }
 PDFOpacity >> alpha: anObject [
+
 	alpha := anObject
 ]
 
 { #category : #effect }
 PDFOpacity >> blendMode [
-	"must answer the blendMode"
+	"Must answer the blendMode"
+
 	self subclassResponsibility
 ]

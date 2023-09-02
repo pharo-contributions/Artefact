@@ -27,29 +27,41 @@ Class {
 
 { #category : #orientation }
 PDFElement class >> determineOrientation: aPoint [
-	^ ((aPoint y < 0 ifTrue: [ 'top' ] ifFalse: [ 'bottom' ]) , (aPoint x < 0 ifTrue: [ 'Left' ] ifFalse: [ 'Right' ])) asSymbol
+
+	^ ((aPoint y < 0
+		    ifTrue: [ 'top' ]
+		    ifFalse: [ 'bottom' ]) , (aPoint x < 0
+		    ifTrue: [ 'Left' ]
+		    ifFalse: [ 'Right' ])) asSymbol
 ]
 
 { #category : #accessing }
 PDFElement class >> from: aPosition [
+
 	^ self new from: aPosition
 ]
 
 { #category : #'instance creation' }
 PDFElement class >> from: aPosition dimension: aDimension [
+
 	^ (self from: aPosition) dimension: aDimension
 ]
 
 { #category : #'instance creation' }
 PDFElement class >> from: aPosition to: anotherPosition [
-	^ (self from: (aPosition min: anotherPosition) dimension: (anotherPosition - aPosition) abs ) orientation: (self determineOrientation: anotherPosition - aPosition)
+
+	^ (self
+		   from: (aPosition min: anotherPosition)
+		   dimension: (anotherPosition - aPosition) abs) orientation:
+		  (self determineOrientation: anotherPosition - aPosition)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFElement class >> from: aPosition to: anotherPosition style: aStyleSymbol [
+
 	^ (self from: aPosition to: anotherPosition)
-		addStyle: aStyleSymbol;
-		yourself
+		  addStyle: aStyleSymbol;
+		  yourself
 ]
 
 { #category : #testing }

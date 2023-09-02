@@ -17,32 +17,45 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataReference class >> reference: aPDFDataObject [
-	^ self new referencedObject: aPDFDataObject; yourself
+
+	^ self new
+		  referencedObject: aPDFDataObject;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataReference >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataReference: self
 ]
 
 { #category : #testing }
 PDFDataReference >> isPrintable [
+
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataReference >> printOn: aStream [
-	aStream nextPutAll: referencedObject id asString; space; nextPutAll: referencedObject revision asString; space; nextPut: $R
+
+	aStream
+		nextPutAll: referencedObject id asString;
+		space;
+		nextPutAll: referencedObject revision asString;
+		space;
+		nextPut: $R
 ]
 
 { #category : #accessing }
 PDFDataReference >> referencedObject [
+
 	^ referencedObject
 ]
 
 { #category : #accessing }
 PDFDataReference >> referencedObject: anObject [
+
 	referencedObject := anObject
 ]

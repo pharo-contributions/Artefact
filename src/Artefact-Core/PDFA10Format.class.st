@@ -9,5 +9,6 @@ Class {
 
 { #category : #'accessing - defaults' }
 PDFA10Format >> defaultSize [
+
 	^ 73.7 point @ 104.88 point
 ]

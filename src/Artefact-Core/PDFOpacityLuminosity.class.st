@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityLuminosity >> blendMode [
-	 ^#Luminosity
+
+	^ #Luminosity
 ]

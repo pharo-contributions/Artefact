@@ -17,14 +17,17 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataXRef >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataXRef: self
 ]
 
 { #category : #accessing }
 PDFDataXRef >> addReferenceTo: aPDFDataObject [
-	referencies addLast: (PDFDataXRefEntry referencedObject: aPDFDataObject)
+
+	referencies addLast:
+		(PDFDataXRefEntry referencedObject: aPDFDataObject)
 ]
 
 { #category : #initialization }
@@ -37,10 +40,12 @@ PDFDataXRef >> initialize [
 
 { #category : #accessing }
 PDFDataXRef >> referencies [
+
 	^ referencies
 ]
 
 { #category : #accessing }
 PDFDataXRef >> referencies: anObject [
+
 	referencies := anObject
 ]

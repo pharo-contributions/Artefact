@@ -19,29 +19,34 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataStream class >> codeSegment: aCodeSegment [
+
 	^ self new
-		codeSegment: aCodeSegment;
-		yourself
+		  codeSegment: aCodeSegment;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataStream >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataStream: self
 ]
 
 { #category : #accessing }
 PDFDataStream >> codeSegment [
+
 	^ codeSegment
 ]
 
 { #category : #accessing }
 PDFDataStream >> codeSegment: anObject [
+
 	codeSegment := anObject
 ]
 
 { #category : #printing }
 PDFDataStream >> printWith: aPDFPrinter [
+
 	aPDFPrinter printPDFDataStream: self
 ]

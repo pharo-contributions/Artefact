@@ -26,15 +26,15 @@ Class {
 PDFDotted >> generateCodeWith: aPDFGenerator [
 	"Answer the dotted configuration"
 
-	^(String streamContents: [ :s |
-		s nextPutAll: '[';
-		print: (aPDFGenerator convertToPoints: self length);
-		space;
-		print: (aPDFGenerator convertToPoints: self space);
-		nextPutAll: '] 0';
-		space;
-		nextPutAll: PDFByteCode dotted
-	])
+	^ String streamContents: [ :stream |
+		  stream
+			  nextPutAll: '[';
+			  print: (aPDFGenerator convertToPoints: self length);
+			  space;
+			  print: (aPDFGenerator convertToPoints: self space);
+			  nextPutAll: '] 0';
+			  space;
+			  nextPutAll: PDFByteCode dotted ]
 ]
 
 { #category : #initialization }
@@ -47,6 +47,7 @@ PDFDotted >> initialize [
 
 { #category : #accessing }
 PDFDotted >> length [
+
 	^ length
 ]
 
@@ -57,10 +58,12 @@ PDFDotted >> length: anObject [
 
 { #category : #accessing }
 PDFDotted >> space [
+
 	^ space
 ]
 
 { #category : #accessing }
 PDFDotted >> space: anObject [
+
 	space := anObject
 ]

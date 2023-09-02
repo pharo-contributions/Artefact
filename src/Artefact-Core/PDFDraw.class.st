@@ -26,33 +26,39 @@ PDFDraw class >> isAbstract [
 
 { #category : #'accessing - defaults' }
 PDFDraw >> defaultStyle [
-	^#draw
+
+	^ #draw
 ]
 
 { #category : #accessing }
 PDFDraw >> dotted: anObject [
+
 	self styleSheet dotted: anObject
 ]
 
 { #category : #accessing }
 PDFDraw >> drawColor: aPDFColor [
+
 	self styleSheet drawColor: aPDFColor
 ]
 
 { #category : #accessing }
 PDFDraw >> fillColor: aPDFColor [
+
 	self styleSheet fillColor: aPDFColor
 ]
 
 { #category : #accessing }
 PDFDraw >> fillMode: filled [
+
 	^ filled
-		ifTrue: [ PDFByteCode filling ]
-		ifFalse: [ PDFByteCode noFilling ]
+		  ifTrue: [ PDFByteCode filling ]
+		  ifFalse: [ PDFByteCode noFilling ]
 ]
 
 { #category : #testing }
 PDFDraw >> isDrawElement [
+
 	^ true
 ]
 
@@ -76,10 +82,12 @@ PDFDraw >> moveTo: aPosition with: aGenerator [
 
 { #category : #accessing }
 PDFDraw >> roundCap: aBoolean [
+
 	self styleSheet roundCap: aBoolean
 ]
 
 { #category : #accessing }
 PDFDraw >> thickness: anObject [
+
 	self styleSheet thickness: anObject
 ]

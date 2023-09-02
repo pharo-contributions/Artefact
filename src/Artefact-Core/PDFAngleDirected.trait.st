@@ -9,5 +9,8 @@ Trait {
 
 { #category : #'instance creation' }
 PDFAngleDirected classSide >> from: from angle: angle length: aLength [
-	^ self from: from to: from + ((angle cos * aLength) @ (angle sin * aLength))
+
+	^ self
+		  from: from
+		  to: from + (angle cos * aLength @ (angle sin * aLength))
 ]

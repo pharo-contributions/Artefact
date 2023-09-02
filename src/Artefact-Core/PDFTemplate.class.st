@@ -19,16 +19,19 @@ Class {
 
 { #category : #accessing }
 PDFTemplate >> dotted [
-	^dotted
+
+	^ dotted
 ]
 
 { #category : #accessing }
 PDFTemplate >> dotted: aPDFDotted [
-	dotted :=  aPDFDotted
+
+	dotted := aPDFDotted
 ]
 
 { #category : #action }
 PDFTemplate >> drawTemplate [
+
 	self subclassResponsibility
 ]
 

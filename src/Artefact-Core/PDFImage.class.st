@@ -28,23 +28,26 @@ Class {
 
 { #category : #'instance creation' }
 PDFImage class >> from: aPosition dimension: aDimension fromStream: aStream [
+
 	^ self new
-		from: aPosition;
-		dimension: aDimension;
-		stream: aStream;
-		yourself
+		  from: aPosition;
+		  dimension: aDimension;
+		  stream: aStream;
+		  yourself
 ]
 
 { #category : #'instance creation' }
 PDFImage class >> fromMorph: aMorph [
+
 	self subclassResponsibility
 ]
 
 { #category : #'instance creation' }
 PDFImage class >> fromStream: aStream [
+
 	^ self new
-		stream: aStream;
-		yourself
+		  stream: aStream;
+		  yourself
 ]
 
 { #category : #testing }

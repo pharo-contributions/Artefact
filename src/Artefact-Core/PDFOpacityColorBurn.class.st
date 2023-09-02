@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityColorBurn >> blendMode [
-	 ^#ColorBurn
+
+	^ #ColorBurn
 ]

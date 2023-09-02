@@ -16,5 +16,6 @@ Class {
 
 { #category : #accessing }
 PDFUnsecureBasic >> codeSegmentClass [
+
 	^ PDFUnsecureElementCodeSegment
 ]

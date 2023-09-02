@@ -15,11 +15,13 @@ Class {
 
 { #category : #style }
 PDFParagraphElement >> defaultStyle [
+
 	^ #text
 ]
 
 { #category : #accessing }
 PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
+
 	| lines decalage currentXY current |
 	lines := self splitOn: aPDFGenerator currentPage using: aStyleSheet font.
 	decalage := aStyleSheet font fontSize.
@@ -43,22 +45,25 @@ PDFParagraphElement >> initialize [
 
 { #category : #checking }
 PDFParagraphElement >> requiredAttributes [
+
 	^ #( from text dimension )
 ]
 
 { #category : #accessing }
 PDFParagraphElement >> spacing [
-	^spacing
+
+	^ spacing
 ]
 
 { #category : #accessing }
 PDFParagraphElement >> spacing: aValue [
+
 	spacing := aValue
 ]
 
 { #category : #action }
 PDFParagraphElement >> splitOn: aPage using: aFont [
-	"answer the lines of the paragraph (in the context of the specified page)"
+	"Answer the lines of the paragraph (in the context of the specified page)"
 
 	| widthOfLine widthOfWord line lines |
 	widthOfLine := 0 pt.

@@ -12,5 +12,6 @@ Class {
 
 { #category : #testing }
 PDFUnsecureElementCodeSegment >> isSecure [
+
 	^ false
 ]

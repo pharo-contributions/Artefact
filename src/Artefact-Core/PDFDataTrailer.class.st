@@ -17,23 +17,27 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataTrailer >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataTrailer: self
 ]
 
 { #category : #accessing }
 PDFDataTrailer >> addContent: aContent [
+
 	contents addLast: aContent
 ]
 
 { #category : #accessing }
 PDFDataTrailer >> contents [
+
 	^ contents
 ]
 
 { #category : #accessing }
 PDFDataTrailer >> contents: anObject [
+
 	contents := anObject
 ]
 
@@ -46,6 +50,7 @@ PDFDataTrailer >> initialize [
 
 { #category : #printing }
 PDFDataTrailer >> printOn: aStream [
+
 	aStream nextPutAll: 'trailer'; lf.
 	contents do: [:aContent | aContent printOn: aStream. aStream lf]
 ]

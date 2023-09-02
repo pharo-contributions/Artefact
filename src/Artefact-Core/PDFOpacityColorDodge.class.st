@@ -10,5 +10,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityColorDodge >> blendMode [
-	 ^#ColorDodge
+
+	^ #ColorDodge
 ]

@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityNormal >> blendMode [
-	 ^#Normal
+
+	^ #Normal
 ]

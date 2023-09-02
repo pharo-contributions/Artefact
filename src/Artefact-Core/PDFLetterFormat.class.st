@@ -9,5 +9,6 @@ Class {
 
 { #category : #'accessing - defaults' }
 PDFLetterFormat >> defaultSize [
+
 	^ 612 point @ 1008 point
 ]
