@@ -474,7 +474,8 @@ PDFGenerator >> getOpacityIdFor: aOpacityObject [
 
 { #category : #initialization }
 PDFGenerator >> initialize [
-	firstPage := nil.
+
+	super initialize.
 	currentObjectNumber := 0.
 	currentFontId := 0.
 	currentImageId := 0.
