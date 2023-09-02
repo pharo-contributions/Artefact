@@ -14,6 +14,12 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
+{ #category : #testing }
+PDFDataType class >> isAbstract [
+
+	^ self == PDFDataType
+]
+
 { #category : #visit }
 PDFDataType >> acceptVisitor: aVisitor [
 	^ self subclassResponsibility 

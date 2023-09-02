@@ -20,6 +20,12 @@ Class {
 	#category : #'Artefact-Core-Formats'
 }
 
+{ #category : #testing }
+PDFFormat class >> isAbstract [
+
+	^ self == PDFFormat
+]
+
 { #category : #'accessing - defaults' }
 PDFFormat >> defaultMargins [
 

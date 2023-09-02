@@ -15,6 +15,12 @@ PDFArrow class >> from: from angle: angle length: aLength [
 	^ self from: from to: from + ((angle cos * aLength) @ ((angle sin * aLength) negated))
 ]
 
+{ #category : #testing }
+PDFArrow class >> isAbstract [
+
+	^ self == PDFArrow
+]
+
 { #category : #action }
 PDFArrow >> angle [
 	^ ((self orientedTo  y - self orientedFrom y) convertTo: Unit point) value arcTan: ((self orientedTo x - self orientedFrom x) convertTo: Unit point) value

@@ -10,6 +10,12 @@ Class {
 	#category : #'Artefact-Core-Elements'
 }
 
+{ #category : #testing }
+PDFBasic class >> isAbstract [
+
+	^ self == PDFBasic
+]
+
 { #category : #render }
 PDFBasic >> codeSegmentClass [
 	^ PDFElementCodeSegment

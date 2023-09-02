@@ -18,6 +18,12 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
+{ #category : #testing }
+PDFDraw class >> isAbstract [
+
+	^ self == PDFDraw
+]
+
 { #category : #'accessing - defaults' }
 PDFDraw >> defaultStyle [ 
 	^#draw

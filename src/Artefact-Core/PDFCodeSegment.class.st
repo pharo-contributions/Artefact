@@ -23,6 +23,12 @@ Class {
 	#category : #'Artefact-Core-CodeSegment'
 }
 
+{ #category : #testing }
+PDFCodeSegment class >> isAbstract [
+
+	^ self == PDFCodeSegment
+]
+
 { #category : #accessing }
 PDFCodeSegment >> fromElement [
 	^ fromElement

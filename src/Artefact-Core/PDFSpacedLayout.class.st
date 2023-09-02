@@ -17,6 +17,12 @@ Class {
 	#category : #'Artefact-Core-Layouts'
 }
 
+{ #category : #testing }
+PDFSpacedLayout class >> isAbstract [
+
+	^ self == PDFSpacedLayout
+]
+
 { #category : #'accessing - defaults' }
 PDFSpacedLayout >> defaultSpacing [
 

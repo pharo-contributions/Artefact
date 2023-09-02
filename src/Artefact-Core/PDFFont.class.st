@@ -31,6 +31,12 @@ Class {
 	#category : #'Artefact-Core-Fonts'
 }
 
+{ #category : #testing }
+PDFFont class >> isAbstract [
+
+	^ self == PDFFont
+]
+
 { #category : #'as yet unclassified' }
 PDFFont class >> size: aFontSize [
 	^ self new fontSize: aFontSize

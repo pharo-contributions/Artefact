@@ -29,6 +29,12 @@ Class {
 	#category : #'Artefact-Core-Elements-Composites'
 }
 
+{ #category : #testing }
+PDFCompositeText class >> isAbstract [
+
+	^ self == PDFCompositeText
+]
+
 { #category : #accessing }
 PDFCompositeText class >> text: aText [
 	^ self new text: aText; yourself
