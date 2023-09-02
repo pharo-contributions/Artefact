@@ -57,7 +57,7 @@ PDFDataObject >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDataObject >> initialize [ 
 	contents := OrderedCollection new
 ]

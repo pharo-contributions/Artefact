@@ -46,7 +46,7 @@ PDFDataArray >> elements: anObject [
 	elements := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDataArray >> initialize [ 
 	elements := OrderedCollection new
 ]

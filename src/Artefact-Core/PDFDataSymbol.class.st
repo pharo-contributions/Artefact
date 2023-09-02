@@ -32,7 +32,7 @@ PDFDataSymbol >> isPrintable [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataSymbol >> printOn: aStream [
 	aStream nextPut: $/; nextPutAll: symbol asString
 ]

@@ -30,7 +30,7 @@ PDFDataComment >> comment: anObject [
 	comment := anObject
 ]
 
-{ #category : #printing }
+{ #category : #testing }
 PDFDataComment >> isPrintable [
 	^ true
 ]

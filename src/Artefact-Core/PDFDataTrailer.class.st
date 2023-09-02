@@ -37,7 +37,7 @@ PDFDataTrailer >> contents: anObject [
 	contents := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDataTrailer >> initialize [ 
 	contents := OrderedCollection new
 ]

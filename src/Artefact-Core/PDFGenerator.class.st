@@ -84,7 +84,7 @@ PDFGenerator >> createImageObject: anImageStream [
 	^ imageObject
 ]
 
-{ #category : #section }
+{ #category : #actions }
 PDFGenerator >> createMetaDataObject: aMetaData [
 	| metadataObject |
 	metadataObject := self createNewPDFDataObject.
@@ -103,7 +103,7 @@ PDFGenerator >> createMetaDataObject: aMetaData [
 	^ metadataObject
 ]
 
-{ #category : #action }
+{ #category : #actions }
 PDFGenerator >> createNewPDFDataObject [
 	| object |
 	currentObjectNumber := currentObjectNumber + 1.
@@ -130,7 +130,7 @@ PDFGenerator >> createOpacityObject: aOpacityObject [
 	^ opacityObject
 ]
 
-{ #category : #action }
+{ #category : #actions }
 PDFGenerator >> createPDFDataStreamFrom: aPage [
 	^ PDFDataStream
 		codeSegment:
@@ -140,7 +140,7 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 				styleSheet: aPage styleSheet)
 ]
 
-{ #category : #section }
+{ #category : #actions }
 PDFGenerator >> createRootObject [
 	| rootObject content |
 	rootObject := self createNewPDFDataObject.
@@ -215,7 +215,7 @@ PDFGenerator >> firstPage: anObject [
 	firstPage := anObject
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generateContentsFor: aPage [
 	| contents associativeArray stream lengthObject |
 	contents := self createNewPDFDataObject.
@@ -240,7 +240,7 @@ PDFGenerator >> generateContentsFor: aPage [
 	^ contents
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generateDisplayLayout [
 	"Answer the PDF symbol for the selected display layout"
 	
@@ -248,7 +248,7 @@ PDFGenerator >> generateDisplayLayout [
 
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generateDisplayMode [
 	| value |
 	value := PDFDataArray from:  { (PDFDataReference reference: self firstPage) }.
@@ -335,7 +335,7 @@ PDFGenerator >> generateOpacityId [
 	^ 'GS' , currentOpacityId asString
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 	
 	self compression: aPDFDocument compression.
@@ -358,7 +358,7 @@ PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 		addContent: (PDFDataStartXref to: xref)
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generatePDFDocument: aPDFDocument [
 	"should receive a PDFDocument and return a PDFDataObject representing the document"
 	
@@ -392,7 +392,7 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 	^ document
 ]
 
-{ #category : #section }
+{ #category : #generate }
 PDFGenerator >> generatePDFFormat: aPDFFormat [
 	^ PDFDataCouple new
 		key: (PDFDataSymbol symbol: 'MediaBox');
@@ -405,7 +405,7 @@ PDFGenerator >> generatePDFFormat: aPDFFormat [
 							(PDFDataValue value: (aPDFFormat height convertTo: Unit points) value)})
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generatePDFPage: aPDFPage [
 	| page associativeArray |
 	currentPage := aPDFPage.
@@ -437,13 +437,13 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 
 ]
 
-{ #category : #section }
+{ #category : #generate }
 PDFGenerator >> generatePDFVersion: aPDFVersion [
 	^ PDFDataComment new comment: ('PDF-' , aPDFVersion).
 		
 ]
 
-{ #category : #action }
+{ #category : #generate }
 PDFGenerator >> generateZoom [
 	"answer the PDF code to set the user's zoom"
 	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from:  { 
@@ -472,7 +472,7 @@ PDFGenerator >> getOpacityIdFor: aOpacityObject [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFGenerator >> initialize [
 	firstPage := nil.
 	currentObjectNumber := 0.
@@ -485,7 +485,7 @@ PDFGenerator >> initialize [
 	xref := PDFDataXRef new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operating }
 PDFGenerator >> splitPages: aCollectionOfPages [
 	^ self
 		inject: OrderedCollection new

@@ -48,17 +48,17 @@ PDFImage class >> fromStream: aStream [
 		yourself
 ]
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFImage >> defaultStyle [ 
 	^ #image
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFImage >> height: aHeight [
 	self dimension: (aHeight / self originalImageDimensions y * self originalImageDimensions x) @ aHeight
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PDFImage >> isDrawElement [ 
 	^ false
 ]
@@ -102,7 +102,7 @@ PDFImage >> stream: anImageStream [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFImage >> width: aWidth [
 	self dimension: aWidth @ (aWidth / self originalImageDimensions x * self originalImageDimensions y) 
 ]

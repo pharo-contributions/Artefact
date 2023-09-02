@@ -33,7 +33,7 @@ PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 	]).
 ]
 
-{ #category : #accessing }
+{ #category : #checking }
 PDFLineElement >> requiredAttributes [
 	^ #( from to orientation )
 ]

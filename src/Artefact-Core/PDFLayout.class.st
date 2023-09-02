@@ -105,7 +105,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 	^ codeSegments
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFLayout >> initialize [ 
 	super initialize.
 	elements:= OrderedCollection new.

@@ -27,7 +27,7 @@ PDFDataXRef >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataXRef: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDataXRef >> initialize [
 	referencies := OrderedCollection new.
 	referencies add: PDFDataXRefEntry new.

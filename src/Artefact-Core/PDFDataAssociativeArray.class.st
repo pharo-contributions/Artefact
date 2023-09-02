@@ -37,7 +37,7 @@ PDFDataAssociativeArray >> associativeArray: anObject [
 	associativeArray := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDataAssociativeArray >> initialize [ 
 	associativeArray := OrderedCollection new
 ]

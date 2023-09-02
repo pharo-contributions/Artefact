@@ -34,7 +34,7 @@ PDFText class >> from: aPosition text: aText font: aFont [
 		yourself
 ]
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFText >> defaultStyle [
 	^ #text
 ]
@@ -56,7 +56,7 @@ PDFText >> font: aFont [
 	self styleSheet font: aFont
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PDFText >> isDrawElement [
 	^ false
 ]

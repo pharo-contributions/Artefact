@@ -20,25 +20,25 @@ Class {
 	#category : #'Artefact-Core-Formats'
 }
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFFormat >> defaultMargins [
 
 	^28.35 point @ 28.35 point
 ]
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFFormat >> defaultSize [
 
 	^ self subclassResponsibility 
 ]
 
-{ #category : #description }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> height [
 	"Answer the height of a page"
 	^self size y
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFFormat >> initialize [
 	super initialize.
 	self margins: self defaultMargins.
@@ -46,17 +46,17 @@ PDFFormat >> initialize [
 	self setPortrait
 ]
 
-{ #category : #description }
+{ #category : #'accessing - margins' }
 PDFFormat >> leftMargin [
 	^(self margins x)
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - margins' }
 PDFFormat >> margins [
 	^ margins
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - margins' }
 PDFFormat >> margins: anObject [
 	margins := anObject
 ]
@@ -86,22 +86,22 @@ PDFFormat >> setPortrait [
 
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> size [
 	^ size
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> size: anObject [
 	size := anObject
 ]
 
-{ #category : #description }
+{ #category : #'accessing - margins' }
 PDFFormat >> topMargin [
 	^(self margins y)
 ]
 
-{ #category : #description }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> width [
 	"Answer the width of the page"
 	^self size x

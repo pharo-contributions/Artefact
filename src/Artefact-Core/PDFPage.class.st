@@ -51,7 +51,7 @@ PDFPage >> add: anElement [
 	self elements add: anElement.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - defaults' }
 PDFPage >> defaultFormat [
 	^PDFA4Format new
 ]

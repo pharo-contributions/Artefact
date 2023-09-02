@@ -32,24 +32,24 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 PDFColor class >> formatRGB: aColor [
 	"Answer a formated RBG color. The values are rounded"
 	
 	^(PDFColor round: aColor red) ,  ' ' , (PDFColor round: aColor green) , ' ' , (PDFColor round: aColor blue)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFColor class >> greyLevel: aGreyLevel [
 	^ self new setGreyLevel: aGreyLevel 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFColor class >> r:  r g: g b: b [
 	^ self new r:  r g: g b: b
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #rounding }
 PDFColor class >> round: aValue [
 	"answer a rounded value for an color value"
 	

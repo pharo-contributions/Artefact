@@ -8,7 +8,7 @@ Class {
 	#category : #'Artefact-Core-Tests-Generator'
 }
 
-{ #category : #'tests compression' }
+{ #category : #'tests - compression' }
 PDFStreamPrinterTest >> testGenerateGZipCompression [
 	| result |
 	
