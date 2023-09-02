@@ -18,11 +18,6 @@ Class {
 }
 
 { #category : #accessing }
-PDFTemplate class >> recommendedDocumentFormat [
-	self subclassResponsibility 
-]
-
-{ #category : #accessing }
 PDFTemplate >> dotted [
 	^dotted
 ]

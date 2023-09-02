@@ -9,11 +9,6 @@ Class {
 }
 
 { #category : #accessing }
-PDFCompactDiscTemplate class >> recommendedDocumentFormat [
-	self subclassResponsibility 
-]
-
-{ #category : #accessing }
 PDFCompactDiscTemplate class >> recommendedPageFormat [
 	^(PDFA4Format new setLandscape)
 ]
