@@ -5,7 +5,7 @@ Class {
 		'doc',
 		'page'
 	],
-	#category : #'Artefact-Tests-Base'
+	#category : #'Artefact-Core-Tests-Base'
 }
 
 { #category : #accessing }

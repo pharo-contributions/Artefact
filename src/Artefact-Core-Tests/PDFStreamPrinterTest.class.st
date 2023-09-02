@@ -5,7 +5,7 @@ Class {
 		'aStream',
 		'printer'
 	],
-	#category : #'Artefact-Tests-Generator'
+	#category : #'Artefact-Core-Tests-Generator'
 }
 
 { #category : #'tests compression' }
