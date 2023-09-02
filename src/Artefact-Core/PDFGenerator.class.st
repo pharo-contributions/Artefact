@@ -111,7 +111,7 @@ PDFGenerator >> createNewPDFDataObject [
 		id: currentObjectNumber;
 		revision: 0;
 		yourself.
-	xref AddReferenceTo: object.
+	xref addReferenceTo: object.
 	^ object
 ]
 
