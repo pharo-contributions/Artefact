@@ -66,7 +66,7 @@ PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet f
 { #category : #render }
 PDFComposite >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet format: aFormat [
 	^ (self getSubElementsWith: aPDFGenerator styleSheet: compositeStyleSheet)
-		collect: [ :aSubElement | 
+		collect: [ :aSubElement |
 			aSubElement
 				generateCodeSegmentWith: aPDFGenerator
 				styleSheet: (aSubElement buildCompositeStyleSheetFrom: compositeStyleSheet)
@@ -98,6 +98,5 @@ PDFComposite >> textColor: aColor [
 
 { #category : #accessing }
 PDFComposite >> thickness: aThickness [
-	self styleSheet thickness: aThickness 
- 
+	self styleSheet thickness: aThickness
 ]

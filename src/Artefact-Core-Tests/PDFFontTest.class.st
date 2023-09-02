@@ -30,11 +30,11 @@ PDFFontTest >> page: anObject [
 
 { #category : #running }
 PDFFontTest >> setUp [
-	self doc: PDFDocument new.
+	self doc: PDFDocument new
 ]
 
 { #category : #running }
-PDFFontTest >> tearDown [ 
+PDFFontTest >> tearDown [
 ]
 
 { #category : #'tests - fonts width' }

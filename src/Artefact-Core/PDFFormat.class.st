@@ -35,7 +35,7 @@ PDFFormat >> defaultMargins [
 { #category : #'accessing - defaults' }
 PDFFormat >> defaultSize [
 
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #'accessing - dimensions' }
@@ -82,15 +82,14 @@ PDFFormat >> portrait: anObject [
 PDFFormat >> setLandscape [
 	"Set the page in landscape orientation"
 	self portrait: false.
-	self size: (self size y) @ (self size x).	
+	self size: (self size y) @ (self size x).
 ]
 
 { #category : #'page setup' }
 PDFFormat >> setPortrait [
 	"Set the page in portrait orientation"
 	self portrait: true.
-	self size: (self size x) @ (self size y). 
-
+	self size: (self size x) @ (self size y).
 ]
 
 { #category : #'accessing - dimensions' }

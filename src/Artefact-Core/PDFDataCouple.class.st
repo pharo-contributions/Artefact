@@ -50,9 +50,9 @@ PDFDataCouple >> key: anObject [
 
 { #category : #printing }
 PDFDataCouple >> printOn: aStream [
-	key printOn: aStream. 
-	aStream space. 
-	value printOn: aStream.
+	key printOn: aStream.
+	aStream space.
+	value printOn: aStream
 ]
 
 { #category : #accessing }

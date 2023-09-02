@@ -12,9 +12,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFOpacity class >> alpha: aAlphaValue [ 
+PDFOpacity class >> alpha: aAlphaValue [
 	"set the alpha value for opacity (between 0 and 1)"
-	
+
 	^self new alpha: aAlphaValue
 ]
 
@@ -37,5 +37,5 @@ PDFOpacity >> alpha: anObject [
 { #category : #effect }
 PDFOpacity >> blendMode [
 	"must answer the blendMode"
-	self subclassResponsibility 
+	self subclassResponsibility
 ]

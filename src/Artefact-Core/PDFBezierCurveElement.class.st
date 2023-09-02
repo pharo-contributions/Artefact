@@ -36,10 +36,10 @@ PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: a
 	"Draw a Bezier curve from xy to destination (3 control points)"
 
 	^ String
-		streamContents: [ :s | 
+		streamContents: [ :s |
 			s nextPutAll: (self moveTo: self from with: aPDFGenerator).
 			self points
-				do: [ :p | 
+				do: [ :p |
 					s
 						nextPutAll: (self splitCoordinates: (aPDFGenerator determinePositionOnCurrentPage: self from + p));
 						space ].

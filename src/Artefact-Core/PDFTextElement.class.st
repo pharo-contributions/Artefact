@@ -22,7 +22,7 @@ PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet
 	| position |
 	position := aGenerator determinePositionOnCurrentPage: self from + (0 @ (aStyleSheet font fontSize * 0.8)).
 	^ String
-		streamContents: [ :s | 
+		streamContents: [ :s |
 			s
 				nextPutAll: PDFByteCode beginText;
 				space;

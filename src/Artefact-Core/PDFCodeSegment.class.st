@@ -55,8 +55,8 @@ PDFCodeSegment >> isSecure [
 ]
 
 { #category : #accessing }
-PDFCodeSegment >> printWith: aPDFWriter [ 
-	^ self subclassResponsibility 
+PDFCodeSegment >> printWith: aPDFWriter [
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }

@@ -2,7 +2,7 @@ Extension { #name : #JPEGReadWriter }
 
 { #category : #'*Artefact-Core-Generator' }
 JPEGReadWriter >> dataPrecision [
-	^ dataPrecision 
+	^ dataPrecision
 ]
 
 { #category : #'*Artefact-Core-Generator' }

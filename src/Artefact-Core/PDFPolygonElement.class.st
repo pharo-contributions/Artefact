@@ -15,7 +15,7 @@ Class {
 
 { #category : #'instance creation' }
 PDFPolygonElement class >> from: aPosition points: anArrayOfPoints [
-	^(self from: aPosition) points: anArrayOfPoints 
+	^(self from: aPosition) points: anArrayOfPoints
 ]
 
 { #category : #accessing }
@@ -33,10 +33,10 @@ PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyl
 	"Draw a polygon from xy to destination (a array of positions)"
 
 	^ String
-		streamContents: [ :s | 
+		streamContents: [ :s |
 			s nextPutAll: (self moveTo: self from with: aPDFGenerator).
 			self points , {self points first}
-				do: [ :p | 
+				do: [ :p |
 					s
 						nextPutAll: (self splitCoordinates: (aPDFGenerator determinePositionOnCurrentPage: self from + p));
 						space.

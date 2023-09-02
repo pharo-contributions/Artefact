@@ -335,10 +335,6 @@ PDFDocument >> add: aPage [
 	"add a new page in the PDF document"
 	self pages add: aPage.
 	aPage document: self
-
-	
-	
-
 ]
 
 { #category : #action }
@@ -357,7 +353,7 @@ PDFDocument >> compression [
 ]
 
 { #category : #accessing }
-PDFDocument >> compression: aBoolean [ 	
+PDFDocument >> compression: aBoolean [
 	compression := aBoolean
 ]
 
@@ -502,7 +498,7 @@ PDFDocument >> real [
 
 { #category : #'page setup' }
 PDFDocument >> setFormat: aFormat [
-	self format: aFormat.
+	self format: aFormat
 ]
 
 { #category : #displayLayout }

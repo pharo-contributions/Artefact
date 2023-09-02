@@ -78,6 +78,6 @@ PDFElementCodeSegment >> opacityId: anObject [
 ]
 
 { #category : #accessing }
-PDFElementCodeSegment >> printWith: aPDFWriter [ 
+PDFElementCodeSegment >> printWith: aPDFWriter [
 	aPDFWriter printElementCodeSegment: self
 ]

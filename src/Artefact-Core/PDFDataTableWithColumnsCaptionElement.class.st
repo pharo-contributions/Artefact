@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableWithColumnsCaptionElement >> cellsData [ 
+PDFDataTableWithColumnsCaptionElement >> cellsData [
 	^ {self captions}, self data
 ]
 

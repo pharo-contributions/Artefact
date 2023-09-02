@@ -48,9 +48,9 @@ PDFText >> defaultStyle [
 { #category : #accessing }
 PDFText >> escape: aString [
 	"answer a clean string at PDF format"
-	
+
 	| str |
-	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.
 	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
 	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
 
@@ -86,6 +86,6 @@ PDFText >> textColor: aColor [
 { #category : #accessing }
 PDFText >> textString: aString [
 	"Answer a formated text string"
-	
+
 	^('(' , (self escape: (aString asString)) , ')')
 ]

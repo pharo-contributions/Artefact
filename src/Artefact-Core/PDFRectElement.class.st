@@ -13,11 +13,11 @@ Class {
 { #category : #render }
 PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
 	"Draw a rectangle from xy with a specified dimension"
-	
+
 	| position |
-	
+
 	position := aPDFGenerator determinePositionOnCurrentPage: self from.
-	 
+
 	^(String streamContents: [ :s |
 		s nextPutAll: (self splitCoordinates: position);
 		space;
@@ -28,6 +28,5 @@ PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSh
 		nextPutAll: PDFByteCode rectangle;
 		space;
 		nextPutAll:( self fillMode: (aStyleSheet filled))
-	 ]).	
-		
+	 ]).
 ]

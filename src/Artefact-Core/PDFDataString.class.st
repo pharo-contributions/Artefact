@@ -30,9 +30,9 @@ PDFDataString >> acceptVisitor: aVisitor [
 { #category : #action }
 PDFDataString >> escape: aString [
 	"answer a clean string at PDF format"
-	
+
 	| str |
-	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.
 	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
 	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
 

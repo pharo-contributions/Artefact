@@ -45,24 +45,24 @@ PDFDataDateAndTime >> date: anObject [
 { #category : #private }
 PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
-	
+
 	| str timeStr hour minutes seconds |
 
 	hour := aTime hours.
 	str := hour asString.
 	(hour < 12) ifTrue: [ str := '0' , str ].
 	timeStr := str.
-	
+
  	minutes := aTime minutes.
 	str := minutes asString.
 	(minutes < 10) ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.
-	
+
 	seconds := aTime seconds.
 	str := seconds asString.
 	(seconds < 10) ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.
-	
+
 	^((aDate yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , timeStr)
 ]
 

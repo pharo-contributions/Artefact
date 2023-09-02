@@ -48,7 +48,7 @@ PDFPage class >> elements: aCollectionOfElements [
 { #category : #action }
 PDFPage >> add: anElement [
 	"Use this to add a new element to this page"
-	self elements add: anElement.
+	self elements add: anElement
 ]
 
 { #category : #'accessing - defaults' }

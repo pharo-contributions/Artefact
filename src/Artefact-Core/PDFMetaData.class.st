@@ -69,25 +69,25 @@ PDFMetaData >> creator: anObject [
 { #category : #accessing }
 PDFMetaData >> currentDateAndTimeInPDFFormat [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
-	
+
 	| str time hour minutes seconds |
-	
-	
+
+
 	hour := Time now hours.
 	str := hour asString.
 	(hour < 12) ifTrue: [ str := '0' , str ].
 	time := str.
-	
+
  	minutes := Time now minutes.
 	str := minutes asString.
 	(minutes < 10) ifTrue: [ str := '0' , str ].
 	time := time , str.
-	
+
 	seconds := Time now seconds.
 	str := seconds asString.
 	(seconds < 10) ifTrue: [ str := '0' , str ].
 	time := time , str.
-	
+
 	^((Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time)
 ]
 
