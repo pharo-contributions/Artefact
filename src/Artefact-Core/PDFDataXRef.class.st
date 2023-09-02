@@ -17,14 +17,14 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #accessing }
-PDFDataXRef >> AddReferenceTo: aPDFDataObject [
-	referencies addLast: (PDFDataXRefEntry referencedObject: aPDFDataObject)
-]
-
 { #category : #visit }
 PDFDataXRef >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataXRef: self
+]
+
+{ #category : #accessing }
+PDFDataXRef >> addReferenceTo: aPDFDataObject [
+	referencies addLast: (PDFDataXRefEntry referencedObject: aPDFDataObject)
 ]
 
 { #category : #initialization }
