@@ -177,9 +177,11 @@ PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 ]
 
 { #category : #initialization }
-PDFStreamPrinter >> initialize [ 
+PDFStreamPrinter >> initialize [
+
+	super initialize.
 	positions := Dictionary new.
-	size := Dictionary new.
+	size := Dictionary new
 ]
 
 { #category : #accessing }

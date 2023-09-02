@@ -112,9 +112,10 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 ]
 
 { #category : #initialization }
-PDFLayout >> initialize [ 
+PDFLayout >> initialize [
+
 	super initialize.
-	elements:= OrderedCollection new.
+	elements := OrderedCollection new
 ]
 
 { #category : #accessing }

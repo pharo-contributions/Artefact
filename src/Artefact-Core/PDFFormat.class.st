@@ -46,6 +46,7 @@ PDFFormat >> height [
 
 { #category : #initialization }
 PDFFormat >> initialize [
+
 	super initialize.
 	self margins: self defaultMargins.
 	self size: self defaultSize.

@@ -172,9 +172,10 @@ PDFFont >> getStringWidth: aString [
 
 { #category : #initialization }
 PDFFont >> initialize [
+
 	super initialize.
 	bold := false.
-	italic := false.
+	italic := false
 ]
 
 { #category : #accessing }

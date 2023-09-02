@@ -453,14 +453,15 @@ PDFDocument >> height [
 
 { #category : #initialization }
 PDFDocument >> initialize [
-	super initialize.
 
-	self setFormat: self defaultFormat.
-	self styleSheet: (StyleSheet default).
-	self metaData: PDFMetaData new.
-	self compression: true.
-	self defaultDisplayLayout.
-	self defaultDisplayMode.
+	super initialize.
+	self
+		setFormat: self defaultFormat;
+		styleSheet: StyleSheet default;
+		metaData: PDFMetaData new;
+		compression: true;
+		defaultDisplayLayout;
+		defaultDisplayMode
 ]
 
 { #category : #accessing }

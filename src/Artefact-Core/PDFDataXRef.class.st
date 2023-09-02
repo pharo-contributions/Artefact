@@ -29,8 +29,10 @@ PDFDataXRef >> addReferenceTo: aPDFDataObject [
 
 { #category : #initialization }
 PDFDataXRef >> initialize [
+
+	super initialize.
 	referencies := OrderedCollection new.
-	referencies add: PDFDataXRefEntry new.
+	referencies add: PDFDataXRefEntry new
 ]
 
 { #category : #accessing }

@@ -38,7 +38,9 @@ PDFDataTrailer >> contents: anObject [
 ]
 
 { #category : #initialization }
-PDFDataTrailer >> initialize [ 
+PDFDataTrailer >> initialize [
+
+	super initialize.
 	contents := OrderedCollection new
 ]
 

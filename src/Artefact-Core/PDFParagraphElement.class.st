@@ -34,10 +34,11 @@ PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet
 			current ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFParagraphElement >> initialize [
+
 	super initialize.
-	self spacing: 0 mm.
+	self spacing: 0 mm
 ]
 
 { #category : #checking }

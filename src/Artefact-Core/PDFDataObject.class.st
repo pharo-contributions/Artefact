@@ -58,7 +58,9 @@ PDFDataObject >> id: anObject [
 ]
 
 { #category : #initialization }
-PDFDataObject >> initialize [ 
+PDFDataObject >> initialize [
+
+	super initialize.
 	contents := OrderedCollection new
 ]
 
