@@ -43,7 +43,7 @@ PDFCodeSegment >> isDrawElement: anObject [
 	isDrawElement := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PDFCodeSegment >> isSecure [
 	^ true
 ]

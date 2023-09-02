@@ -72,38 +72,38 @@ PDFAlignment >> horizontal: anObject [
 	horizontal := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFAlignment >> initialize [
 	self left;
 	 middle.
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isBottom [
 	^ self vertical = #BOTTOM
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isCenter [
 	^ self horizontal = #CENTER
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isLeft [
 	^ self horizontal = #LEFT
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isMiddle [
 	^ self vertical = #MIDDLE
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isRight [
 	^ self horizontal = #RIGHT
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isTop [
 	^ self vertical = #TOP
 ]

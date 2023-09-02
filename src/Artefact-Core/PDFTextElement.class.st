@@ -37,7 +37,7 @@ PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet
 				nextPutAll: PDFByteCode endOfText ]
 ]
 
-{ #category : #accessing }
+{ #category : #checking }
 PDFTextElement >> requiredAttributes [
 	^ #( from text )
 ]

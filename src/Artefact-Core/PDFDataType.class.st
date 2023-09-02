@@ -19,7 +19,7 @@ PDFDataType >> acceptVisitor: aVisitor [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #visit }
+{ #category : #testing }
 PDFDataType >> isPrintable [
 	^ false
 ]

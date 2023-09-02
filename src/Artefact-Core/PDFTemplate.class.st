@@ -17,7 +17,7 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFTemplate class >> recommendedDocumentFormat [
 	self subclassResponsibility 
 ]
@@ -42,6 +42,5 @@ PDFTemplate >> initialize [
 	super initialize.
 
 	self dotted: (PDFDotted new length: 1 mm; space: 1 mm).
-	self drawTemplate.	
-
+	self drawTemplate.
 ]

@@ -312,7 +312,7 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #documentation }
 PDFDocument class >> FrameworkManual [
 	<wikiStyleHelp: #'Artefact (PDF framework)'>
 	^ self comment
@@ -451,7 +451,7 @@ PDFDocument >> height [
 	^(self format size y)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDocument >> initialize [
 	super initialize.
 

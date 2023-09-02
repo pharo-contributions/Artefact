@@ -17,13 +17,13 @@ Class {
 	#category : #'Artefact-Core-Layouts'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #'accessing - defaults' }
 PDFSpacedLayout >> defaultSpacing [
 
 	^ 5 pt
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFSpacedLayout >> initialize [ 
 	super initialize.
 	spacing := self defaultSpacing.

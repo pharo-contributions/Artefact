@@ -101,7 +101,7 @@ PDFElement >> height [
 	^ self dimension y
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFElement >> initialize [ 
 	super initialize.
 	self orientation: #bottomRight.

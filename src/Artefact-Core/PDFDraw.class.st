@@ -18,7 +18,7 @@ Class {
 	#category : #'Artefact-Core-Elements-Basic'
 }
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFDraw >> defaultStyle [ 
 	^#draw
 ]
@@ -45,7 +45,7 @@ PDFDraw >> fillMode: filled [
 		ifFalse: [ PDFByteCode noFilling ]
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PDFDraw >> isDrawElement [
 	^ true
 ]

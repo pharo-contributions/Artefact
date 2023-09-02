@@ -73,13 +73,13 @@ PDFComposite >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
-PDFComposite >> initialize [ 
+{ #category : #initialization }
+PDFComposite >> initialize [
 	super initialize.
 	self filled: false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFComposite >> roundCap: aBoolean [
 	self styleSheet roundCap: aBoolean
 ]

@@ -64,7 +64,7 @@ PDFStreamPrinter >> convertToPoints: aUnitValue [
 	
 ]
 
-{ #category : #util }
+{ #category : #utilities }
 PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet [
 	"insert rotation configuration"
 
@@ -104,7 +104,7 @@ PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: st
 				nextPutAll: String lf ]
 ]
 
-{ #category : #util }
+{ #category : #utilities }
 PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 	| dotted thickness styleSheet |
 	styleSheet := anElementCodeSegment styleSheet.
@@ -149,7 +149,7 @@ PDFStreamPrinter >> getGZipData: aString [
 
 ]
 
-{ #category : #util }
+{ #category : #utilities }
 PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 	| drawColor fillColor textColor |
 	
@@ -176,7 +176,7 @@ PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 	]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFStreamPrinter >> initialize [ 
 	positions := Dictionary new.
 	size := Dictionary new.
@@ -278,7 +278,7 @@ PDFStreamPrinter >> printPDFDataStreamRefSize: aPDFDataStreamRefSize [
 		nextPutAll: (self size at: aPDFDataStreamRefSize pdfDataStream) asString
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	| endPosition startPosition |
 	characterStream
@@ -292,7 +292,7 @@ PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 	characterStream nextPutAll: 'endstream'
 ]
 
-{ #category : #util }
+{ #category : #utilities }
 PDFStreamPrinter >> resetRotation: aRotation into: aStream [
 	(aRotation = 0) ifFalse: [ 
 		aStream
@@ -301,7 +301,7 @@ PDFStreamPrinter >> resetRotation: aRotation into: aStream [
 	]
 ]
 
-{ #category : #util }
+{ #category : #utilities }
 PDFStreamPrinter >> setLineCapStyleFor: anElementCodeSegment stylesheet: styleSheet [
 	"insert line cap configuration"
 
@@ -331,34 +331,34 @@ PDFStreamPrinter >> streamContent: aString [
 	streamContent := aString
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataArray: aPDFDataArray [
 	aPDFDataArray elements do: [ :aType | aType acceptVisitor: self ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataAssociativeArray: aPDFDataAssociativeArray [
 	aPDFDataAssociativeArray associativeArray do: [ :aType | aType acceptVisitor: self ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataComment: aPDFDataComment [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataCouple: aPDFDataCouple [
 	aPDFDataCouple key acceptVisitor: self.
 	aPDFDataCouple key symbol = 'Parent'
 		ifFalse: [ aPDFDataCouple value acceptVisitor: self ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataDateAndTime: aPDFDataDateAndTime [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 	self positions at: aPDFDataObject put: stream position.
 	characterStream
@@ -380,37 +380,37 @@ PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 	aPDFDataObject contents do: [ :aContent | aContent acceptVisitor: self ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataReference: aPDFDataReference [
 	aPDFDataReference referencedObject acceptVisitor: self
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataStartXref: aPDFDataStartXref [
 	aPDFDataStartXref xref acceptVisitor: self
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataStream: aPDFDataStream [
 
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataStreamRefSize: aPDFDataStreamRefSize [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataString: aPDFDataString [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataSymbol: aPDFDataSymbol [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 	aPDFDataTrailer contents do: [ :aContent | aContent acceptVisitor: self ].
 	characterStream
@@ -424,17 +424,17 @@ PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 			characterStream lf ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataValue: aPDFDataValue [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataXObjectStream: aPDFDataXObjectStream [
 	
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 	self positions at: aPDFDataXRef put: stream position.
 	characterStream
@@ -447,7 +447,7 @@ PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 	aPDFDataXRef referencies do: [ :aReferency | aReferency acceptVisitor: self ]
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 	| positionString |
 	aPDFDataXRefEntry referencedObject

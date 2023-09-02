@@ -20,7 +20,7 @@ PDFArrow >> angle [
 	^ ((self orientedTo  y - self orientedFrom y) convertTo: Unit point) value arcTan: ((self orientedTo x - self orientedFrom x) convertTo: Unit point) value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #'accessing - defaults' }
 PDFArrow >> defaultStyle [
 	^ #arrow
 ]
