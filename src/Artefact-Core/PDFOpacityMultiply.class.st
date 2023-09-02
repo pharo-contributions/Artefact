@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityMultiply >> blendMode [
-	 ^#Multiply
+
+	^ #Multiply
 ]

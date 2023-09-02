@@ -16,7 +16,10 @@ Class {
 
 { #category : #'instance creation' }
 PDFCircleElement class >> center: aPoint radius: aRadius [
-	^ self from: aPoint - (aRadius @ aRadius) to: aPoint + (aRadius @ aRadius)
+
+	^ self
+		  from: aPoint - (aRadius @ aRadius)
+		  to: aPoint + (aRadius @ aRadius)
 ]
 
 { #category : #render }
@@ -24,7 +27,6 @@ PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyle
 	"Draw a line from xy to destination"
 
 	| origin r |
-
 	origin := aPDFGenerator determinePositionOnCurrentPage: self center.
 
 	r := aPDFGenerator convertToPoints: self radius.
@@ -49,6 +51,7 @@ PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyle
 
 { #category : #accessing }
 PDFCircleElement >> radius [
+
 	| box |
 	box :=  self to - self from.
 	^ (box x max: box y) / 2

@@ -15,7 +15,7 @@ Class {
 
 { #category : #render }
 PDFDoubleArrowElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
-	"answer the style description"
+	"Answer the style description"
 
 	^ {(PDFLineElement
 		from: self orientedFrom

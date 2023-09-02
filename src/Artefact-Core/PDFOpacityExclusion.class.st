@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityExclusion >> blendMode [
-	 ^#Exclusion
+
+	^ #Exclusion
 ]

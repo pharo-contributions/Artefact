@@ -10,5 +10,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityLighten >> blendMode [
-	 ^#Lighten
+
+	^ #Lighten
 ]

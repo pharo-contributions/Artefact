@@ -24,6 +24,7 @@ Class {
 
 { #category : #render }
 PDFDataTableElement >> calculateMinimumDimensionsForCells: cells withGenerator: aGenerator styleSheet: aStyleSheet [
+
 	| individualMinimumDimensions contextualMinimumDimensions |
 	individualMinimumDimensions := cells collect: [ :anArray |
 			(anArray
@@ -42,41 +43,49 @@ PDFDataTableElement >> calculateMinimumDimensionsForCells: cells withGenerator: 
 
 { #category : #render }
 PDFDataTableElement >> cellDimensions [
+
 	^ (self dimension x / self cellsData first size) @ (self dimension y / self cellsData size)
 ]
 
 { #category : #render }
 PDFDataTableElement >> cellsData [
+
 	^ self data
 ]
 
 { #category : #accessing }
 PDFDataTableElement >> customizationBlock [
+
 	^ customizationBlock
 ]
 
 { #category : #accessing }
 PDFDataTableElement >> customizationBlock: anObject [
+
 	customizationBlock := anObject
 ]
 
 { #category : #accessing }
 PDFDataTableElement >> data [
-	^data
+
+	^ data
 ]
 
 { #category : #accessing }
 PDFDataTableElement >> data: aTwoDimensionArray [
+
 	data := aTwoDimensionArray
 ]
 
 { #category : #'accessing - defaults' }
 PDFDataTableElement >> defaultStyle [
+
 	^ #datatable
 ]
 
 { #category : #render }
 PDFDataTableElement >> getCellsWith: aGenerator styleSheet: aStyleSheet [
+
 	| x y |
 	y := 0.
 	^ self cellsData
@@ -98,6 +107,7 @@ PDFDataTableElement >> getCellsWith: aGenerator styleSheet: aStyleSheet [
 
 { #category : #render }
 PDFDataTableElement >> getOldSubElementsWith: aGenerator styleSheet: aStyleSheet [
+
 	| currentFrom aCellDimension x y |
 	y := 1.
 	currentFrom := self from.
@@ -122,6 +132,7 @@ PDFDataTableElement >> getOldSubElementsWith: aGenerator styleSheet: aStyleSheet
 
 { #category : #render }
 PDFDataTableElement >> getProtoSubElementsWith: aGenerator styleSheet: aStyleSheet [
+
 	| currentFrom aCellDimension  cells minimumDimensions |
 	currentFrom := self from.
 	aCellDimension := self cellDimensions.
@@ -141,6 +152,7 @@ PDFDataTableElement >> getProtoSubElementsWith: aGenerator styleSheet: aStyleShe
 
 { #category : #render }
 PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
+
 	| currentFrom cells minimumDimensions cellsDimensions |
 	currentFrom := self from.
 	cells:= self getCellsWith: aGenerator styleSheet: aStyleSheet.
@@ -167,16 +179,19 @@ PDFDataTableElement >> initialize [
 
 { #category : #accessing }
 PDFDataTableElement >> margin: aMargin [
+
 	self styleSheet margin: aMargin
 ]
 
 { #category : #checking }
 PDFDataTableElement >> requiredAttributes [
+
 	^ #( from data dimension )
 ]
 
 { #category : #render }
 PDFDataTableElement >> scaleMinimumCellsDimensions: minimumDimensions [
+
 	| totalMinimumDimension scale |
 	totalMinimumDimension := (minimumDimensions first sum: #x) @ (minimumDimensions sum: [ :line | line first y ]).
 	self dimension ifNotNil: [ ((totalMinimumDimension x > self dimension x) or: [totalMinimumDimension y > self dimension y]) ifTrue: [self error: 'dimension too small for datas (required: ', (totalMinimumDimension x convertTo: self dimension x unit) asString, '@', (totalMinimumDimension y convertTo: self dimension y unit) asString, ' provided: ', self dimension asString ]].

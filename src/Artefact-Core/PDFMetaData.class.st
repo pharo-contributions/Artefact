@@ -48,21 +48,25 @@ Class {
 
 { #category : #accessing }
 PDFMetaData >> author [
+
 	^ author
 ]
 
 { #category : #accessing }
 PDFMetaData >> author: anObject [
+
 	author := anObject
 ]
 
 { #category : #accessing }
 PDFMetaData >> creator [
+
 	^ creator
 ]
 
 { #category : #accessing }
 PDFMetaData >> creator: anObject [
+
 	creator := anObject
 ]
 
@@ -71,24 +75,22 @@ PDFMetaData >> currentDateAndTimeInPDFFormat [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
 
 	| str time hour minutes seconds |
-
-
 	hour := Time now hours.
 	str := hour asString.
-	(hour < 12) ifTrue: [ str := '0' , str ].
+	hour < 12 ifTrue: [ str := '0' , str ].
 	time := str.
 
- 	minutes := Time now minutes.
+	minutes := Time now minutes.
 	str := minutes asString.
-	(minutes < 10) ifTrue: [ str := '0' , str ].
+	minutes < 10 ifTrue: [ str := '0' , str ].
 	time := time , str.
 
 	seconds := Time now seconds.
 	str := seconds asString.
-	(seconds < 10) ifTrue: [ str := '0' , str ].
+	seconds < 10 ifTrue: [ str := '0' , str ].
 	time := time , str.
 
-	^((Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time)
+	^ (Date today yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , time
 ]
 
 { #category : #initialization }
@@ -106,40 +108,48 @@ PDFMetaData >> initialize [
 
 { #category : #accessing }
 PDFMetaData >> keywords [
+
 	^ keywords
 ]
 
 { #category : #accessing }
 PDFMetaData >> keywords: anObject [
+
 	keywords := anObject
 ]
 
 { #category : #accessing }
 PDFMetaData >> producer [
+
 	^ producer
 ]
 
 { #category : #accessing }
 PDFMetaData >> producer: anObject [
+
 	producer := anObject
 ]
 
 { #category : #accessing }
 PDFMetaData >> subject [
+
 	^ subject
 ]
 
 { #category : #accessing }
 PDFMetaData >> subject: anObject [
+
 	subject := anObject
 ]
 
 { #category : #accessing }
 PDFMetaData >> title [
+
 	^ title
 ]
 
 { #category : #accessing }
 PDFMetaData >> title: anObject [
+
 	title := anObject
 ]

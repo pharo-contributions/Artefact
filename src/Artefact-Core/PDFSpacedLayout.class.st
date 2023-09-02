@@ -38,15 +38,18 @@ PDFSpacedLayout >> initialize [
 
 { #category : #checking }
 PDFSpacedLayout >> requiredAttributes [
+
 	^ #( from spacing )
 ]
 
 { #category : #accessing }
 PDFSpacedLayout >> spacing [
+
 	^ spacing
 ]
 
 { #category : #accessing }
 PDFSpacedLayout >> spacing: anObject [
+
 	spacing := anObject
 ]

@@ -17,29 +17,33 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataStartXref class >> to: aPDFDataXRef [
+
 	^ self new
-		xref: aPDFDataXRef;
-		yourself
+		  xref: aPDFDataXRef;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataStartXref >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataStartXref: self
 ]
 
 { #category : #printing }
 PDFDataStartXref >> printWith: aPDFPrinter [
+
 	aPDFPrinter printPDFDataStartXref: self
 ]
 
 { #category : #accessing }
 PDFDataStartXref >> xref [
+
 	^ xref
 ]
 
 { #category : #accessing }
 PDFDataStartXref >> xref: anObject [
+
 	xref := anObject
 ]

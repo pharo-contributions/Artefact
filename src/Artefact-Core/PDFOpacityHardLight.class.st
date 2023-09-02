@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityHardLight >> blendMode [
-	 ^#HardLight
+
+	^ #HardLight
 ]

@@ -24,6 +24,7 @@ Class {
 
 { #category : #signaling }
 ArtefactUndefinedAttribute class >> signalMissingAttribute: anAttribute for: aPDFElement [
+
 	self new
 		attribute: anAttribute;
 		element: aPDFElement;

@@ -22,9 +22,13 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataCouple class >> key: aKey value: aValue [
-	^ self new key: aKey; value: aValue; yourself
+
+	^ self new
+		  key: aKey;
+		  value: aValue;
+		  yourself
 ]
 
 { #category : #visit }
@@ -35,21 +39,25 @@ PDFDataCouple >> acceptVisitor: aVisitor [
 { #category : #testing }
 PDFDataCouple >> isPrintable [
 	"Because it will never contain an unprintable dataType"
+
 	^ key isPrintable and: [ value isPrintable ]
 ]
 
 { #category : #accessing }
 PDFDataCouple >> key [
+
 	^ key
 ]
 
 { #category : #accessing }
 PDFDataCouple >> key: anObject [
+
 	key := anObject
 ]
 
 { #category : #printing }
 PDFDataCouple >> printOn: aStream [
+
 	key printOn: aStream.
 	aStream space.
 	value printOn: aStream
@@ -57,15 +65,18 @@ PDFDataCouple >> printOn: aStream [
 
 { #category : #accessing }
 PDFDataCouple >> printWith: aPDFPrinter [
+
 	aPDFPrinter printPDFDataCouple: self
 ]
 
-{ #category : #accessing }
+{ #category : #evaluating }
 PDFDataCouple >> value [
+
 	^ value
 ]
 
 { #category : #accessing }
 PDFDataCouple >> value: anObject [
+
 	value := anObject
 ]

@@ -15,16 +15,19 @@ Class {
 
 { #category : #'instance creation' }
 PDFPolygonElement class >> from: aPosition points: anArrayOfPoints [
-	^(self from: aPosition) points: anArrayOfPoints
+
+	^ (self from: aPosition) points: anArrayOfPoints
 ]
 
 { #category : #accessing }
 PDFPolygonElement >> points [
+
 	^ points
 ]
 
 { #category : #accessing }
 PDFPolygonElement >> points: anObject [
+
 	points := anObject
 ]
 
@@ -50,5 +53,6 @@ PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyl
 
 { #category : #checking }
 PDFPolygonElement >> requiredAttributes [
+
 	^ #( from points )
 ]

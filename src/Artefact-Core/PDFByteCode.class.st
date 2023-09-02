@@ -12,125 +12,150 @@ Class {
 
 { #category : #text }
 PDFByteCode class >> beginText [
-	^'BT'
+
+	^ 'BT'
 ]
 
 { #category : #text }
 PDFByteCode class >> continuousPagesDisplayMode [
+
 	^ '/OneColumn '
 ]
 
 { #category : #draw }
 PDFByteCode class >> curve [
-	^'c'
+
+	^ 'c'
 ]
 
 { #category : #style }
 PDFByteCode class >> dotted [
-	^'d'
+
+	^ 'd'
 ]
 
 { #category : #style }
 PDFByteCode class >> drawWithColor [
-	^'RG'
+
+	^ 'RG'
 ]
 
 { #category : #style }
 PDFByteCode class >> drawWithGreyLevel [
-	^'G'
+
+	^ 'G'
 ]
 
 { #category : #text }
 PDFByteCode class >> endOfText [
-	^'ET'
+
+	^ 'ET'
 ]
 
 { #category : #style }
 PDFByteCode class >> fillWithColor [
-	^'rg'
+
+	^ 'rg'
 ]
 
 { #category : #style }
 PDFByteCode class >> fillWithGreyLevel [
-	^'g'
+
+	^ 'g'
 ]
 
 { #category : #draw }
 PDFByteCode class >> filling [
-	^'B'
+
+	^ 'B'
 ]
 
 { #category : #draw }
 PDFByteCode class >> line [
-	^'l'
+
+	^ 'l'
 ]
 
 { #category : #style }
 PDFByteCode class >> lineRoundCapStyle [
-	^'1 J'
+
+	^ '1 J'
 ]
 
 { #category : #style }
 PDFByteCode class >> lineSquareCapStyle [
-	^'2 J'
+
+	^ '2 J'
 ]
 
 { #category : #draw }
 PDFByteCode class >> moveTo [
-	^'m'
+
+	^ 'm'
 ]
 
 { #category : #draw }
 PDFByteCode class >> noFilling [
-	^'S'
+
+	^ 'S'
 ]
 
 { #category : #style }
 PDFByteCode class >> openAction [
-	^'/OpenAction'
+
+	^ '/OpenAction'
 ]
 
 { #category : #text }
 PDFByteCode class >> pageLayout [
+
 	^ '/PageLayout'
 ]
 
 { #category : #draw }
 PDFByteCode class >> rectangle [
-	^'re'
+
+	^ 're'
 ]
 
 { #category : #text }
 PDFByteCode class >> restoreGraphicsState [
+
 	^ 'Q'
 ]
 
 { #category : #style }
 PDFByteCode class >> setOpacity [
-	^'gs'
+
+	^ 'gs'
 ]
 
 { #category : #text }
 PDFByteCode class >> setTextPosition [
-	^'Td'
+
+	^ 'Td'
 ]
 
 { #category : #text }
 PDFByteCode class >> showTextString [
-	^'Tj'
+
+	^ 'Tj'
 ]
 
 { #category : #text }
 PDFByteCode class >> singlePageDisplayMode [
+
 	^ '/SinglePage '
 ]
 
 { #category : #style }
 PDFByteCode class >> thickness [
-	^'w'
+
+	^ 'w'
 ]
 
 { #category : #text }
 PDFByteCode class >> twoPagesDisplayMode [
+
 	^ '/TwoColumnLeft '
 ]

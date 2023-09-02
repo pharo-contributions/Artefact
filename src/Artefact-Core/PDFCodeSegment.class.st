@@ -31,40 +31,48 @@ PDFCodeSegment class >> isAbstract [
 
 { #category : #accessing }
 PDFCodeSegment >> fromElement [
+
 	^ fromElement
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> fromElement: anPDFElement [
+
 	fromElement := anPDFElement
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> isDrawElement [
+
 	^ isDrawElement
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> isDrawElement: anObject [
+
 	isDrawElement := anObject
 ]
 
 { #category : #testing }
 PDFCodeSegment >> isSecure [
+
 	^ true
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> printWith: aPDFWriter [
+
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> styleSheet [
+
 	^ styleSheet
 ]
 
 { #category : #accessing }
 PDFCodeSegment >> styleSheet: anObject [
+
 	styleSheet := anObject
 ]

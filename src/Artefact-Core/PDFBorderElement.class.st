@@ -10,11 +10,13 @@ Class {
 
 { #category : #style }
 PDFBorderElement >> defaultStyle [
+
 	^ #border
 ]
 
 { #category : #render }
 PDFBorderElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
+
 	^ { (PDFRectElement from: self from to: self to) thickness: 0cm.
 	(PDFLineElement from: self from x @ self from y to: self to x @ self from y style: #top).
 	(PDFLineElement from: self to x @ self from y to: self to x @ self to y style: #right).

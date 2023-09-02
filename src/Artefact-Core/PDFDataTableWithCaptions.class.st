@@ -19,15 +19,18 @@ Class {
 
 { #category : #accessing }
 PDFDataTableWithCaptions >> captions [
+
 	^ captions
 ]
 
 { #category : #accessing }
 PDFDataTableWithCaptions >> captions: anObject [
+
 	captions := anObject
 ]
 
 { #category : #checking }
 PDFDataTableWithCaptions >> requiredAttributes [
+
 	^ #( from data captions dimension )
 ]

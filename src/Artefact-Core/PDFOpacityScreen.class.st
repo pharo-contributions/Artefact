@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityScreen >> blendMode [
-	 ^#Screen
+
+	^ #Screen
 ]

@@ -54,22 +54,26 @@ PDFAlignment class >> top [
 
 { #category : #position }
 PDFAlignment >> bottom [
+
 	self vertical: #BOTTOM
 ]
 
 { #category : #position }
 PDFAlignment >> center [
+
 	self horizontal: #CENTER
 ]
 
 { #category : #accessing }
 PDFAlignment >> horizontal [
+
 	^ horizontal
 ]
 
 { #category : #accessing }
-PDFAlignment >> horizontal: anObject [
-	horizontal := anObject
+PDFAlignment >> horizontal: aSymbol [
+
+	horizontal := aSymbol
 ]
 
 { #category : #initialization }
@@ -83,60 +87,72 @@ PDFAlignment >> initialize [
 
 { #category : #testing }
 PDFAlignment >> isBottom [
-	^ self vertical = #BOTTOM
+
+	^ self vertical == #BOTTOM
 ]
 
 { #category : #testing }
 PDFAlignment >> isCenter [
-	^ self horizontal = #CENTER
+
+	^ self horizontal == #CENTER
 ]
 
 { #category : #testing }
 PDFAlignment >> isLeft [
-	^ self horizontal = #LEFT
+
+	^ self horizontal == #LEFT
 ]
 
 { #category : #testing }
 PDFAlignment >> isMiddle [
-	^ self vertical = #MIDDLE
+
+	^ self vertical == #MIDDLE
 ]
 
 { #category : #testing }
 PDFAlignment >> isRight [
-	^ self horizontal = #RIGHT
+
+	^ self horizontal == #RIGHT
 ]
 
 { #category : #testing }
 PDFAlignment >> isTop [
-	^ self vertical = #TOP
+
+	^ self vertical == #TOP
 ]
 
 { #category : #position }
 PDFAlignment >> left [
-	self horizontal:  #LEFT
+
+	self horizontal: #LEFT
 ]
 
 { #category : #position }
 PDFAlignment >> middle [
+
 	self vertical: #MIDDLE
 ]
 
 { #category : #position }
 PDFAlignment >> right [
+
 	self horizontal: #RIGHT
 ]
 
 { #category : #position }
 PDFAlignment >> top [
+
 	self vertical: #TOP
 ]
 
 { #category : #accessing }
 PDFAlignment >> vertical [
+
 	^ vertical
 ]
 
 { #category : #accessing }
-PDFAlignment >> vertical: anObject [
-	vertical := anObject
+PDFAlignment >> vertical: aSymbol [
+
+	vertical := aSymbol
 ]

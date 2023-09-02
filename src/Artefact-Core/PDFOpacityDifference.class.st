@@ -10,5 +10,6 @@ Class {
 
 { #category : #effect }
 PDFOpacityDifference >> blendMode [
-	 ^#Difference
+
+	^ #Difference
 ]

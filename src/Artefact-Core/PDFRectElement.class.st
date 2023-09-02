@@ -15,7 +15,6 @@ PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSh
 	"Draw a rectangle from xy with a specified dimension"
 
 	| position |
-
 	position := aPDFGenerator determinePositionOnCurrentPage: self from.
 
 	^(String streamContents: [ :s |
@@ -28,5 +27,5 @@ PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSh
 		nextPutAll: PDFByteCode rectangle;
 		space;
 		nextPutAll:( self fillMode: (aStyleSheet filled))
-	 ]).
+	 ])
 ]

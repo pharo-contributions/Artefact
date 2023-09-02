@@ -16,16 +16,18 @@ PDFBasic class >> isAbstract [
 	^ self == PDFBasic
 ]
 
-{ #category : #render }
+{ #category : #accessing }
 PDFBasic >> codeSegmentClass [
+
 	^ PDFElementCodeSegment
 ]
 
 { #category : #action }
 PDFBasic >> determinePosition: aPosition on: aPage [
-	"answer the real position of the PDF element on the page"
+	"Answer the real position of the PDF element on the page"
 
-	^(aPage document convertToPoints: aPosition x) @ ((aPage format defaultSize y) - (aPage document convertToPoints: aPosition y))
+	^ (aPage document convertToPoints: aPosition x) @ (aPage format defaultSize y
+		   - (aPage document convertToPoints: aPosition y))
 ]
 
 { #category : #render }
@@ -41,23 +43,31 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet forma
 		fromElement: self
 ]
 
-{ #category : #action }
+{ #category : #testing }
 PDFBasic >> isDrawElement [
+
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 PDFBasic >> opacity: anOpacity [
+
 	self styleSheet opacity: anOpacity
 ]
 
 { #category : #render }
 PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+
 	self subclassResponsibility
 ]
 
 { #category : #action }
 PDFBasic >> splitCoordinates: aPosition [
 	"Answer a formated string with x and y"
-	^(String streamContents: [ :s | s print: aPosition x; space; print: aPosition y ])
+
+	^ String streamContents: [ :s |
+		  s
+			  print: aPosition x;
+			  space;
+			  print: aPosition y ]
 ]

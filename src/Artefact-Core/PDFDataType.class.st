@@ -20,12 +20,14 @@ PDFDataType class >> isAbstract [
 	^ self == PDFDataType
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataType >> acceptVisitor: aVisitor [
+
 	^ self subclassResponsibility
 ]
 
 { #category : #testing }
 PDFDataType >> isPrintable [
+
 	^ false
 ]

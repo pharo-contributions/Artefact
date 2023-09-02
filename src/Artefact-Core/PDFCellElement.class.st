@@ -15,11 +15,13 @@ Class {
 
 { #category : #'instance creation' }
 PDFCellElement class >> from: aPoint dimension: aDimension text: aText [
+
 	^ (self from: aPoint dimension: aDimension) text: aText
 ]
 
 { #category : #'initialize-release' }
 PDFCellElement >> defaultStyle [
+
 	^ #cell
 ]
 

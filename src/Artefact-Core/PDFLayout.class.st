@@ -30,16 +30,19 @@ PDFLayout class >> isAbstract [
 
 { #category : #'instance creation' }
 PDFLayout class >> on: aCollection [
+
 	^ self new elements: aCollection
 ]
 
 { #category : #adding }
 PDFLayout >> add: aPDFElement [
+
 	self elements addLast: aPDFElement
 ]
 
 { #category : #render }
 PDFLayout >> createOriginalDimensionDictionary [
+
 	| dimensions |
 	dimensions := Dictionary new.
 	self elements do: [ :anElement | dimensions at: anElement put: anElement dimension ].
@@ -48,6 +51,7 @@ PDFLayout >> createOriginalDimensionDictionary [
 
 { #category : #render }
 PDFLayout >> createOriginalPositionDictionary [
+
 	| positions |
 	positions := Dictionary new.
 	self elements do: [ :anElement | positions at: anElement put: anElement from ].
@@ -56,31 +60,37 @@ PDFLayout >> createOriginalPositionDictionary [
 
 { #category : #style }
 PDFLayout >> defaultStyle [
+
 	^ #default
 ]
 
 { #category : #render }
 PDFLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+
 	anElement dimension: (anElement minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet)
 ]
 
 { #category : #render }
 PDFLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 PDFLayout >> elements [
+
 	^ elements
 ]
 
 { #category : #accessing }
 PDFLayout >> elements: anObject [
+
 	elements := anObject
 ]
 
 { #category : #render }
-PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet  format: aFormat [
+PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat [
+
 	| elementsOriginalPosition codeSegments compositeStyleSheet elementsOriginalDimension |
 	elementsOriginalPosition := self createOriginalPositionDictionary.
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
@@ -96,7 +106,8 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 ]
 
 { #category : #render }
-PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet  page: aPage [
+PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet page: aPage [
+
 	| elementsOriginalPosition codeSegments compositeStyleSheet elementsOriginalDimension |
 	elementsOriginalPosition := self createOriginalPositionDictionary.
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
@@ -120,10 +131,12 @@ PDFLayout >> initialize [
 
 { #category : #accessing }
 PDFLayout >> nextElementFrom [
+
 	^ nextElementFrom ifNil: [ self from ]
 ]
 
 { #category : #accessing }
 PDFLayout >> nextElementFrom: nextPosition [
-	nextElementFrom:= nextPosition
+
+	nextElementFrom := nextPosition
 ]

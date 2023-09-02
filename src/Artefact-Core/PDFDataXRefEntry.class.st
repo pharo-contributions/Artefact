@@ -17,24 +17,28 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataXRefEntry class >> referencedObject: aPDFDataTypeObject [
+
 	^ self new
-		referencedObject: aPDFDataTypeObject;
-		yourself
+		  referencedObject: aPDFDataTypeObject;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataXRefEntry >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataXRefEntry: self
 ]
 
 { #category : #accessing }
 PDFDataXRefEntry >> referencedObject [
+
 	^ referencedObject
 ]
 
 { #category : #accessing }
 PDFDataXRefEntry >> referencedObject: anObject [
+
 	referencedObject := anObject
 ]

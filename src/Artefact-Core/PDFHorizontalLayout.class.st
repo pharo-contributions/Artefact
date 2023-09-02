@@ -12,6 +12,7 @@ Class {
 
 { #category : #layouting }
 PDFHorizontalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+
 	| previousElement |
 	anElement
 		from:

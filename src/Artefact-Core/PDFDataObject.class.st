@@ -27,33 +27,39 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataObject >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataObject: self
 ]
 
 { #category : #accessing }
 PDFDataObject >> addContent: aContent [
+
 	contents addLast: aContent
 ]
 
 { #category : #accessing }
 PDFDataObject >> contents [
+
 	^ contents
 ]
 
 { #category : #accessing }
 PDFDataObject >> contents: anObject [
+
 	contents := anObject
 ]
 
 { #category : #accessing }
 PDFDataObject >> id [
+
 	^ id
 ]
 
 { #category : #accessing }
 PDFDataObject >> id: anObject [
+
 	id := anObject
 ]
 
@@ -64,8 +70,9 @@ PDFDataObject >> initialize [
 	contents := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataObject >> printOn: aStream [
+
 	aStream nextPutAll: id asString; space; nextPutAll: revision asString; space; nextPutAll: 'obj'; lf.
 	contents do: [:aContent | aContent printOn: aStream. aStream lf].
 	aStream nextPutAll: 'endobj'
@@ -73,10 +80,12 @@ PDFDataObject >> printOn: aStream [
 
 { #category : #accessing }
 PDFDataObject >> revision [
+
 	^ revision
 ]
 
 { #category : #accessing }
 PDFDataObject >> revision: anObject [
+
 	revision := anObject
 ]

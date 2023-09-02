@@ -12,16 +12,19 @@ Class {
 
 { #category : #'instance creation' }
 PDFJpegElement class >> fromMorph: aMorph [
-	| imgpng |
 
-	imgpng := ReadWriteStream  on: (ByteArray new).
-	PluginBasedJPEGReadWriter new on: imgpng; nextPutImage: (aMorph imageForm).
+	| image |
+	image := ReadWriteStream on: ByteArray new.
+	PluginBasedJPEGReadWriter new
+		on: image;
+		nextPutImage: aMorph imageForm.
 
-	^ self fromStream: imgpng
+	^ self fromStream: image
 ]
 
 { #category : #accessing }
 PDFJpegElement >> stream: anImageStream [
+
 	| readWriter |
 	stream := anImageStream.	"Compute original dimensions for this image"
 	readWriter := (JPEGReadWriter on: anImageStream)

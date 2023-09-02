@@ -9,5 +9,6 @@ Class {
 
 { #category : #effect }
 PDFOpacitySaturation >> blendMode [
-	 ^#Saturation
+
+	^ #Saturation
 ]
