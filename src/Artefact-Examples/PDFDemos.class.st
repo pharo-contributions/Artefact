@@ -20,7 +20,9 @@ PDFDemos class >> CDTemplateTest [
 	"PDFDemos CDTemplateTest"
 
 	<script>
-	self new CDTemplateTest: (self streamNamed: 'CDTemplateTest.pdf')
+	self
+		streamNamed: 'CDTemplateTest.pdf'
+		do: [ :s | self new CDTemplateTest: s ]
 ]
 
 { #category : #templates }
@@ -28,7 +30,9 @@ PDFDemos class >> DVDTemplateTest [
 	"PDFDemos DVDTemplateTest"
 
 	<script>
-	self new DVDTemplateTest: (self streamNamed: 'DVDTemplateTest.pdf')
+	self
+		streamNamed: 'DVDTemplateTest.pdf'
+		do: [ :s | self new DVDTemplateTest: s ]
 ]
 
 { #category : #text }
@@ -36,7 +40,9 @@ PDFDemos class >> alignmentsTest [
 	"PDFDemos alignmentsTest"
 
 	<script>
-	self new alignmentsTest: (self streamNamed: 'alignmentsTest.pdf')
+	self
+		streamNamed: 'alignmentsTest.pdf'
+		do: [ :s | self new alignmentsTest: s ]
 ]
 
 { #category : #composite }
@@ -44,7 +50,9 @@ PDFDemos class >> arrowTest [
 	"PDFDemos arrowTest"
 
 	<script>
-	self new arrowTest: (self streamNamed: 'arrowTest.pdf')
+	self
+		streamNamed: 'arrowTest.pdf'
+		do: [ :s | self new arrowTest: s ]
 ]
 
 { #category : #draw }
@@ -52,7 +60,9 @@ PDFDemos class >> bezierTest [
 	"PDFDemos bezierTest"
 
 	<script>
-	self new bezierTest: (self streamNamed: 'bezierTest.pdf')
+	self
+		streamNamed: 'bezierTest.pdf'
+		do: [ :s | self new bezierTest: s ]
 ]
 
 { #category : #experimental }
@@ -60,7 +70,9 @@ PDFDemos class >> brochureTest [
 	"PDFDemos brochureTest"
 
 	<script>
-	self new brochure: (self streamNamed: 'brochure.pdf')
+	self
+		streamNamed: 'brochureTest.pdf'
+		do: [ :s | self new brochureTest: s ]
 ]
 
 { #category : #draw }
@@ -68,7 +80,9 @@ PDFDemos class >> capLineTest [
 	"PDFDemos capLineTest"
 
 	<script>
-	self new capLineTest: (self streamNamed: 'capLineTest.pdf')
+	self
+		streamNamed: 'capLineTest.pdf'
+		do: [ :s | self new capLineTest: s ]
 ]
 
 { #category : #composite }
@@ -76,7 +90,9 @@ PDFDemos class >> cellTest [
 	"PDFDemos cellTest"
 
 	<script>
-	self new cellTest: (self streamNamed: 'cellTest.pdf')
+	self
+		streamNamed: 'cellTest.pdf'
+		do: [ :s | self new cellTest: s ]
 ]
 
 { #category : #draw }
@@ -84,7 +100,9 @@ PDFDemos class >> circlesTest [
 	"PDFDemos circlesTest"
 
 	<script>
-	self new circlesTest: (self streamNamed: 'circlesTest.pdf')
+	self
+		streamNamed: 'circlesTest.pdf'
+		do: [ :s | self new circlesTest: s ]
 ]
 
 { #category : #color }
@@ -92,7 +110,9 @@ PDFDemos class >> colorTest [
 	"PDFDemos colorTest"
 
 	<script>
-	self new colorTest: (self streamNamed: 'colorTest.pdf')
+	self
+		streamNamed: 'colorTest.pdf'
+		do: [ :s | self new colorTest: s ]
 ]
 
 { #category : #composite }
@@ -100,7 +120,9 @@ PDFDemos class >> datatableTest [
 	"PDFDemos datatableTest"
 
 	<script>
-	self new datatableTest: (self streamNamed: 'datatableTest.pdf')
+	self
+		streamNamed: 'datatableTest.pdf'
+		do: [ :s | self new datatableTest: s ]
 ]
 
 { #category : #composite }
@@ -108,7 +130,9 @@ PDFDemos class >> datatableWithCaptionsTest [
 	"PDFDemos datatableWithCaptionsTest"
 
 	<script>
-	self new datatableWithCaptionsTest: (self streamNamed: 'datatableWithCaptionsTest.pdf')
+	self
+		streamNamed: 'datatableWithCaptionsTest.pdf'
+		do: [ :s | self new datatableWithCaptionsTest: s ]
 ]
 
 { #category : #tool }
@@ -122,7 +146,9 @@ PDFDemos class >> documentDisplayLayoutTest [
 	"PDFDemos documentDisplayLayoutTest"
 
 	<script>
-	self new documentDisplayLayoutTest: (self streamNamed: 'documentDisplayLayoutTest.pdf')
+	self
+		streamNamed: 'documentDisplayLayoutTest.pdf'
+		do: [ :s | self new documentDisplayLayoutTest: s ]
 ]
 
 { #category : #'display setup' }
@@ -130,7 +156,9 @@ PDFDemos class >> documentDisplayModeTest [
 	"PDFDemos documentDisplayModeTest"
 
 	<script>
-	self new documentDisplayModeTest: (self streamNamed: 'documentDisplayModeTest.pdf')
+	self
+		streamNamed: 'documentDisplayModeTest.pdf'
+		do: [ :s | self new documentDisplayModeTest: s ]
 ]
 
 { #category : #'display setup' }
@@ -138,7 +166,9 @@ PDFDemos class >> documentZoomTest [
 	"PDFDemos documentZoomTest"
 
 	<script>
-	self new documentZoomTest: (self streamNamed: 'documentZoomTest.pdf')
+	self
+		streamNamed: 'documentZoomTest.pdf'
+		do: [ :s | self new documentZoomTest: s ]
 ]
 
 { #category : #color }
@@ -146,7 +176,9 @@ PDFDemos class >> drawStyleSheetTest [
 	"PDFDemos drawStyleSheetTest"
 
 	<script>
-	self new drawStyleSheetTest: (self streamNamed: 'drawStyleSheetTest.pdf')
+	self
+		streamNamed: 'drawStyleSheetTest.pdf'
+		do: [ :s | self new drawStyleSheetTest: s ]
 ]
 
 { #category : #draw }
@@ -154,7 +186,9 @@ PDFDemos class >> ellipsesTest [
 	"PDFDemos ellipsesTest"
 
 	<script>
-	self new ellipsesTest: (self streamNamed: 'ellipsesTest.pdf')
+	self
+		streamNamed: 'ellipsesTest.pdf'
+		do: [ :s | self new ellipsesTest: s ]
 ]
 
 { #category : #text }
@@ -162,7 +196,9 @@ PDFDemos class >> euroTest [
 	"PDFDemos euroTest"
 
 	<script>
-	self new euroTest: (self streamNamed: 'euroTest.pdf')
+	self
+		streamNamed: 'euroTest.pdf'
+		do: [ :s | self new euroTest: s ]
 ]
 
 { #category : #color }
@@ -170,7 +206,9 @@ PDFDemos class >> greyLevelTest [
 	"PDFDemos greyLevelTest"
 
 	<script>
-	self new greyLevelTest: (self streamNamed: 'greyLevelTest.pdf')
+	self
+		streamNamed: 'greyLevelTest.pdf'
+		do: [ :s | self new greyLevelTest: s ]
 ]
 
 { #category : #layout }
@@ -178,23 +216,29 @@ PDFDemos class >> horizontalLayoutTest [
 	"PDFDemos horizontalLayoutTest"
 
 	<script>
-	self new horizontalLayoutTest: (self streamNamed: 'horizontalLayoutTest.pdf')
+	self
+		streamNamed: 'horizontalLayoutTest.pdf'
+		do: [ :s | self new horizontalLayoutTest: s ]
 ]
 
 { #category : #image }
 PDFDemos class >> imageJPGTest [
-	"PDFDemos imageJPG"
+	"PDFDemos imageJPGTest"
 
 	<script>
-	self new imageJPG: (self streamNamed: 'imageJPG.pdf')
+	self
+		streamNamed: 'imageJPGTest.pdf'
+		do: [ :s | self new imageJPGTest: s ]
 ]
 
 { #category : #image }
 PDFDemos class >> imagePNGTest [
-	"PDFDemos imagePNG"
+	"PDFDemos imagePNGTest"
 
 	<script>
-	self new imagePNG: (self streamNamed: 'imagePNG.pdf')
+	self
+		streamNamed: 'imagePNGTest.pdf'
+		do: [ :s | self new imagePNGTest: s ]
 ]
 
 { #category : #document }
@@ -202,7 +246,9 @@ PDFDemos class >> infosTest [
 	"PDFDemos infosTest"
 
 	<script>
-	self new infosTest: (self streamNamed: 'infosTest.pdf')
+	self
+		streamNamed: 'infosTest.pdf'
+		do: [ :s | self new infosTest: s ]
 ]
 
 { #category : #draw }
@@ -210,7 +256,9 @@ PDFDemos class >> lineTest [
 	"PDFDemos lineTest"
 
 	<script>
-	self new lineTest: (self streamNamed: 'lineTest.pdf')
+	self
+		streamNamed: 'lineTest.pdf'
+		do: [ :s | self new lineTest: s ]
 ]
 
 { #category : #color }
@@ -218,7 +266,9 @@ PDFDemos class >> mosaiqueTest [
 	"PDFDemos mosaiqueTest"
 
 	<script>
-	self new mosaiqueTest: (self streamNamed: 'mosaiqueTest.pdf')
+	self
+		streamNamed: 'mosaiqueTest.pdf'
+		do: [ :s | self new mosaiqueTest: s ]
 ]
 
 { #category : #document }
@@ -226,7 +276,9 @@ PDFDemos class >> multiOrientationsTest [
 	"PDFDemos multiOrientationsTest"
 
 	<script>
-	self new multiOrientationsTest: (self streamNamed: 'multiOrientationsTest.pdf')
+	self
+		streamNamed: 'multiOrientationsTest.pdf'
+		do: [ :s | self new multiOrientationsTest: s ]
 ]
 
 { #category : #style }
@@ -234,7 +286,9 @@ PDFDemos class >> multiStyleArrowsTest [
 	"PDFDemos multiStyleArrowsTest"
 
 	<script>
-	self new multiStyleArrowsTest: (self streamNamed: 'multiStyleArrowsTest.pdf')
+	self
+		streamNamed: 'multiStyleArrowsTest.pdf'
+		do: [ :s | self new multiStyleArrowsTest: s ]
 ]
 
 { #category : #cool }
@@ -242,7 +296,9 @@ PDFDemos class >> oneLineTest [
 	"PDFDemos oneLineTest"
 
 	<script>
-	self new oneLineTest: (self streamNamed: 'oneLineTest.pdf')
+	self
+		streamNamed: 'oneLineTest.pdf'
+		do: [ :s | self new oneLineTest: s ]
 ]
 
 { #category : #composite }
@@ -250,7 +306,9 @@ PDFDemos class >> paragraphTest [
 	"PDFDemos paragraphTest"
 
 	<script>
-	self new paragraphTest: (self streamNamed: 'paragraphTest.pdf')
+	self
+		streamNamed: 'paragraphTest.pdf'
+		do: [ :s | self new paragraphTest: s ]
 ]
 
 { #category : #composite }
@@ -258,7 +316,9 @@ PDFDemos class >> paragraphWithSpacingTest [
 	"PDFDemos paragraphWithSpacingTest"
 
 	<script>
-	self new paragraphWithSpacingTest: (self streamNamed: 'paragraphWithSpacingTest.pdf')
+	self
+		streamNamed: 'paragraphWithSpacingTest.pdf'
+		do: [ :s | self new paragraphWithSpacingTest: s ]
 ]
 
 { #category : #draw }
@@ -266,7 +326,9 @@ PDFDemos class >> polygonsTest [
 	"PDFDemos polygonsTest"
 
 	<script>
-	self new polygonsTest: (self streamNamed: 'polygonsTest.pdf')
+	self
+		streamNamed: 'polygonsTest.pdf'
+		do: [ :s | self new polygonsTest: s ]
 ]
 
 { #category : #draw }
@@ -274,7 +336,9 @@ PDFDemos class >> rectsTest [
 	"PDFDemos rectsTest"
 
 	<script>
-	self new rectsTest: (self streamNamed: 'rectsTest.pdf')
+	self
+		streamNamed: 'rectsTest.pdf'
+		do: [ :s | self new rectsTest: s ]
 ]
 
 { #category : #experimental }
@@ -282,7 +346,9 @@ PDFDemos class >> rotationTest [
 	"PDFDemos rotationTest"
 
 	<script>
-	self new rotationTest: (self streamNamed: 'rotation.pdf')
+	self
+		streamNamed: 'rotationTest.pdf'
+		do: [ :s | self new rotationTest: s ]
 ]
 
 { #category : #runAllDemos }
@@ -294,19 +360,14 @@ PDFDemos class >> runAllDemos [
 ]
 
 { #category : #tool }
-PDFDemos class >> streamNamed: aName [
+PDFDemos class >> streamNamed: aName do: aBlock [
+
 	| file |
 	file := (self demoPath , aName) asFileReference.
 	file parent ensureCreateDirectory.
 	file ensureDelete.
-	self flag: #todo.	"The next expression is a hack to correct a Pharo 6/7 compatibility.
-	We need a binary write stream to print on but the way to get one changed between Pharo 6 and 7. To improve the code we could add a Pharo^ compatibility package that would add #binaryWriteStream to Pharo 6, but I have not time for now, I just want to make demos work.
-	"
-	^ SystemVersion current major < 7
-		ifTrue: [ file writeStream
-				binary;
-				yourself ]
-		ifFalse: [ file binaryWriteStream ]
+
+	^ file binaryWriteStreamDo: aBlock
 ]
 
 { #category : #text }
@@ -314,7 +375,9 @@ PDFDemos class >> textTest [
 	"PDFDemos textTest"
 
 	<script>
-	self new textTest: (self streamNamed: 'textTest.pdf')
+	self
+		streamNamed: 'textTest.pdf'
+		do: [ :s | self new textTest: s ]
 ]
 
 { #category : #draw }
@@ -322,7 +385,9 @@ PDFDemos class >> thicknessTest [
 	"PDFDemos thicknessTest"
 
 	<script>
-	self new thicknessTest: (self streamNamed: 'thicknessTest.pdf')
+	self
+		streamNamed: 'thicknessTest.pdf'
+		do: [ :s | self new thicknessTest: s ]
 ]
 
 { #category : #draw }
@@ -330,7 +395,9 @@ PDFDemos class >> twoColoredRectsOpacityTest [
 	"PDFDemos twoColoredRectsOpacityTest"
 
 	<script>
-	self new twoColoredRectsOpacityTest: (self streamNamed: 'twoColoredRectsOpacityTest.pdf')
+	self
+		streamNamed: 'twoColoredRectsOpacityTest.pdf'
+		do: [ :s | self new twoColoredRectsOpacityTest: s ]
 ]
 
 { #category : #draw }
@@ -338,7 +405,9 @@ PDFDemos class >> twoColoredRectsTest [
 	"PDFDemos twoColoredRectsTest"
 
 	<script>
-	self new twoColoredRectsTest: (self streamNamed: 'twoColoredRectsTest.pdf')
+	self
+		streamNamed: 'twoColoredRectsTest.pdf'
+		do: [ :s | self new twoColoredRectsTest: s ]
 ]
 
 { #category : #layout }
@@ -346,7 +415,9 @@ PDFDemos class >> verticalLayoutTest [
 	"PDFDemos verticalLayoutTest"
 
 	<script>
-	self new verticalLayoutTest: (self streamNamed: 'verticalLayoutTest.pdf')
+	self
+		streamNamed: 'verticalLayoutTest.pdf'
+		do: [ :s | self new verticalLayoutTest: s ]
 ]
 
 { #category : #misc }
@@ -354,7 +425,9 @@ PDFDemos class >> widthTest [
 	"PDFDemos widthTest"
 
 	<script>
-	self new widthTest: (self streamNamed: 'widthTest.pdf')
+	self
+		streamNamed: 'widthTest.pdf'
+		do: [ :s | self new widthTest: s ]
 ]
 
 { #category : #templates }
@@ -490,7 +563,7 @@ PDFDemos >> bezierTest: aStream [
 ]
 
 { #category : #experimental }
-PDFDemos >> brochure: aStream [
+PDFDemos >> brochureTest: aStream [
 	"Artefact use an JPG file"
 
 	| pdfdoc aPage titleFont subtitleFont titleColor layout quoteFont pharoLogo |
@@ -1104,14 +1177,14 @@ pdfdoc exportTo: aStream
 ]
 
 { #category : #image }
-PDFDemos >> imageJPG: aStream [
+PDFDemos >> imageJPGTest: aStream [
 	"How to use a JPEG file with artefact"
 
 	| pdfdoc aPage pharoByExampleLogo |
 	pdfdoc := PDFDocument new.
 	"Downloading JPEG file from internet with Zinc"
 	pharoByExampleLogo := (ZnClient new
-		url: 'https://gforge.inria.fr/frs/download.php/file/22781/pharocard.jpg';
+		url: 'https://files.pharo.org/media/pharocard.jpg';
 		get).
 	aPage := PDFPage new.
 	aPage add: (PDFJpegElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoByExampleLogo readStream).
@@ -1138,7 +1211,7 @@ pdfdoc exportTo: aStream
 ]
 
 { #category : #image }
-PDFDemos >> imagePNG: aStream [
+PDFDemos >> imagePNGTest: aStream [
 	"How to use a PNG file with artefact"
 
 	| pdfdoc aPage pharoLogo |
