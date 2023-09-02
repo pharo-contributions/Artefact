@@ -1,6 +1,6 @@
 Extension { #name : #FileReference }
 
-{ #category : #'*Artefact-Pharo6Compatibility' }
+{ #category : #'*Artefact-Pharo60-Compatibility' }
 FileReference >> binaryWriteStream [
 
 	^ (filesystem writeStreamOn: self path)
