@@ -108,7 +108,8 @@ PDFElement >> height [
 ]
 
 { #category : #initialization }
-PDFElement >> initialize [ 
+PDFElement >> initialize [
+
 	super initialize.
 	self orientation: #bottomRight.
 	self initializeStyle

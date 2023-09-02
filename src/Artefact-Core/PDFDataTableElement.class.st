@@ -70,7 +70,7 @@ PDFDataTableElement >> data: aTwoDimensionArray [
 	data := aTwoDimensionArray
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #'accessing - defaults' }
 PDFDataTableElement >> defaultStyle [
 	^ #datatable
 ]
@@ -158,10 +158,11 @@ PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 	^ cells flattened
 ]
 
-{ #category : #'initialize-release' }
-PDFDataTableElement >> initialize [ 
+{ #category : #initialization }
+PDFDataTableElement >> initialize [
+
 	super initialize.
-	self customizationBlock: [ :cell :x :y :cellData | ].
+	self customizationBlock: [ :cell :x :y :cellData |  ]
 ]
 
 { #category : #accessing }

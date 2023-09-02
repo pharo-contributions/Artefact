@@ -47,7 +47,9 @@ PDFDataArray >> elements: anObject [
 ]
 
 { #category : #initialization }
-PDFDataArray >> initialize [ 
+PDFDataArray >> initialize [
+
+	super initialize.
 	elements := OrderedCollection new
 ]
 

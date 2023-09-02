@@ -93,12 +93,15 @@ PDFMetaData >> currentDateAndTimeInPDFFormat [
 
 { #category : #initialization }
 PDFMetaData >> initialize [
-	self author: ''.
-	self creator: ''.
-	self keywords: ''.
-	self producer: 'Artefact'.
-	self subject: ''.
-	self title: ''
+
+	super initialize.
+	self
+		author: '';
+		creator: '';
+		keywords: '';
+		producer: 'Artefact';
+		subject: '';
+		title: ''
 ]
 
 { #category : #accessing }

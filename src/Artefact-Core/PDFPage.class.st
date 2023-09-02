@@ -87,8 +87,9 @@ PDFPage >> format: aPDFFormat [
 	format :=  aPDFFormat
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFPage >> initialize [
+
 	super initialize.
 	elements := OrderedCollection new
 ]

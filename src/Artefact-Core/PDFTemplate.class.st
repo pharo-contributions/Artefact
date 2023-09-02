@@ -32,10 +32,10 @@ PDFTemplate >> drawTemplate [
 	self subclassResponsibility 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFTemplate >> initialize [
-	super initialize.
 
+	super initialize.
 	self dotted: (PDFDotted new length: 1 mm; space: 1 mm).
-	self drawTemplate.
+	self drawTemplate
 ]

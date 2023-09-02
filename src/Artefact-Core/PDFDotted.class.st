@@ -37,8 +37,9 @@ PDFDotted >> generateCodeWith: aPDFGenerator [
 	]).
 ]
 
-{ #category : #accessing }
-PDFDotted >> initialize [ 
+{ #category : #initialization }
+PDFDotted >> initialize [
+
 	super initialize.
 	self length: 1 pt.
 	self space: 1 pt

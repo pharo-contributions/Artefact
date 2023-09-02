@@ -74,8 +74,11 @@ PDFAlignment >> horizontal: anObject [
 
 { #category : #initialization }
 PDFAlignment >> initialize [
-	self left;
-	 middle.
+
+	super initialize.
+	self
+		left;
+		middle
 ]
 
 { #category : #testing }

@@ -30,9 +30,10 @@ PDFSpacedLayout >> defaultSpacing [
 ]
 
 { #category : #initialization }
-PDFSpacedLayout >> initialize [ 
+PDFSpacedLayout >> initialize [
+
 	super initialize.
-	spacing := self defaultSpacing.
+	spacing := self defaultSpacing
 ]
 
 { #category : #checking }

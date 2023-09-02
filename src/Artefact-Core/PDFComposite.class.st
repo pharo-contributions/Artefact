@@ -81,6 +81,7 @@ PDFComposite >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 
 { #category : #initialization }
 PDFComposite >> initialize [
+
 	super initialize.
 	self filled: false
 ]

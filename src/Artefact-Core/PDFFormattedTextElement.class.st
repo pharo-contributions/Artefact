@@ -45,8 +45,3 @@ PDFFormattedTextElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleS
 
 	^ {PDFTextElement new text: (self text); from: (decx + self from x)@(self from y + height)}
 ]
-
-{ #category : #'initialize-release' }
-PDFFormattedTextElement >> initialize [
-	super initialize.
-]
