@@ -38,19 +38,19 @@ BaselineOfArtefact >> baseline: spec [
 				   #'pharo6.x' )
 			do: [
 				spec
-					package: 'Artefact-Pharo6Compatibility';
+					package: 'Artefact-Pharo60-Compatibility';
 					package: 'Artefact-Examples'
 					with: [
 						spec requires:
-								#( 'Artefact-Core' 'Artefact-Pharo6Compatibility' ) ] ].
+								#( 'Artefact-Core' 'Artefact-Pharo60-Compatibility' ) ] ].
 
 		"Groups"
 		spec			
-			group: 'core' with: #('Artefact-Core' );
-			group: 'tests' with: #( 'Artefact-Core-Tests' );
-			group: 'examples' with: #( 'Artefact-Examples' );
-			group: 'seaside' with: #( 'Artefact-Seaside' );
-			group: 'default' with: #( 'core' 'tests' 'examples' ) ]
+			group: 'core' with: #('Artefact-Core');
+			group: 'tests' with: #('Artefact-Core-Tests');
+			group: 'examples' with: #('Artefact-Examples');
+			group: 'seaside' with: #('Artefact-Seaside');
+			group: 'default' with: #('core' 'tests' 'examples') ]
 ]
 
 { #category : #dependencies }
