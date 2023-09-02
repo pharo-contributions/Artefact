@@ -1,7 +1,10 @@
+"
+Baseline for [https://github.com/pharo-contributions/Artefact](https://github.com/pharo-contributions/Artefact)
+"
 Class {
 	#name : #BaselineOfArtefact,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfArtefact
+	#category : #'BaselineOfArtefact-Base'
 }
 
 { #category : #baselines }
