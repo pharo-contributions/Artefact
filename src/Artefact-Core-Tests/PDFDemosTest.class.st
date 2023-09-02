@@ -6,7 +6,11 @@ Class {
 
 { #category : #tests }
 PDFDemosTest >> testAllDemos [
+
 	| demos |
 	demos := PDFDemos new.
-	PDFDemos methods do: [ :m | demos perform: m selector with: (MultiByteBinaryOrTextStream on: String new) ]
+	PDFDemos methods do: [ :m |
+		PDFDemos
+			streamNamed: 'allDemos.pdf'
+			do: [ :stream | demos perform: m selector with: stream ] ]
 ]
