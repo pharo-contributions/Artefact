@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'testLayout'
 	],
-	#category : #'Artefact-Tests-Layouts'
+	#category : #'Artefact-Core-Tests-Layouts'
 }
 
 { #category : #running }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aStream'
 	],
-	#category : #'Artefact-Tests-DataTypes'
+	#category : #'Artefact-Core-Tests-DataTypes'
 }
 
 { #category : #utilities }

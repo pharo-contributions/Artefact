@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'generator'
 	],
-	#category : #'Artefact-Tests-Generator'
+	#category : #'Artefact-Core-Tests-Generator'
 }
 
 { #category : #running }

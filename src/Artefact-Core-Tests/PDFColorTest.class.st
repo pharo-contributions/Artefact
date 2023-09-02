@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFColorTest,
 	#superclass : #TestCase,
-	#category : #'Artefact-Tests-Base'
+	#category : #'Artefact-Core-Tests-Base'
 }
 
 { #category : #tests }

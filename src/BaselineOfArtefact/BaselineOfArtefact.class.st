@@ -22,7 +22,7 @@ BaselineOfArtefact >> baseline: spec [
 			with: [ spec requires: #( 'Units' 'Stylesheet' ) ];
 			package: 'Artefact-Examples'
 			with: [ spec requires: #( 'Artefact-Core' ) ];
-			package: 'Artefact-Tests'
+			package: 'Artefact-Core-Tests'
 			with: [ spec requires: #( 'Artefact-Core' 'Artefact-Examples' ) ];
 			package: 'Artefact-Seaside'
 			with: [
@@ -42,12 +42,12 @@ BaselineOfArtefact >> baseline: spec [
 								#( 'Artefact-Core' 'Artefact-Pharo6Compatibility' ) ] ].
 
 		"Groups"
-		spec
-			group: 'default' with: #( 'core' 'tests' 'examples' );
-			group: 'core' with: #( 'Artefact-Core' );
-			group: 'tests' with: #( 'Artefact-Tests' );
+		spec			
+			group: 'core' with: #('Artefact-Core' );
+			group: 'tests' with: #( 'Artefact-Core-Tests' );
 			group: 'examples' with: #( 'Artefact-Examples' );
-			group: 'seaside' with: #( 'Artefact-Seaside' ) ]
+			group: 'seaside' with: #( 'Artefact-Seaside' );
+			group: 'default' with: #( 'core' 'tests' 'examples' ) ]
 ]
 
 { #category : #dependencies }

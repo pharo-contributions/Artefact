@@ -1,7 +1,7 @@
 Class {
 	#name : #PDFElementTest,
 	#superclass : #TestCase,
-	#category : #'Artefact-Tests-Elements'
+	#category : #'Artefact-Core-Tests-Elements'
 }
 
 { #category : #'tests orientation' }

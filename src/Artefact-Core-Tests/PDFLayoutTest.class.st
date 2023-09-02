@@ -7,7 +7,7 @@ Class {
 		'page',
 		'document'
 	],
-	#category : #'Artefact-Tests-Elements'
+	#category : #'Artefact-Core-Tests-Elements'
 }
 
 { #category : #running }
