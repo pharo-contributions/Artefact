@@ -24,7 +24,7 @@ PDFBasic >> codeSegmentClass [
 { #category : #action }
 PDFBasic >> determinePosition: aPosition on: aPage [
 	"answer the real position of the PDF element on the page"
-	
+
 	^(aPage document convertToPoints: aPosition x) @ ((aPage format defaultSize y) - (aPage document convertToPoints: aPosition y))
 ]
 
@@ -43,17 +43,17 @@ PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet forma
 
 { #category : #action }
 PDFBasic >> isDrawElement [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 PDFBasic >> opacity: anOpacity [
-	self styleSheet opacity: anOpacity 
+	self styleSheet opacity: anOpacity
 ]
 
 { #category : #render }
 PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
-	self subclassResponsibility 
+	self subclassResponsibility
 ]
 
 { #category : #action }

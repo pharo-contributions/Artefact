@@ -22,7 +22,7 @@ PDFDataType class >> isAbstract [
 
 { #category : #visit }
 PDFDataType >> acceptVisitor: aVisitor [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #testing }

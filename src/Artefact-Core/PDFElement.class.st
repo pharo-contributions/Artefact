@@ -76,7 +76,7 @@ PDFElement >> dimension [
 
 { #category : #accessing }
 PDFElement >> dimension: aDimension [
-	dimension:= aDimension 
+	dimension:= aDimension
 ]
 
 { #category : #accessing }
@@ -91,7 +91,7 @@ PDFElement >> from: anObject [
 
 { #category : #render }
 PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet format: aFormat [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #render }
@@ -154,8 +154,7 @@ PDFElement >> requiredAttributes [
 
 { #category : #accessing }
 PDFElement >> rotation: anAngle [
-	self styleSheet rotation: anAngle 
- 
+	self styleSheet rotation: anAngle
 ]
 
 { #category : #accessing }

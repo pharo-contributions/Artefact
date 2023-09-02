@@ -34,7 +34,7 @@ PDFDotted >> generateCodeWith: aPDFGenerator [
 		nextPutAll: '] 0';
 		space;
 		nextPutAll: PDFByteCode dotted
-	]).
+	])
 ]
 
 { #category : #initialization }

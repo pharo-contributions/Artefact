@@ -41,7 +41,7 @@ PDFLayout >> add: aPDFElement [
 { #category : #render }
 PDFLayout >> createOriginalDimensionDictionary [
 	| dimensions |
-	dimensions := Dictionary new. 
+	dimensions := Dictionary new.
 	self elements do: [ :anElement | dimensions at: anElement put: anElement dimension ].
 	^ dimensions
 ]
@@ -49,7 +49,7 @@ PDFLayout >> createOriginalDimensionDictionary [
 { #category : #render }
 PDFLayout >> createOriginalPositionDictionary [
 	| positions |
-	positions := Dictionary new. 
+	positions := Dictionary new.
 	self elements do: [ :anElement | positions at: anElement put: anElement from ].
 	^ positions
 ]
@@ -66,7 +66,7 @@ PDFLayout >> defineElementDimension: anElement with: aPDFGenerator styleSheet: a
 
 { #category : #render }
 PDFLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -85,7 +85,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 	elementsOriginalPosition := self createOriginalPositionDictionary.
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
 	codeSegments := self elements
-		collect: [ :anElement | 
+		collect: [ :anElement |
 			compositeStyleSheet := anElement buildCompositeStyleSheetFrom: aStyleSheet.
 			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
@@ -101,7 +101,7 @@ PDFLayout >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyl
 	elementsOriginalPosition := self createOriginalPositionDictionary.
 	elementsOriginalDimension := self createOriginalDimensionDictionary.
 	codeSegments := self elements
-		collect: [ :anElement | 
+		collect: [ :anElement |
 			compositeStyleSheet := anElement buildCompositeStyleSheetFrom: aStyleSheet.
 			self defineElementPosition: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.
 			self defineElementDimension: anElement with: aPDFGenerator styleSheet: compositeStyleSheet.

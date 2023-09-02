@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #running }
-PDFHorizontalLayoutTest >> setUp [ 
+PDFHorizontalLayoutTest >> setUp [
 	testLayout := PDFHorizontalLayout new
 ]
 

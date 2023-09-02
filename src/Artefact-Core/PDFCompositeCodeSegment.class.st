@@ -23,7 +23,7 @@ PDFCompositeCodeSegment class >> from: aCollectionOfSegments styleSheet: aStyles
 ]
 
 { #category : #accessing }
-PDFCompositeCodeSegment >> printWith: aPDFWriter [ 
+PDFCompositeCodeSegment >> printWith: aPDFWriter [
 	aPDFWriter printCompositeCodeSegment: self
 ]
 

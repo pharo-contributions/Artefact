@@ -37,8 +37,7 @@ PDFImage class >> from: aPosition dimension: aDimension fromStream: aStream [
 
 { #category : #'instance creation' }
 PDFImage class >> fromMorph: aMorph [
-	self subclassResponsibility 
-
+	self subclassResponsibility
 ]
 
 { #category : #'instance creation' }
@@ -55,7 +54,7 @@ PDFImage class >> isAbstract [
 ]
 
 { #category : #'accessing - defaults' }
-PDFImage >> defaultStyle [ 
+PDFImage >> defaultStyle [
 	^ #image
 ]
 
@@ -65,7 +64,7 @@ PDFImage >> height: aHeight [
 ]
 
 { #category : #testing }
-PDFImage >> isDrawElement [ 
+PDFImage >> isDrawElement [
 	^ false
 ]
 
@@ -77,13 +76,13 @@ PDFImage >> originalImageDimensions [
 { #category : #render }
 PDFImage >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	| origin imageId |
-	
+
 	"Determine the vertical position of the image"
 	 origin := aPDFGenerator determinePositionOnCurrentPage: (self from + (0 @ self dimension y) ).
 
 	"Determine the id of the image"
 	imageId:= aPDFGenerator getImageIdFor: self.
-	 			
+
 	^  (String streamContents: [ :s |
 		s nextPutAll:  'q'; space;
 		nextPutAll: (aPDFGenerator convertToPoints: self dimension x) asString; space;
@@ -91,10 +90,10 @@ PDFImage >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 		nextPutAll: (aPDFGenerator convertToPoints: self dimension y) asString; space;
 		nextPutAll: (origin x asString); space;
 		nextPutAll: (origin y asString); space;
-		nextPutAll: 'cm';space; 
+		nextPutAll: 'cm';space;
 		nextPut: $/; nextPutAll: imageId; space;
 		nextPutAll: 'Do Q'
-	 ]).
+	 ])
 ]
 
 { #category : #accessing }
@@ -104,11 +103,10 @@ PDFImage >> stream [
 
 { #category : #accessing }
 PDFImage >> stream: anImageStream [
-	stream := anImageStream.
-	
+	stream := anImageStream
 ]
 
 { #category : #accessing }
 PDFImage >> width: aWidth [
-	self dimension: aWidth @ (aWidth / self originalImageDimensions x * self originalImageDimensions y) 
+	self dimension: aWidth @ (aWidth / self originalImageDimensions x * self originalImageDimensions y)
 ]

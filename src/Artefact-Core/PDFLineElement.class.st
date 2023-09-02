@@ -20,9 +20,9 @@ PDFLineElement class >> from: from angle: angle length: aLength [
 { #category : #render }
 PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
 	| dest |
-	
+
 	dest := aPDFGenerator determinePositionOnCurrentPage: self orientedTo .
-	 			
+
 	^  (String streamContents: [ :s |
 		s nextPutAll: (self moveTo: self orientedFrom with: aPDFGenerator);
 		nextPutAll: (self splitCoordinates: dest);
@@ -30,7 +30,7 @@ PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject
 		nextPutAll: PDFByteCode line;
 		space;
 		nextPutAll: PDFByteCode noFilling
-	]).
+	])
 ]
 
 { #category : #checking }

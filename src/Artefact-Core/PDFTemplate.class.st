@@ -29,7 +29,7 @@ PDFTemplate >> dotted: aPDFDotted [
 
 { #category : #action }
 PDFTemplate >> drawTemplate [
-	self subclassResponsibility 
+	self subclassResponsibility
 ]
 
 { #category : #initialization }

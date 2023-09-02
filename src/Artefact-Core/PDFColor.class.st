@@ -35,13 +35,13 @@ Class {
 { #category : #utilities }
 PDFColor class >> formatRGB: aColor [
 	"Answer a formated RBG color. The values are rounded"
-	
+
 	^(PDFColor round: aColor red) ,  ' ' , (PDFColor round: aColor green) , ' ' , (PDFColor round: aColor blue)
 ]
 
 { #category : #'instance creation' }
 PDFColor class >> greyLevel: aGreyLevel [
-	^ self new setGreyLevel: aGreyLevel 
+	^ self new setGreyLevel: aGreyLevel
 ]
 
 { #category : #'instance creation' }
@@ -52,8 +52,8 @@ PDFColor class >> r:  r g: g b: b [
 { #category : #rounding }
 PDFColor class >> round: aValue [
 	"answer a rounded value for an color value"
-	
-	^((aValue / 255) roundDownTo: 0.001) asString 
+
+	^((aValue / 255) roundDownTo: 0.001) asString
 ]
 
 { #category : #accessing }
@@ -109,9 +109,8 @@ PDFColor >> r:  r g: g b: b [
 	self red: r.
 	self green: g.
 	self blue: b.
-	
-	self greyLevel: nil.
 
+	self greyLevel: nil
 ]
 
 { #category : #accessing }
@@ -127,22 +126,21 @@ PDFColor >> red: anObject [
 { #category : #action }
 PDFColor >> setGreyLevel: aGreyLevel [
 	self greyLevel: aGreyLevel.
-	
+
 	self red: nil.
 	self green: nil.
-	self blue: nil.
+	self blue: nil
 ]
 
 { #category : #tools }
 PDFColor >> value [
 	"answer the value of the color (a RGB tuple or a grey level)"
-	
+
 	(self isEmpty)
-		ifTrue: [ ^nil ] 
+		ifTrue: [ ^nil ]
 		ifFalse: [
-			(self red isNil) 
+			(self red isNil)
 				ifTrue: [ ^ self greyLevel asString ]
 				ifFalse: [ ^ (self red asString) , '.' , (self green asString) , '.' , (self blue asString) ]
 		]
-
 ]

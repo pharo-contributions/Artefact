@@ -47,5 +47,5 @@ PDFDataTrailer >> initialize [
 { #category : #printing }
 PDFDataTrailer >> printOn: aStream [
 	aStream nextPutAll: 'trailer'; lf.
-	contents do: [:aContent | aContent printOn: aStream. aStream lf].
+	contents do: [:aContent | aContent printOn: aStream. aStream lf]
 ]

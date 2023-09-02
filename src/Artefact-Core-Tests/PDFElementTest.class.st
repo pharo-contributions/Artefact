@@ -31,10 +31,10 @@ PDFElementTest >> testOrientationTopRight [
 
 { #category : #tests }
 PDFElementTest >> testRequiredAttributesIsFilled [
-	self shouldnt: [(PDFDummyLayout new from: 10mm@5mm; dimension: 5cm@12cm) checkAttributes] raise: ArtefactUndefinedAttribute 
+	self shouldnt: [(PDFDummyLayout new from: 10mm@5mm; dimension: 5cm@12cm) checkAttributes] raise: ArtefactUndefinedAttribute
 ]
 
 { #category : #tests }
 PDFElementTest >> testRequiredAttributesIsNotFilled [
-	self should: [PDFDummyLayout new checkAttributes] raise: ArtefactUndefinedAttribute 
+	self should: [PDFDummyLayout new checkAttributes] raise: ArtefactUndefinedAttribute
 ]

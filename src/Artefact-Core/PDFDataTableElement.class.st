@@ -25,19 +25,19 @@ Class {
 { #category : #render }
 PDFDataTableElement >> calculateMinimumDimensionsForCells: cells withGenerator: aGenerator styleSheet: aStyleSheet [
 	| individualMinimumDimensions contextualMinimumDimensions |
-	individualMinimumDimensions := cells collect: [ :anArray | 
+	individualMinimumDimensions := cells collect: [ :anArray |
 			(anArray
-				collect: [ :aCell | 
+				collect: [ :aCell |
 					aCell minimumDimensionWith: aGenerator styleSheet: aStyleSheet
 					]).
 			].
-		
+
 	contextualMinimumDimensions := individualMinimumDimensions collect: [ :lines |
 		|x y|
 		y := lines max: #y.
 		lines collectWithIndex: [ :dim :i  | x := individualMinimumDimensions max: [:line | (line at: i) x]. x@y]
 	 ].
-	^ contextualMinimumDimensions	
+	^ contextualMinimumDimensions
 ]
 
 { #category : #render }
@@ -80,11 +80,11 @@ PDFDataTableElement >> getCellsWith: aGenerator styleSheet: aStyleSheet [
 	| x y |
 	y := 0.
 	^ self cellsData
-		collect: [ :anArray | 
+		collect: [ :anArray |
 			x := 1.
 			y := y + 1.
 			anArray
-				collect: [ :aData | 
+				collect: [ :aData |
 					| cell |
 					cell := PDFCellElement text: aData asString.
 					self customizationBlock
@@ -104,11 +104,11 @@ PDFDataTableElement >> getOldSubElementsWith: aGenerator styleSheet: aStyleSheet
 	aCellDimension := self cellDimensions.
 	^ self cellsData
 		inject: OrderedCollection new
-		into: [ :collection :anArray | 
+		into: [ :collection :anArray |
 			| result |
 			x := 1.
 			result := collection , (anArray
-				collect: [ :aData | 
+				collect: [ :aData |
 					| cell |
 					cell := PDFCellElement from: currentFrom dimension: aCellDimension text: aData asString.
 					self customizationBlock value: cell value: x value: y value: aData.
@@ -127,15 +127,15 @@ PDFDataTableElement >> getProtoSubElementsWith: aGenerator styleSheet: aStyleShe
 	aCellDimension := self cellDimensions.
 	cells:= self getCellsWith: aGenerator styleSheet: aStyleSheet.
 	minimumDimensions := self calculateMinimumDimensionsForCells: cells withGenerator: aGenerator styleSheet: aStyleSheet.
-	cells do: [ :anArray | 
+	cells do: [ :anArray |
 			(anArray
-				do: [ :aCell | 
+				do: [ :aCell |
 					aCell from: currentFrom; dimension: aCellDimension.
 					currentFrom := currentFrom + (aCellDimension x @ 0pt).
 					]).
 			currentFrom := self from x @ (currentFrom y + aCellDimension y).
 			].
-		
+
 	^ cells flatten
 ]
 
@@ -146,15 +146,15 @@ PDFDataTableElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 	cells:= self getCellsWith: aGenerator styleSheet: aStyleSheet.
 	minimumDimensions := self calculateMinimumDimensionsForCells: cells withGenerator: aGenerator styleSheet: aStyleSheet.
 	cellsDimensions := self scaleMinimumCellsDimensions: minimumDimensions.
-	cells doWithIndex: [ :anArray :line | 
+	cells doWithIndex: [ :anArray :line |
 			(anArray
-				doWithIndex: [ :aCell :column | 
+				doWithIndex: [ :aCell :column |
 					aCell from: currentFrom; dimension: ((cellsDimensions at:line) at: column).
 					currentFrom := currentFrom + (aCell dimension x @ 0pt).
 					]).
 			currentFrom := self from x @ (currentFrom y + (cellsDimensions at:line) first y).
 			].
-		
+
 	^ cells flattened
 ]
 
@@ -180,7 +180,7 @@ PDFDataTableElement >> scaleMinimumCellsDimensions: minimumDimensions [
 	| totalMinimumDimension scale |
 	totalMinimumDimension := (minimumDimensions first sum: #x) @ (minimumDimensions sum: [ :line | line first y ]).
 	self dimension ifNotNil: [ ((totalMinimumDimension x > self dimension x) or: [totalMinimumDimension y > self dimension y]) ifTrue: [self error: 'dimension too small for datas (required: ', (totalMinimumDimension x convertTo: self dimension x unit) asString, '@', (totalMinimumDimension y convertTo: self dimension y unit) asString, ' provided: ', self dimension asString ]].
-	
+
 	scale := self dimension / totalMinimumDimension.
 	^ minimumDimensions collect: [ :line | line collect: [ :dim | dim * scale ] ]
 ]

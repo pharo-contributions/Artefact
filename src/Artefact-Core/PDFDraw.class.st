@@ -25,7 +25,7 @@ PDFDraw class >> isAbstract [
 ]
 
 { #category : #'accessing - defaults' }
-PDFDraw >> defaultStyle [ 
+PDFDraw >> defaultStyle [
 	^#draw
 ]
 
@@ -36,12 +36,12 @@ PDFDraw >> dotted: anObject [
 
 { #category : #accessing }
 PDFDraw >> drawColor: aPDFColor [
-	self styleSheet drawColor: aPDFColor 
+	self styleSheet drawColor: aPDFColor
 ]
 
 { #category : #accessing }
 PDFDraw >> fillColor: aPDFColor [
-	self styleSheet fillColor: aPDFColor 
+	self styleSheet fillColor: aPDFColor
 ]
 
 { #category : #accessing }
@@ -59,11 +59,11 @@ PDFDraw >> isDrawElement [
 { #category : #action }
 PDFDraw >> moveTo: aPosition with: aGenerator [
 	"answer the PDF code to setting the start position for drawing"
-	
+
 	| pos |
-	
+
 	pos := aGenerator determinePositionOnCurrentPage: aPosition.
-	 
+
 	^(String streamContents: [ :s |
 		s print: (pos x);
 		space;
@@ -71,7 +71,7 @@ PDFDraw >> moveTo: aPosition with: aGenerator [
 		space;
 		nextPutAll: PDFByteCode moveTo;
 		space
-	]) 
+	])
 ]
 
 { #category : #accessing }

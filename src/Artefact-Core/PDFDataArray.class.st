@@ -19,7 +19,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFDataArray class >> from: aCollection [
-	
+
 	| dataArray |
 	dataArray := self new.
 	aCollection do: [:anElement | dataArray addElement: anElement ].
@@ -33,7 +33,7 @@ PDFDataArray >> acceptVisitor: aVisitor [
 
 { #category : #accessing }
 PDFDataArray >> addElement: anElement [
-	elements addLast: anElement 
+	elements addLast: anElement
 ]
 
 { #category : #accessing }

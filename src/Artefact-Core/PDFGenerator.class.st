@@ -38,9 +38,8 @@ PDFGenerator >> compression: aBoolean [
 ]
 
 { #category : #conversion }
-PDFGenerator >> convertToPoints: aUnitValue [ 
+PDFGenerator >> convertToPoints: aUnitValue [
 	^ (aUnitValue convertTo: #points) value
-	
 ]
 
 { #category : #font }
@@ -88,7 +87,7 @@ PDFGenerator >> createImageObject: anImageStream [
 PDFGenerator >> createMetaDataObject: aMetaData [
 	| metadataObject |
 	metadataObject := self createNewPDFDataObject.
-	
+
 	metadataObject
 		addContent:
 			(PDFDataAssociativeArray new
@@ -144,30 +143,29 @@ PDFGenerator >> createPDFDataStreamFrom: aPage [
 PDFGenerator >> createRootObject [
 	| rootObject content |
 	rootObject := self createNewPDFDataObject.
-	content := PDFDataAssociativeArray new 
+	content := PDFDataAssociativeArray new
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Catalog'));
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Pages') value: (PDFDataReference reference: document)).
-		
+
 		(self zoom ~= nil)
-			ifTrue: [  
-				"We use the zoom value" 
+			ifTrue: [
+				"We use the zoom value"
 				content add: (self generateZoom).
 			]
-			ifFalse: [  
+			ifFalse: [
 				"we use the selected display mode"
 				(self displayMode ~= #defaultDisplayMode) ifTrue: [ content add: (self generateDisplayMode) ]
-			].	
-		"add: (PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from: { 
+			].
+		"add: (PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from: {
 			(PDFDataReference reference: self firstPage).
 			(PDFDataSymbol symbol: 'Fit')
 		}));"
-				
-		 (self displayLayout ~= #defaultDisplayLayout) ifTrue: [ 
+
+		 (self displayLayout ~= #defaultDisplayLayout) ifTrue: [
 			content add: (PDFDataCouple key: (PDFDataSymbol symbol: 'PageLayout') value: (self generateDisplayLayout)).
 		].
-			
-	^ rootObject addContent: content.
-	
+
+	^ rootObject addContent: content
 ]
 
 { #category : #accessing }
@@ -181,13 +179,13 @@ PDFGenerator >> currentPage: anObject [
 ]
 
 { #category : #conversion }
-PDFGenerator >> determinePositionOnCurrentPage: aPosition [ 
+PDFGenerator >> determinePositionOnCurrentPage: aPosition [
 	^ (self convertToPoints: (aPosition x)) @ (self convertToPoints: (self currentPage format size y - aPosition y) )
 ]
 
 { #category : #accessing }
 PDFGenerator >> displayLayout [
-	^displayLayout 
+	^displayLayout
 ]
 
 { #category : #accessing }
@@ -220,20 +218,20 @@ PDFGenerator >> generateContentsFor: aPage [
 	| contents associativeArray stream lengthObject |
 	contents := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
-	stream := self createPDFDataStreamFrom: aPage.	
+	stream := self createPDFDataStreamFrom: aPage.
 
 	lengthObject := self createNewPDFDataObject.
 	lengthObject addContent: (PDFDataStreamRefSize stream: stream).
-	
+
 	associativeArray
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Length') value: (PDFDataReference reference: lengthObject)).
-	
-	"compression support ?"	
-	(self compression) ifTrue: [ 
+
+	"compression support ?"
+	(self compression) ifTrue: [
 		associativeArray
-			add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'FlateDecode')).	
+			add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Filter') value: (PDFDataSymbol symbol: 'FlateDecode')).
 		 ].
-		
+
 	contents
 		addContent: associativeArray;
 		addContent: stream.
@@ -243,34 +241,33 @@ PDFGenerator >> generateContentsFor: aPage [
 { #category : #generate }
 PDFGenerator >> generateDisplayLayout [
 	"Answer the PDF symbol for the selected display layout"
-	
-	^PDFDataSymbol symbol: ({ #singlePage->'SinglePage' . #continuousPages->'OneColumn' . #twoPages->'TwoColumnLeft' } asDictionary at: self displayLayout).
 
+	^PDFDataSymbol symbol: ({ #singlePage->'SinglePage' . #continuousPages->'OneColumn' . #twoPages->'TwoColumnLeft' } asDictionary at: self displayLayout)
 ]
 
 { #category : #generate }
 PDFGenerator >> generateDisplayMode [
 	| value |
 	value := PDFDataArray from:  { (PDFDataReference reference: self firstPage) }.
-	
+
 	(self displayMode = #fullPage)
 		ifTrue: [  value addElement: (PDFDataSymbol symbol: 'Fit') ]
-		ifFalse: [ 
+		ifFalse: [
 			(self displayMode = #fullWidth)
 				ifTrue: [  value addElement: (PDFDataSymbol symbol: 'FitH'); addElement: (PDFDataValue value: 'null'); yourself ]
-				ifFalse: [ 
+				ifFalse: [
 					(self displayMode = #real)
-						ifTrue: [  
-							value addElement: (PDFDataSymbol symbol: 'XYZ'); 
-								addElement: (PDFDataValue value: 'null'); 
-								addElement: (PDFDataValue value: 'null'); 
-								addElement: (PDFDataValue value: 1); 
+						ifTrue: [
+							value addElement: (PDFDataSymbol symbol: 'XYZ');
+								addElement: (PDFDataValue value: 'null');
+								addElement: (PDFDataValue value: 'null');
+								addElement: (PDFDataValue value: 1);
 								yourself.
 						]
 				]
 		 ].
-	
-	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: value.
+
+	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: value
 ]
 
 { #category : #font }
@@ -290,7 +287,7 @@ PDFGenerator >> generateListOfFonts [
 	| fonts |
 	fonts := PDFDataAssociativeArray new.
 	usedFonts
-		keysAndValuesDo: [ :aFontName :aFontId | 
+		keysAndValuesDo: [ :aFontName :aFontId |
 			fonts
 				add:
 					(PDFDataCouple
@@ -304,7 +301,7 @@ PDFGenerator >> generateListOfImages [
 	| images |
 	images := PDFDataAssociativeArray new.
 	usedImages
-		keysAndValuesDo: [ :anImageStream :anImageId | 
+		keysAndValuesDo: [ :anImageStream :anImageId |
 			images
 				add:
 					(PDFDataCouple
@@ -316,11 +313,11 @@ PDFGenerator >> generateListOfImages [
 { #category : #opacity }
 PDFGenerator >> generateListOfOpacities [
 	| opacities |
-	
+
 	opacities := PDFDataAssociativeArray new.
-	
+
 	usedOpacities
-		keysAndValuesDo: [ :aOpacityObject :aOpacityId | 
+		keysAndValuesDo: [ :aOpacityObject :aOpacityId |
 			opacities
 				add:
 					(PDFDataCouple
@@ -337,14 +334,14 @@ PDFGenerator >> generateOpacityId [
 
 { #category : #generate }
 PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
-	
+
 	self compression: aPDFDocument compression.
 	self displayLayout: aPDFDocument displayLayout.
 	self displayMode: aPDFDocument displayMode.
 	self zoom: aPDFDocument zoom.
-	
+
 	document := self generatePDFDocument: aPDFDocument.
-	
+
 	^ PDFDataTrailer new
 		addContent:
 				(PDFDataAssociativeArray new
@@ -361,9 +358,9 @@ PDFGenerator >> generatePDFCompleteModelFrom: aPDFDocument [
 { #category : #generate }
 PDFGenerator >> generatePDFDocument: aPDFDocument [
 	"should receive a PDFDocument and return a PDFDataObject representing the document"
-	
+
 	| associativeArray references resources |
-	
+
 	document := self createNewPDFDataObject.
 	associativeArray := PDFDataAssociativeArray new.
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Pages')).
@@ -388,7 +385,7 @@ PDFGenerator >> generatePDFDocument: aPDFDocument [
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'ExtGState') value: self generateListOfOpacities).
 	associativeArray add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Resources') value: resources).
 	document addContent: associativeArray.
-	
+
 	^ document
 ]
 
@@ -416,7 +413,7 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 		new
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Page'));
 		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Parent') value: (PDFDataReference reference: document));
-		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Group') value: (PDFDataAssociativeArray new 
+		add: (PDFDataCouple key: (PDFDataSymbol symbol: 'Group') value: (PDFDataAssociativeArray new
 			add: (PDFDataSymbol symbol: 'Type');
 			add: (PDFDataSymbol symbol: 'Group');
 			add: (PDFDataSymbol symbol: 'S');
@@ -432,21 +429,17 @@ PDFGenerator >> generatePDFPage: aPDFPage [
 		yourself.
 	page addContent: associativeArray.
 	^ page
-	
-
-
 ]
 
 { #category : #generate }
 PDFGenerator >> generatePDFVersion: aPDFVersion [
-	^ PDFDataComment new comment: ('PDF-' , aPDFVersion).
-		
+	^ PDFDataComment new comment: ('PDF-' , aPDFVersion)
 ]
 
 { #category : #generate }
 PDFGenerator >> generateZoom [
 	"answer the PDF code to set the user's zoom"
-	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from:  { 
+	^PDFDataCouple key: (PDFDataSymbol symbol: 'OpenAction') value: (PDFDataArray from:  {
 		(PDFDataReference reference: self firstPage).
 		(PDFDataSymbol symbol: 'XYZ').
 		(PDFDataValue value: 'null').
@@ -469,7 +462,6 @@ PDFGenerator >> getImageIdFor: aPDFImage [
 PDFGenerator >> getOpacityIdFor: aOpacityObject [
 
 	^ usedOpacities at: aOpacityObject ifAbsentPut: [ self generateOpacityId ]
-	
 ]
 
 { #category : #initialization }
@@ -490,7 +482,7 @@ PDFGenerator >> initialize [
 PDFGenerator >> splitPages: aCollectionOfPages [
 	^ self
 		inject: OrderedCollection new
-		into: [ :result :aPage | 
+		into: [ :result :aPage |
 			aPage extensible
 				ifTrue: [ result addAll: (self splitPage: aPage) ]
 				ifFalse: [ result add: aPage ] ]

@@ -22,9 +22,9 @@ Class {
 PDFStreamPrinter >> compressWithGZip: aString [
 	"format GZip data for use with PDF"
 	|  data tA tB |
-	
+
 	data := self getGZipData: aString.
-	
+
 	tA := 1.
 	tB := 0.
 
@@ -34,18 +34,18 @@ PDFStreamPrinter >> compressWithGZip: aString [
 		tB := tB + tA.
 		(tB > 65521) ifTrue: [ tB := tB - 65521  ].
 	].
-	
+
 	data at: 1 put: (120 asCharacter).
 	data at: 2 put: (156 asCharacter).
 
 	data := data copyReplaceFrom: 3 to: 10 with: ''.
-	
+
 	data at: ((data size) - 7) put: (((tB bitAnd: 65280) / 256) asCharacter).
 	data at: ((data size) - 6) put: ((tB bitAnd: 255) asCharacter).
 	data at: ((data size) - 5) put: (((tA bitAnd: 65280) / 256) asCharacter).
 	data at: ((data size) - 4) put: ((tA bitAnd: 255) asCharacter).
-		
-	^data copyReplaceFrom: (data size - 3) to: (data size) with: ''.
+
+	^data copyReplaceFrom: (data size - 3) to: (data size) with: ''
 ]
 
 { #category : #accessing }
@@ -59,9 +59,8 @@ PDFStreamPrinter >> compression: aBoolean [
 ]
 
 { #category : #conversion }
-PDFStreamPrinter >> convertToPoints: aUnitValue [ 
+PDFStreamPrinter >> convertToPoints: aUnitValue [
 	^ (aUnitValue convertTo: #points) value
-	
 ]
 
 { #category : #utilities }
@@ -71,13 +70,13 @@ PDFStreamPrinter >> generateRotationCodeFor: anElementCodeSegment styleSheet: st
 	| angle cx cy |
 
 	angle := (styleSheet get: #rotation) * (Float pi / 180).
-	
+
 	cx := (self convertToPoints: anElementCodeSegment fromElement from x) round: 4.
 	cy := (self convertToPoints: anElementCodeSegment format height - (self convertToPoints: anElementCodeSegment fromElement from y)) round: 4.
 
 
 	^ String
-		streamContents: [ :code | 
+		streamContents: [ :code |
 			code
 				nextPutAll: 'q';
 				space;
@@ -109,12 +108,12 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 	| dotted thickness styleSheet |
 	styleSheet := anElementCodeSegment styleSheet.
 	^ String
-		streamContents: [ :code | 
-			((styleSheet get: #rotation) ~= 0) ifTrue: [ 
+		streamContents: [ :code |
+			((styleSheet get: #rotation) ~= 0) ifTrue: [
 				code nextPutAll: (self generateRotationCodeFor: anElementCodeSegment styleSheet: styleSheet)
 			].
 			thickness := styleSheet get: #thickness.
-			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.	
+			code nextPutAll: (self convertToPoints: thickness) asString , ' ' , PDFByteCode thickness , String lf.
 			"Set line cap style to square"
 			code nextPutAll: (self setLineCapStyleFor: anElementCodeSegment stylesheet: styleSheet).
 			"Set the colors or grey levels"
@@ -123,11 +122,11 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 				nextPutAll: String lf.	"Set the dotted propertie"
 			dotted := styleSheet get: #dotted.
 			dotted
-				ifNil: [ 
+				ifNil: [
 					code
 						nextPutAll: '[] 0 ' , PDFByteCode dotted;
 						nextPutAll: String lf ]
-				ifNotNil: [ 
+				ifNotNil: [
 					code
 						nextPutAll: (dotted generateCodeWith: self);
 						nextPutAll: String lf ].	"Insert the font size in the PDF document"
@@ -139,24 +138,22 @@ PDFStreamPrinter >> generateStyleCodeForElement: anElementCodeSegment [
 ]
 
 { #category : #compression }
-PDFStreamPrinter >> getGZipData: aString [ 
+PDFStreamPrinter >> getGZipData: aString [
 	| writer |
 	writer := GZipWriteStream on: String new.
 	writer nextPutAll: aString.
 	writer close.
  	^writer encodedStream contents
-
-
 ]
 
 { #category : #utilities }
 PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 	| drawColor fillColor textColor |
-	
+
 	drawColor := aStyleSheet get: #drawColor.
 	fillColor := aStyleSheet get: #fillColor.
 	textColor := aStyleSheet get: #textColor.
-	
+
 	^ String streamContents: [ :code |
 		useDrawColor ifTrue: [
 			(fillColor greyLevel isNil)
@@ -169,10 +166,10 @@ PDFStreamPrinter >> initColors: aStyleSheet useDrawColor: useDrawColor [
 				ifFalse: [ code nextPutAll: (PDFColor round: (textColor greyLevel)) , ' g' ].
 		].
 		code nextPutAll: String lf.
-		(drawColor greyLevel isNil) 
+		(drawColor greyLevel isNil)
 				ifTrue: [ (drawColor red isNil) ifFalse: [ code nextPutAll: ((PDFColor formatRGB: drawColor) , ' ' , PDFByteCode drawWithColor) ] ]
 				ifFalse: [ code nextPutAll: (PDFColor round: (drawColor greyLevel)) , ' ' , PDFByteCode drawWithGreyLevel ].
-		code nextPutAll: String lf.		
+		code nextPutAll: String lf.
 	]
 ]
 
@@ -200,13 +197,11 @@ PDFStreamPrinter >> printElementCodeSegment: anElementCodeSegment [
 	self streamContent nextPutAll: (self generateStyleCodeForElement: anElementCodeSegment).
 	self streamContent nextPutAll: anElementCodeSegment code.
 	self resetRotation: (anElementCodeSegment styleSheet get: #rotation) into: self streamContent.
-	self streamContent nextPut: Character lf.
-
-
+	self streamContent nextPut: Character lf
 ]
 
 { #category : #print }
-PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed on: aStream [ 
+PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed on: aStream [
 	self compression: mustBeCompressed.
 	stream := aStream.
 
@@ -214,7 +209,7 @@ PDFStreamPrinter >> printModel: aPDFCompleteModel compression: mustBeCompressed 
 	characterStream nextPutAll: '%PDF-1.4'; lf.
 	aPDFCompleteModel acceptVisitor: self.
 	characterStream nextPutAll: '%%EOF'; lf.
-	
+
 	aStream flush
 ]
 
@@ -224,7 +219,7 @@ PDFStreamPrinter >> printPDFDataAssociativeArray: aPDFDataAssociativeArray [
 		nextPutAll: '<<';
 		crlf.
 	aPDFDataAssociativeArray associativeArray
-		do: [ :aCouple | 
+		do: [ :aCouple |
 			aCouple isPrintable
 				ifTrue: [ aCouple printOn: stream ]
 				ifFalse: [ aCouple printWith: self ].
@@ -255,12 +250,12 @@ PDFStreamPrinter >> printPDFDataStartXref: aPDFDataStartXref [
 { #category : #print }
 PDFStreamPrinter >> printPDFDataStream: aPDFDataStream [
 	| endPosition startPosition streamData |
-	
+
 	characterStream
 		nextPutAll: 'stream';
 		lf.
 	startPosition := stream position.
-	
+
 	self streamContent: (WriteStream on:  String new).
 	aPDFDataStream codeSegment printWith: self.
 	streamData := self streamContent contents.
@@ -296,7 +291,7 @@ PDFStreamPrinter >> printPDFDataXObjectStream: aPDFDataXObjectStream [
 
 { #category : #utilities }
 PDFStreamPrinter >> resetRotation: aRotation into: aStream [
-	(aRotation = 0) ifFalse: [ 
+	(aRotation = 0) ifFalse: [
 		aStream
 			nextPut: Character lf;
 			nextPutAll: PDFByteCode restoreGraphicsState.
@@ -308,14 +303,12 @@ PDFStreamPrinter >> setLineCapStyleFor: anElementCodeSegment stylesheet: styleSh
 	"insert line cap configuration"
 
 	^ String
-		streamContents: [ :code | 
+		streamContents: [ :code |
 			(styleSheet get: #roundCap)
 				ifTrue: [ code nextPutAll: PDFByteCode  lineRoundCapStyle ]
 				ifFalse: [  code nextPutAll: PDFByteCode  lineSquareCapStyle ].
 			code nextPutAll: String lf.
 		 ]
-
-
 ]
 
 { #category : #accessing }
@@ -345,7 +338,6 @@ PDFStreamPrinter >> visitPDFDataAssociativeArray: aPDFDataAssociativeArray [
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataComment: aPDFDataComment [
-	
 ]
 
 { #category : #visiting }
@@ -357,7 +349,6 @@ PDFStreamPrinter >> visitPDFDataCouple: aPDFDataCouple [
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataDateAndTime: aPDFDataDateAndTime [
-	
 ]
 
 { #category : #visiting }
@@ -371,7 +362,7 @@ PDFStreamPrinter >> visitPDFDataObject: aPDFDataObject [
 		nextPutAll: 'obj';
 		lf.
 	aPDFDataObject contents
-		do: [ :aContent | 
+		do: [ :aContent |
 			aContent isPrintable
 				ifTrue: [ aContent printOn: characterStream ]
 				ifFalse: [ aContent printWith: self ].
@@ -394,22 +385,18 @@ PDFStreamPrinter >> visitPDFDataStartXref: aPDFDataStartXref [
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataStream: aPDFDataStream [
-
 ]
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataStreamRefSize: aPDFDataStreamRefSize [
-	
 ]
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataString: aPDFDataString [
-	
 ]
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataSymbol: aPDFDataSymbol [
-	
 ]
 
 { #category : #visiting }
@@ -419,7 +406,7 @@ PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 		nextPutAll: 'trailer';
 		lf.
 	aPDFDataTrailer contents
-		do: [ :aContent | 
+		do: [ :aContent |
 			aContent isPrintable
 				ifTrue: [ aContent printOn: characterStream ]
 				ifFalse: [ aContent printWith: self ].
@@ -428,12 +415,10 @@ PDFStreamPrinter >> visitPDFDataTrailer: aPDFDataTrailer [
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataValue: aPDFDataValue [
-	
 ]
 
 { #category : #visiting }
 PDFStreamPrinter >> visitPDFDataXObjectStream: aPDFDataXObjectStream [
-	
 ]
 
 { #category : #visiting }
@@ -453,11 +438,11 @@ PDFStreamPrinter >> visitPDFDataXRef: aPDFDataXRef [
 PDFStreamPrinter >> visitPDFDataXRefEntry: aPDFDataXRefEntry [
 	| positionString |
 	aPDFDataXRefEntry referencedObject
-		ifNil: [ 
+		ifNil: [
 			characterStream
 				nextPutAll: '0000000000 65535 f ';
 				lf ]
-		ifNotNil: [ :aPDFDataObject | 
+		ifNotNil: [ :aPDFDataObject |
 			positionString := (self positions at: aPDFDataObject) asString.
 			1 to: 10 - positionString size do: [ :i | characterStream nextPut: $0 ].
 			characterStream

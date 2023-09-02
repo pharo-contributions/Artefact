@@ -14,7 +14,7 @@ PDFEllipseElement class >> center: aPoint radius: aRadius [
 
 { #category : #render }
 PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
-	
+
 	| hw hh magic cx cy lx rx ty by |
 
 	magic := 0.551784.
@@ -26,9 +26,9 @@ PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyl
 	rx := aPDFGenerator convertToPoints: (self center x + (self width / 2 )).
 	ty := aPDFGenerator convertToPoints: (self center y - (self height / 2 )).
 	by := aPDFGenerator convertToPoints: (self center y + (self height / 2 )).
-	
+
 	^ (String streamContents: [ :s |
-		s print: cx; space; print: ty; nextPutAll: ' m '; 
+		s print: cx; space; print: ty; nextPutAll: ' m ';
 		print: cx+hw; space; print: ty; space;
 		print: rx; space; print: cy-hh; space;
 		print: rx; space; print: cy; nextPutAll: ' c ';
@@ -42,6 +42,5 @@ PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyl
 		print: cx-hw; space; print: ty; space;
 		print: cx; space; print: ty; nextPutAll: ' c h ';
 		nextPutAll:( self fillMode: (aStyleSheet filled))
-	]).
- 	
+	])
 ]

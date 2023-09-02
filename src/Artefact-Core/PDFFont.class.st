@@ -54,7 +54,7 @@ PDFFont >> bold: anObject [
 
 { #category : #name }
 PDFFont >> boldAndItalicName [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #widths }
@@ -64,7 +64,7 @@ PDFFont >> boldAndItalicWidths [
 
 { #category : #name }
 PDFFont >> boldName [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #widths }
@@ -77,11 +77,11 @@ PDFFont >> charWidths [
 	"Answer a collection of the width of each caracter"
 
 	^ self isBold
-		ifTrue: [ 
+		ifTrue: [
 			self isItalic
 				ifTrue: [ self boldAndItalicWidths ]
 				ifFalse: [ self boldWidths ] ]
-		ifFalse: [ 
+		ifFalse: [
 			self isItalic
 				ifTrue: [ self italicWidths ]
 				ifFalse: [ self classicWidths ] ]
@@ -89,7 +89,7 @@ PDFFont >> charWidths [
 
 { #category : #name }
 PDFFont >> classicName [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #widths }
@@ -107,11 +107,11 @@ PDFFont >> family [
 PDFFont >> fontName [
 
 	^ self isBold
-		ifTrue: [ 
+		ifTrue: [
 			self isItalic
 				ifTrue: [ self boldAndItalicName ]
 				ifFalse: [ self boldName ] ]
-		ifFalse: [ 
+		ifFalse: [
 			self isItalic
 				ifTrue: [ self italicName ]
 				ifFalse: [ self classicName ] ]
@@ -129,7 +129,7 @@ PDFFont >> fontSize: anObject [
 
 { #category : #accessing }
 PDFFont >> fontSizeAsPoints [
-	^ (self fontSize convertTo: Unit points) value 
+	^ (self fontSize convertTo: Unit points) value
 ]
 
 { #category : #action }
@@ -144,29 +144,27 @@ PDFFont >> getCharWidthOf: aChar [
 { #category : #action }
 PDFFont >> getIdealFontSizeForTheString: aString width: aWidth [
 	"answer the ideal font size for the specified width. The size of the font is not modified"
-	
+
 	| fsize originalFontSize |
 
 	"we preserve the original size"
 	originalFontSize := self fontSize.
-	
+
 	"width for 1pt height"
 	self fontSize: 1pt.
-	
+
 	fsize := ((aWidth convertTo: Unit points) / (self getStringWidth: aString)) asInteger pt.
-	
+
 	"the original font size will be restored"
 	self fontSize: originalFontSize.
 	^fsize
-	
-	
 ]
 
 { #category : #action }
 PDFFont >> getStringWidth: aString [
 	"answer the width of the string using this font"
-	
-	^ aString inject: 0 pt 
+
+	^ aString inject: 0 pt
 		into: [:sum :char | sum + (self getCharWidthOf: char)]
 ]
 
@@ -200,7 +198,7 @@ PDFFont >> italic: anObject [
 
 { #category : #name }
 PDFFont >> italicName [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #widths }
