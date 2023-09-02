@@ -48,6 +48,12 @@ PDFImage class >> fromStream: aStream [
 		yourself
 ]
 
+{ #category : #testing }
+PDFImage class >> isAbstract [
+
+	^ self == PDFImage
+]
+
 { #category : #'accessing - defaults' }
 PDFImage >> defaultStyle [ 
 	^ #image

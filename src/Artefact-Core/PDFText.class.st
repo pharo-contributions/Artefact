@@ -34,6 +34,12 @@ PDFText class >> from: aPosition text: aText font: aFont [
 		yourself
 ]
 
+{ #category : #testing }
+PDFText class >> isAbstract [
+
+	^ self == PDFText
+]
+
 { #category : #'accessing - defaults' }
 PDFText >> defaultStyle [
 	^ #text

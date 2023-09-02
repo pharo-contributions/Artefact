@@ -18,6 +18,12 @@ PDFOpacity class >> alpha: aAlphaValue [
 	^self new alpha: aAlphaValue
 ]
 
+{ #category : #testing }
+PDFOpacity class >> isAbstract [
+
+	^ self == PDFOpacity
+]
+
 { #category : #accessing }
 PDFOpacity >> alpha [
 	^ alpha

@@ -22,6 +22,12 @@ Class {
 	#category : #'Artefact-Core-Elements'
 }
 
+{ #category : #testing }
+PDFLayout class >> isAbstract [
+
+	^ self == PDFLayout
+]
+
 { #category : #'instance creation' }
 PDFLayout class >> on: aCollection [
 	^ self new elements: aCollection

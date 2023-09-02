@@ -52,6 +52,12 @@ PDFElement class >> from: aPosition to: anotherPosition style: aStyleSymbol [
 		yourself
 ]
 
+{ #category : #testing }
+PDFElement class >> isAbstract [
+
+	^ self == PDFElement
+]
+
 { #category : #accessing }
 PDFElement >> center [
 	^ (self from + self to) / 2

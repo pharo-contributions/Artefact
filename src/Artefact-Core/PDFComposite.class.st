@@ -19,6 +19,12 @@ Class {
 	#category : #'Artefact-Core-Elements'
 }
 
+{ #category : #testing }
+PDFComposite class >> isAbstract [
+
+	^ self == PDFComposite
+]
+
 { #category : #accessing }
 PDFComposite >> dotted: aPDFDottedObject [
 	self styleSheet dotted: aPDFDottedObject
