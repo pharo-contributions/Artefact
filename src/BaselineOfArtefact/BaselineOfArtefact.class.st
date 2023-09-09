@@ -46,11 +46,13 @@ BaselineOfArtefact >> baseline: spec [
 
 		"Groups"
 		spec			
-			group: 'core' with: #('Artefact-Core');
-			group: 'tests' with: #('Artefact-Core-Tests');
-			group: 'examples' with: #('Artefact-Examples');
-			group: 'seaside' with: #('Artefact-Seaside');
-			group: 'default' with: #('core' 'tests' 'examples') ]
+			group: 'Core' with: #('Artefact-Core');
+			group: 'Tests' with: #('Artefact-Core-Tests');
+			group: 'Examples' with: #('Artefact-Examples');
+			group: 'Seaside' with: #('Artefact-Seaside');
+			group: 'CI' with: #('Tests');
+			group: 'default' with: #('Core' 'Tests' 'Examples');
+			group: 'all' with: #('default' 'Seaside') ]
 ]
 
 { #category : #dependencies }
