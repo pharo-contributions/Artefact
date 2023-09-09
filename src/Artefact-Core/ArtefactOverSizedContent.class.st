@@ -19,11 +19,13 @@ Class {
 
 { #category : #accessing }
 ArtefactOverSizedContent >> content [
+
 	^ content
 ]
 
 { #category : #accessing }
 ArtefactOverSizedContent >> content: anObject [
+
 	content := anObject
 ]
 

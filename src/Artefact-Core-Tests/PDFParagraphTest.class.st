@@ -11,36 +11,43 @@ Class {
 
 { #category : #accessing }
 PDFParagraphTest >> doc [
+
 	^ doc
 ]
 
 { #category : #accessing }
 PDFParagraphTest >> doc: anObject [
+
 	doc := anObject
 ]
 
 { #category : #accessing }
 PDFParagraphTest >> page [
+
 	^ page
 ]
 
 { #category : #accessing }
 PDFParagraphTest >> page: anObject [
+
 	page := anObject
 ]
 
 { #category : #accessing }
 PDFParagraphTest >> paragraph [
+
 	^ paragraph
 ]
 
 { #category : #accessing }
 PDFParagraphTest >> paragraph: anObject [
+
 	paragraph := anObject
 ]
 
 { #category : #running }
 PDFParagraphTest >> setUp [
+
 	self doc: PDFDocument new.
 	self page: PDFPage new.
 

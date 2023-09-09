@@ -24,31 +24,37 @@ Class {
 
 { #category : #position }
 PDFAlignment class >> bottom [
+
 	^ self new bottom
 ]
 
 { #category : #position }
 PDFAlignment class >> center [
+
 	^ self new center
 ]
 
 { #category : #position }
 PDFAlignment class >> left [
+
 	^ self new left
 ]
 
 { #category : #position }
 PDFAlignment class >> middle [
+
 	^ self new middle
 ]
 
 { #category : #position }
 PDFAlignment class >> right [
+
 	^ self new right
 ]
 
 { #category : #position }
 PDFAlignment class >> top [
+
 	^ self new top
 ]
 

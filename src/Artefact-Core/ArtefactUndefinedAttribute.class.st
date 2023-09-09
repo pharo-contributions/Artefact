@@ -33,26 +33,31 @@ ArtefactUndefinedAttribute class >> signalMissingAttribute: anAttribute for: aPD
 
 { #category : #accessing }
 ArtefactUndefinedAttribute >> attribute [
+
 	^ attribute
 ]
 
 { #category : #accessing }
 ArtefactUndefinedAttribute >> attribute: anObject [
+
 	attribute := anObject
 ]
 
 { #category : #accessing }
 ArtefactUndefinedAttribute >> element [
+
 	^ element
 ]
 
 { #category : #accessing }
 ArtefactUndefinedAttribute >> element: anObject [
+
 	element := anObject
 ]
 
 { #category : #accessing }
 ArtefactUndefinedAttribute >> messageText [
+
 	^ String
 		streamContents: [ :aStream |
 			self element printOn: aStream.
@@ -62,6 +67,7 @@ ArtefactUndefinedAttribute >> messageText [
 
 { #category : #printing }
 ArtefactUndefinedAttribute >> printOn: aStream [
+
 	super printOn: aStream.
 	aStream space.
 	self element printOn: aStream.

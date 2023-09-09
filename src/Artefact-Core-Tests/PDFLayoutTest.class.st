@@ -12,6 +12,7 @@ Class {
 
 { #category : #running }
 PDFLayoutTest >> setUp [
+
 	testLayout := PDFDummyLayout new.
 	generator := PDFGenerator new.
 	page := PDFPage new.
@@ -22,6 +23,7 @@ PDFLayoutTest >> setUp [
 
 { #category : #tests }
 PDFLayoutTest >> testLayoutDoNotLoseOriginalDimensionOfElements [
+
 	| rect rect2 |
 	rect := PDFRectElement from: 10 mm @ 10 mm dimension: 10 cm @ 3 cm.
 	rect2 := PDFRectElement from: 50 mm @ 15 mm dimension: 24 mm @ 56 mm.
