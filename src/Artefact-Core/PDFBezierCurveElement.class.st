@@ -18,16 +18,19 @@ Class {
 { #category : #'instance creation' }
 PDFBezierCurveElement class >> from: aPosition points: anArrayOfPoints [
 	"Positions of points are relative to aPosition"
+
 	^ (self from: aPosition) points: anArrayOfPoints
 ]
 
 { #category : #accessing }
 PDFBezierCurveElement >> points [
+
 	^ points
 ]
 
 { #category : #accessing }
 PDFBezierCurveElement >> points: anObject [
+
 	points := anObject
 ]
 
@@ -36,10 +39,10 @@ PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: a
 	"Draw a Bezier curve from xy to destination (3 control points)"
 
 	^ String
-		streamContents: [ :s | 
+		streamContents: [ :s |
 			s nextPutAll: (self moveTo: self from with: aPDFGenerator).
 			self points
-				do: [ :p | 
+				do: [ :p |
 					s
 						nextPutAll: (self splitCoordinates: (aPDFGenerator determinePositionOnCurrentPage: self from + p));
 						space ].
@@ -49,7 +52,8 @@ PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: a
 				nextPutAll: PDFByteCode noFilling ]
 ]
 
-{ #category : #accessing }
+{ #category : #checking }
 PDFBezierCurveElement >> requiredAttributes [
+
 	^ #( from points )
 ]

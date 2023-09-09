@@ -24,6 +24,7 @@ Class {
 
 { #category : #signaling }
 ArtefactUndefinedAttribute class >> signalMissingAttribute: anAttribute for: aPDFElement [
+
 	self new
 		attribute: anAttribute;
 		element: aPDFElement;
@@ -53,7 +54,7 @@ ArtefactUndefinedAttribute >> element: anObject [
 { #category : #accessing }
 ArtefactUndefinedAttribute >> messageText [
 	^ String
-		streamContents: [ :aStream | 
+		streamContents: [ :aStream |
 			self element printOn: aStream.
 			aStream nextPutAll: ' -> '.
 			self attribute printOn: aStream ]
@@ -65,5 +66,5 @@ ArtefactUndefinedAttribute >> printOn: aStream [
 	aStream space.
 	self element printOn: aStream.
 	aStream nextPutAll: ' -> '.
-	self attribute printOn: aStream.
+	self attribute printOn: aStream
 ]

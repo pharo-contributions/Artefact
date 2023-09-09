@@ -10,32 +10,40 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataComment class >> text: aTextComment [
+
 	^ self new comment: aTextComment
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataComment >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataComment: self
 ]
 
 { #category : #accessing }
 PDFDataComment >> comment [
+
 	^ comment
 ]
 
 { #category : #accessing }
 PDFDataComment >> comment: anObject [
+
 	comment := anObject
 ]
 
-{ #category : #printing }
+{ #category : #testing }
 PDFDataComment >> isPrintable [
+
 	^ true
 ]
 
 { #category : #printing }
 PDFDataComment >> printOn: aStream [
-	aStream nextPut: $%; nextPutAll: comment asString
+
+	aStream
+		nextPut: $%;
+		nextPutAll: comment asString
 ]

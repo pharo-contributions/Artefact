@@ -14,12 +14,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-PDFCellElement class >> from: aPoint dimension: aDimension text: aText [ 	
-	^ (self from: aPoint dimension: aDimension) text: aText 
+PDFCellElement class >> from: aPoint dimension: aDimension text: aText [
+
+	^ (self from: aPoint dimension: aDimension) text: aText
 ]
 
 { #category : #'initialize-release' }
 PDFCellElement >> defaultStyle [
+
 	^ #cell
 ]
 
@@ -29,9 +31,9 @@ PDFCellElement >> determineDecyForTextStyleWith: aStyleSheet [
 
 	| decy |
 	self dimension ifNil: [ ^ aStyleSheet margin ].	"determining the vertical offset"
-	aStyleSheet alignment isBottom 
+	aStyleSheet alignment isBottom
 		ifTrue: [ decy := self dimension y - aStyleSheet margin - aStyleSheet font fontSize ]
-		ifFalse: [ 
+		ifFalse: [
 			aStyleSheet alignment isMiddle
 				ifTrue: [ decy := (self dimension y - aStyleSheet font fontSize) / 2 ]
 				ifFalse: [ decy := aStyleSheet margin ] ].

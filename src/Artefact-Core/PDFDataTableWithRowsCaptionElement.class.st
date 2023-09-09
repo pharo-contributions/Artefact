@@ -11,7 +11,8 @@ Class {
 }
 
 { #category : #render }
-PDFDataTableWithRowsCaptionElement >> cellsData [ 
+PDFDataTableWithRowsCaptionElement >> cellsData [
+
 	| current |
 	current := 0.
 	^ self data collect: [ :aLine | current := current + 1. {self captions at: current}, aLine ]
@@ -19,7 +20,7 @@ PDFDataTableWithRowsCaptionElement >> cellsData [
 
 { #category : #render }
 PDFDataTableWithRowsCaptionElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
-	"answer a datatable model with the captions in the rows"
+	"Answer a datatable model with the captions in the rows"
 
 	| elements |
 	elements := super getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet.

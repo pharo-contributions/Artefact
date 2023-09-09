@@ -17,29 +17,39 @@ Class {
 	#category : #'Artefact-Core-Layouts'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #testing }
+PDFSpacedLayout class >> isAbstract [
+
+	^ self == PDFSpacedLayout
+]
+
+{ #category : #'accessing - defaults' }
 PDFSpacedLayout >> defaultSpacing [
 
 	^ 5 pt
 ]
 
-{ #category : #'initialize-release' }
-PDFSpacedLayout >> initialize [ 
+{ #category : #initialization }
+PDFSpacedLayout >> initialize [
+
 	super initialize.
-	spacing := self defaultSpacing.
+	spacing := self defaultSpacing
 ]
 
 { #category : #checking }
 PDFSpacedLayout >> requiredAttributes [
+
 	^ #( from spacing )
 ]
 
 { #category : #accessing }
 PDFSpacedLayout >> spacing [
+
 	^ spacing
 ]
 
 { #category : #accessing }
 PDFSpacedLayout >> spacing: anObject [
+
 	spacing := anObject
 ]

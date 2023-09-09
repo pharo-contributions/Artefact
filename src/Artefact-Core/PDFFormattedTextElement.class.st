@@ -13,40 +13,36 @@ Class {
 
 { #category : #style }
 PDFFormattedTextElement >> defaultStyle [
+
 	^ #text
 ]
 
 { #category : #action }
 PDFFormattedTextElement >> determineDecxForTextStyle: aTextElement styleSheet: aStyleSheet [
 	"Set right x values for text"
+
 	| width decx |
-	
 	self dimension ifNil: [ ^ aStyleSheet margin ].
-	
+
 	width := aStyleSheet font getStringWidth: aTextElement.
-	
+
 	"determining the horizontal offset"
-	(aStyleSheet alignment isRight) 
-			ifTrue: [ decx := self dimension x - aStyleSheet margin - width ] 
-			ifFalse: [ 
-				(aStyleSheet alignment isCenter) ifTrue: [ decx := ((self dimension x - width) / 2) ] ifFalse: [ decx := aStyleSheet margin ] 
-			].
-	^decx
+	decx := aStyleSheet alignment isRight
+		        ifTrue: [ self dimension x - aStyleSheet margin - width ]
+		        ifFalse: [
+			        aStyleSheet alignment isCenter
+				        ifTrue: [ self dimension x - width / 2 ]
+				        ifFalse: [ aStyleSheet margin ] ].
+	^ decx
 ]
 
 { #category : #render }
 PDFFormattedTextElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	| height font decx |
-
 	font := aStyleSheet font.
 	height := font fontSize.
 	decx := self determineDecxForTextStyle: (self text) styleSheet: aStyleSheet.
 
 	^ {PDFTextElement new text: (self text); from: (decx + self from x)@(self from y + height)}
-]
-
-{ #category : #'initialize-release' }
-PDFFormattedTextElement >> initialize [
-	super initialize.
 ]

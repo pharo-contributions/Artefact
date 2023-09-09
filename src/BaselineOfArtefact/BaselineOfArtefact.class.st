@@ -1,36 +1,58 @@
+"
+Baseline for [https://github.com/pharo-contributions/Artefact](https://github.com/pharo-contributions/Artefact)
+"
 Class {
 	#name : #BaselineOfArtefact,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfArtefact
+	#category : #'BaselineOfArtefact-Base'
 }
 
 { #category : #baselines }
 BaselineOfArtefact >> baseline: spec [
+
 	<baseline>
-	spec
-		for: #common
-		do: [
-			"Dependencies"
-			self
-				heimdall: spec;
-				materialDesignLite: spec;
-				stylesheet: spec;
-				units: spec.
+	spec for: #common do: [ 
+		"Dependencies"
+		self
+			heimdall: spec;
+			materialDesignLite: spec;
+			stylesheet: spec;
+			units: spec.
 
-			"Packages"
-			spec
-				package: 'Artefact-Core' with: [ spec requires: #('Units' 'Stylesheet') ];
-				package: 'Artefact-Examples' with: [ spec requires: #('Artefact-Core') ];
-				package: 'Artefact-Tests' with: [ spec requires: #('Artefact-Core' 'Artefact-Examples') ];
-				package: 'Artefact-Seaside' with: [ spec requires: #('default' 'Heimdall' 'MaterialDesignLite') ].
+		"Packages"
+		spec
+			package: 'Artefact-Core'
+			with: [ spec requires: #( 'Units' 'Stylesheet' ) ];
+			package: 'Artefact-Examples'
+			with: [ spec requires: #( 'Artefact-Core' ) ];
+			package: 'Artefact-Core-Tests'
+			with: [ spec requires: #( 'Artefact-Core' 'Artefact-Examples' ) ];
+			package: 'Artefact-Seaside'
+			with: [
+				spec requires: #( 'default' 'Heimdall' 'MaterialDesignLite' ) ].
 
-			"Groups"
-			spec
-				group: 'default' with: #('core' 'tests' 'examples');
-				group: 'core' with: #('Artefact-Core');
-				group: 'tests' with: #('Artefact-Tests');
-				group: 'examples' with: #('Artefact-Examples');
-				group: 'seaside' with: #('Artefact-Seaside') ]
+		"Pharo 6- compatibility"
+		spec
+			for:
+				#( #'pharo1.x' #'pharo2.x' #'pharo3.x' #'pharo4.x' #'pharo5.x'
+				   #'pharo6.x' )
+			do: [
+				spec
+					package: 'Artefact-Pharo60-Compatibility';
+					package: 'Artefact-Examples'
+					with: [
+						spec requires:
+								#( 'Artefact-Core' 'Artefact-Pharo60-Compatibility' ) ] ].
+
+		"Groups"
+		spec			
+			group: 'Core' with: #('Artefact-Core');
+			group: 'Tests' with: #('Artefact-Core-Tests');
+			group: 'Examples' with: #('Artefact-Examples');
+			group: 'Seaside' with: #('Artefact-Seaside');
+			group: 'CI' with: #('Tests');
+			group: 'default' with: #('Core' 'Tests' 'Examples');
+			group: 'all' with: #('default' 'Seaside') ]
 ]
 
 { #category : #dependencies }

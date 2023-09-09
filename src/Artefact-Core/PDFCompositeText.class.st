@@ -29,39 +29,53 @@ Class {
 	#category : #'Artefact-Core-Elements-Composites'
 }
 
+{ #category : #testing }
+PDFCompositeText class >> isAbstract [
+
+	^ self == PDFCompositeText
+]
+
 { #category : #accessing }
 PDFCompositeText class >> text: aText [
-	^ self new text: aText; yourself
+
+	^ self new
+		  text: aText;
+		  yourself
 ]
 
 { #category : #private }
 PDFCompositeText >> alignment: aPDFAlignment [
+
 	self styleSheet alignment: aPDFAlignment
 ]
 
 { #category : #accessing }
 PDFCompositeText >> margin: aMargin [
+
 	self styleSheet margin: aMargin
 ]
 
 { #category : #render }
 PDFCompositeText >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
+
 	^ self dimension
-		ifNil: [ ((aStyleSheet font getStringWidth: self text) + (2 * aStyleSheet margin)) @ (aStyleSheet font fontSize + (2 * aStyleSheet margin)) ]
-	
+		ifNil: [((aStyleSheet font getStringWidth: self text) + (2 * aStyleSheet margin)) @ (aStyleSheet font fontSize + (2 * aStyleSheet margin))]
 ]
 
 { #category : #checking }
 PDFCompositeText >> requiredAttributes [
+
 	^ #( from text )
 ]
 
 { #category : #accessing }
 PDFCompositeText >> text [
-	^text
+
+	^ text
 ]
 
 { #category : #accessing }
 PDFCompositeText >> text: aString [
+
 	text := aString
 ]

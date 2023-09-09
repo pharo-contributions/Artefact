@@ -7,7 +7,8 @@ Class {
 	#category : #'Artefact-Core-Opacity'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #effect }
 PDFOpacityNormal >> blendMode [
-	 ^#Normal
+
+	^ #Normal
 ]

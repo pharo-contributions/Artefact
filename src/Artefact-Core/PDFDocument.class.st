@@ -312,7 +312,7 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #documentation }
 PDFDocument class >> FrameworkManual [
 	<wikiStyleHelp: #'Artefact (PDF framework)'>
 	^ self comment
@@ -320,91 +320,102 @@ PDFDocument class >> FrameworkManual [
 
 { #category : #'instance creation' }
 PDFDocument class >> element: anElement [
+
 	^ self elements: { anElement }
 ]
 
 { #category : #'instance creation' }
 PDFDocument class >> elements: aCollection [
+
 	^ self new
-		addAll: aCollection;
-		yourself
+		  addAll: aCollection;
+		  yourself
 ]
 
 { #category : #action }
 PDFDocument >> add: aPage [
-	"add a new page in the PDF document"
+	"Add a new page in the PDF document"
+
 	self pages add: aPage.
 	aPage document: self
-
-	
-	
-
 ]
 
 { #category : #action }
 PDFDocument >> addAll: aCollection [
+
 	aCollection do: [ :each | self add: each ]
 ]
 
 { #category : #configuration }
 PDFDocument >> compressed [
+
 	self compression: true
 ]
 
 { #category : #accessing }
 PDFDocument >> compression [
-	^compression
+
+	^ compression
 ]
 
 { #category : #accessing }
-PDFDocument >> compression: aBoolean [ 	
+PDFDocument >> compression: aBoolean [
+
 	compression := aBoolean
 ]
 
 { #category : #displayLayout }
 PDFDocument >> continuousPages [
+
 	self displayLayout: #continuousPages
 ]
 
 { #category : #displayLayout }
 PDFDocument >> defaultDisplayLayout [
+
 	self displayLayout: #defaultDisplayLayout
 ]
 
 { #category : #displayMode }
 PDFDocument >> defaultDisplayMode [
+
 	self displayMode: #defaultDisplayMode.
 	self zoom: nil
 ]
 
 { #category : #configuration }
 PDFDocument >> defaultFormat [
-	^PDFA4Format new
+
+	^ PDFA4Format new
 ]
 
 { #category : #accessing }
 PDFDocument >> displayLayout [
+
 	^ displayLayout
 ]
 
 { #category : #accessing }
 PDFDocument >> displayLayout: anObject [
+
 	displayLayout := anObject
 ]
 
 { #category : #accessing }
 PDFDocument >> displayMode [
+
 	^ displayMode
 ]
 
 { #category : #accessing }
 PDFDocument >> displayMode: anObject [
+
 	displayMode := anObject
 ]
 
 { #category : #generate }
 PDFDocument >> exportTo: aStream [
-	"generate a PDFDataObject from document"
+	"Generate a PDFDataObject from document"
 
 	^ PDFStreamPrinter new
 		printModel: (PDFGenerator new generatePDFCompleteModelFrom: self)
@@ -414,29 +425,33 @@ PDFDocument >> exportTo: aStream [
 
 { #category : #accessing }
 PDFDocument >> format [
-	^format
+
+	^ format
 ]
 
 { #category : #accessing }
 PDFDocument >> format: aValue [
+
 	format := aValue
 ]
 
 { #category : #displayMode }
 PDFDocument >> fullPage [
+
 	self displayMode: #fullPage.
 	self zoom: nil
 ]
 
 { #category : #displayMode }
 PDFDocument >> fullWidth [
+
 	self displayMode: #fullWidth.
 	self zoom: nil
 ]
 
 { #category : #generate }
 PDFDocument >> generate [
-	"generate a PDFDataObject from document"
+	"Generate a PDFDataObject from document"
 
 	^ PDFGenerator new generatePDFCompleteModelFrom: self
 ]
@@ -448,98 +463,116 @@ PDFDocument >> generateWith: aPDFGenerator on: aStream [
 
 { #category : #accessing }
 PDFDocument >> height [
-	^(self format size y)
+
+	^ self format size y
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFDocument >> initialize [
-	super initialize.
 
-	self setFormat: self defaultFormat.
-	self styleSheet: (StyleSheet default).
-	self metaData: PDFMetaData new.
-	self compression: true.
-	self defaultDisplayLayout.
-	self defaultDisplayMode.
+	super initialize.
+	self
+		setFormat: self defaultFormat;
+		styleSheet: StyleSheet default;
+		metaData: PDFMetaData new;
+		compression: true;
+		defaultDisplayLayout;
+		defaultDisplayMode
 ]
 
 { #category : #accessing }
 PDFDocument >> metaData [
+
 	^ metaData
 ]
 
 { #category : #accessing }
 PDFDocument >> metaData: anObject [
+
 	metaData := anObject
 ]
 
 { #category : #accessing }
 PDFDocument >> orientation [
+
 	^ orientation
 ]
 
 { #category : #accessing }
 PDFDocument >> orientation: aValue [
+
 	orientation := aValue
 ]
 
 { #category : #accessing }
 PDFDocument >> pages [
+
 	^ pages ifNil: [ pages := OrderedCollection new ]
 ]
 
 { #category : #accessing }
 PDFDocument >> pages: aListOfPDFPage [
+
 	pages := aListOfPDFPage
 ]
 
 { #category : #displayMode }
 PDFDocument >> real [
+
 	self displayMode: #real.
 	self zoom: nil
 ]
 
 { #category : #'page setup' }
 PDFDocument >> setFormat: aFormat [
-	self format: aFormat.
+
+	self format: aFormat
 ]
 
 { #category : #displayLayout }
 PDFDocument >> singlePage [
+
 	self displayLayout: #singlePage
 ]
 
 { #category : #accessing }
 PDFDocument >> styleSheet [
+
 	^ styleSheet
 ]
 
 { #category : #accessing }
 PDFDocument >> styleSheet: anObject [
+
 	styleSheet := anObject
 ]
 
 { #category : #displayLayout }
 PDFDocument >> twoPages [
+
 	self displayLayout: #twoPages
 ]
 
 { #category : #configuration }
 PDFDocument >> uncompressed [
+
 	self compression: false
 ]
 
 { #category : #accessing }
 PDFDocument >> width [
-	^(self format size x)
+
+	^ self format size x
 ]
 
 { #category : #accessing }
 PDFDocument >> zoom [
-	^zoom
+
+	^ zoom
 ]
 
 { #category : #accessing }
 PDFDocument >> zoom: anIntegerValue [
+
 	zoom := anIntegerValue
 ]

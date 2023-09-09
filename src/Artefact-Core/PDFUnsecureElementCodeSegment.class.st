@@ -10,7 +10,8 @@ Class {
 	#category : #'Artefact-Core-CodeSegment'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PDFUnsecureElementCodeSegment >> isSecure [
+
 	^ false
 ]

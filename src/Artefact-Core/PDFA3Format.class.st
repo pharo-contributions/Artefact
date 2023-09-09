@@ -7,7 +7,8 @@ Class {
 	#category : #'Artefact-Core-Formats'
 }
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFA3Format >> defaultSize [
+
 	^ 841.89 point @ 1190.55 point
 ]

@@ -15,29 +15,40 @@ PDFArrow class >> from: from angle: angle length: aLength [
 	^ self from: from to: from + ((angle cos * aLength) @ ((angle sin * aLength) negated))
 ]
 
+{ #category : #testing }
+PDFArrow class >> isAbstract [
+
+	^ self == PDFArrow
+]
+
 { #category : #action }
 PDFArrow >> angle [
+
 	^ ((self orientedTo  y - self orientedFrom y) convertTo: Unit point) value arcTan: ((self orientedTo x - self orientedFrom x) convertTo: Unit point) value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #'accessing - defaults' }
 PDFArrow >> defaultStyle [
+
 	^ #arrow
 ]
 
 { #category : #action }
 PDFArrow >> destinationOfHeadItem: aAngleValue with: aPosition [
 	"Answer the destination of a head item"
+
 	^(aPosition x - (self headLength * (aAngleValue cos)))@(aPosition y - (self headLength * (aAngleValue sin)))
 ]
 
 { #category : #render }
 PDFArrow >> getSubElementsWith: anObject styleSheet: anObject1 [
+
 	self subclassResponsibility
 ]
 
 { #category : #action }
 PDFArrow >> headAt: aPosition angle: anAngle [
+
 	^ {(PDFLineElement
 		from: aPosition
 		to: (self destinationOfHeadItem: anAngle - (Float pi / 6) with: aPosition)
@@ -47,11 +58,13 @@ PDFArrow >> headAt: aPosition angle: anAngle [
 
 { #category : #accessing }
 PDFArrow >> headLength [
-	"answer the length of the head of the arrow"
-	^3 pt
+	"Answer the length of the head of the arrow"
+
+	^ 3 pt
 ]
 
 { #category : #checking }
 PDFArrow >> requiredAttributes [
+
 	^ #( from to orientation )
 ]

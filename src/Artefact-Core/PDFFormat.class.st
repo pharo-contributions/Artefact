@@ -20,89 +20,107 @@ Class {
 	#category : #'Artefact-Core-Formats'
 }
 
-{ #category : #defaults }
+{ #category : #testing }
+PDFFormat class >> isAbstract [
+
+	^ self == PDFFormat
+]
+
+{ #category : #'accessing - defaults' }
 PDFFormat >> defaultMargins [
 
-	^28.35 point @ 28.35 point
+	^ 28.35 point @ 28.35 point
 ]
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFFormat >> defaultSize [
 
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
-{ #category : #description }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> height [
 	"Answer the height of a page"
-	^self size y
+
+	^ self size y
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFFormat >> initialize [
+
 	super initialize.
 	self margins: self defaultMargins.
 	self size: self defaultSize.
 	self setPortrait
 ]
 
-{ #category : #description }
+{ #category : #'accessing - margins' }
 PDFFormat >> leftMargin [
-	^(self margins x)
+
+	^ self margins x
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - margins' }
 PDFFormat >> margins [
+
 	^ margins
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - margins' }
 PDFFormat >> margins: anObject [
+
 	margins := anObject
 ]
 
 { #category : #accessing }
 PDFFormat >> portrait [
+
 	^ portrait
 ]
 
 { #category : #accessing }
 PDFFormat >> portrait: anObject [
+
 	portrait := anObject
 ]
 
 { #category : #'page setup' }
 PDFFormat >> setLandscape [
 	"Set the page in landscape orientation"
+
 	self portrait: false.
-	self size: (self size y) @ (self size x).	
+	self size: self size y @ self size x
 ]
 
 { #category : #'page setup' }
 PDFFormat >> setPortrait [
 	"Set the page in portrait orientation"
-	self portrait: true.
-	self size: (self size x) @ (self size y). 
 
+	self portrait: true.
+	self size: self size x @ self size y
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> size [
+
 	^ size
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> size: anObject [
+
 	size := anObject
 ]
 
-{ #category : #description }
+{ #category : #'accessing - margins' }
 PDFFormat >> topMargin [
-	^(self margins y)
+
+	^ self margins y
 ]
 
-{ #category : #description }
+{ #category : #'accessing - dimensions' }
 PDFFormat >> width [
 	"Answer the width of the page"
-	^self size x
+
+	^ self size x
 ]

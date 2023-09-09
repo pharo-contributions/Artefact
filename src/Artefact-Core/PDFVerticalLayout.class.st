@@ -12,12 +12,13 @@ Class {
 
 { #category : #layouting }
 PDFVerticalLayout >> defineElementPosition: anElement with: aPDFGenerator styleSheet: aStyleSheet [
+
 	| previousElement |
 	anElement
 		from:
 			(self elements first = anElement
 				ifTrue: [ self from ]
-				ifFalse: [ 
+				ifFalse: [
 					previousElement := self elements before: anElement.
 					previousElement from + (0 pt @ (previousElement dimension y + self spacing)) ])
 ]

@@ -12,6 +12,7 @@ Class {
 
 { #category : #render }
 PDFTextElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
+
 	^ ((aStyleSheet font getStringWidth: self text) + (2 * aStyleSheet margin)) @ (aStyleSheet font fontSize + (2 * aStyleSheet margin))
 ]
 
@@ -22,7 +23,7 @@ PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet
 	| position |
 	position := aGenerator determinePositionOnCurrentPage: self from + (0 @ (aStyleSheet font fontSize * 0.8)).
 	^ String
-		streamContents: [ :s | 
+		streamContents: [ :s |
 			s
 				nextPutAll: PDFByteCode beginText;
 				space;
@@ -37,7 +38,8 @@ PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet
 				nextPutAll: PDFByteCode endOfText ]
 ]
 
-{ #category : #accessing }
+{ #category : #checking }
 PDFTextElement >> requiredAttributes [
+
 	^ #( from text )
 ]

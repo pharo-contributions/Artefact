@@ -15,17 +15,19 @@ Class {
 
 { #category : #style }
 PDFParagraphElement >> defaultStyle [
+
 	^ #text
 ]
 
 { #category : #accessing }
 PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
+
 	| lines decalage currentXY current |
 	lines := self splitOn: aPDFGenerator currentPage using: aStyleSheet font.
 	decalage := aStyleSheet font fontSize.
 	currentXY := self from.
 	^ lines
-		collect: [ :aLine | 
+		collect: [ :aLine |
 			current := PDFFormattedTextElement new
 				from: currentXY;
 				dimension: self dimension;
@@ -34,46 +36,50 @@ PDFParagraphElement >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet
 			current ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFParagraphElement >> initialize [
+
 	super initialize.
-	self spacing: 0 mm.
+	self spacing: 0 mm
 ]
 
 { #category : #checking }
 PDFParagraphElement >> requiredAttributes [
+
 	^ #( from text dimension )
 ]
 
 { #category : #accessing }
 PDFParagraphElement >> spacing [
-	^spacing
+
+	^ spacing
 ]
 
 { #category : #accessing }
-PDFParagraphElement >> spacing: aValue [ 	
+PDFParagraphElement >> spacing: aValue [
+
 	spacing := aValue
 ]
 
 { #category : #action }
 PDFParagraphElement >> splitOn: aPage using: aFont [
-	"answer the lines of the paragraph (in the context of the specified page)"
+	"Answer the lines of the paragraph (in the context of the specified page)"
 
 	| widthOfLine widthOfWord line lines |
 	widthOfLine := 0 pt.
 	line := WriteStream on: String new.
 	lines := OrderedCollection new.
 	self wordsList
-		do: [ :aWord | 
+		do: [ :aWord |
 			| word |
 			word := aWord , ' '.
 			widthOfLine + (widthOfWord := aFont getStringWidth: word) <= self dimension x
-				ifTrue: [ 
+				ifTrue: [
 					line nextPutAll: word.
 					widthOfLine := widthOfLine + widthOfWord ]
-				ifFalse: [ 
+				ifFalse: [
 					widthOfWord > self dimension x
-						ifTrue: [ 
+						ifTrue: [
 							ArtefactOverSizedContent new
 								content: aWord;
 								signal ].

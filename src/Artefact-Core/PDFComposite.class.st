@@ -19,78 +19,100 @@ Class {
 	#category : #'Artefact-Core-Elements'
 }
 
+{ #category : #testing }
+PDFComposite class >> isAbstract [
+
+	^ self == PDFComposite
+]
+
 { #category : #accessing }
 PDFComposite >> dotted: aPDFDottedObject [
+
 	self styleSheet dotted: aPDFDottedObject
 ]
 
 { #category : #accessing }
 PDFComposite >> drawColor: aColor [
+
 	self styleSheet drawColor: aColor
 ]
 
 { #category : #accessing }
 PDFComposite >> fillColor: aColor [
+
 	self filled: true.
 	self styleSheet fillColor: aColor
 ]
 
 { #category : #accessing }
 PDFComposite >> filled [
+
 	^ filled
 ]
 
 { #category : #accessing }
 PDFComposite >> filled: anObject [
+
 	filled := anObject
 ]
 
 { #category : #accessing }
 PDFComposite >> font: aFont [
+
 	self styleSheet font: aFont
 ]
 
 { #category : #render }
 PDFComposite >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat [
+
 	^ PDFCompositeCodeSegment
-		from: (self generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat)
-		styleSheet: aStyleSheet
+		  from: (self
+				   generateCodeSegmentsCollectionWith: aPDFGenerator
+				   styleSheet: aStyleSheet
+				   format: aFormat)
+		  styleSheet: aStyleSheet
 ]
 
 { #category : #render }
 PDFComposite >> generateCodeSegmentsCollectionWith: aPDFGenerator styleSheet: compositeStyleSheet format: aFormat [
-	^ (self getSubElementsWith: aPDFGenerator styleSheet: compositeStyleSheet)
-		collect: [ :aSubElement | 
-			aSubElement
-				generateCodeSegmentWith: aPDFGenerator
-				styleSheet: (aSubElement buildCompositeStyleSheetFrom: compositeStyleSheet)
-				format: aFormat ]
+
+	^ (self
+		   getSubElementsWith: aPDFGenerator
+		   styleSheet: compositeStyleSheet) collect: [ :aSubElement |
+		  aSubElement
+			  generateCodeSegmentWith: aPDFGenerator
+			  styleSheet:
+			  (aSubElement buildCompositeStyleSheetFrom: compositeStyleSheet)
+			  format: aFormat ]
 ]
 
 { #category : #render }
 PDFComposite >> getSubElementsWith: aPDFGenerator styleSheet: aStyleSheet [
-	""
+
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
-PDFComposite >> initialize [ 
+{ #category : #initialization }
+PDFComposite >> initialize [
+
 	super initialize.
 	self filled: false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PDFComposite >> roundCap: aBoolean [
+
 	self styleSheet roundCap: aBoolean
 ]
 
 { #category : #accessing }
 PDFComposite >> textColor: aColor [
+
 	self styleSheet textColor: aColor
 ]
 
 { #category : #accessing }
 PDFComposite >> thickness: aThickness [
-	self styleSheet thickness: aThickness 
- 
+
+	self styleSheet thickness: aThickness
 ]

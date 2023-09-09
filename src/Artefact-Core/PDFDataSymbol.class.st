@@ -17,32 +17,42 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataSymbol class >> symbol: aSymbol [
-	^ self new symbol: aSymbol; yourself
+
+	^ self new
+		  symbol: aSymbol;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataSymbol >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataSymbol: self
 ]
 
 { #category : #testing }
 PDFDataSymbol >> isPrintable [
+
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 PDFDataSymbol >> printOn: aStream [
-	aStream nextPut: $/; nextPutAll: symbol asString
+
+	aStream
+		nextPut: $/;
+		nextPutAll: symbol asString
 ]
 
 { #category : #accessing }
 PDFDataSymbol >> symbol [
+
 	^ symbol
 ]
 
 { #category : #accessing }
 PDFDataSymbol >> symbol: anObject [
+
 	symbol := anObject
 ]

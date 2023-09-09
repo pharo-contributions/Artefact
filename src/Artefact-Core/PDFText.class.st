@@ -19,32 +19,41 @@ Class {
 
 { #category : #'instance creation' }
 PDFText class >> from: aPosition text: aText [
+
 	^ self new
-		from: aPosition;
-		text: aText;
-		yourself
+		  from: aPosition;
+		  text: aText;
+		  yourself
 ]
 
 { #category : #'instance creation' }
 PDFText class >> from: aPosition text: aText font: aFont [
+
 	^ self new
-		from: aPosition;
-		text: aText;
-		font: aFont;
-		yourself
+		  from: aPosition;
+		  text: aText;
+		  font: aFont;
+		  yourself
 ]
 
-{ #category : #defaults }
+{ #category : #testing }
+PDFText class >> isAbstract [
+
+	^ self == PDFText
+]
+
+{ #category : #'accessing - defaults' }
 PDFText >> defaultStyle [
+
 	^ #text
 ]
 
 { #category : #accessing }
 PDFText >> escape: aString [
-	"answer a clean string at PDF format"
-	
+	"Answer a clean string at PDF format"
+
 	| str |
-	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.	
+	str := aString copyWithRegex: '\\' matchesReplacedWith: '\\\'.
 	str := str copyWithRegex: '\(' matchesReplacedWith: '\('.
 	str := str copyWithRegex: '\)' matchesReplacedWith: '\)'.
 
@@ -53,10 +62,11 @@ PDFText >> escape: aString [
 
 { #category : #accessing }
 PDFText >> font: aFont [
+
 	self styleSheet font: aFont
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 PDFText >> isDrawElement [
 	^ false
 ]
@@ -80,6 +90,6 @@ PDFText >> textColor: aColor [
 { #category : #accessing }
 PDFText >> textString: aString [
 	"Answer a formated text string"
-	
+
 	^('(' , (self escape: (aString asString)) , ')')
 ]

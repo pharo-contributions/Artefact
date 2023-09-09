@@ -12,9 +12,8 @@ Class {
 }
 
 { #category : #render }
-PDFArrowElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [ 
-	"answer the style description"
-	
-	^ {(PDFLineElement from: self orientedFrom to: self orientedTo)}, (self headAt: self orientedTo angle: self angle)
+PDFArrowElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
+	"Answer the style description"
 
+	^ {(PDFLineElement from: self orientedFrom to: self orientedTo)}, (self headAt: self orientedTo angle: self angle)
 ]

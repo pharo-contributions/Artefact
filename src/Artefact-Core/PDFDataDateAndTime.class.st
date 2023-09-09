@@ -22,66 +22,79 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataDateAndTime class >> date: aDate time: aTime [
-	^ self new date: aDate; time: aTime; yourself
+
+	^ self new
+		  date: aDate;
+		  time: aTime;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataDateAndTime >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataDateAndTime: self
 ]
 
 { #category : #accessing }
 PDFDataDateAndTime >> date [
+
 	^ date
 ]
 
 { #category : #accessing }
 PDFDataDateAndTime >> date: anObject [
+
 	date := anObject
 ]
 
 { #category : #private }
 PDFDataDateAndTime >> formatDate: aDate time: aTime [
 	"Answer a correct date and time for a PDF document : yyyymmddhhmmss"
-	
-	| str timeStr hour minutes seconds |
 
+	| str timeStr hour minutes seconds |
 	hour := aTime hours.
 	str := hour asString.
-	(hour < 12) ifTrue: [ str := '0' , str ].
+	hour < 12 ifTrue: [ str := '0' , str ].
 	timeStr := str.
-	
- 	minutes := aTime minutes.
+
+	minutes := aTime minutes.
 	str := minutes asString.
-	(minutes < 10) ifTrue: [ str := '0' , str ].
+	minutes < 10 ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.
-	
+
 	seconds := aTime seconds.
 	str := seconds asString.
-	(seconds < 10) ifTrue: [ str := '0' , str ].
+	seconds < 10 ifTrue: [ str := '0' , str ].
 	timeStr := timeStr , str.
-	
-	^((aDate yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , timeStr)
+
+	^ (aDate yyyymmdd copyWithRegex: '-' matchesReplacedWith: '') , timeStr
 ]
 
 { #category : #testing }
 PDFDataDateAndTime >> isPrintable [
+
 	^ true
 ]
 
 { #category : #printing }
 PDFDataDateAndTime >> printOn: aStream [
-	aStream nextPutAll: '(D:'; nextPutAll: (self formatDate: (self date) time: (self time)); nextPut: $)
+
+	aStream
+		nextPutAll: '(D:';
+		nextPutAll: (self formatDate: self date time: self time);
+		nextPut: $)
 ]
 
 { #category : #accessing }
 PDFDataDateAndTime >> time [
+
 	^ time
 ]
 
 { #category : #accessing }
 PDFDataDateAndTime >> time: anObject [
+
 	time := anObject
 ]

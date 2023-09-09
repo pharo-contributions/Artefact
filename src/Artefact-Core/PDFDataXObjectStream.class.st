@@ -17,29 +17,34 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataXObjectStream class >> stream: aStream [
+
 	^ self new
-		stream: aStream;
-		yourself
+		  stream: aStream;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataXObjectStream >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataXObjectStream: self
 ]
 
 { #category : #printing }
 PDFDataXObjectStream >> printWith: aPDFPrinter [
+
 	aPDFPrinter printPDFDataXObjectStream: self
 ]
 
 { #category : #accessing }
 PDFDataXObjectStream >> stream [
+
 	^ stream
 ]
 
 { #category : #accessing }
 PDFDataXObjectStream >> stream: anObject [
+
 	stream := anObject
 ]

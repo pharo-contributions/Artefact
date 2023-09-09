@@ -6,7 +6,7 @@ Class {
 		'page',
 		'paragraph'
 	],
-	#category : #'Artefact-Tests-Base'
+	#category : #'Artefact-Core-Tests-Base'
 }
 
 { #category : #accessing }
@@ -43,18 +43,18 @@ PDFParagraphTest >> paragraph: anObject [
 PDFParagraphTest >> setUp [
 	self doc: PDFDocument new.
 	self page: PDFPage new.
-	
-	self paragraph: (PDFParagraphElement new 
+
+	self paragraph: (PDFParagraphElement new
 		from: 10mm@10mm;
-		dimension: 160mm@60mm; 
+		dimension: 160mm@60mm;
 		text: 'Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
-		
+
 	self page add: self paragraph.
 	self doc add: self page.
-	
-	self doc generate.
+
+	self doc generate
 ]
 
 { #category : #running }
-PDFParagraphTest >> tearDown [ 
+PDFParagraphTest >> tearDown [
 ]

@@ -8,7 +8,8 @@ Class {
 	#category : #'Artefact-Core-Opacity'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #effect }
 PDFOpacityLighten >> blendMode [
-	 ^#Lighten
+
+	^ #Lighten
 ]

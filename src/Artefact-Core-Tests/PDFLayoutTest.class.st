@@ -7,17 +7,17 @@ Class {
 		'page',
 		'document'
 	],
-	#category : #'Artefact-Tests-Elements'
+	#category : #'Artefact-Core-Tests-Elements'
 }
 
 { #category : #running }
-PDFLayoutTest >> setUp [ 
+PDFLayoutTest >> setUp [
 	testLayout := PDFDummyLayout new.
 	generator := PDFGenerator new.
 	page := PDFPage new.
 	document := PDFDocument new.
 	document add: page.
-	generator currentPage: page.
+	generator currentPage: page
 ]
 
 { #category : #tests }

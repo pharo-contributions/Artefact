@@ -20,7 +20,9 @@ PDFDemos class >> CDTemplateTest [
 	"PDFDemos CDTemplateTest"
 
 	<script>
-	self new CDTemplateTest: (self streamNamed: 'CDTemplateTest.pdf')
+	self
+		streamNamed: 'CDTemplateTest.pdf'
+		do: [ :s | self new CDTemplateTest: s ]
 ]
 
 { #category : #templates }
@@ -28,7 +30,9 @@ PDFDemos class >> DVDTemplateTest [
 	"PDFDemos DVDTemplateTest"
 
 	<script>
-	self new DVDTemplateTest: (self streamNamed: 'DVDTemplateTest.pdf')
+	self
+		streamNamed: 'DVDTemplateTest.pdf'
+		do: [ :s | self new DVDTemplateTest: s ]
 ]
 
 { #category : #text }
@@ -36,7 +40,9 @@ PDFDemos class >> alignmentsTest [
 	"PDFDemos alignmentsTest"
 
 	<script>
-	self new alignmentsTest: (self streamNamed: 'alignmentsTest.pdf')
+	self
+		streamNamed: 'alignmentsTest.pdf'
+		do: [ :s | self new alignmentsTest: s ]
 ]
 
 { #category : #composite }
@@ -44,7 +50,9 @@ PDFDemos class >> arrowTest [
 	"PDFDemos arrowTest"
 
 	<script>
-	self new arrowTest: (self streamNamed: 'arrowTest.pdf')
+	self
+		streamNamed: 'arrowTest.pdf'
+		do: [ :s | self new arrowTest: s ]
 ]
 
 { #category : #draw }
@@ -52,7 +60,9 @@ PDFDemos class >> bezierTest [
 	"PDFDemos bezierTest"
 
 	<script>
-	self new bezierTest: (self streamNamed: 'bezierTest.pdf')
+	self
+		streamNamed: 'bezierTest.pdf'
+		do: [ :s | self new bezierTest: s ]
 ]
 
 { #category : #experimental }
@@ -60,7 +70,9 @@ PDFDemos class >> brochureTest [
 	"PDFDemos brochureTest"
 
 	<script>
-	self new brochure: (self streamNamed: 'brochure.pdf')
+	self
+		streamNamed: 'brochureTest.pdf'
+		do: [ :s | self new brochureTest: s ]
 ]
 
 { #category : #draw }
@@ -68,7 +80,9 @@ PDFDemos class >> capLineTest [
 	"PDFDemos capLineTest"
 
 	<script>
-	self new capLineTest: (self streamNamed: 'capLineTest.pdf')
+	self
+		streamNamed: 'capLineTest.pdf'
+		do: [ :s | self new capLineTest: s ]
 ]
 
 { #category : #composite }
@@ -76,7 +90,9 @@ PDFDemos class >> cellTest [
 	"PDFDemos cellTest"
 
 	<script>
-	self new cellTest: (self streamNamed: 'cellTest.pdf')
+	self
+		streamNamed: 'cellTest.pdf'
+		do: [ :s | self new cellTest: s ]
 ]
 
 { #category : #draw }
@@ -84,7 +100,9 @@ PDFDemos class >> circlesTest [
 	"PDFDemos circlesTest"
 
 	<script>
-	self new circlesTest: (self streamNamed: 'circlesTest.pdf')
+	self
+		streamNamed: 'circlesTest.pdf'
+		do: [ :s | self new circlesTest: s ]
 ]
 
 { #category : #color }
@@ -92,7 +110,9 @@ PDFDemos class >> colorTest [
 	"PDFDemos colorTest"
 
 	<script>
-	self new colorTest: (self streamNamed: 'colorTest.pdf')
+	self
+		streamNamed: 'colorTest.pdf'
+		do: [ :s | self new colorTest: s ]
 ]
 
 { #category : #composite }
@@ -100,7 +120,9 @@ PDFDemos class >> datatableTest [
 	"PDFDemos datatableTest"
 
 	<script>
-	self new datatableTest: (self streamNamed: 'datatableTest.pdf')
+	self
+		streamNamed: 'datatableTest.pdf'
+		do: [ :s | self new datatableTest: s ]
 ]
 
 { #category : #composite }
@@ -108,13 +130,14 @@ PDFDemos class >> datatableWithCaptionsTest [
 	"PDFDemos datatableWithCaptionsTest"
 
 	<script>
-	self new datatableWithCaptionsTest: (self streamNamed: 'datatableWithCaptionsTest.pdf')
+	self
+		streamNamed: 'datatableWithCaptionsTest.pdf'
+		do: [ :s | self new datatableWithCaptionsTest: s ]
 ]
 
 { #category : #tool }
 PDFDemos class >> demoPath [
 	^ 'pdf/'
-
 ]
 
 { #category : #'display setup' }
@@ -122,7 +145,9 @@ PDFDemos class >> documentDisplayLayoutTest [
 	"PDFDemos documentDisplayLayoutTest"
 
 	<script>
-	self new documentDisplayLayoutTest: (self streamNamed: 'documentDisplayLayoutTest.pdf')
+	self
+		streamNamed: 'documentDisplayLayoutTest.pdf'
+		do: [ :s | self new documentDisplayLayoutTest: s ]
 ]
 
 { #category : #'display setup' }
@@ -130,7 +155,9 @@ PDFDemos class >> documentDisplayModeTest [
 	"PDFDemos documentDisplayModeTest"
 
 	<script>
-	self new documentDisplayModeTest: (self streamNamed: 'documentDisplayModeTest.pdf')
+	self
+		streamNamed: 'documentDisplayModeTest.pdf'
+		do: [ :s | self new documentDisplayModeTest: s ]
 ]
 
 { #category : #'display setup' }
@@ -138,7 +165,9 @@ PDFDemos class >> documentZoomTest [
 	"PDFDemos documentZoomTest"
 
 	<script>
-	self new documentZoomTest: (self streamNamed: 'documentZoomTest.pdf')
+	self
+		streamNamed: 'documentZoomTest.pdf'
+		do: [ :s | self new documentZoomTest: s ]
 ]
 
 { #category : #color }
@@ -146,7 +175,9 @@ PDFDemos class >> drawStyleSheetTest [
 	"PDFDemos drawStyleSheetTest"
 
 	<script>
-	self new drawStyleSheetTest: (self streamNamed: 'drawStyleSheetTest.pdf')
+	self
+		streamNamed: 'drawStyleSheetTest.pdf'
+		do: [ :s | self new drawStyleSheetTest: s ]
 ]
 
 { #category : #draw }
@@ -154,7 +185,9 @@ PDFDemos class >> ellipsesTest [
 	"PDFDemos ellipsesTest"
 
 	<script>
-	self new ellipsesTest: (self streamNamed: 'ellipsesTest.pdf')
+	self
+		streamNamed: 'ellipsesTest.pdf'
+		do: [ :s | self new ellipsesTest: s ]
 ]
 
 { #category : #text }
@@ -162,7 +195,9 @@ PDFDemos class >> euroTest [
 	"PDFDemos euroTest"
 
 	<script>
-	self new euroTest: (self streamNamed: 'euroTest.pdf')
+	self
+		streamNamed: 'euroTest.pdf'
+		do: [ :s | self new euroTest: s ]
 ]
 
 { #category : #color }
@@ -170,7 +205,9 @@ PDFDemos class >> greyLevelTest [
 	"PDFDemos greyLevelTest"
 
 	<script>
-	self new greyLevelTest: (self streamNamed: 'greyLevelTest.pdf')
+	self
+		streamNamed: 'greyLevelTest.pdf'
+		do: [ :s | self new greyLevelTest: s ]
 ]
 
 { #category : #layout }
@@ -178,23 +215,29 @@ PDFDemos class >> horizontalLayoutTest [
 	"PDFDemos horizontalLayoutTest"
 
 	<script>
-	self new horizontalLayoutTest: (self streamNamed: 'horizontalLayoutTest.pdf')
+	self
+		streamNamed: 'horizontalLayoutTest.pdf'
+		do: [ :s | self new horizontalLayoutTest: s ]
 ]
 
 { #category : #image }
 PDFDemos class >> imageJPGTest [
-	"PDFDemos imageJPG"
+	"PDFDemos imageJPGTest"
 
 	<script>
-	self new imageJPG: (self streamNamed: 'imageJPG.pdf')
+	self
+		streamNamed: 'imageJPGTest.pdf'
+		do: [ :s | self new imageJPGTest: s ]
 ]
 
 { #category : #image }
 PDFDemos class >> imagePNGTest [
-	"PDFDemos imagePNG"
+	"PDFDemos imagePNGTest"
 
 	<script>
-	self new imagePNG: (self streamNamed: 'imagePNG.pdf')
+	self
+		streamNamed: 'imagePNGTest.pdf'
+		do: [ :s | self new imagePNGTest: s ]
 ]
 
 { #category : #document }
@@ -202,7 +245,9 @@ PDFDemos class >> infosTest [
 	"PDFDemos infosTest"
 
 	<script>
-	self new infosTest: (self streamNamed: 'infosTest.pdf')
+	self
+		streamNamed: 'infosTest.pdf'
+		do: [ :s | self new infosTest: s ]
 ]
 
 { #category : #draw }
@@ -210,7 +255,9 @@ PDFDemos class >> lineTest [
 	"PDFDemos lineTest"
 
 	<script>
-	self new lineTest: (self streamNamed: 'lineTest.pdf')
+	self
+		streamNamed: 'lineTest.pdf'
+		do: [ :s | self new lineTest: s ]
 ]
 
 { #category : #color }
@@ -218,7 +265,9 @@ PDFDemos class >> mosaiqueTest [
 	"PDFDemos mosaiqueTest"
 
 	<script>
-	self new mosaiqueTest: (self streamNamed: 'mosaiqueTest.pdf')
+	self
+		streamNamed: 'mosaiqueTest.pdf'
+		do: [ :s | self new mosaiqueTest: s ]
 ]
 
 { #category : #document }
@@ -226,7 +275,9 @@ PDFDemos class >> multiOrientationsTest [
 	"PDFDemos multiOrientationsTest"
 
 	<script>
-	self new multiOrientationsTest: (self streamNamed: 'multiOrientationsTest.pdf')
+	self
+		streamNamed: 'multiOrientationsTest.pdf'
+		do: [ :s | self new multiOrientationsTest: s ]
 ]
 
 { #category : #style }
@@ -234,7 +285,9 @@ PDFDemos class >> multiStyleArrowsTest [
 	"PDFDemos multiStyleArrowsTest"
 
 	<script>
-	self new multiStyleArrowsTest: (self streamNamed: 'multiStyleArrowsTest.pdf')
+	self
+		streamNamed: 'multiStyleArrowsTest.pdf'
+		do: [ :s | self new multiStyleArrowsTest: s ]
 ]
 
 { #category : #cool }
@@ -242,7 +295,9 @@ PDFDemos class >> oneLineTest [
 	"PDFDemos oneLineTest"
 
 	<script>
-	self new oneLineTest: (self streamNamed: 'oneLineTest.pdf')
+	self
+		streamNamed: 'oneLineTest.pdf'
+		do: [ :s | self new oneLineTest: s ]
 ]
 
 { #category : #composite }
@@ -250,7 +305,9 @@ PDFDemos class >> paragraphTest [
 	"PDFDemos paragraphTest"
 
 	<script>
-	self new paragraphTest: (self streamNamed: 'paragraphTest.pdf')
+	self
+		streamNamed: 'paragraphTest.pdf'
+		do: [ :s | self new paragraphTest: s ]
 ]
 
 { #category : #composite }
@@ -258,7 +315,9 @@ PDFDemos class >> paragraphWithSpacingTest [
 	"PDFDemos paragraphWithSpacingTest"
 
 	<script>
-	self new paragraphWithSpacingTest: (self streamNamed: 'paragraphWithSpacingTest.pdf')
+	self
+		streamNamed: 'paragraphWithSpacingTest.pdf'
+		do: [ :s | self new paragraphWithSpacingTest: s ]
 ]
 
 { #category : #draw }
@@ -266,7 +325,9 @@ PDFDemos class >> polygonsTest [
 	"PDFDemos polygonsTest"
 
 	<script>
-	self new polygonsTest: (self streamNamed: 'polygonsTest.pdf')
+	self
+		streamNamed: 'polygonsTest.pdf'
+		do: [ :s | self new polygonsTest: s ]
 ]
 
 { #category : #draw }
@@ -274,7 +335,9 @@ PDFDemos class >> rectsTest [
 	"PDFDemos rectsTest"
 
 	<script>
-	self new rectsTest: (self streamNamed: 'rectsTest.pdf')
+	self
+		streamNamed: 'rectsTest.pdf'
+		do: [ :s | self new rectsTest: s ]
 ]
 
 { #category : #experimental }
@@ -282,7 +345,9 @@ PDFDemos class >> rotationTest [
 	"PDFDemos rotationTest"
 
 	<script>
-	self new rotationTest: (self streamNamed: 'rotation.pdf')
+	self
+		streamNamed: 'rotationTest.pdf'
+		do: [ :s | self new rotationTest: s ]
 ]
 
 { #category : #runAllDemos }
@@ -294,19 +359,14 @@ PDFDemos class >> runAllDemos [
 ]
 
 { #category : #tool }
-PDFDemos class >> streamNamed: aName [
+PDFDemos class >> streamNamed: aName do: aBlock [
+
 	| file |
 	file := (self demoPath , aName) asFileReference.
 	file parent ensureCreateDirectory.
 	file ensureDelete.
-	self flag: #todo.	"The next expression is a hack to correct a Pharo 6/7 compatibility.
-	We need a binary write stream to print on but the way to get one changed between Pharo 6 and 7. To improve the code we could add a Pharo^ compatibility package that would add #binaryWriteStream to Pharo 6, but I have not time for now, I just want to make demos work.
-	"
-	^ SystemVersion current major < 7
-		ifTrue: [ file writeStream
-				binary;
-				yourself ]
-		ifFalse: [ file binaryWriteStream ]
+
+	^ file binaryWriteStreamDo: aBlock
 ]
 
 { #category : #text }
@@ -314,7 +374,9 @@ PDFDemos class >> textTest [
 	"PDFDemos textTest"
 
 	<script>
-	self new textTest: (self streamNamed: 'textTest.pdf')
+	self
+		streamNamed: 'textTest.pdf'
+		do: [ :s | self new textTest: s ]
 ]
 
 { #category : #draw }
@@ -322,7 +384,9 @@ PDFDemos class >> thicknessTest [
 	"PDFDemos thicknessTest"
 
 	<script>
-	self new thicknessTest: (self streamNamed: 'thicknessTest.pdf')
+	self
+		streamNamed: 'thicknessTest.pdf'
+		do: [ :s | self new thicknessTest: s ]
 ]
 
 { #category : #draw }
@@ -330,7 +394,9 @@ PDFDemos class >> twoColoredRectsOpacityTest [
 	"PDFDemos twoColoredRectsOpacityTest"
 
 	<script>
-	self new twoColoredRectsOpacityTest: (self streamNamed: 'twoColoredRectsOpacityTest.pdf')
+	self
+		streamNamed: 'twoColoredRectsOpacityTest.pdf'
+		do: [ :s | self new twoColoredRectsOpacityTest: s ]
 ]
 
 { #category : #draw }
@@ -338,7 +404,9 @@ PDFDemos class >> twoColoredRectsTest [
 	"PDFDemos twoColoredRectsTest"
 
 	<script>
-	self new twoColoredRectsTest: (self streamNamed: 'twoColoredRectsTest.pdf')
+	self
+		streamNamed: 'twoColoredRectsTest.pdf'
+		do: [ :s | self new twoColoredRectsTest: s ]
 ]
 
 { #category : #layout }
@@ -346,7 +414,9 @@ PDFDemos class >> verticalLayoutTest [
 	"PDFDemos verticalLayoutTest"
 
 	<script>
-	self new verticalLayoutTest: (self streamNamed: 'verticalLayoutTest.pdf')
+	self
+		streamNamed: 'verticalLayoutTest.pdf'
+		do: [ :s | self new verticalLayoutTest: s ]
 ]
 
 { #category : #misc }
@@ -354,7 +424,9 @@ PDFDemos class >> widthTest [
 	"PDFDemos widthTest"
 
 	<script>
-	self new widthTest: (self streamNamed: 'widthTest.pdf')
+	self
+		streamNamed: 'widthTest.pdf'
+		do: [ :s | self new widthTest: s ]
 ]
 
 { #category : #templates }
@@ -371,7 +443,6 @@ PDFDemos >> DVDTemplateTest: aStream [
 	pdfdoc := PDFDocument new.
 	pdfdoc add: (PDFDVDCoverTemplate new format: (PDFCompactDiscTemplate recommendedPageFormat)).
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #text }
@@ -407,7 +478,7 @@ PDFDemos >> alignmentsTest: aStream [
 				text: 'At right';
 				alignment: (PDFAlignment right)).
 	pdfdoc add: aPage.
-	pdfdoc exportTo: aStream 
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #composite }
@@ -463,8 +534,8 @@ PDFDemos >> bezierTest: aStream [
 	"drawing bezier curves"
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
-	aPage := PDFPage new.	
-			
+	aPage := PDFPage new.
+
 	aPage
 		add:
 				((PDFBezierCurveElement
@@ -484,13 +555,13 @@ PDFDemos >> bezierTest: aStream [
 							(150 mm @ 0 mm).
 							(50 mm @ 50 mm)})
 		thickness: 2 mm).
-		
+
 	pdfdoc add: aPage.
 	pdfdoc exportTo: aStream
 ]
 
 { #category : #experimental }
-PDFDemos >> brochure: aStream [
+PDFDemos >> brochureTest: aStream [
 	"Artefact use an JPG file"
 
 	| pdfdoc aPage titleFont subtitleFont titleColor layout quoteFont pharoLogo |
@@ -567,7 +638,7 @@ PDFDemos >> capLineTest: aStream [
 	aPage := PDFPage new.
 	aPage
 		add:
-			((PDFLineElement 
+			((PDFLineElement
 				from: 20 mm @ 20 mm
 				to: 100 mm @ 60 mm)
 				thickness:  5 mm;
@@ -575,27 +646,26 @@ PDFDemos >> capLineTest: aStream [
 				roundCap: true).
 	aPage
 		add:
-			((PDFLineElement 
+			((PDFLineElement
 				from: 30 mm @ 40 mm
 				to: 110 mm @ 80 mm)
 				drawColor: (PDFColor r: 240 g: 80 b: 100) ;
 				thickness:  5 mm).
-				
+
 	pdfdoc add: aPage.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #composite }
 PDFDemos >> cellTest: aStream [
 	"Demonstration of PDFCellElement"
-	
+
 	| pdfdoc myTitleFont aPage |
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new.
 
 	myTitleFont := (PDFTimesFont size: 24 pt) bold: true.
-	
+
 	aPage := PDFPage new.
 
 	aPage add: (PDFCellElement new
@@ -606,22 +676,22 @@ PDFDemos >> cellTest: aStream [
 		font: myTitleFont;
 		alignment: PDFAlignment center
 	).
-	
+
 	"horizontal alignment"
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		from: 10 mm @ 20 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'alignment: left';
 		alignment: PDFAlignment left
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 80 mm @ 20 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'alignment: center'
 	 ).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 150 mm @ 20 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'alignment: right';
@@ -629,21 +699,21 @@ PDFDemos >> cellTest: aStream [
 	).
 
 	"vertical alignment"
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		from: 10 mm @ 40 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'vertical: top';
 		alignment: PDFAlignment top left
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 80 mm @ 40 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'vertical: middle';
 		alignment: PDFAlignment center middle
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 150 mm @ 40 mm;
 		dimension: 50 mm @ 10 mm;
 		text: 'vertical: bottom';
@@ -651,7 +721,7 @@ PDFDemos >> cellTest: aStream [
 	).
 
 	"colors"
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		from: 10 mm @ 60 mm ;
 		dimension: 50 mm @ 10 mm;
 		textColor: (PDFColor r: 0 g: 0 b: 255);
@@ -659,8 +729,8 @@ PDFDemos >> cellTest: aStream [
 		text: 'text: blue border: red';
 		alignment: PDFAlignment center middle
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 80 mm @ 60 mm;
 		dimension: 50 mm @ 10 mm;
 		textColor: (PDFColor r: 0 g: 0 b: 255);
@@ -668,8 +738,8 @@ PDFDemos >> cellTest: aStream [
 		text: 'background: green';
 		alignment: PDFAlignment center middle
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 150 mm @ 60 mm;
 		dimension: 50 mm @ 10 mm;
 		textColor: (PDFColor new setGreyLevel: 255);
@@ -679,35 +749,34 @@ PDFDemos >> cellTest: aStream [
 		thickness: 0.2 mm;
 		alignment: PDFAlignment center middle
 	).
-	
-	aPage add: (PDFCellElement new  
+
+	aPage add: (PDFCellElement new
 		from: 10 mm @ 80 mm;
 		text: 'A cell without wh'
 	).
 	self flag: 'TODO Implement layout'.
-	"aPage add: (PDFCellElement new  
+	"aPage add: (PDFCellElement new
 		wh: 50 mm @ 10 mm;
 		text: 'A cell without xy'
 	).
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		wh: 50 mm @ 10 mm;
 		text: 'linefeed: true';
 		linefeed: true
 	).
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		wh: 50 mm @ 10 mm;
 		text: 'linefeed: false';
 		linefeed: false
 	).
-	aPage add: (PDFCellElement new  
+	aPage add: (PDFCellElement new
 		wh: 50 mm @ 10 mm;
 		text: 'end'
 	)."
 
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -732,28 +801,27 @@ PDFDemos >> colorTest: aStream [
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
-	
+
 	aPage := PDFPage new.
-	aPage add: (PDFCellElement new 
+	aPage add: (PDFCellElement new
 		font: (PDFTimesFont new fontSize: 32pt);
 		from: 10mm@10mm;
-		dimension: 100 mm @ 20 mm; 
+		dimension: 100 mm @ 20 mm;
 		text: 'Hello World!';
 		textColor: (PDFColor r: 255 g: 0 b: 0);
 		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
-	aPage add: (PDFRectElement new 
+	aPage add: (PDFRectElement new
 		from: 10 mm @ 50 mm;
-		dimension: 50 mm @ 50 mm; 
+		dimension: 50 mm @ 50 mm;
 		thickness: 5pt;
 		drawColor: (PDFColor r: 0 g: 0 b: 255);
 		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
-		
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #datatable }
@@ -761,12 +829,12 @@ PDFDemos >> datatableTest: aStream [
 	"generate a datatable"
 
 	| pdfdoc aPage |
-		
+
 	pdfdoc := PDFDocument new.
 	pdfdoc setFormat: PDFA4Format new.
 	pdfdoc metaData title: 'Users report'.
 	pdfdoc styleSheet > #datatable > #even fillColor: (PDFColor r: 75 g: 75 b: 230).
-	
+
 	aPage := PDFPage new.
 	aPage add: (PDFDataTableElement new
 		data: #(
@@ -792,11 +860,10 @@ PDFDemos >> datatableTest: aStream [
 		from: 10 mm @ 60 mm;
 		dimension: 190 mm @ 50 mm
 	).
-	
-	pdfdoc add: aPage.
-	
-																																																									pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+																																																									pdfdoc exportTo: aStream
 ]
 
 { #category : #datatable }
@@ -846,18 +913,17 @@ PDFDemos >> documentDisplayLayoutTest: aStream [
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'First page').						
+				text: 'First page').
 	pdfdoc add: aPage1.
 	aPage2  := PDFPage new.
 	aPage2
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'Second page').						
+				text: 'Second page').
 	pdfdoc add: aPage2.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #'display setup' }
@@ -871,18 +937,17 @@ PDFDemos >> documentDisplayModeTest: aStream [
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'First page').						
+				text: 'First page').
 	pdfdoc add: aPage1.
 	aPage2  := PDFPage new.
 	aPage2
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'Second page').						
+				text: 'Second page').
 	pdfdoc add: aPage2.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #'display setup' }
@@ -896,18 +961,17 @@ PDFDemos >> documentZoomTest: aStream [
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'First page').						
+				text: 'First page').
 	pdfdoc add: aPage1.
 	aPage2  := PDFPage new.
 	aPage2
 		add:
 			(PDFTextElement new
 				from: 10 mm @ 10 mm;
-				text: 'Second page').						
+				text: 'Second page').
 	pdfdoc add: aPage2.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #color }
@@ -916,25 +980,24 @@ PDFDemos >> drawStyleSheetTest: aStream [
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
-	
+
 	aPage := PDFPage new.
 
-	aPage add: (PDFRectElement new 
+	aPage add: (PDFRectElement new
 		from: 10 mm @ 50 mm;
-		dimension: 50 mm @ 50 mm; 
+		dimension: 50 mm @ 50 mm;
 		thickness: 5 mm;
 		drawColor: (PDFColor r: 0 g: 0 b: 255);
 		fillColor: (PDFColor r: 0 g: 255 b: 0)
 		).
-		
-	aPage add: (PDFRectElement new 
+
+	aPage add: (PDFRectElement new
 		from: 50 mm @ 60 mm;
 		dimension: 50 mm @ 50 mm).
-		
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -963,15 +1026,14 @@ PDFDemos >> euroTest: aStream [
 
        aPage := PDFPage new.
 	theText :=  ('Price: (24{1})toto' format: { (128 asCharacter) asString} ).
-	
+
        aPage add: (PDFTextElement new from: 50 mm @ 10 mm; text: theText; font: (PDFTimesFont new)).
        aPage add: (PDFTextElement new from: 50 mm @ 20 mm; text: theText; font: (PDFCourierFont new)).
        aPage add: (PDFTextElement new from: 50 mm @ 30 mm; text: theText; font: (PDFHelveticaFont  new)).
 
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+pdfdoc exportTo: aStream
 ]
 
 { #category : #color }
@@ -980,28 +1042,27 @@ PDFDemos >> greyLevelTest: aStream [
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
-	
+
 	aPage := PDFPage new.
 
-	aPage add: (PDFTextElement new 
-		from: 10 mm @ 10 mm; 
-		text: 'A grey level text'; 
+	aPage add: (PDFTextElement new
+		from: 10 mm @ 10 mm;
+		text: 'A grey level text';
 		font: (PDFCourierFont new);
 		textColor: (PDFColor new setGreyLevel: 128)
 		).
-		
-	aPage add: (PDFRectElement new 
+
+	aPage add: (PDFRectElement new
 		from: 10 mm @ 20 mm;
-		dimension: 50 mm @ 50 mm; 
+		dimension: 50 mm @ 50 mm;
 		thickness: 5 pt;
 		drawColor: (PDFColor new setGreyLevel: 196);
 		fillColor: (PDFColor new setGreyLevel: 164)
 		).
-		
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #layout }
@@ -1100,18 +1161,17 @@ PDFDemos >> horizontalLayoutTest: aStream [
 								text: 'A cell without xy')).
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #image }
-PDFDemos >> imageJPG: aStream [
+PDFDemos >> imageJPGTest: aStream [
 	"How to use a JPEG file with artefact"
 
 	| pdfdoc aPage pharoByExampleLogo |
 	pdfdoc := PDFDocument new.
 	"Downloading JPEG file from internet with Zinc"
 	pharoByExampleLogo := (ZnClient new
-		url: 'https://gforge.inria.fr/frs/download.php/file/22781/pharocard.jpg';
+		url: 'https://files.pharo.org/media/pharocard.jpg';
 		get).
 	aPage := PDFPage new.
 	aPage add: (PDFJpegElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoByExampleLogo readStream).
@@ -1131,14 +1191,13 @@ PDFDemos >> imageJPG: aStream [
 				dimension: 40 mm  @ 40 mm;
 				rotation: 30
 				).
-								
+
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #image }
-PDFDemos >> imagePNG: aStream [
+PDFDemos >> imagePNGTest: aStream [
 	"How to use a PNG file with artefact"
 
 	| pdfdoc aPage pharoLogo |
@@ -1149,10 +1208,9 @@ PDFDemos >> imagePNG: aStream [
 		get).
 	aPage := PDFPage new.
 	aPage add: (PDFPngElement from: 5 mm@0mm dimension: 160mm@90mm fromStream: pharoLogo readStream).
-								
+
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #document }
@@ -1161,19 +1219,18 @@ PDFDemos >> infosTest: aStream [
 
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
-	
-	pdfdoc metaData title: 'Document title'; 
-		subject: 'subject of the document'; 
-		author: 'The Pasta Team'; 
+
+	pdfdoc metaData title: 'Document title';
+		subject: 'subject of the document';
+		author: 'The Pasta Team';
 		keywords: 'cool rock best';
 		creator: 'Artefact - Pharo'.
-	
-	aPage := PDFPage new.
-	
-	pdfdoc add: aPage.
-		
-pdfdoc exportTo: aStream
 
+	aPage := PDFPage new.
+
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -1183,25 +1240,25 @@ PDFDemos >> lineTest: aStream [
 	| pdfdoc aPage |
 	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
-	
+
 	aPage
 		add:
-			(PDFLineElement 
+			(PDFLineElement
 				from: 0 mm @ 0 mm
 				to: 210 mm @ 0 mm).
 	aPage
 		add:
-			(PDFLineElement 
+			(PDFLineElement
 				from: 0 mm @ 0 mm
 				to: 0 mm @ 297 mm).
 	aPage
 		add:
-			(PDFLineElement 
+			(PDFLineElement
 				from: 0 mm @ 297 mm
 				to: 210 mm @ 297 mm).
 	aPage
 		add:
-			(PDFLineElement 
+			(PDFLineElement
 				from: 0 mm @ 0 mm
 				to: 210 mm @ 297 mm).
 
@@ -1211,7 +1268,6 @@ PDFDemos >> lineTest: aStream [
 	pdfdoc add: aPage.
 	pdfdoc styleSheet drawColor: (PDFColor r: 200 g: 25 b: 25).
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #color }
@@ -1224,8 +1280,8 @@ PDFDemos >> mosaiqueTest: aStream [
 	plage := 0 to: 255.
 	aPage := PDFPage new.
 	pdfdoc add: aPage.
-	0 to: (aPage format width convertTo: tileSize x unit) / tileSize x do: [ :x | 
-		0 to: (aPage format height convertTo: tileSize y unit) / tileSize y do: [ :y | 
+	0 to: (aPage format width convertTo: tileSize x unit) / tileSize x do: [ :x |
+		0 to: (aPage format height convertTo: tileSize y unit) / tileSize y do: [ :y |
 			aPage
 				add:
 					((PDFRectElement from: (x * tileSize x) @ (y * tileSize y) dimension: tileSize)
@@ -1236,154 +1292,149 @@ PDFDemos >> mosaiqueTest: aStream [
 { #category : #document }
 PDFDemos >> multiOrientationsTest: aStream [
 	"Create a document with two pages and two different orientations"
-	
+
 	| pdfdoc myBigFont firstPage secondPage myLandscapeFormat |
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new.
 
 	myLandscapeFormat := PDFA3Format new setLandscape.
-	
+
 	myBigFont := PDFTimesFont new fontSize: 16 pt.
-	
-	firstPage := PDFPage new.	
-	firstPage add: (PDFCellElement new 
+
+	firstPage := PDFPage new.
+	firstPage add: (PDFCellElement new
 		from: 10mm@10mm;
-		font: myBigFont; 
-		dimension: 40 mm @ 10 mm; 
+		font: myBigFont;
+		dimension: 40 mm @ 10 mm;
 		text: 'Page 1').
-	
+
 	secondPage := PDFPage new format: myLandscapeFormat.
-	
-	secondPage add: (PDFCellElement new 
+
+	secondPage add: (PDFCellElement new
 		from: 10mm@10mm;
-		font: myBigFont; 
-		dimension: 40 mm @ 10 mm; 
-		text: 'Page en A3').	
-			
+		font: myBigFont;
+		dimension: 40 mm @ 10 mm;
+		text: 'Page en A3').
+
 	pdfdoc add: firstPage.
 	pdfdoc add: secondPage.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #style }
 PDFDemos >> multiStyleArrowsTest: aStream [
 	"drawing arrows with differents styles"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new.
 	pdfdoc styleSheet > #redArrow at: #drawColor put: (PDFColor r: 243 g: 24 b: 24).
 	pdfdoc styleSheet	at: #drawColor put: (PDFColor r: 24 g: 24 b: 180).
 	pdfdoc styleSheet > #greenArrow at: #drawColor put: (PDFColor r: 24 g: 180 b: 24).
 	pdfdoc styleSheet > #greenArrow > #head at: #drawColor put: (PDFColor r: 255 g: 0 b: 0).
 	aPage := PDFPage new.
-	
-	aPage add: ((PDFArrowElement 
+
+	aPage add: ((PDFArrowElement
 		from: 10 mm @ 10 mm
 		to: 100 mm @30 mm)
 		style: #redArrow
 	).
 
-	aPage add: (PDFArrowElement 
+	aPage add: (PDFArrowElement
 		from: 10 mm @20 mm
 		to: 30 mm @30 mm
 	).
 
-	aPage add: ((PDFArrowElement 
+	aPage add: ((PDFArrowElement
 		from: 10 mm @ 15 mm
 		to: 70 mm @30 mm)
 		style: #greenArrow
 	).
-			
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #cool }
 PDFDemos >> oneLineTest: aStream [
 	PDFDocument new add: (PDFPage new add: (PDFTextElement new text: 'Hello'; from: 10mm@10mm)); exportTo: aStream
-
 ]
 
 { #category : #composite }
 PDFDemos >> paragraphTest: aStream [
 	"Use of paragraphs"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
+
 	aPage := PDFPage new.
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 90 mm @ 40 mm;
-		dimension: 100 mm @ 20 mm; 
+		dimension: 100 mm @ 20 mm;
 		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 20 mm @ 40 mm;
-		dimension: 60 mm @ 60 mm; 
+		dimension: 60 mm @ 60 mm;
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 100 mm @ 80 mm;
-		dimension: 60 mm @ 70 mm; 
+		dimension: 60 mm @ 70 mm;
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
 		alignment: PDFAlignment center).
-		
-	aPage add: (PDFParagraphElement new 
+
+	aPage add: (PDFParagraphElement new
 		from: 10 mm @ 120 mm;
-		dimension: 60 mm @ 80 mm; 
+		dimension: 60 mm @ 80 mm;
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
 		alignment: PDFAlignment right
 		).
-		
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #composite }
 PDFDemos >> paragraphWithSpacingTest: aStream [
 	"Use of paragraphs"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
+
 	aPage := PDFPage new.
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 90 mm @ 40 mm;
-		dimension: 100 mm @ 20 mm; 
+		dimension: 100 mm @ 20 mm;
 		text: '1 Emensis itaque difficultatibus multis et nive obrutis callibus plurimis ubi prope Rauracum ventum est ad supercilia fluminis Rheni, resistente multitudine Alamanna pontem suspendere navium conpage Romani vi nimia vetabantur ritu grandinis undique convolantibus telis, et cum id inpossibile videretur, imperator cogitationibus magnis attonitus, quid capesseret ambigebat.').
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 20 mm @ 40 mm;
-		dimension: 60 mm @ 60 mm; 
+		dimension: 60 mm @ 60 mm;
 		spacing: 0.5mm;
 		text: '2 Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt.').
 
-	aPage add: (PDFParagraphElement new 
+	aPage add: (PDFParagraphElement new
 		from: 100 mm @ 80 mm;
-		dimension: 60 mm @ 70 mm; 
+		dimension: 60 mm @ 70 mm;
 		spacing: 1mm;
 		text: '3 Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.';
 		alignment: PDFAlignment center).
-		
-	aPage add: (PDFParagraphElement new 
+
+	aPage add: (PDFParagraphElement new
 		from: 10 mm @ 120 mm;
-		dimension: 60 mm @ 80 mm; 
+		dimension: 60 mm @ 80 mm;
 		spacing: 3 mm;
 		text: '4 Igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.';
 		alignment: PDFAlignment right
 		).
-		
-	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
@@ -1423,14 +1474,14 @@ PDFDemos >> polygonsTest: aStream [
 { #category : #draw }
 PDFDemos >> rectsTest: aStream [
 	"intersecting rects"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
+
 	aPage := PDFPage new.
-	
+
 	aPage add: (PDFRectElement from: 0 mm @ 0 mm dimension: 210 mm @ 297 mm).
-	
+
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		dimension: 100 mm @ 30 mm).
@@ -1438,16 +1489,15 @@ PDFDemos >> rectsTest: aStream [
 		from: 15 mm @ 15 mm;
 		dimension: 100 mm @ 30 mm;
 		fillColor: (PDFColor r: 142 g: 24 b: 78)
-		).		
+		).
 	aPage add: (PDFRectElement new
 		from: 20 mm @ 20 mm;
 		dimension: 100 mm @ 30 mm;
-		drawColor: (PDFColor r: 0 g: 255 b: 0) 
+		drawColor: (PDFColor r: 0 g: 255 b: 0)
 		).
 	pdfdoc add: aPage.
 
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #experimental }
@@ -1456,18 +1506,17 @@ PDFDemos >> rotationTest: aStream [
 
 	| pdfdoc aPage  |
 	pdfdoc := PDFDocument new compression: false.
-	
+
 	aPage := PDFPage new.
 	aPage add: (PDFTextElement from: 10 mm @ 10 mm text: 'A very simple text').
-		
+
 	0 to: 35do: [ :a |
 		aPage add: (PDFTextElement new from: 50 mm @ 50 mm; text: ('Rotated text with ' , (a * 10) asString); rotation: (a * 10)).
 	].
-		
+
 	aPage add: (PDFTextElement from: 10 mm @ 50 mm text: 'A very simple text').
 	pdfdoc  add: aPage.
 	pdfdoc exportTo: aStream
-
 ]
 
 { #category : #text }
@@ -1505,16 +1554,15 @@ PDFDemos >> textTest: aStream [
 						from: 10 mm @ 85 mm;
 						text: 'A text with font expressed in mm (5)');
 		add:
-				(PDFLineElement 
+				(PDFLineElement
 						from: 10 mm @ 85 mm
 						to: 160 mm @ 85 mm);
 		add:
-				(PDFLineElement 
+				(PDFLineElement
 						from: 10 mm @ 90 mm
 						to: 160 mm @ 90 mm).
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #draw }
@@ -1523,38 +1571,37 @@ PDFDemos >> thicknessTest: aStream [
 
 	| pdfdoc aPage xy1 xy2 |
 
-	pdfdoc := PDFDocument new.	
+	pdfdoc := PDFDocument new.
 	aPage := PDFPage new.
 	xy1 := 10 mm @ 20 mm.
 	xy2 := 100 mm@ 20 mm.
-	
+
 	1 to: 5 do: [ :i |
 		aPage add: ((PDFLineElement from: xy1 to: xy2) thickness: i mm).
 		xy1 := (xy1 x) @ (xy1 y + 10 mm).
 		xy2 := (xy2 x) @ (xy2 y + 10 mm).
-	].	
-	
-	aPage add: ((PDFRectElement  
+	].
+
+	aPage add: ((PDFRectElement
 		from: 50 mm @ 80 mm
 		dimension: 50 mm @ 50 mm)
 		thickness:  5 mm
 		).
-	
-	pdfdoc add: aPage.
-		
-	pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+	pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
 PDFDemos >> twoColoredRectsOpacityTest: aStream [
 	"intersecting rects with opacity control"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new uncompressed.	
-	
+	pdfdoc := PDFDocument new uncompressed.
+
 	aPage := PDFPage new.
-	
+
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		dimension: 100 mm @ 30 mm;
@@ -1567,22 +1614,21 @@ PDFDemos >> twoColoredRectsOpacityTest: aStream [
 		dimension: 100 mm @30 mm;
 		fillColor: (PDFColor r: 24 g: 57 b: 205);
 		drawColor: (PDFColor r: 0 g: 255 b: 0);
-		opacity: (PDFOpacityColorBurn alpha: 0.3)).		
+		opacity: (PDFOpacityColorBurn alpha: 0.3)).
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+pdfdoc exportTo: aStream
 ]
 
 { #category : #draw }
 PDFDemos >> twoColoredRectsTest: aStream [
 	"intersecting rects"
-	
+
 	| pdfdoc aPage |
-	pdfdoc := PDFDocument new.	
-	
+	pdfdoc := PDFDocument new.
+
 	aPage := PDFPage new.
-	
+
 	aPage add: (PDFRectElement new
 		from: 10 mm @ 10 mm;
 		dimension: 100 mm @ 30 mm;
@@ -1592,11 +1638,10 @@ PDFDemos >> twoColoredRectsTest: aStream [
 		from: 15 mm @ 15 mm;
 		dimension: 100 mm @30 mm;
 		fillColor: (PDFColor r: 24 g: 57 b: 205);
-		drawColor: (PDFColor r: 0 g: 255 b: 0)).		
+		drawColor: (PDFColor r: 0 g: 255 b: 0)).
 	pdfdoc add: aPage.
-	
-pdfdoc exportTo: aStream
 
+pdfdoc exportTo: aStream
 ]
 
 { #category : #layout }
@@ -1693,7 +1738,6 @@ PDFDemos >> verticalLayoutTest: aStream [
 								text: 'A cell without xy')).
 	pdfdoc add: aPage.
 pdfdoc exportTo: aStream
-
 ]
 
 { #category : #misc }
@@ -1702,22 +1746,21 @@ PDFDemos >> widthTest: aStream [
 
 	| pdfdoc aPage myFont myOtherFont width text |
 
-	pdfdoc := PDFDocument new.	
-			
+	pdfdoc := PDFDocument new.
+
 	myFont := PDFTimesFont new fontSize: 16 pt.
 	text := 'Hello World !'.
 
 	aPage := PDFPage new.
-	
+
 	width := myFont getStringWidth: text.
 	aPage add: (PDFCellElement new from: 5mm@10mm; font: myFont; dimension: width@10mm; text: text).
 
 	myOtherFont := PDFTimesFont new.
 	myOtherFont fontSize: (myOtherFont getIdealFontSizeForTheString: text width: 10mm).
 	aPage add: (PDFCellElement new from: 5mm@20mm; font: myOtherFont; dimension: 10mm@2mm; text: text).
-	
-	pdfdoc add: aPage.
-		
-	pdfdoc exportTo: aStream
 
+	pdfdoc add: aPage.
+
+	pdfdoc exportTo: aStream
 ]

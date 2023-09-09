@@ -4,12 +4,12 @@ Class {
 	#instVars : [
 		'generator'
 	],
-	#category : #'Artefact-Tests-Generator'
+	#category : #'Artefact-Core-Tests-Generator'
 }
 
 { #category : #running }
 PDFGeneratorTest >> setUp [
-	generator := PDFGenerator new.
+	generator := PDFGenerator new
 ]
 
 { #category : #tests }
@@ -61,5 +61,5 @@ PDFGeneratorTest >> testGeneratePDFVersion [
 	| dataType version |
 	version := '1.3'.
 	dataType:= generator generatePDFVersion: version.
-	self assert: dataType class equals: PDFDataComment.
+	self assert: dataType class equals: PDFDataComment
 ]

@@ -7,7 +7,8 @@ Class {
 	#category : #'Artefact-Core-Formats'
 }
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 PDFA10Format >> defaultSize [
+
 	^ 73.7 point @ 104.88 point
 ]

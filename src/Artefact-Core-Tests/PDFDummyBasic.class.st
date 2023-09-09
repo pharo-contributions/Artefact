@@ -7,7 +7,7 @@ Instance Variables
 Class {
 	#name : #PDFDummyBasic,
 	#superclass : #PDFBasic,
-	#category : #'Artefact-Tests-Base'
+	#category : #'Artefact-Core-Tests-Base'
 }
 
 { #category : #style }

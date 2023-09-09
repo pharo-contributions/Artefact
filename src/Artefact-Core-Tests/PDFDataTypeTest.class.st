@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aStream'
 	],
-	#category : #'Artefact-Tests-DataTypes'
+	#category : #'Artefact-Core-Tests-DataTypes'
 }
 
 { #category : #utilities }
@@ -15,7 +15,7 @@ PDFDataTypeTest >> assert: aPDFDataType print: aString [
 
 { #category : #running }
 PDFDataTypeTest >> setUp [
-	aStream := WriteStream on: ''.
+	aStream := WriteStream on: ''
 ]
 
 { #category : #tests }
@@ -61,12 +61,12 @@ PDFDataTypeTest >> testDataAssociativeArray [
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 2; revision: 0; yourself)).
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 5; revision: 0; yourself)).
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 8; revision: 0; yourself)).
-	
+
 	dataAssociativeArray := PDFDataAssociativeArray new.
 	dataAssociativeArray add:( PDFDataCouple key: (PDFDataSymbol symbol: 'Type') value: (PDFDataSymbol symbol: 'Pages' )).
 	dataAssociativeArray add:( PDFDataCouple key:  (PDFDataSymbol symbol: 'Kids') value: dataArray).
 	dataAssociativeArray add:( PDFDataCouple key:  (PDFDataSymbol symbol: 'Count') value: (PDFDataValue value: 3)).
-	
+
 	self assert: dataAssociativeArray print: '<<',String lf, '/Type /Pages',String lf, '/Kids [ 2 0 R 5 0 R 8 0 R ]',String lf, '/Count 3',String lf, '>>'
 ]
 
@@ -82,9 +82,9 @@ PDFDataTypeTest >> testDataCouple [
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 2; revision: 0; yourself)).
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 5; revision: 0; yourself)).
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 8; revision: 0; yourself)).
-	
+
 	couple:= PDFDataCouple key: (PDFDataSymbol symbol: 'Kids') value: dataArray.
-	
+
 	self assert: couple print: '/Kids [ 2 0 R 5 0 R 8 0 R ]'
 ]
 

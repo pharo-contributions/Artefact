@@ -17,29 +17,33 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataStreamRefSize class >> stream: aStream [
+
 	^ self new
-		pdfDataStream: aStream;
-		yourself
+		  pdfDataStream: aStream;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataStreamRefSize >> acceptVisitor: aVisitor [
 	^ aVisitor visitPDFDataStreamRefSize: self
 ]
 
 { #category : #accessing }
 PDFDataStreamRefSize >> pdfDataStream [
+
 	^ pdfDataStream
 ]
 
 { #category : #accessing }
 PDFDataStreamRefSize >> pdfDataStream: anObject [
+
 	pdfDataStream := anObject
 ]
 
 { #category : #printing }
 PDFDataStreamRefSize >> printWith: aPDFPrinter [
+
 	aPDFPrinter printPDFDataStreamRefSize: self
 ]

@@ -17,32 +17,40 @@ Class {
 	#category : #'Artefact-Core-DataTypes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFDataValue class >> value: aValue [
-	^ self new value: aValue; yourself
+
+	^ self new
+		  value: aValue;
+		  yourself
 ]
 
-{ #category : #visit }
+{ #category : #visiting }
 PDFDataValue >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataValue: self
 ]
 
 { #category : #testing }
 PDFDataValue >> isPrintable [
+
 	^ true
 ]
 
 { #category : #printing }
 PDFDataValue >> printOn: aStream [
+
 	aStream nextPutAll: value asString
 ]
 
-{ #category : #accessing }
+{ #category : #evaluating }
 PDFDataValue >> value [
+
 	^ value
 ]
 
 { #category : #accessing }
 PDFDataValue >> value: anObject [
+
 	value := anObject
 ]

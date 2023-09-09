@@ -17,31 +17,28 @@ Class {
 	#category : #'Artefact-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
-PDFTemplate class >> recommendedDocumentFormat [
-	self subclassResponsibility 
-]
-
 { #category : #accessing }
 PDFTemplate >> dotted [
-	^dotted
+
+	^ dotted
 ]
 
 { #category : #accessing }
 PDFTemplate >> dotted: aPDFDotted [
-	dotted :=  aPDFDotted
+
+	dotted := aPDFDotted
 ]
 
 { #category : #action }
 PDFTemplate >> drawTemplate [
-	self subclassResponsibility 
+
+	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFTemplate >> initialize [
+
 	super initialize.
-
 	self dotted: (PDFDotted new length: 1 mm; space: 1 mm).
-	self drawTemplate.	
-
+	self drawTemplate
 ]

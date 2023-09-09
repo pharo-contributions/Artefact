@@ -7,7 +7,7 @@ Instance Variables
 Class {
 	#name : #PDFDummyLayout,
 	#superclass : #PDFLayout,
-	#category : #'Artefact-Tests-Elements'
+	#category : #'Artefact-Core-Tests-Elements'
 }
 
 { #category : #layouting }

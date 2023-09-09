@@ -54,86 +54,105 @@ PDFAlignment class >> top [
 
 { #category : #position }
 PDFAlignment >> bottom [
+
 	self vertical: #BOTTOM
 ]
 
 { #category : #position }
 PDFAlignment >> center [
+
 	self horizontal: #CENTER
 ]
 
 { #category : #accessing }
 PDFAlignment >> horizontal [
+
 	^ horizontal
 ]
 
 { #category : #accessing }
-PDFAlignment >> horizontal: anObject [
-	horizontal := anObject
+PDFAlignment >> horizontal: aSymbol [
+
+	horizontal := aSymbol
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PDFAlignment >> initialize [
-	self left;
-	 middle.
+
+	super initialize.
+	self
+		left;
+		middle
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isBottom [
-	^ self vertical = #BOTTOM
+
+	^ self vertical == #BOTTOM
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isCenter [
-	^ self horizontal = #CENTER
+
+	^ self horizontal == #CENTER
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isLeft [
-	^ self horizontal = #LEFT
+
+	^ self horizontal == #LEFT
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isMiddle [
-	^ self vertical = #MIDDLE
+
+	^ self vertical == #MIDDLE
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isRight [
-	^ self horizontal = #RIGHT
+
+	^ self horizontal == #RIGHT
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 PDFAlignment >> isTop [
-	^ self vertical = #TOP
+
+	^ self vertical == #TOP
 ]
 
 { #category : #position }
 PDFAlignment >> left [
-	self horizontal:  #LEFT
+
+	self horizontal: #LEFT
 ]
 
 { #category : #position }
 PDFAlignment >> middle [
+
 	self vertical: #MIDDLE
 ]
 
 { #category : #position }
 PDFAlignment >> right [
+
 	self horizontal: #RIGHT
 ]
 
 { #category : #position }
 PDFAlignment >> top [
+
 	self vertical: #TOP
 ]
 
 { #category : #accessing }
 PDFAlignment >> vertical [
+
 	^ vertical
 ]
 
 { #category : #accessing }
-PDFAlignment >> vertical: anObject [
-	vertical := anObject
+PDFAlignment >> vertical: aSymbol [
+
+	vertical := aSymbol
 ]

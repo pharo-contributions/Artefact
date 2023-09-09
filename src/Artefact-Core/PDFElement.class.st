@@ -27,29 +27,47 @@ Class {
 
 { #category : #orientation }
 PDFElement class >> determineOrientation: aPoint [
-	^ ((aPoint y < 0 ifTrue: [ 'top' ] ifFalse: [ 'bottom' ]) , (aPoint x < 0 ifTrue: [ 'Left' ] ifFalse: [ 'Right' ])) asSymbol
+
+	^ ((aPoint y < 0
+		    ifTrue: [ 'top' ]
+		    ifFalse: [ 'bottom' ]) , (aPoint x < 0
+		    ifTrue: [ 'Left' ]
+		    ifFalse: [ 'Right' ])) asSymbol
 ]
 
 { #category : #accessing }
 PDFElement class >> from: aPosition [
+
 	^ self new from: aPosition
 ]
 
 { #category : #'instance creation' }
 PDFElement class >> from: aPosition dimension: aDimension [
+
 	^ (self from: aPosition) dimension: aDimension
 ]
 
 { #category : #'instance creation' }
 PDFElement class >> from: aPosition to: anotherPosition [
-	^ (self from: (aPosition min: anotherPosition) dimension: (anotherPosition - aPosition) abs ) orientation: (self determineOrientation: anotherPosition - aPosition)
+
+	^ (self
+		   from: (aPosition min: anotherPosition)
+		   dimension: (anotherPosition - aPosition) abs) orientation:
+		  (self determineOrientation: anotherPosition - aPosition)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PDFElement class >> from: aPosition to: anotherPosition style: aStyleSymbol [
+
 	^ (self from: aPosition to: anotherPosition)
-		addStyle: aStyleSymbol;
-		yourself
+		  addStyle: aStyleSymbol;
+		  yourself
+]
+
+{ #category : #testing }
+PDFElement class >> isAbstract [
+
+	^ self == PDFElement
 ]
 
 { #category : #accessing }
@@ -70,7 +88,7 @@ PDFElement >> dimension [
 
 { #category : #accessing }
 PDFElement >> dimension: aDimension [
-	dimension:= aDimension 
+	dimension:= aDimension
 ]
 
 { #category : #accessing }
@@ -85,7 +103,7 @@ PDFElement >> from: anObject [
 
 { #category : #render }
 PDFElement >> generateCodeSegmentWith: aGenerator styleSheet: aStyleSheet format: aFormat [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #render }
@@ -101,8 +119,9 @@ PDFElement >> height [
 	^ self dimension y
 ]
 
-{ #category : #'initialize-release' }
-PDFElement >> initialize [ 
+{ #category : #initialization }
+PDFElement >> initialize [
+
 	super initialize.
 	self orientation: #bottomRight.
 	self initializeStyle
@@ -147,8 +166,7 @@ PDFElement >> requiredAttributes [
 
 { #category : #accessing }
 PDFElement >> rotation: anAngle [
-	self styleSheet rotation: anAngle 
- 
+	self styleSheet rotation: anAngle
 ]
 
 { #category : #accessing }

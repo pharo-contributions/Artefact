@@ -5,7 +5,7 @@ Class {
 		'doc',
 		'page'
 	],
-	#category : #'Artefact-Tests-Base'
+	#category : #'Artefact-Core-Tests-Base'
 }
 
 { #category : #accessing }
@@ -30,14 +30,14 @@ PDFFontTest >> page: anObject [
 
 { #category : #running }
 PDFFontTest >> setUp [
-	self doc: PDFDocument new.
+	self doc: PDFDocument new
 ]
 
 { #category : #running }
-PDFFontTest >> tearDown [ 
+PDFFontTest >> tearDown [
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testCourierBIWidth [
 	self
 		assert:
@@ -49,7 +49,7 @@ PDFFontTest >> testCourierBIWidth [
 		equals: 48 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testCourierBWidth [
 	self
 		assert:
@@ -60,7 +60,7 @@ PDFFontTest >> testCourierBWidth [
 		equals: 48 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testCourierIWidth [
 	self
 		assert:
@@ -71,7 +71,7 @@ PDFFontTest >> testCourierIWidth [
 		equals: 48 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testCourierWidth [
 	self
 		assert:
@@ -81,7 +81,7 @@ PDFFontTest >> testCourierWidth [
 		equals: 48 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testHelveticaBIWidth [
 	self
 		assert:
@@ -93,7 +93,7 @@ PDFFontTest >> testHelveticaBIWidth [
 		equals: 37 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testHelveticaBWidth [
 	self
 		assert:
@@ -104,7 +104,7 @@ PDFFontTest >> testHelveticaBWidth [
 		equals: 37 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testHelveticaIWidth [
 	self
 		assert:
@@ -115,7 +115,7 @@ PDFFontTest >> testHelveticaIWidth [
 		equals: 34 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testHelveticaWidth [
 	self
 		assert:
@@ -125,7 +125,7 @@ PDFFontTest >> testHelveticaWidth [
 		equals: 34 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testSymbolWidth [
 	self
 		assert:
@@ -135,7 +135,7 @@ PDFFontTest >> testSymbolWidth [
 		equals: 43 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testTimesBIWidth [
 	self
 		assert:
@@ -147,7 +147,7 @@ PDFFontTest >> testTimesBIWidth [
 		equals: 33 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testTimesBWidth [
 	self
 		assert:
@@ -158,7 +158,7 @@ PDFFontTest >> testTimesBWidth [
 		equals: 33 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testTimesIWidth [
 	self
 		assert:
@@ -169,7 +169,7 @@ PDFFontTest >> testTimesIWidth [
 		equals: 32 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testTimesWidth [
 	self
 		assert:
@@ -179,7 +179,7 @@ PDFFontTest >> testTimesWidth [
 		equals: 32 pt
 ]
 
-{ #category : #fontsWidth }
+{ #category : #'tests - fonts width' }
 PDFFontTest >> testZapfdingbatsWidth [
 	self
 		assert:

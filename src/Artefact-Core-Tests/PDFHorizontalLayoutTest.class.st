@@ -4,11 +4,11 @@ Class {
 	#instVars : [
 		'testLayout'
 	],
-	#category : #'Artefact-Tests-Layouts'
+	#category : #'Artefact-Core-Tests-Layouts'
 }
 
 { #category : #running }
-PDFHorizontalLayoutTest >> setUp [ 
+PDFHorizontalLayoutTest >> setUp [
 	testLayout := PDFHorizontalLayout new
 ]
 
