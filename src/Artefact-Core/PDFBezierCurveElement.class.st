@@ -35,7 +35,7 @@ PDFBezierCurveElement >> points: anObject [
 ]
 
 { #category : #render }
-PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
+PDFBezierCurveElement >> producePageElementCodeWith: aPDFGenerator styleSheet: anObject [
 	"Draw a Bezier curve from xy to destination (3 control points)"
 
 	^ String

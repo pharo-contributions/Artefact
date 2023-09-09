@@ -13,6 +13,7 @@ Class {
 { #category : #running }
 PDFLayoutTest >> setUp [
 
+	super setUp.
 	testLayout := PDFDummyLayout new.
 	generator := PDFGenerator new.
 	page := PDFPage new.

@@ -15,3 +15,14 @@ PDFDummyBasic >> defaultStyle [
 
  	^ #default
 ]
+
+{ #category : #testing }
+PDFDummyBasic >> isDrawElement [
+
+	^ true
+]
+
+{ #category : #render }
+PDFDummyBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+	"Do nothing here"
+]

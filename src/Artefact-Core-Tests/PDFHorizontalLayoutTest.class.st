@@ -10,6 +10,7 @@ Class {
 { #category : #running }
 PDFHorizontalLayoutTest >> setUp [
 
+	super setUp.
 	testLayout := PDFHorizontalLayout new
 ]
 

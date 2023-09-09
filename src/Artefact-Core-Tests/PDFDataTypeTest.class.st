@@ -15,7 +15,9 @@ PDFDataTypeTest >> assert: aPDFDataType print: aString [
 ]
 
 { #category : #running }
-PDFDataTypeTest >> setUp [	
+PDFDataTypeTest >> setUp [
+
+	super setUp.
 	aStream := WriteStream on: ''
 ]
 

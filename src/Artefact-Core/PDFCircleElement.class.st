@@ -23,7 +23,7 @@ PDFCircleElement class >> center: aPoint radius: aRadius [
 ]
 
 { #category : #render }
-PDFCircleElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+PDFCircleElement >> producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet [
 	"Draw a line from xy to destination"
 
 	| origin r |
