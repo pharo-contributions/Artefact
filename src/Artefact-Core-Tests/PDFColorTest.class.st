@@ -13,5 +13,5 @@ PDFColorTest >> testEqual [
 { #category : #tests }
 PDFColorTest >> testEqualDifferents [
 
-	self deny: (PDFColor r: 54 g: 98 b: 12) = (PDFColor r: 12 g: 48 b: 79)
+	self deny: (PDFColor r: 54 g: 98 b: 12) equals: (PDFColor r: 12 g: 48 b: 79)
 ]
