@@ -19,6 +19,7 @@ PDFPngElement class >> fromMorph: aMorph [
 
 { #category : #accessing }
 PDFPngElement >> stream: anImageStream [
+
 	| readWriter |
 	"The PNG is converted to JPEG"
 	stream := (ReadWriteStream with: (ByteArray new)).

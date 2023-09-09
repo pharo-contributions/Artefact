@@ -9,17 +9,19 @@ Class {
 
 { #category : #utilities }
 PDFDataTypeTest >> assert: aPDFDataType print: aString [
+
 	aPDFDataType printOn: aStream.
 	self assert: aStream contents equals: aString
 ]
 
 { #category : #running }
-PDFDataTypeTest >> setUp [
+PDFDataTypeTest >> setUp [	
 	aStream := WriteStream on: ''
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataArray [
+
 	| dataArray |
 	dataArray := PDFDataArray new.
 	dataArray addElement: (PDFDataValue value: 0).
@@ -31,11 +33,13 @@ PDFDataTypeTest >> testDataArray [
 
 { #category : #tests }
 PDFDataTypeTest >> testDataArrayEmpty [
+
 	self assert: (PDFDataArray new) print: '[ ]'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataArrayReferencies [
+
 	| dataArray |
 	dataArray := PDFDataArray new.
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 2; revision: 0; yourself)).
@@ -46,6 +50,7 @@ PDFDataTypeTest >> testDataArrayReferencies [
 
 { #category : #tests }
 PDFDataTypeTest >> testDataArraySymbols [
+
 	| dataArray |
 	dataArray := PDFDataArray new.
 	dataArray addElement: (PDFDataSymbol symbol: 'PDF').
@@ -56,6 +61,7 @@ PDFDataTypeTest >> testDataArraySymbols [
 
 { #category : #tests }
 PDFDataTypeTest >> testDataAssociativeArray [
+
 	| dataAssociativeArray dataArray |
 	dataArray := PDFDataArray new.
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 2; revision: 0; yourself)).
@@ -72,11 +78,13 @@ PDFDataTypeTest >> testDataAssociativeArray [
 
 { #category : #tests }
 PDFDataTypeTest >> testDataComment [
+
 	self assert: (PDFDataComment text: 'PDF-1.3') print: '%PDF-1.3'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataCouple [
+
 	|  couple dataArray |
 	dataArray := PDFDataArray new.
 	dataArray addElement: (PDFDataReference reference: (PDFDataObject new id: 2; revision: 0; yourself)).
@@ -90,30 +98,36 @@ PDFDataTypeTest >> testDataCouple [
 
 { #category : #tests }
 PDFDataTypeTest >> testDataReference [
+
 	self assert: (PDFDataReference reference: (PDFDataObject new id: 42; revision: 0; yourself)) print: '42 0 R'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataString [
+
 	self assert: (PDFDataString text: 'a string') print: '(a string)'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataSymbol [
+
 	self assert: (PDFDataSymbol symbol: 'Type') print: '/Type'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataValueEmptyString [
+
 	self assert: (PDFDataValue value: '') print: ''
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataValueNumber [
+
 	self assert: (PDFDataValue value: 12) print: '12'
 ]
 
 { #category : #tests }
 PDFDataTypeTest >> testDataValueString [
+
 	self assert: (PDFDataValue value: 'Olivier') print: 'Olivier'
 ]

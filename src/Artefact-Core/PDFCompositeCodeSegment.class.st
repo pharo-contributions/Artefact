@@ -19,6 +19,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFCompositeCodeSegment class >> from: aCollectionOfSegments styleSheet: aStylesheet [
+
 	^ self new segments: aCollectionOfSegments; styleSheet: aStylesheet; yourself
 ]
 

@@ -10,6 +10,7 @@ Class {
 
 { #category : #'tests - compression' }
 PDFStreamPrinterTest >> testGenerateGZipCompression [
+
 	| result |
 
 	result := OrderedCollection new.

@@ -122,11 +122,13 @@ PDFClockElement class >> streamNamed: aName do: aBlock [
 
 { #category : #style }
 PDFClockElement >> defaultStyle [
+
 	^ #clock
 ]
 
 { #category : #render }
 PDFClockElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
+
 	| hourAngle minuteAngle |
 	hourAngle := Float pi / 2 - (time hour12 * 2 * Float pi / 12).
 	minuteAngle := Float pi / 2 - (time minute * 2 * Float pi / 60).
@@ -138,10 +140,12 @@ PDFClockElement >> getSubElementsWith: aGenerator styleSheet: aStyleSheet [
 
 { #category : #accessing }
 PDFClockElement >> time [
+
 	^ time
 ]
 
 { #category : #accessing }
 PDFClockElement >> time: anObject [
+
 	time := anObject
 ]

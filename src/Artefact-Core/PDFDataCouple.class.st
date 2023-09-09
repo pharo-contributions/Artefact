@@ -33,6 +33,7 @@ PDFDataCouple class >> key: aKey value: aValue [
 
 { #category : #visit }
 PDFDataCouple >> acceptVisitor: aVisitor [
+
 	^ aVisitor visitPDFDataCouple: self
 ]
 

@@ -9,11 +9,13 @@ Class {
 
 { #category : #running }
 PDFGeneratorTest >> setUp [
+
 	generator := PDFGenerator new
 ]
 
 { #category : #tests }
 PDFGeneratorTest >> testGenerateEmptyPage [
+
 	| page pageDataType contentDataType document |
 	document := PDFDocument new uncompressed.
 	page := PDFPage new format: PDFA4Format new.
@@ -35,6 +37,7 @@ PDFGeneratorTest >> testGenerateEmptyPage [
 
 { #category : #tests }
 PDFGeneratorTest >> testGenerateFontID [
+
 	self assert: generator generateFontId equals: 'F1'.
 	self assert: generator generateFontId equals: 'F2'.
 	self assert: generator generateFontId equals: 'F3'
@@ -42,6 +45,7 @@ PDFGeneratorTest >> testGenerateFontID [
 
 { #category : #tests }
 PDFGeneratorTest >> testGeneratePDFFormat [
+
 	| dataType format elements |
 	format := PDFA3Format new setLandscape.
 	dataType := generator generatePDFFormat: format.
@@ -58,6 +62,7 @@ PDFGeneratorTest >> testGeneratePDFFormat [
 
 { #category : #tests }
 PDFGeneratorTest >> testGeneratePDFVersion [
+
 	| dataType version |
 	version := '1.3'.
 	dataType:= generator generatePDFVersion: version.

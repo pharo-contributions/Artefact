@@ -12,5 +12,6 @@ Class {
 
 { #category : #style }
 PDFDummyBasic >> defaultStyle [
+
  	^ #default
 ]

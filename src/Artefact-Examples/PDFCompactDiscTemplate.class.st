@@ -10,11 +10,13 @@ Class {
 
 { #category : #accessing }
 PDFCompactDiscTemplate class >> recommendedPageFormat [
+
 	^(PDFA4Format new setLandscape)
 ]
 
 { #category : #action }
 PDFCompactDiscTemplate >> drawTemplate [
+
 	self add: ((PDFRectElement
 		from: 10 mm @ 10 mm
 		dimension: 240 mm @ 120 mm)

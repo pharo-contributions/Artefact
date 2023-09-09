@@ -1,8 +1,8 @@
 # Artefact
 
-Artefact is a framework to generate PDF documents in Pharo.
+Artefact is a framework to generate PDF documents in [Pharo](https://www.pharo.org).
 
-Artefact is written and supported by Olivier Auverlot and Guillaume Larcheveque (aka The Pasta Team) 
+Artefact is written and supported by Olivier Auverlot and Guillaume Larcheveque (aka The Pasta Team) with contributions from Pharo community
 
 [![Unit Tests](https://github.com/pharo-contributions/Artefact/workflows/Build/badge.svg?branch=master)](https://github.com/pharo-contributions/Artefact/actions?query=workflow%3ABuild)
 [![Coverage Status](https://codecov.io/github/pharo-contributions/Artefact/coverage.svg?branch=master)](https://codecov.io/gh/pharo-contributions/Artefact/branch/master)
@@ -32,25 +32,43 @@ It is fully written in Smalltalk and doesn't require any native library. Artefac
 
 ## Install Artefact 
 
-To install Artefact on your Pharo image you can just execute the following script:
+To install Artefact on your [Pharo](https://www.pharo.org) image you can just execute the following script:
+
+### Load and use:
+```Smalltalk
+Metacello new
+	githubUser: 'pharo-contributions' project: 'Artefact' commitish: 'master' path: 'src';
+	baseline: 'Artefact';
+	load
+```
+Check the demo and examples in the *"Artefact-Examples"* package.
+
+### Develop:
+
+If you want to contribut to development load the latest development branch:
 
 ```Smalltalk
-    Metacello new
-    	githubUser: 'pharo-contributions' project: 'Artefact' commitish: 'master' path: 'src';
-    	baseline: 'Artefact';
-    	load
+Metacello new
+	githubUser: 'pharo-contributions' project: 'Artefact' commitish: 'development' path: 'src';
+	baseline: 'Artefact';
+	load
 ```
+
+### Add Artefact to your project(s):
 
 To add Artefact to your baseline just add this:
 
 ```Smalltalk
-    spec
-    	baseline: 'Artefact'
-    	with: [ spec repository: 'github://pharo-contributions/Artefact:master/src' ]
+spec
+	baseline: 'Artefact'
+	with: [ spec repository: 'github://pharo-contributions/Artefact:master/src' ]
 ```
 
 Note that you can replace the #master by another branch as #development or a tag as #v1.0.0, #v1.? or #v1.2.? .
 
 ## Getting started
 
-To start using Artefact, you should look at the Artefact tutorial in the Help Browser of Pharo (accessible from the World menu)
+To start using Artefact, you should look at the
+
+- [Guide](./docs/Guide.md)
+- [Tutorial](./docs/Tutorial.md)

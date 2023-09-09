@@ -12,6 +12,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PDFArrow class >> from: from angle: angle length: aLength [
+
 	^ self from: from to: from + ((angle cos * aLength) @ ((angle sin * aLength) negated))
 ]
 
