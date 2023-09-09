@@ -4,8 +4,8 @@ Artefact is a framework to generate PDF documents in Pharo.
 
 Artefact is written and supported by Olivier Auverlot and Guillaume Larcheveque (aka The Pasta Team) 
 
-[![Unit Tests](https://github.com/pharo-contributions/Pharo-Pomodoro/workflows/Build/badge.svg?branch=main)](https://github.com/pharo-contributions/Artefact/actions?query=workflow%3ABuild)
-[![Coverage Status](https://codecov.io/github/pharo-contributions/Pharo-Pomodoro/coverage.svg?branch=main)](https://codecov.io/gh/pharo-contributions/Artefact/branch/main)
+[![Unit Tests](https://github.com/pharo-contributions/Pharo-Pomodoro/workflows/Build/badge.svg?branch=master)](https://github.com/pharo-contributions/Artefact/actions?query=workflow%3ABuild)
+[![Coverage Status](https://codecov.io/github/pharo-contributions/Pharo-Pomodoro/coverage.svg?branch=master)](https://codecov.io/gh/pharo-contributions/Artefact/branch/master)
 
 [![Pharo 6](https://img.shields.io/badge/Pharo-6.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo 7](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
