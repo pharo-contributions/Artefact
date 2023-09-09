@@ -16,7 +16,7 @@ PDFEllipseElement class >> center: aPoint radius: aRadius [
 ]
 
 { #category : #render }
-PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+PDFEllipseElement >> producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	| hw hh magic cx cy lx rx ty by |
 

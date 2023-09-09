@@ -77,7 +77,7 @@ PDFImage >> originalImageDimensions [
 ]
 
 { #category : #render }
-PDFImage >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
+PDFImage >> producePageElementCodeWith: aPDFGenerator styleSheet: anObject [
 	| origin imageId |
 
 	"Determine the vertical position of the image"
