@@ -35,11 +35,8 @@ PDFFontTest >> page: anObject [
 { #category : #running }
 PDFFontTest >> setUp [
 
+	super setUp.
 	self doc: PDFDocument new
-]
-
-{ #category : #running }
-PDFFontTest >> tearDown [
 ]
 
 { #category : #'tests - fonts width' }

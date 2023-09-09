@@ -10,13 +10,14 @@ Class {
 { #category : #running }
 PDFGeneratorTest >> setUp [
 
+	super setUp.
 	generator := PDFGenerator new
 ]
 
 { #category : #tests }
 PDFGeneratorTest >> testGenerateEmptyPage [
 
-	| page pageDataType contentDataType document |
+	| page pageDataType document |
 	document := PDFDocument new uncompressed.
 	page := PDFPage new format: PDFA4Format new.
 	document add: page.

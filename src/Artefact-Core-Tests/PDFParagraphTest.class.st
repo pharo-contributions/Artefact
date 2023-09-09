@@ -48,6 +48,7 @@ PDFParagraphTest >> paragraph: anObject [
 { #category : #running }
 PDFParagraphTest >> setUp [
 
+	super setUp.
 	self doc: PDFDocument new.
 	self page: PDFPage new.
 
@@ -60,8 +61,4 @@ PDFParagraphTest >> setUp [
 	self doc add: self page.
 
 	self doc generate
-]
-
-{ #category : #running }
-PDFParagraphTest >> tearDown [
 ]
