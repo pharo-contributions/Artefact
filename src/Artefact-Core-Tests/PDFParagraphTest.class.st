@@ -62,3 +62,15 @@ PDFParagraphTest >> setUp [
 
 	self doc generate
 ]
+
+{ #category : #tests }
+PDFParagraphTest >> testDimensions [
+
+	self assert: paragraph dimension equals: 160mm@60mm
+]
+
+{ #category : #tests }
+PDFParagraphTest >> testOrigin [
+
+	self assert: paragraph from equals: 10 mm @ 10 mm
+]
