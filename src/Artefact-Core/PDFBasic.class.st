@@ -34,7 +34,7 @@ PDFBasic >> determinePosition: aPosition on: aPage [
 PDFBasic >> generateCodeSegmentWith: aPDFGenerator styleSheet: aStyleSheet format: aFormat [
 
 	^ self codeSegmentClass
-		code: (self producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet)
+		code: (self producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet)
 		styleSheet: aStyleSheet
 		format: aFormat
 		isDrawElement: self isDrawElement
@@ -56,7 +56,7 @@ PDFBasic >> opacity: anOpacity [
 ]
 
 { #category : #render }
-PDFBasic >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+PDFBasic >> producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet [
 
 	self subclassResponsibility
 ]

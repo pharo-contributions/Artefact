@@ -17,7 +17,7 @@ PDFTextElement >> minimumDimensionWith: aPDFGenerator styleSheet: aStyleSheet [
 ]
 
 { #category : #render }
-PDFTextElement >> producePageElementCodeWith: aGenerator StyleSheet: aStyleSheet [
+PDFTextElement >> producePageElementCodeWith: aGenerator styleSheet: aStyleSheet [
 	"Draw a text at xy position"
 
 	| position |

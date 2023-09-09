@@ -32,7 +32,7 @@ PDFPolygonElement >> points: anObject [
 ]
 
 { #category : #render }
-PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+PDFPolygonElement >> producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet [
 	"Draw a polygon from xy to destination (a array of positions)"
 
 	^ String

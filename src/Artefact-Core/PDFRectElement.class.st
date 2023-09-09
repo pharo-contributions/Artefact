@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #render }
-PDFRectElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: aStyleSheet [
+PDFRectElement >> producePageElementCodeWith: aPDFGenerator styleSheet: aStyleSheet [
 	"Draw a rectangle from xy with a specified dimension"
 
 	| position |

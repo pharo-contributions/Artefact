@@ -21,7 +21,7 @@ PDFLineElement class >> from: from angle: angle length: aLength [
 ]
 
 { #category : #render }
-PDFLineElement >> producePageElementCodeWith: aPDFGenerator StyleSheet: anObject [
+PDFLineElement >> producePageElementCodeWith: aPDFGenerator styleSheet: anObject [
 
 	| dest |
 	dest := aPDFGenerator determinePositionOnCurrentPage: self orientedTo .
