@@ -2,7 +2,7 @@
 [![Pharo](https://img.shields.io/static/v1?style=for-the-badge&message=Pharo&color=3297d4&logo=Harbor&logoColor=FFFFFF&label=)](https://www.pharo.org) 
 [![PDF](https://img.shields.io/static/v1?style=for-the-badge&message=PDF&color=044a64&logo=PDF&logoColor=FFFFFF&label=)]([https://www.sqlite.org](https://en.wikipedia.org/wiki/PDF))
 
-Artefact is a framework to generate PDF documents in [Pharo](https://www.pharo.org).
+**Artefact** is a framework to generate PDF documents in [Pharo](https://www.pharo.org).
 
 Artefact is written and supported by Olivier Auverlot and Guillaume Larcheveque (aka The Pasta Team) with contributions from Pharo community
 
